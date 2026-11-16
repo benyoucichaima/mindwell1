@@ -2,6 +2,8 @@ from pathlib import Path
 import json
 import os
 
+import dj_database_url
+
 from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
 
@@ -31,9 +33,16 @@ if not DEBUG and (len(SECRET_KEY) < 50 or len(set(SECRET_KEY)) < 5):
         'DJANGO_SECRET_KEY must be a strong, randomly generated value in production.'
     )
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    if host.strip()
+]
+_render_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+if _render_hostname:
+    ALLOWED_HOSTS.append(_render_hostname)
 
-if not ALLOWED_HOSTS:
+if not DEBUG and not ALLOWED_HOSTS:
     raise ImproperlyConfigured(
         'DJANGO_ALLOWED_HOSTS must contain at least one host when DEBUG is disabled.'
     )
@@ -41,6 +50,7 @@ if not DEBUG and '*' in ALLOWED_HOSTS:
     raise ImproperlyConfigured('DJANGO_ALLOWED_HOSTS must not contain a wildcard in production.')
 
 SECURE_SSL_REDIRECT = env_bool('DJANGO_SECURE_SSL_REDIRECT', default=not DEBUG)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = env_bool('DJANGO_SESSION_COOKIE_SECURE', default=not DEBUG)
 CSRF_COOKIE_SECURE = env_bool('DJANGO_CSRF_COOKIE_SECURE', default=not DEBUG)
 SECURE_HSTS_SECONDS = int(os.getenv('DJANGO_SECURE_HSTS_SECONDS', '0'))
@@ -48,10 +58,15 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = env_bool('DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS
 SECURE_HSTS_PRELOAD = env_bool('DJANGO_SECURE_HSTS_PRELOAD')
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://oboe-capillary-flannels.ngrok-free.dev',
-    'http://127.0.0.1:8000',
-    'http://localhost:8000',
+    origin.strip()
+    for origin in os.getenv(
+        'DJANGO_CSRF_TRUSTED_ORIGINS',
+        'http://127.0.0.1:8000,http://localhost:8000',
+    ).split(',')
+    if origin.strip()
 ]
+if _render_hostname:
+    CSRF_TRUSTED_ORIGINS.append(f'https://{_render_hostname}')
 
 INSTALLED_APPS = [
     
@@ -82,28 +97,16 @@ INSTALLED_APPS = [
 
 ASGI_APPLICATION = "mindwell.asgi.application"
 
-try:
-    import redis
-
-    r = redis.Redis(
-        host="127.0.0.1",
-        port=6379,
-        db=0,
-        socket_connect_timeout=1,
-        socket_timeout=1,
-    )
-    r.ping()
-
+_redis_url = os.getenv('REDIS_URL')
+if _redis_url:
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels_redis.core.RedisChannelLayer",
-            "CONFIG": {
-                "hosts": [("127.0.0.1", 6379)],
-            },
+            "CONFIG": {"hosts": [_redis_url]},
         },
     }
-
-except Exception:
+else:
+    # Single-instance demo fallback. Use REDIS_URL for shared production messaging.
     CHANNEL_LAYERS = {
         "default": {
             "BACKEND": "channels.layers.InMemoryChannelLayer",
@@ -118,6 +121,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'mindwell.middleware.PreferredLanguageMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -151,11 +155,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mindwell.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        ssl_require=not DEBUG and bool(os.getenv('DATABASE_URL')),
+    )
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -180,6 +186,12 @@ LOCALE_PATHS = [
 ]
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STORAGES = {
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
+    },
+}
 STATICFILES_DIRS = [
     BASE_DIR / 'mindwell' / 'static',
 ]
