@@ -9,6 +9,8 @@ dj-database-url==2.3.0
 psycopg[binary]==3.2.9
 whitenoise==6.9.0
 redis==8.1.0
+requests==2.34.2
+python-dateutil==2.9.0.post0
 openai==2.44.0
 google-genai==3.0.0
 groq==1.7.0
