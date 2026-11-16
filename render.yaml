@@ -18,3 +18,16 @@ services:
         value: gemini
       - key: PYTHON_VERSION
         value: 3.11.9
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mindwell-db
+          property: connectionString
+
+databases:
+  - name: mindwell-db
+    databaseName: mindwell
+    user: mindwell
+    plan: free
+    region: frankfurt
+    postgresMajorVersion: "16"
+    ipAllowList: []
