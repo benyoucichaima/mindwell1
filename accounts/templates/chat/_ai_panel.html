@@ -1,0 +1,35 @@
+{% load i18n %}
+<section class="card" aria-labelledby="ai-panel-title">
+  <h2 id="ai-panel-title">Analyse de la séance</h2>
+  <p class="muted">Brouillon d’aide à la synthèse, réservé au psychologue.</p>
+  <p class="disclaimer">La génération transmet les messages de cette consultation au service IA configuré par la plateforme.</p>
+  {% if consultation %}
+    <form method="post" action="{% url 'ai_service:generate_session_summary' consultation.id %}">
+      {% csrf_token %}
+      <button type="submit" id="generate-ai-summary">{% trans "Générer le résumé IA" %}</button>
+    </form>
+  {% else %}
+    <p>{% trans "Aucune séance terminée ne permet de générer un résumé pour cette conversation." %}</p>
+  {% endif %}
+  <p id="ai-summary-status" class="status" role="status"></p>
+
+  <div id="ai-summary-result"{% if not summary %} hidden{% endif %}>
+    <h3>Résumé</h3>
+    <p id="ai-summary-text" class="ai-result">{% if summary %}{{ summary.summary }}{% endif %}</p>
+    <h3>Émotions détectées</h3>
+    <div id="ai-emotions">
+      {% if summary.emotions %}
+        {% for emotion in summary.emotions %}<span class="chip">{{ emotion }}</span>{% endfor %}
+      {% endif %}
+    </div>
+    <h3>Thèmes clés</h3>
+    <div id="ai-themes">
+      {% if summary.themes %}
+        {% for theme in summary.themes %}<span class="chip">{{ theme }}</span>{% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  <p id="ai-summary-disclaimer" class="disclaimer"{% if not summary %} hidden{% endif %}>
+    Ce texte est un brouillon automatisé, pas un diagnostic. Le psychologue doit le relire avant toute utilisation.
+  </p>
+</section>

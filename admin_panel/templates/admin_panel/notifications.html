@@ -1,0 +1,50 @@
+{% load i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% trans "Notifications" %} — MindWell Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; background:#f5f3ef; color:#202236; font:14px Inter,sans-serif; } main { max-width:900px; margin:auto; padding:24px; } header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px; } .right { display:flex; align-items:center; gap:12px; } h1 { color:#1a2340; font:700 30px "Playfair Display",serif; } .item { display:block; margin:10px 0; padding:16px; border:1px solid #e8e5e0; border-radius:12px; background:#fff; color:inherit; text-decoration:none; } .item.unread { border-inline-start:4px solid #4b5694; background:#f2f5fc; } .item span { display:block; margin-top:5px; color:#777b8a; } .notification-error { color:#b42318; } @media(max-width:600px) { main { padding:14px; } header { align-items:flex-start; flex-wrap:wrap; } }
+  </style>
+</head>
+<body class="admin-interface">
+  <main>
+    <form id="admin-csrf-form" hidden>{% csrf_token %}</form>
+    <header>
+      <a href="{% url 'dashboard' %}">{% trans "← Dashboard" %}</a>
+      <div class="right">{% include "includes/language_switcher.html" %}{% include "admin_panel/includes/notification_menu.html" %}</div>
+    </header>
+    <h1>{% trans "Notifications" %}</h1>
+    {% for notification in notifications %}
+      <a class="item admin-notification-item{% if not notification.is_read %} unread{% endif %}" href="{% if notification.url %}{{ notification.url }}{% else %}{% url 'admin_notifications' %}{% endif %}" data-read-url="{% url 'admin_mark_notification_read' notification.pk %}">
+        <strong>{{ notification.title|default:notification.message }}</strong>
+        {% if notification.title %}<span>{{ notification.message }}</span>{% endif %}
+        <span>{{ notification.created_at|date:"d/m/Y H:i" }}</span>
+      </a>
+    {% empty %}
+      <p>{% trans "No notifications yet." %}</p>
+    {% endfor %}
+  </main>
+  <script>
+    const notificationError = document.querySelector("[data-notification-error]");
+    document.querySelectorAll(".admin-notification-item[data-read-url]").forEach((link) => {
+      link.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const csrf = document.cookie.split("; ").find((cookie) => cookie.startsWith("csrftoken="))?.split("=").slice(1).join("=") || document.querySelector("#admin-csrf-form [name=csrfmiddlewaretoken]")?.value;
+        if (!csrf) { notificationError.hidden = false; return; }
+        try {
+          const response = await fetch(link.dataset.readUrl, { method: "POST", credentials: "same-origin", headers: { "X-CSRFToken": csrf, "Accept": "application/json" } });
+          if (!response.ok) throw new Error(`Notification request failed (${response.status})`);
+          const result = await response.json();
+          window.location.assign(result.url || link.href);
+        } catch {
+          notificationError.hidden = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

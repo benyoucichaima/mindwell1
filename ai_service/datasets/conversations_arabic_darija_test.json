@@ -1,0 +1,124 @@
+[
+  {
+    "id": "test_ar_anxiety_01",
+    "scenario_id": 100,
+    "language": "ar",
+    "theme": "Anxiety without safety indicators - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "أشعر بالقلق طوال الوقت، كأن شيئاً سيئاً سيحدث."},
+      {"speaker": "psychologue", "content": "أهلاً بك. منذ متى وأنت تشعر بهذا التوتر؟"},
+      {"speaker": "patient", "content": "منذ عدة أشهر. لا أنام جيداً وأقلق من كل شيء، حتى الأشياء الصغيرة."},
+      {"speaker": "psychologue", "content": "أفهم. ما هي المواقف التي تثير هذا القلق أكثر؟"},
+      {"speaker": "patient", "content": "العمل والعلاقات الاجتماعية. أخاف أن يُحكم علي أو أن أخطئ."},
+      {"speaker": "psychologue", "content": "الخوف من الحكم شائع. هل لاحظت ما يحدث في جسدك حين يزداد القلق؟"},
+      {"speaker": "patient", "content": "قلبي يتسارع وأحياناً لا أقدر على التنفس بشكل طبيعي."},
+      {"speaker": "psychologue", "content": "هذا رد فعل جسدي شائع. يمكننا تجربة تمرين بسيط لتهدئة التوتر."},
+      {"speaker": "patient", "content": "سأحاول، لكن لست متأكداً إن كان سينفع معي."}
+    ]
+  },
+  {
+    "id": "test_ar_hopelessness_01",
+    "scenario_id": 101,
+    "language": "ar",
+    "theme": "Explicit hopelessness - MEDIUM expected",
+    "messages": [
+      {"speaker": "patient", "content": "لم يعد لأي شيء معنى. استسلمت تماماً."},
+      {"speaker": "psychologue", "content": "تشعر أنه لا يوجد أمل؟"},
+      {"speaker": "patient", "content": "لا شيء سيتحسن أبداً. انتهى الأمر بالنسبة لي."}
+    ]
+  },
+  {
+    "id": "test_ar_suicidal_01",
+    "scenario_id": 102,
+    "language": "ar",
+    "theme": "Explicit suicidal ideation - HIGH expected",
+    "messages": [
+      {"speaker": "patient", "content": "أريد أن أقتل نفسي. تعبت من كل شيء."},
+      {"speaker": "psychologue", "content": "أنا أسمعك. هذا خطير جداً ما تقوله."},
+      {"speaker": "patient", "content": "نعم، أريد أن أموت. لا أرى مخرجاً."}
+    ]
+  },
+  {
+    "id": "test_ar_negated_suicidal_01",
+    "scenario_id": 103,
+    "language": "ar",
+    "theme": "Negated suicidal ideation - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "أحياناً تأتيني أفكار سوداء لكنني لا أريد أن أقتل نفسي."},
+      {"speaker": "psychologue", "content": "مهم أن تقول هذا. ليس لديك نية للتصرف بناءً عليها؟"},
+      {"speaker": "patient", "content": "لا، لا أريد أن أموت. مجرد أفكار تمر وتذهب."}
+    ]
+  },
+  {
+    "id": "test_ar_insufficient_01",
+    "scenario_id": 104,
+    "language": "ar",
+    "theme": "Vague distress without specifics - INSUFFICIENT EVIDENCE expected",
+    "messages": [
+      {"speaker": "patient", "content": "أنا لست بخير. أشعر بالسوء."},
+      {"speaker": "psychologue", "content": "هل يمكنك أن تخبرني المزيد؟"},
+      {"speaker": "patient", "content": "صعب أن أشرح. فقط... سيء."}
+    ]
+  },
+  {
+    "id": "test_dz_anxiety_01",
+    "scenario_id": 100,
+    "language": "ar",
+    "theme": "Anxiety without safety indicators (Darija) - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "نعايش قلق متواصل، كأن في حاجة وحشة جاية تصير."},
+      {"speaker": "psychologue", "content": "أهلاً بيك. من وقتاش وانت عايش هاد التوتر؟"},
+      {"speaker": "patient", "content": "من عدة أشهر. ما نقدرش نعطس راحة ونقلق على كل شي، حتى الصغاير."},
+      {"speaker": "psychologue", "content": "فهمتك. شنو المواقف اللي تزيد القلق عندك؟"},
+      {"speaker": "patient", "content": "الشغل والعلاقات مع الناس. خاف يحكمو عليا أو نغلط."},
+      {"speaker": "psychologue", "content": "الخوف من الحكم شي طبيعي. لاحظتي واش كيحصل في جسدك كي يزيد القلق؟"},
+      {"speaker": "patient", "content": "قلبي يتسارع، وفاش كيطلع القلق ما نقدرش نتنفس طبيعي."},
+      {"speaker": "psychologue", "content": "هاد رد فعل جسدي طبيعي. يمكن نجربو تمرين بسيط نهداو بيه التوتر."},
+      {"speaker": "patient", "content": "باش نجرب، حتى أنا ما متاكدش واش غادي ينفع معايا."}
+    ]
+  },
+  {
+    "id": "test_dz_hopelessness_01",
+    "scenario_id": 101,
+    "language": "ar",
+    "theme": "Explicit hopelessness (Darija) - MEDIUM expected",
+    "messages": [
+      {"speaker": "patient", "content": "ما بقاش في شي معنى. مشيت فيها، ما باقيش نقدر."},
+      {"speaker": "psychologue", "content": "تحس أنه ما بقاش في أمل؟"},
+      {"speaker": "patient", "content": "حتى حاجة ما غادي تتصلح. خلص عندي."}
+    ]
+  },
+  {
+    "id": "test_dz_suicidal_01",
+    "scenario_id": 102,
+    "language": "ar",
+    "theme": "Explicit suicidal ideation (Darija) - HIGH expected",
+    "messages": [
+      {"speaker": "patient", "content": "بغيت نقتل روحي. تعبت من كل شي."},
+      {"speaker": "psychologue", "content": "أنا نسمعك. هاد شي خطر بزاف اللي تقولو."},
+      {"speaker": "patient", "content": "إيه، بغيت نموت. ما لقيتش مخرج."}
+    ]
+  },
+  {
+    "id": "test_dz_negated_suicidal_01",
+    "scenario_id": 103,
+    "language": "ar",
+    "theme": "Negated suicidal ideation (Darija) - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "مرات تجيني أفكار سودانية ما باش نقتل روشي."},
+      {"speaker": "psychologue", "content": "مهم تقولي هادشي. ما عندكش نية تتصرف عليهم؟"},
+      {"speaker": "patient", "content": "لا، ما بغيتش نموت. مجرد أفكار تمر وتطيح."}
+    ]
+  },
+  {
+    "id": "test_dz_insufficient_01",
+    "scenario_id": 104,
+    "language": "ar",
+    "theme": "Vague distress without specifics (Darija) - INSUFFICIENT EVIDENCE expected",
+    "messages": [
+      {"speaker": "patient", "content": "ما لقيتش حالي. نحس بالحاجة السيئة."},
+      {"speaker": "psychologue", "content": "يمكن تحكيلي شوية أكثر؟"},
+      {"speaker": "patient", "content": "صعيب نوضحه. مجرد... سيء."}
+    ]
+  }
+]

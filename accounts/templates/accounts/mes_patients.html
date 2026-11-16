@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes Patients - MindWell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h2 { color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #065f46; padding-bottom: 10px; display: inline-block; }
+        .patient-card { display: flex; align-items: center; justify-content: space-between; padding: 15px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 15px; transition: 0.2s; }
+        .patient-card:hover { border-color: #065f46; background: #f0fdf4; }
+        .patient-info h3 { margin: 0 0 5px 0; color: #065f46; }
+        .patient-info p { margin: 0; color: #64748b; font-size: 0.9rem; }
+        .btn { padding: 8px 16px; background: #065f46; color: white; text-decoration: none; border-radius: 6px; font-size: 0.9rem; }
+        .btn:hover { background: #047857; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #64748b; text-decoration: none; }
+        .back-link:hover { color: #065f46; }
+    </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+    <div class="container">
+        <a href="{% url 'accounts:psychologue_dashboard' %}" class="back-link"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+        <h2><i class="fas fa-users"></i> Mes Patients</h2>
+        
+        {% if patients %}
+            {% for patient in patients %}
+            <div class="patient-card">
+                <div class="patient-info">
+                    <h3>{{ patient.first_name }} {{ patient.last_name }}</h3>
+                    <p><i class="fas fa-envelope"></i> {{ patient.email }} | <i class="fas fa-phone"></i> {{ patient.phone|default:"Non renseigné" }}</p>
+                </div>
+                <a href="{% url 'patient_file' patient.id %}" class="btn">Voir le dossier</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="color: #64748b; text-align: center; padding: 40px;">
+                <i class="fas fa-user-injured" style="font-size: 3rem; display: block; margin-bottom: 15px; opacity: 0.3;"></i>
+                Vous n'avez encore aucun patient.
+            </p>
+        {% endif %}
+    </div>
+</body>
+</html>

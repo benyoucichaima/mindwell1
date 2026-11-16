@@ -1,0 +1,14 @@
+{% load static i18n %}
+<a class="mw-back-button" href="{{ back_url }}" data-safe-referer="{{ referer }}"
+   aria-label="{% if LANGUAGE_CODE == 'ar' %}العودة إلى الصفحة السابقة{% elif LANGUAGE_CODE == 'en' %}Back to previous page{% else %}Retour à la page précédente{% endif %}">
+  <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+    {% if LANGUAGE_CODE == 'ar' %}
+    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+    {% else %}
+    <path d="M5 12h14M12 5l-7 7 7 7"></path>
+    {% endif %}
+  </svg>
+  <span>{% if LANGUAGE_CODE == 'ar' %}رجوع{% elif LANGUAGE_CODE == 'en' %}Back{% else %}Retour{% endif %}</span>
+</a>
+<link rel="stylesheet" href="{% static 'css/navigation.css' %}">
+<script src="{% static 'js/navigation.js' %}" defer></script>

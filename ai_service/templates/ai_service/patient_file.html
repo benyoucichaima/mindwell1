@@ -1,0 +1,271 @@
+{% extends "pages/base.html" %}
+{% load static navigation_tags i18n %}
+
+{% block title %}{% trans "Patient file" %}: {{ patient.get_full_name|default:patient.username }} - MindWell{% endblock %}
+
+{% block content %}
+<style>
+  .patient-file {
+    --file-bg: #f1f5f9;
+    --file-surface: #fff;
+    --file-text: #0f172a;
+    --file-muted: #475569;
+    --file-border: #cbd5e1;
+    --file-accent: #1e3a8a;
+    --file-highlight: #eff6ff;
+    color: var(--file-text);
+    padding-block: 1.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .patient-file {
+      --file-bg: #111827;
+      --file-surface: #1f2937;
+      --file-text: #f8fafc;
+      --file-muted: #cbd5e1;
+      --file-border: #64748b;
+      --file-accent: #bfdbfe;
+      --file-highlight: #172554;
+    }
+  }
+  .patient-file h1, .patient-file h2, .patient-file h3 { color:var(--file-text); }
+  .file-header, .summary-panel, .timeline-card, .latest-summary {
+    border:1px solid var(--file-border); border-radius:1rem; background:var(--file-surface);
+    box-shadow:0 4px 14px rgb(15 23 42 / 7%);
+  }
+  .file-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:1.25rem; margin-block-end:1rem; }
+  .file-header h1 { margin:0; font-size:clamp(1.4rem,3vw,2rem); }
+  .file-header p { color:var(--file-muted); margin:.35rem 0 0; }
+  .file-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:.8rem; margin-block-end:1rem; }
+  .summary-panel { padding:1rem; }
+  .summary-panel span { display:block; color:var(--file-muted); }
+  .summary-panel strong { display:block; margin-block-start:.25rem; color:var(--file-accent); font-size:1.25rem; overflow-wrap:anywhere; }
+  .latest-summary { padding:1rem; margin-block-end:1.5rem; border-inline-start:4px solid var(--file-accent); }
+  .latest-summary p { margin:.4rem 0 0; color:var(--file-muted); white-space:pre-line; }
+  .section-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-block:1.5rem .8rem; }
+  .section-heading h2 { margin:0; font-size:1.3rem; }
+  .file-button { display:inline-flex; min-height:44px; align-items:center; justify-content:center; gap:.45rem; padding:.55rem .9rem; border:1px solid var(--file-accent); border-radius:.6rem; background:#1e3a8a; color:#fff; font-weight:700; text-decoration:none; cursor:pointer; }
+  .file-button:hover { background:#172554; color:#fff; }
+  .file-button:focus-visible, .patient-file a:focus-visible, .patient-file button:focus-visible { outline:3px solid #2563eb; outline-offset:3px; }
+  .timeline { display:grid; gap:.8rem; }
+  .timeline-card { padding:1rem; }
+  .timeline-meta { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:.5rem; margin-block-end:.6rem; }
+  .timeline-meta time, .timeline-kind { color:var(--file-muted); font-weight:700; }
+  .timeline-card p { margin:.35rem 0; line-height:1.7; overflow-wrap:anywhere; }
+  .timeline-card dl { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.5rem; margin:.75rem 0 0; }
+  .timeline-card dl div { padding:.55rem; background:var(--file-highlight); border-radius:.5rem; }
+  .timeline-card dt { color:var(--file-muted); font-size:.85rem; }
+  .timeline-card dd { margin:0; font-weight:700; }
+  .sentiment-result { min-height:1.5em; color:var(--file-muted); }
+  .timeline-actions { display:flex; flex-wrap:wrap; gap:.6rem; margin-block-start:.8rem; }
+  .risk-note { padding:.65rem; margin-block-start:.65rem; border-inline-start:4px solid #b91c1c; background:#fef2f2; color:#7f1d1d; }
+  .empty-state { padding:2rem 1rem; border:1px dashed var(--file-border); border-radius:1rem; background:var(--file-surface); color:var(--file-muted); text-align:center; }
+  .timeline-pagination { display:flex; justify-content:center; gap:.5rem; margin-block:1rem; }
+  .timeline-pagination a { min-height:42px; display:inline-flex; align-items:center; padding:.5rem .8rem; border:1px solid var(--file-border); border-radius:.55rem; color:var(--file-text); background:var(--file-surface); text-decoration:none; }
+  .timeline-pagination span { align-self:center; color:var(--file-muted); }
+  @media(max-width:600px) {
+    .file-header { align-items:stretch; flex-direction:column; }
+    .file-header .file-button, .section-heading .file-button { width:100%; }
+    .section-heading { align-items:stretch; flex-direction:column; }
+  }
+</style>
+
+<section class="patient-file" aria-labelledby="patient-file-title">
+  {% back_button 'ai_service:ai_summaries_dashboard' fallback_url=back_fallback_url %}
+  <header class="file-header">
+    <div>
+      <h1 id="patient-file-title">{{ patient.get_full_name|default:patient.username }}</h1>
+      <p>{% trans "Therapeutic file — data dedicated to professional follow-up" %}</p>
+    </div>
+  </header>
+
+  <div class="file-stats" aria-label="{% trans "Patient follow-up data summary" %}">
+    <div class="summary-panel">
+      <span>{% trans "Total sessions" %}</span>
+      <strong>{{ total_sessions }}</strong>
+    </div>
+    <div class="summary-panel">
+      <span>{% trans "Last session" %}</span>
+      <strong>{% if last_consultation %}{{ last_consultation.date|date:"d/m/Y" }}{% else %}{% trans "No sessions" %}{% endif %}</strong>
+    </div>
+    <div class="summary-panel">
+      <span>{% trans "Progress reports" %}</span>
+      <strong>{{ report_count }}</strong>
+    </div>
+  </div>
+
+  <section class="latest-summary" aria-labelledby="latest-summary-title">
+    <h2 id="latest-summary-title">{% trans "Latest AI summary" %}</h2>
+    {% if latest_ai_summary %}
+      <p>{{ latest_ai_summary|truncatewords:70 }}</p>
+      <small>{% trans "Draft for professional review, not a diagnosis." %}</small>
+    {% else %}
+      <p>{% trans "No session summary available yet." %}</p>
+    {% endif %}
+    {% if latest_report %}
+      <p><strong>{% trans "Latest progress report:" %}</strong> {{ latest_report.created_at|date:"d/m/Y" }} — {% if latest_report.overall_trend == 'improving' %}{% trans "Improving" %}{% elif latest_report.overall_trend == 'stable' %}{% trans "Stable" %}{% elif latest_report.overall_trend == 'declining' %}{% trans "Declining" %}{% else %}{{ latest_report.get_overall_trend_display }}{% endif %}</p>
+    {% endif %}
+  </section>
+
+  <div class="section-heading">
+    <h2>{% trans "Session and report timeline" %}</h2>
+    <form method="post" action="{% url 'ai_service:generate_evolution_report' patient.id %}"
+          data-loading-form data-loading-label="{% trans "Creating report…" %}" data-original-label="{% trans "Create progress report" %}">
+      {% csrf_token %}
+      <button class="file-button" type="submit">{% trans "Create progress report" %}</button>
+    </form>
+  </div>
+
+  {% if timeline_page.object_list %}
+    <div class="timeline">
+      {% for item in timeline_page.object_list %}
+        {% if item.kind == "consultation" %}
+          {% with record=item.record %}
+          <article class="timeline-card">
+            <div class="timeline-meta">
+              <time datetime="{{ record.date|date:'Y-m-d' }}T{{ record.start_time|time:'H:i' }}">{{ record.date|date:"d/m/Y" }} · {{ record.start_time|time:"H:i" }}</time>
+              <span class="timeline-kind">{% trans "Therapeutic session" %} · {% if record.status == 'pending' %}{% trans "Pending" %}{% elif record.status == 'confirmed' %}{% trans "Confirmed" %}{% elif record.status == 'in_progress' %}{% trans "In progress" %}{% elif record.status == 'completed' %}{% trans "Completed" %}{% elif record.status == 'cancelled' %}{% trans "Cancelled" %}{% elif record.status == 'no_show' %}{% trans "No show" %}{% else %}{{ record.get_status_display }}{% endif %}</span>
+            </div>
+            {% if record.ai_session_summary.summary %}
+              <p><strong>{% trans "Session summary:" %}</strong> {{ record.ai_session_summary.summary }}</p>
+              <p><strong>{% trans "Review:" %}</strong> {% trans "AI-generated draft, requires specialist review." %}</p>
+              {% if record.ai_session_summary.red_flags %}
+                <div class="risk-note"><strong>{% trans "Indicators requiring attention:" %}</strong> {{ record.ai_session_summary.red_flags|join:", " }}</div>
+              {% endif %}
+            {% else %}
+              <p>{% trans "No summary for this session." %}</p>
+            {% endif %}
+            <dl>
+              <div><dt>{% trans "Session type" %}</dt><dd>{% if record.session_type == 'video' %}{% trans "Video" %}{% elif record.session_type == 'audio' %}{% trans "Audio" %}{% elif record.session_type == 'chat' %}{% trans "Chat" %}{% else %}{{ record.get_session_type_display }}{% endif %}</dd></div>
+              {% if record.ai_session_summary.sentiment %}
+                <div><dt>{% trans "Emotions" %}</dt><dd>{{ record.ai_session_summary.sentiment }}</dd></div>
+              {% endif %}
+            </dl>
+            <p class="sentiment-result" aria-live="polite">
+              {% if record.ai_session_summary.sentiment %}
+                {% trans "Sentiment analysis:" %} {{ record.ai_session_summary.sentiment }}
+              {% else %}
+                {% trans "Sentiment not analyzed yet." %}
+              {% endif %}
+            </p>
+            <div class="timeline-actions">
+              <form method="post" action="{% url 'ai_service:generate_session_summary' record.id %}"
+                    data-loading-form data-loading-label="{% trans "Creating summary…" %}">
+                {% csrf_token %}
+                <button class="file-button" type="submit">{% if record.ai_session_summary.summary %}{% trans "Update summary" %}{% else %}{% trans "Create summary" %}{% endif %}</button>
+              </form>
+              <form class="sentiment-analysis-form" method="post"
+                    action="{% url 'ai_service:analyze_sentiment' record.id %}">
+                {% csrf_token %}
+                <button class="file-button" type="submit">{% trans "Analyze sentiment" %}</button>
+              </form>
+            </div>
+          </article>
+          {% endwith %}
+        {% else %}
+          {% with record=item.record %}
+          <article class="timeline-card">
+            <div class="timeline-meta">
+              <time datetime="{{ record.created_at|date:'Y-m-d' }}">{{ record.created_at|date:"d/m/Y" }}</time>
+              <span class="timeline-kind">{% trans "Progress report" %} · {% if record.overall_trend == 'improving' %}{% trans "Improving" %}{% elif record.overall_trend == 'stable' %}{% trans "Stable" %}{% elif record.overall_trend == 'declining' %}{% trans "Declining" %}{% else %}{{ record.get_overall_trend_display }}{% endif %}</span>
+            </div>
+            <p><strong>{% trans "Summary:" %}</strong> {% if record.summary %}{{ record.summary }}{% else %}{% trans "No summary available." %}{% endif %}</p>
+            {% if record.improvements %}<p><strong>{% trans "Improvements:" %}</strong> {{ record.improvements }}</p>{% endif %}
+            {% if record.concerns %}<p><strong>{% trans "Current concerns:" %}</strong> {{ record.concerns }}</p>{% endif %}
+            {% if record.recommendations %}<p><strong>{% trans "Recommendations:" %}</strong> {{ record.recommendations }}</p>{% endif %}
+          </article>
+          {% endwith %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if timeline_page.has_other_pages %}
+      <nav class="timeline-pagination" aria-label="{% trans "Timeline pages" %}">
+        {% if timeline_page.has_previous %}
+          <a href="?timeline_page={{ timeline_page.previous_page_number }}&return_q={{ request.GET.return_q|urlencode }}&return_sort={{ request.GET.return_sort|urlencode }}&return_page={{ request.GET.return_page|urlencode }}">{% trans "Latest" %}</a>
+        {% endif %}
+        <span>{% blocktrans %}Page {{ timeline_page.number }} of {{ timeline_page.paginator.num_pages }}{% endblocktrans %}</span>
+        {% if timeline_page.has_next %}
+          <a href="?timeline_page={{ timeline_page.next_page_number }}&return_q={{ request.GET.return_q|urlencode }}&return_sort={{ request.GET.return_sort|urlencode }}&return_page={{ request.GET.return_page|urlencode }}">{% trans "Oldest" %}</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <div class="empty-state">
+      <h2>{% trans "No sessions or reports yet" %}</h2>
+      <p>{% trans "Follow-up records for this patient will appear here." %}</p>
+    </div>
+  {% endif %}
+</section>
+
+<script id="patient-file-i18n" type="application/json">
+{
+  "creatingSummary": "{% trans "Creating summary…" %}",
+  "analyzing": "{% trans "Analyzing…" %}",
+  "analyzingSentiment": "{% trans "Analyzing sentiment…" %}",
+  "sentimentAnalysisFailed": "{% trans "Unable to analyze sentiment." %}",
+  "sentimentLabel": "{% trans "Sentiment:" %}",
+  "riskLevelLabel": "{% trans "Risk level:" %}",
+  "analysisIncomplete": "{% trans "Unable to complete analysis:" %}",
+  "sentiment": {
+    "positive": "{% trans "Positive" %}",
+    "neutral": "{% trans "Neutral" %}",
+    "negative": "{% trans "Negative" %}"
+  },
+    "risk": {
+    "low": "{% trans "Low" %}",
+    "medium": "{% trans "Medium" %}",
+    "high": "{% trans "High" %}",
+    "insufficient": "{% trans "Insufficient information" %}"
+  }
+}
+</script>
+
+<script>
+  const PF_I18N = JSON.parse(document.getElementById('patient-file-i18n').textContent);
+
+  document.querySelectorAll("[data-loading-form]").forEach((form) => {
+    form.addEventListener("submit", () => {
+      const button = form.querySelector('button[type="submit"]');
+      if (!button || button.disabled) return;
+      button.disabled = true;
+      button.setAttribute("aria-busy", "true");
+      button.textContent = form.dataset.loadingLabel;
+    });
+  });
+
+  document.querySelectorAll(".sentiment-analysis-form").forEach((form) => {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      const result = form.closest(".timeline-card").querySelector(".sentiment-result");
+      const csrfToken = form.querySelector('[name="csrfmiddlewaretoken"]').value;
+      const originalLabel = button.textContent;
+      button.disabled = true;
+      button.textContent = PF_I18N.analyzingSentiment;
+      result.textContent = PF_I18N.analyzing;
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { "X-CSRFToken": csrfToken, "Content-Type": "application/json" },
+        });
+        const data = await response.json();
+        if (!response.ok || data.status !== "success") {
+          throw new Error(data.message || PF_I18N.sentimentAnalysisFailed);
+        }
+        const sentiments = PF_I18N.sentiment;
+        const risks = PF_I18N.risk;
+const riskText =
+  data.risk_assessment_status === "insufficient_information"
+    ? PF_I18N.risk.insufficient
+    : risks[data.risk_level] || data.risk_level || PF_I18N.risk.insufficient;
+
+        result.textContent = `${PF_I18N.sentimentLabel} ${sentiments[data.sentiment] || data.sentiment} — ${PF_I18N.riskLevelLabel} ${riskText}`;      } catch (error) {
+        result.textContent = `${PF_I18N.analysisIncomplete} ${error.message}`;
+      } finally {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }
+    });
+  });
+</script>
+{% endblock %}

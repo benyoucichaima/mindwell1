@@ -1,0 +1,758 @@
+{% load static i18n %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="page_title">{% trans "Tableau de bord" %} - MindWell</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary: #06155f;
+        --primary-light: #10b981;
+        --secondary: #1e293b;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --text: #1e293b;
+        --text-light: #64748b;
+        --border: #e2e8f0;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --ai-accent: #8b5cf6;
+        --radius: 12px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --primary: #bfdbfe;
+          --primary-light: #34d399;
+          --secondary: #f1f5f9;
+          --bg: #111827;
+          --card: #1f2937;
+          --text: #f1f5f9;
+          --text-light: #cbd5e1;
+          --border: #64748b;
+          --danger: #fca5a5;
+          --ai-accent: #c4b5fd;
+        }
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); }
+      html[dir="rtl"] body { font-family: "Cairo", sans-serif; }
+
+      .dashboard-container { display: flex; min-height: 100vh; }
+
+      .sidebar {
+        width: 280px; background: var(--card); border-right: 1px solid var(--border);
+        padding: 24px 0; position: fixed; height: 100vh; overflow-y: auto; z-index: 50;
+      }
+      html[dir="rtl"] .sidebar { border-right: none; border-left: 1px solid var(--border); }
+
+      .sidebar-header { padding: 0 24px 24px; border-bottom: 1px solid var(--border); }
+      .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.25rem; color: var(--primary); }
+      .brand-icon { width: 40px; height: 40px; background: var(--primary); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; }
+
+      .nav-menu { padding: 24px 16px; }
+      .nav-item {
+        display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin-bottom: 8px;
+        border-radius: var(--radius); color: var(--text-light); cursor: pointer; transition: all 0.3s; text-decoration: none;
+      }
+      .nav-item:hover, .nav-item.active { background: var(--bg); color: var(--primary); }
+      
+      .nav-item.ai-feature {
+        background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+        color: var(--ai-accent);
+        font-weight: 600;
+        border: 1px solid #ddd6fe;
+      }
+      .nav-item.ai-feature:hover { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); transform: translateX(4px); }
+      html[dir="rtl"] .nav-item.ai-feature:hover { transform: translateX(-4px); }
+
+      .user-profile { padding: 16px 24px; border-top: 1px solid var(--border); margin-top: auto; }
+      .user-info { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+      .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+      .logout-btn { display: flex; align-items: center; gap: 8px; color: var(--danger); text-decoration: none; font-size: 0.875rem; cursor: pointer; }
+      .logout-form { margin: 0; }
+      .logout-form button { border: 0; padding: 0; background: transparent; font: inherit; }
+      .mobile-dashboard-nav { display:none; }
+      .mobile-dashboard-toggle {
+        min-width:44px; min-height:44px; padding:8px 12px; border:1px solid var(--border);
+        border-radius:8px; background:var(--card); color:var(--text); font:inherit; font-weight:700;
+      }
+      .mobile-dashboard-links {
+        display:none; position:absolute; inset-inline:12px; top:calc(100% + 6px); z-index:60;
+        padding:8px; border:1px solid var(--border); border-radius:12px; background:var(--card);
+        box-shadow:0 12px 30px rgba(0,0,0,.18);
+      }
+      .mobile-dashboard-links.is-open { display:grid; gap:4px; }
+      .mobile-dashboard-links a, .mobile-dashboard-links button {
+        display:block; width:100%; padding:11px 12px; border:0; border-radius:8px; background:transparent;
+        color:var(--text); text-align:start; text-decoration:none; font:inherit;
+      }
+      .mobile-dashboard-links a:hover, .mobile-dashboard-links button:hover { background:var(--bg); }
+      .mobile-dashboard-links .logout-mobile { color:var(--danger); }
+      .mobile-dashboard-links form { margin:0; }
+      .mobile-dashboard-nav button:focus-visible, .mobile-dashboard-nav a:focus-visible,
+      .logout-form button:focus-visible { outline:3px solid #2563eb; outline-offset:3px; }
+
+      .main-content { flex: 1; margin-left: 280px; padding: 32px; }
+      html[dir="rtl"] .main-content { margin-left: 0; margin-right: 280px; }
+
+      .page-header { margin-bottom: 32px; }
+      .page-header h1 { font-size: 2rem; margin-bottom: 8px; color: var(--secondary); }
+      .page-header p { color: var(--text-light); }
+
+      .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 32px; }
+      .stat-card { background: var(--card); padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); transition: transform 0.2s; }
+      .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+      .stat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+      .stat-label { font-size: 0.875rem; color: var(--text-light); font-weight: 500; }
+      .stat-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+      .stat-icon.primary { background: #d1fae5; color: var(--primary); }
+      .stat-icon.warning { background: #fef3c7; color: var(--warning); }
+      .stat-icon.success { background: #d1fae5; color: var(--success); }
+      .stat-icon.info { background: #dbeafe; color: #3b82f6; }
+      .stat-icon.ai { background: #f5f3ff; color: var(--ai-accent); }
+      .stat-value { font-size: 2rem; font-weight: 700; color: var(--secondary); margin-bottom: 4px; }
+
+      .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 32px; }
+      .card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); padding: 24px; }
+      .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+      .card-title { font-size: 1.125rem; font-weight: 600; color: var(--secondary); }
+
+      .btn { padding: 8px 16px; border-radius: 8px; border: none; font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+      .btn-primary { background: var(--primary); color: white; }
+      .btn-primary:hover { background: #0a2380; }
+      .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+      .btn-ai { background: var(--ai-accent); color: white; }
+      .btn-ai:hover { background: #7c3aed; }
+
+      .appointment-list, .patient-list { display: flex; flex-direction: column; gap: 16px; }
+      .appointment-item, .patient-item {
+        display: flex; align-items: center; gap: 16px; padding: 16px; background: var(--bg);
+        border-radius: var(--radius); border: 1px solid var(--border); transition: all 0.2s;
+      }
+      .appointment-item:hover, .patient-item:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); }
+      .appointment-item.past-session {
+        color: #7b8191;
+        opacity: 0.6;
+        pointer-events: none;
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+      
+      .appt-time { min-width: 80px; text-align: center; }
+      .appt-time .hour { font-size: 1.25rem; font-weight: 700; color: var(--primary); display: block; }
+      .appt-time .duration { font-size: 0.75rem; color: var(--text-light); }
+      .appt-info { flex: 1; }
+      .appt-patient { font-weight: 600; margin-bottom: 4px; }
+      .appt-type { font-size: 0.875rem; color: var(--text-light); display: flex; align-items: center; gap: 6px; }
+      .appt-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .appt-actions .btn { padding: 7px 11px; font-size: 0.78rem; }
+      .btn-danger { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+      .btn-danger:hover { background: #fecaca; }
+      
+      .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+      .status-pending { background: #fef3c7; color: #92400e; }
+      .status-confirmed { background: #d1fae5; color: #065f46; }
+      .flash-messages { display: grid; gap: 8px; margin-bottom: 16px; }
+      .flash-message { padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+
+      .patient-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.875rem; flex-shrink: 0;}
+      .patient-info { flex: 1; min-width: 0; }
+      .patient-name { font-weight: 600; font-size: 0.875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .patient-last { font-size: 0.75rem; color: var(--text-light); }
+
+      .empty-state { text-align: center; padding: 40px 20px; color: var(--text-light); }
+      .empty-state i { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+
+      .ai-highlight-card {
+        background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 100%);
+        border: 1px solid #ddd6fe;
+      }
+      .ai-highlight-card .stat-value { color: var(--ai-accent); }
+
+      @media (max-width: 1024px) { .content-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 768px) {
+        .sidebar { display: none; }
+        .mobile-dashboard-nav { display:flex; position:relative; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; background:var(--card); border-bottom:1px solid var(--border); }
+        .mobile-dashboard-brand { color:var(--primary); font-weight:800; text-decoration:none; }
+        .main-content { margin-left: 0; margin-right: 0; padding: 20px; }
+        .stats-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <div class="mobile-dashboard-nav">
+      <a class="mobile-dashboard-brand" href="{% url 'accounts:psychologue_dashboard' %}">MindWell</a>
+      <button class="mobile-dashboard-toggle" type="button" aria-label="فتح قائمة لوحة الأخصائي"
+              aria-controls="mobileDashboardLinks" aria-expanded="false" data-nav-toggle>
+        <span aria-hidden="true">&#9776;</span>
+      </button>
+      <nav class="mobile-dashboard-links" id="mobileDashboardLinks" aria-label="تنقل الأخصائي" data-nav-menu>
+        <a href="{% url 'accounts:psychologue_dashboard' %}" aria-current="page">لوحة الأخصائي</a>
+        <a href="{% url 'accounts:mes_patients' %}">مرضاي</a>
+        <a href="{% url 'ai_service:ai_summaries_dashboard' %}">ملخصات المرضى</a>
+        <a href="{% url 'accounts:rendez_vous' %}">المواعيد</a>
+        <a href="{% url 'accounts:dossiers_cliniques' %}">الملفات السريرية</a>
+        <a href="{% url 'accounts:parametres' %}">الإعدادات</a>
+        <form method="post" action="{% url 'accounts:logout' %}">
+          {% csrf_token %}
+          <button class="logout-mobile" type="submit">تسجيل الخروج</button>
+        </form>
+      </nav>
+    </div>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand">
+            <div class="brand-icon"><i class="fas fa-brain"></i></div>
+            <div>
+              <div>MindWell</div>
+              <small style="color: var(--text-light); font-size: 0.75rem" data-i18n="brand_subtitle">{% trans "Espace clinique" %}</small>
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <a href="{% url 'accounts:psychologue_dashboard' %}" class="nav-item active">
+            <i class="fas fa-chart-line"></i>
+            <span data-i18n="nav_dashboard">{% trans "Tableau de bord" %}</span>
+          </a>
+          
+          <a href="{% url 'accounts:mes_patients' %}" class="nav-item">
+            <i class="fas fa-users"></i>
+            <span data-i18n="nav_patients">{% trans "Mes patients" %}</span>
+          </a>
+          
+          <a href="{% url 'consultations:manage_availability' %}" class="nav-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span data-i18n="nav_availability">{% trans "Mes disponibilités" %}</span>
+          </a>
+          <a href="{% url 'accounts:rendez_vous' %}" class="nav-item">
+            <i class="fas fa-calendar"></i>
+            <span data-i18n="nav_appointments">{% trans "Rendez-vous" %}</span>
+          </a>
+          
+
+
+          
+          <a href="{% url 'accounts:dossiers_cliniques' %}" class="nav-item">
+            <i class="fas fa-file-medical"></i>
+            <span data-i18n="nav_records">{% trans "Dossiers cliniques" %}</span>
+          </a>
+
+          <a href="{% url 'accounts:psychologue_notes' %}" class="nav-item">
+            <i class="fas fa-notes-medical"></i>
+            <span>{% trans "Notes de consultation" %}</span>
+          </a>
+
+          <a href="{% url 'ai_service:ai_summaries_dashboard' %}" class="nav-item ai-feature">
+            <i class="fas fa-robot"></i>
+            <span data-i18n="ai_analytics">{% trans "Analyses IA & Évolution" %}</span>
+          </a>
+
+          <a href="{% url 'accounts:parametres' %}" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span data-i18n="nav_settings">{% trans "Paramètres" %}</span>
+          </a>
+        </nav>
+
+        <div class="user-profile">
+          <div class="user-info">
+            <div class="user-avatar">
+              {{ user.first_name|default:user.username|first|upper }}{{ user.last_name|default:""|first|upper }}
+            </div>
+            <div>
+              <div style="font-weight: 600">Dr {{ user.first_name|default:user.username }} {{ user.last_name }}</div>
+              <div style="font-size: 0.75rem; color: var(--text-light)" data-i18n="clinician_role">{% trans "Psychologue clinicien" %}</div>
+            </div>
+          </div>
+          <form method="post" action="{% url 'accounts:logout' %}" class="logout-form">
+            {% csrf_token %}
+            <button type="submit" class="logout-btn">
+              <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+              <span data-i18n="logout">{% trans "Déconnexion" %}</span>
+            </button>
+          </form>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        {% if messages %}
+        <div class="flash-messages" role="status" aria-live="polite">
+          {% for message in messages %}
+          <div class="flash-message">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="page-header">
+          <h1><span data-i18n="greeting_prefix">{% trans "Bonjour Dr" %}</span> {{ user.first_name|default:user.username }} 👨‍⚕️</h1>
+          <p data-i18n="subtitle">{% trans "Voici un résumé de votre activité clinique aujourd'hui" %}</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label" data-i18n="stat_patients">{% trans "Patients suivis" %}</div>
+                <div class="stat-value">{{ total_patients|default:"0" }}</div>
+              </div>
+              <div class="stat-icon primary"><i class="fas fa-users"></i></div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label" data-i18n="stat_upcoming">{% trans "Consultations à venir" %}</div>
+                <div class="stat-value">{{ upcoming_sessions|length|default:"0" }}</div>
+              </div>
+              <div class="stat-icon warning"><i class="fas fa-clock"></i></div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label" data-i18n="stat_pending">{% trans "Demandes en attente" %}</div>
+                <div class="stat-value">{{ pending_requests|default:"0" }}</div>
+              </div>
+              <div class="stat-icon success"><i class="fas fa-hourglass-half"></i></div>
+            </div>
+          </div>
+
+          <div class="stat-card ai-highlight-card">
+            <div class="stat-header">
+              <div>
+                <div class="stat-label" data-i18n="ai_reports">{% trans "Rapports IA générés" %}</div>
+                <div class="stat-value">{{ ai_reports_count|default:"0" }}</div>
+              </div>
+              <div class="stat-icon ai"><i class="fas fa-brain"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+          <!-- Upcoming Consultations -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title" data-i18n="today_appts">{% trans "Consultations d'aujourd'hui" %}</h3>
+              <a href="{% url 'accounts:rendez_vous' %}" class="btn btn-outline" data-i18n="view_all">{% trans "Voir tout" %}</a>
+            </div>
+
+            <div class="appointment-list">
+              {% if upcoming_sessions %} 
+                {% for session in upcoming_sessions %}
+                <div class="appointment-item">
+                  <div class="appt-time">
+                    <span class="hour">{{ session.start_time|time:"H:i" }}</span>
+                    <span class="duration">{{ session.duration_minutes|default:"45" }} min</span>
+                  </div>
+                  <div class="appt-info">
+                    <div class="appt-patient">{{ session.patient.get_full_name|default:session.patient.username }}</div>
+                    <div class="appt-type">
+                      <i class="fas fa-video"></i>
+                      {% trans "Consultation" as consultation_label %}
+                      <span data-i18n="session_{{ session.session_type }}">{{ session.get_session_type_display|default:consultation_label }}</span>
+                    </div>
+                  </div>
+                  <div class="appt-actions">
+                    <span class="status-badge status-{{ session.status|default:'pending' }}">
+                      {% trans "En attente" as pending_label %}
+                      <span data-i18n="status_{{ session.status }}">{{ session.get_status_display|default:pending_label }}</span>
+                    </span>
+                    {% if session.status == 'pending' or session.status == 'confirmed' %}
+                    {% if session.can_be_cancelled %}
+                    <form method="post" action="{% url 'accounts:emergency_cancel_appointment' session.id %}" data-emergency-cancel-form>
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger" data-i18n="emergency_cancel">{% trans "Annulation urgente" %}</button>
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                  </div>
+                </div>
+                {% endfor %} 
+              {% else %}
+                <div class="empty-state">
+                  <i class="fas fa-calendar-times"></i>
+                  <p data-i18n="no_appts_today">{% trans "Aucune consultation prévue pour le moment." %}</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Pending Requests -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title" data-i18n="pending_requests">{% trans "Demandes en attente" %}</h3>
+              <span style="background: var(--warning); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">
+                {{ pending_requests|default:"0" }}
+              </span>
+            </div>
+
+            {% if pending_requests > 0 %}
+            <div class="patient-list">
+              {% for session in pending_sessions %}
+              <div class="patient-item">
+                <div class="patient-avatar">
+                  {{ session.patient.first_name|default:session.patient.username|first|upper }}
+                </div>
+                <div class="patient-info">
+                  <div class="patient-name">{{ session.patient.get_full_name|default:session.patient.username }}</div>
+                  <div class="patient-last">{{ session.date|date:"d/m/Y" }} - {{ session.start_time|time:"H:i" }}</div>
+                  <div class="appt-actions">
+                    <form method="post" action="{% url 'accounts:confirm_appointment' session.id %}" style="display:inline">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-primary" data-i18n="confirm">{% trans "Confirmer" %}</button>
+                    </form>
+                    <form method="post" action="{% url 'accounts:reject_appointment' session.id %}" style="display:inline">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-outline" data-i18n="reject">{% trans "Refuser" %}</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+              <i class="fas fa-check-circle"></i>
+              <p data-i18n="no_pending">{% trans "Aucune demande en attente" %}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if recent_completed_sessions %}
+        <div class="card" style="margin-bottom: 32px">
+          <div class="card-header">
+            <h3 class="card-title" data-i18n="recent_completed">{% trans "Consultations terminées" %}</h3>
+          </div>
+          <div class="appointment-list">
+            {% for session in recent_completed_sessions %}
+            <div class="appointment-item past-session">
+              <div class="appt-time">
+                <span class="hour">{{ session.start_time|time:"H:i" }}</span>
+                <span class="duration">{{ session.date|date:"d/m/Y" }}</span>
+              </div>
+              <div class="appt-info">
+                <div class="appt-patient">{{ session.patient.get_full_name|default:session.patient.username }}</div>
+                <div class="appt-type">
+                  <span data-i18n="session_{{ session.session_type }}">{{ session.get_session_type_display }}</span>
+                </div>
+              </div>
+              <span class="status-badge status-completed">
+                <span data-i18n="status_completed">{{ session.get_status_display }}</span>
+              </span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Recent Patients -->
+        <div class="card" style="margin-bottom: 32px">
+          <div class="card-header">
+            <h3 class="card-title" data-i18n="recent_patients">{% trans "Patients récents et analyses IA" %}</h3>
+            <a href="{% url 'accounts:mes_patients' %}" class="btn btn-outline" data-i18n="view_all_patients">{% trans "Voir tous" %}</a>
+          </div>
+
+          <div class="patient-list">
+            {% if recent_patients %} 
+              {% for p in recent_patients %}
+              <div class="patient-item">
+                <div class="patient-avatar">
+                  {{ p.patient__first_name|default:"P"|first|upper }}
+                </div>
+                <div class="patient-info">
+                  <div class="patient-name">
+                    {{ p.patient__first_name|default:"" }} {{ p.patient__last_name|default:"" }}
+                  </div>
+                  <div class="patient-last">
+                    <span data-i18n="last_consultation">{% trans "Dernière consultation :" %}</span>
+                    {% if p.last_consultation %}
+                    {{ p.last_consultation|date:"d M Y" }}
+                    {% else %}
+                    <span data-i18n="never">{% trans "Jamais" %}</span>
+                    {% endif %}
+                  </div>
+                </div>
+                <a href="{% url 'ai_service:patient_file' p.patient %}" class="btn btn-ai" style="padding: 6px 12px; font-size: 0.75rem">
+                  <i class="fas fa-brain"></i> <span data-i18n="patient_file_ai">{% trans "Dossier & IA" %}</span>
+                </a>
+              </div>
+              {% endfor %} 
+            {% else %}
+              <div class="empty-state">
+                <i class="fas fa-user-injured"></i>
+                <p data-i18n="no_patients">{% trans "Aucun patient pour le moment" %}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Replacement change requests -->
+        <div class="card" style="margin-bottom: 32px" id="replacement-change-requests">
+          <div class="card-header">
+            <h3 class="card-title">{% trans "Demandes de changement d'horaire" %}</h3>
+          </div>
+          <div id="change-requests-list">
+            {% if change_requests %}
+              {% for r in change_requests %}
+              <div class="patient-item" style="display:block; margin-bottom:12px;" data-request-id="{{ r.pk }}">
+                <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                  <strong>{{ r.patient.get_full_name|default:r.patient.username }}</strong>
+                  <span class="muted">{{ r.created_at|date:"d/m/Y H:i" }}</span>
+                </div>
+                <p style="margin:8px 0;">{{ r.message }}</p>
+                <p class="muted" style="margin:0 0 8px;">
+                  Séance du {{ r.replacement_consultation.date|date:"d/m/Y" }}{% if r.proposed_date %} · Proposition : {{ r.proposed_date|date:"d/m/Y H:i" }}{% endif %}
+                </p>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                  <button class="btn btn-primary" data-action="accept" data-id="{{ r.pk }}">Accepter</button>
+                  <button class="btn btn-outline" data-action="reject" data-id="{{ r.pk }}">Refuser</button>
+                  <button class="btn btn-outline" data-action="counter" data-id="{{ r.pk }}">Contre-proposer</button>
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="empty-state"><p class="muted">Aucune demande en attente.</p></div>
+            {% endif %}
+          </div>
+
+          {% if legacy_reschedule_requests %}
+          <div id="legacy-reschedule-list" style="margin-top:16px; border-top:1px solid var(--border); padding-top:12px;">
+            <p class="muted" style="margin:0 0 8px; font-weight:600;">
+              {% trans "Demandes de changement de série récurrente" %}
+            </p>
+            {% for r in legacy_reschedule_requests %}
+            <div class="patient-item" style="display:block; margin-bottom:12px;" data-session-id="{{ r.pk }}">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                <strong>{{ r.patient.get_full_name|default:r.patient.username }}</strong>
+                <span class="muted">{{ r.reschedule_request_at|date:"d/m/Y H:i" }}</span>
+              </div>
+              <p style="margin:8px 0;">{{ r.patient_note }}</p>
+              <p class="muted" style="margin:0;">
+                {% trans "Série" %} · {{ r.get_weekday_display }} {{ r.start_time|time:"H:i" }}
+              </p>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const translations = {
+        fr: {
+          page_title: "Tableau de bord - MindWell", brand_subtitle: "Espace clinique",
+          nav_dashboard: "Tableau de bord", nav_patients: "Mes patients", nav_appointments: "Rendez-vous",
+          nav_availability: "Mes disponibilités", nav_messages: "Messages", nav_records: "Dossiers cliniques",
+          nav_settings: "Paramètres", logout: "Déconnexion", ai_analytics: "Analyses IA & Évolution",
+          clinician_role: "Psychologue clinicien",           ai_reports: "Rapports générés par l’IA",
+          greeting_prefix: "Bonjour Dr",
+          subtitle: "Voici un résumé de votre activité clinique aujourd'hui",
+          stat_patients: "Patients suivis", stat_upcoming: "Consultations à venir", stat_pending: "Demandes en attente",
+          today_appts: "Consultations du jour", view_all: "Voir tout", no_appts_today: "Aucune consultation prévue.",
+          pending_requests: "Demandes en attente", no_pending: "Aucune demande en attente",
+          recent_patients: "Patients récents et analyses IA", view_all_patients: "Voir tous", no_patients: "Aucun patient pour le moment",
+          confirm: "Confirmer", reject: "Refuser", last_consultation: "Dernière consultation :",
+          never: "Jamais", patient_file_ai: "Dossier & IA",
+          emergency_cancel: "Annuler en urgence",
+          emergency_cancel_confirm: "Confirmez-vous l’annulation de ce rendez-vous ? Le patient en sera immédiatement informé.",
+          recent_completed: "Consultations terminées",
+          session_video: "Vidéo", session_audio: "Audio", session_chat: "Messagerie",
+          status_pending: "En attente", status_confirmed: "Confirmé", status_in_progress: "En cours",
+          status_completed: "Terminé", status_cancelled: "Annulé", status_no_show: "Non présenté",
+        },
+        ar: {
+          page_title: "لوحة التحكم - MindWell", brand_subtitle: "المساحة السريرية",
+          nav_dashboard: "لوحة التحكم", nav_patients: "مرضاي", nav_appointments: "المواعيد",
+          nav_availability: "مواعيدي المتاحة", nav_messages: "الرسائل", nav_records: "الملفات السريرية",
+          nav_settings: "الإعدادات", logout: "تسجيل الخروج", ai_analytics: "تحليلات الذكاء الاصطناعي والتقدم",
+          clinician_role: "أخصائي نفسي سريري", ai_reports: "تقارير الذكاء الاصطناعي المُنشأة",
+          greeting_prefix: "مرحباً د.",
+          subtitle: "إليك ملخص نشاطك السريري اليوم",
+          stat_patients: "المرضى المتابعين", stat_upcoming: "الاستشارات القادمة", stat_pending: "الطلبات المعلقة",
+          today_appts: "استشارات اليوم", view_all: "عرض الكل", no_appts_today: "لا توجد استشارات مقررة.",
+          pending_requests: "الطلبات المعلقة", no_pending: "لا توجد طلبات معلقة",
+          recent_patients: "المرضى الجدد وتحليلات الذكاء الاصطناعي", view_all_patients: "عرض الكل", no_patients: "لا يوجد مرضى حتى الآن",
+          confirm: "تأكيد", reject: "رفض", last_consultation: "آخر استشارة:",
+          never: "لم يسبق", patient_file_ai: "ملف المريض والذكاء الاصطناعي",
+          emergency_cancel: "إلغاء طارئ",
+          emergency_cancel_confirm: "هل أنت متأكد من إلغاء هذا الموعد؟ سيتم إشعار المريض فوراً.",
+          recent_completed: "الجلسات المكتملة",
+          session_video: "مرئي", session_audio: "صوتي", session_chat: "مراسلة",
+          status_pending: "قيد الانتظار", status_confirmed: "مؤكد", status_in_progress: "جارٍ",
+          status_completed: "مكتمل", status_cancelled: "ملغى", status_no_show: "لم يحضر",
+        },
+        en: {
+          page_title: "Dashboard - MindWell", brand_subtitle: "Clinical space",
+          nav_dashboard: "Dashboard", nav_patients: "My Patients", nav_appointments: "Appointments",
+          nav_availability: "My Availability", nav_messages: "Messages", nav_records: "Clinical Records",
+          nav_settings: "Settings", logout: "Logout", ai_analytics: "AI Analysis & Progress",
+          clinician_role: "Clinical Psychologist", ai_reports: "AI reports generated",
+          greeting_prefix: "Hello Dr.",
+          subtitle: "Here's a summary of your clinical activity today",
+          stat_patients: "Followed Patients", stat_upcoming: "Upcoming Consultations", stat_pending: "Pending Requests",
+          today_appts: "Today's Consultations", view_all: "View All", no_appts_today: "No consultations scheduled.",
+          pending_requests: "Pending Requests", no_pending: "No pending requests",
+          recent_patients: "Recent Patients & AI Analysis", view_all_patients: "View All", no_patients: "No patients yet",
+          confirm: "Confirm", reject: "Decline", last_consultation: "Last consultation:",
+          never: "Never", patient_file_ai: "Patient file & AI",
+          emergency_cancel: "Urgent cancellation",
+          emergency_cancel_confirm: "Are you sure you want to cancel this appointment? The patient will be notified immediately.",
+          recent_completed: "Completed consultations",
+          session_video: "Video", session_audio: "Audio", session_chat: "Messaging",
+          status_pending: "Pending", status_confirmed: "Confirmed", status_in_progress: "In progress",
+          status_completed: "Completed", status_cancelled: "Cancelled", status_no_show: "Did not attend",
+        }
+      };
+
+      function setLanguage(lang) {
+        const selectedLanguage = translations[lang] ? lang : "fr";
+        const t = translations[selectedLanguage];
+        document.getElementById("htmlRoot").setAttribute("lang", selectedLanguage);
+        document.getElementById("htmlRoot").setAttribute("dir", selectedLanguage === "ar" ? "rtl" : "ltr");
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) el.textContent = t[key];
+        });
+        document.querySelectorAll("[data-emergency-cancel-form]").forEach((form) => {
+          form.onsubmit = () => window.confirm(t.emergency_cancel_confirm);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setLanguage("{{ LANGUAGE_CODE }}");
+      });
+    </script>
+    <script
+      src="{% static 'js/realtime-notifications.js' %}"
+      data-user-type="{{ request.user.user_type }}"
+      defer
+    ></script>
+    <script src="{% static 'js/navigation.js' %}" defer></script>
+    <script>
+      (function () {
+        const list = document.getElementById('change-requests-list');
+        if (!list) { return; }
+
+        function csrfToken() {
+          const match = document.cookie
+            .split('; ')
+            .find((row) => row.startsWith('csrftoken='));
+          return match ? decodeURIComponent(match.split('=')[1]) : '';
+        }
+
+        function esc(value) {
+          return String(value == null ? '' : value).replace(/[&<>"']/g, (c) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+          }[c]));
+        }
+
+        function formatDate(value) {
+          if (!value) { return ''; }
+          return String(value).replace('T', ' ').slice(0, 16);
+        }
+
+        function renderRequests(requests) {
+          if (!requests.length) {
+            list.innerHTML =
+              '<div class="empty-state"><p class="muted">Aucune demande en attente.</p></div>';
+            return;
+          }
+          list.innerHTML = requests.map((r) => `
+            <div class="patient-item" style="display:block; margin-bottom:12px;" data-request-id="${r.id}">
+              <div style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+                <strong>${esc(r.patient_name)}</strong>
+                <span class="muted">${esc(formatDate(r.created_at))}</span>
+              </div>
+              <p style="margin:8px 0;">${esc(r.message)}</p>
+              <p class="muted" style="margin:0 0 8px;">
+                Séance du ${esc(r.original_date)}${r.proposed_date ? ' · Proposition : ' + esc(formatDate(r.proposed_date)) : ''}
+              </p>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button class="btn btn-primary" data-action="accept" data-id="${r.id}">Accepter</button>
+                <button class="btn btn-outline" data-action="reject" data-id="${r.id}">Refuser</button>
+                <button class="btn btn-outline" data-action="counter" data-id="${r.id}">Contre-proposer</button>
+              </div>
+            </div>`).join('');
+        }
+
+        // Event delegation: works for server-rendered and JS-rendered buttons.
+        list.addEventListener('click', (event) => {
+          const btn = event.target.closest('button[data-action]');
+          if (!btn) { return; }
+          respond(btn.getAttribute('data-id'), btn.getAttribute('data-action'));
+        });
+
+        async function load() {
+          try {
+            const resp = await fetch('/consultations/api/replacement-change-requests/', {
+              credentials: 'same-origin',
+            });
+            let data = null;
+            try { data = await resp.json(); } catch (e) { data = null; }
+            // On any non-success response, keep the server-rendered list rather
+            // than wrongly showing "Aucune demande en attente".
+            if (!resp.ok || !data || data.status !== 'success') { return; }
+            renderRequests(data.requests || []);
+          } catch (error) {
+            /* keep server-rendered content */
+          }
+        }
+
+        async function respond(id, action) {
+          let response = '';
+          let newDate = null;
+          if (action === 'counter') {
+            response = window.prompt('Contre-proposition (message au patient) :', '') || '';
+            newDate = window.prompt('Date/heure proposée (AAAA-MM-JJTHH:MM) :', '');
+            if (!newDate) { return; }
+          } else {
+            response = window.prompt('Message au patient (optionnel) :', '') || '';
+          }
+          try {
+            const resp = await fetch(
+              `/consultations/api/replacement-change-requests/${id}/respond/`,
+              {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': csrfToken(),
+                },
+                body: JSON.stringify({ action, response, new_date: newDate }),
+              }
+            );
+            const data = await resp.json();
+            if (!resp.ok || data.status !== 'success') {
+              throw new Error(data.message || 'Erreur');
+            }
+            load();
+          } catch (error) {
+            window.alert(error.message || 'Erreur');
+          }
+        }
+
+        load();
+      })();
+    </script>
+  </body>
+</html>

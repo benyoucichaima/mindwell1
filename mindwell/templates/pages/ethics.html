@@ -1,0 +1,46 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Éthique et déontologie" %} - MindWell{% endblock %}
+
+{% block content %}
+<section class="page-header" style="text-align: center; margin-bottom: 3rem;">
+  <h1>{% trans "Éthique et déontologie" %}</h1>
+  <p>{% trans "Les principes qui guident les échanges et les services proposés sur MindWell en Algérie." %}</p>
+</section>
+
+<section style="max-width: 900px; margin: auto; line-height: 1.8; color: #111844;">
+  <div style="background: #EAE0CF; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+    <h2>{% trans "Une plateforme de mise en relation" %}</h2>
+    <p>{% trans "MindWell facilite la prise de contact entre les personnes qui recherchent un accompagnement psychologique et les psychologues qui proposent leurs services. La plateforme ne remplace ni le jugement clinique du professionnel ni une prise en charge médicale." %}</p>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #EAE0CF; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+    <h2>{% trans "Engagements des psychologues" %}</h2>
+    <ul>
+      <li>{% trans "Présenter des informations professionnelles exactes et tenir à jour les éléments demandés pour la vérification du profil." %}</li>
+      <li>{% trans "Exercer dans le respect de la dignité, de l'autonomie et de la vie privée de chaque personne, sans discrimination." %}</li>
+      <li>{% trans "Expliquer le cadre, les modalités et les limites de l'accompagnement avant toute consultation." %}</li>
+      <li>{% trans "Protéger la confidentialité des échanges et respecter les obligations professionnelles et légales applicables en Algérie." %}</li>
+      <li>{% trans "Garder la responsabilité de toute décision clinique et vérifier les informations avant de les utiliser." %}</li>
+    </ul>
+  </div>
+
+  <div style="background: #fff; border: 1px solid #EAE0CF; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+    <h2>{% trans "Engagements de MindWell" %}</h2>
+    <ul>
+      <li>{% trans "Limiter l'accès aux informations du compte aux personnes autorisées et appliquer des mesures de protection adaptées." %}</li>
+      <li>{% trans "Présenter clairement les fonctionnalités disponibles et signaler leurs limites." %}</li>
+      <li>{% trans "Ne pas présenter les outils automatisés comme un diagnostic ou comme un substitut à l'avis d'un psychologue." %}</li>
+      <li>{% trans "Permettre aux utilisateurs de signaler un problème via la page de contact." %}</li>
+    </ul>
+  </div>
+
+  <div style="background: #EAE0CF; border-radius: 12px; padding: 1.5rem;">
+    <h2>{% trans "Limites et cadre applicable" %}</h2>
+    <p>{% trans "MindWell n'est pas un service d'urgence. En cas de danger immédiat ou de crise, contactez les services d'urgence locaux ou rendez-vous dans un établissement de santé." %}</p>
+    <p>{% trans "Cette page décrit les principes de la plateforme et ne constitue pas un avis juridique. Les règles professionnelles et les textes applicables en Algérie peuvent évoluer ; les documents juridiques de MindWell doivent être vérifiés par un conseil local." %}</p>
+    <a href="{% url 'contact' %}" style="color: #111844; font-weight: 700;">{% trans "Contacter MindWell" %}</a>
+  </div>
+</section>
+{% endblock %}

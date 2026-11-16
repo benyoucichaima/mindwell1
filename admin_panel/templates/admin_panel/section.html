@@ -1,0 +1,249 @@
+{% load i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ section_title }} — MindWell Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      :root { --navy:#1a2340; --navy-light:#2a3558; --cream:#f5f3ef; --white:#fff; --text:#1a1a2e; --muted:#777b8a; --border:#e8e5e0; --accent:#3b5998; --green:#2d8a4e; --green-bg:#e8f5ee; --red:#c0392b; --red-bg:#fde8e8; --warning:#c47f17; --warning-bg:#fff3e0; }
+      * { box-sizing:border-box; }
+      body { margin:0; background:var(--cream); color:var(--text); font:14px Inter,sans-serif; }
+      a { color:inherit; text-decoration:none; }
+      .layout { min-height:100vh; }
+      .sidebar { position:fixed; inset:0 auto 0 0; width:250px; padding:22px 14px; background:#fafaf8; border-right:1px solid var(--border); overflow-y:auto; }
+      .brand { display:flex; gap:10px; align-items:center; padding:0 10px 24px; color:var(--navy); font:700 21px "Playfair Display",serif; }
+      .brand i { display:grid; place-items:center; width:36px; height:36px; border-radius:8px; color:white; background:var(--navy); }
+      .nav { display:grid; gap:4px; }
+      .nav-item { display:flex; gap:12px; align-items:center; min-height:43px; padding:10px 12px; border-radius:9px; color:#5a5a6e; font-weight:500; }
+      .nav-item i { width:18px; text-align:center; }
+      .nav-item:hover { background:white; }
+      .nav-item.active { background:var(--navy); color:white; }
+      .badge { margin-left:auto; padding:3px 8px; border-radius:20px; background:#e8edf5; color:var(--accent); font-size:11px; }
+      .main { margin-left:250px; padding:32px; }
+      .topbar { display:flex; justify-content:space-between; align-items:center; gap:14px; padding:12px 0 22px; color:var(--muted); }
+      .topbar-right { display:flex; align-items:center; gap:12px; }
+      h1 { margin:0 0 7px; color:var(--navy); font:700 30px "Playfair Display",serif; }
+      .description { margin:0 0 24px; color:var(--muted); }
+      .card { padding:24px; border:1px solid var(--border); border-radius:14px; background:white; box-shadow:0 2px 8px #0000000a; }
+      table { width:100%; border-collapse:collapse; }
+      th,td { padding:13px 10px; border-bottom:1px solid #f0ede8; text-align:left; vertical-align:middle; }
+      th { color:var(--muted); font-size:11px; text-transform:uppercase; }
+      .status { display:inline-block; padding:4px 9px; border-radius:20px; background:var(--warning-bg); color:var(--warning); font-size:11px; font-weight:600; }
+      .status.success { background:var(--green-bg); color:var(--green); }
+      .status.error { background:var(--red-bg); color:var(--red); }
+      .actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:7px; }
+      .actions a { display:inline-block; padding:7px 10px; border:1px solid var(--border); border-radius:7px; color:var(--navy); font-size:12px; font-weight:600; }
+      button { padding:7px 10px; border:1px solid var(--border); border-radius:7px; background:white; color:var(--navy); font:600 12px Inter,sans-serif; cursor:pointer; }
+      button.primary { border-color:var(--navy); background:var(--navy); color:white; }
+      button.danger { color:var(--red); }
+      .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:14px; }
+      .stat { padding:18px; border:1px solid var(--border); border-radius:12px; background:white; }
+      .stat-label { color:var(--muted); font-size:11px; text-transform:uppercase; }
+      .stat-value { margin-top:8px; color:var(--navy); font:700 28px "Playfair Display",serif; }
+      .toast { position:fixed; right:22px; bottom:22px; z-index:5; max-width:400px; padding:13px 16px; border-radius:9px; background:var(--green); color:white; box-shadow:0 5px 20px #0002; }
+      .toast.error { background:var(--red); }
+      .toast[hidden] { display:none; }
+      .verification-row-removing { opacity:0; transform:translateX(12px); transition:opacity .25s,transform .25s; }
+      html[dir="rtl"] .sidebar { inset:0 0 0 auto; border-right:0; border-left:1px solid var(--border); }
+      html[dir="rtl"] .main { margin-left:0; margin-right:250px; }
+      html[dir="rtl"] .badge { margin-left:0; margin-right:auto; }
+      @media(max-width:850px) { html[dir="rtl"] .main { margin:0; } }
+      @media(max-width:850px) { .sidebar { position:static; width:auto; } .nav { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); } .main { margin:0; padding:20px; } .card { overflow-x:auto; } .topbar { flex-wrap:wrap; } .topbar-right { margin-inline-start:auto; } }
+    </style>
+  </head>
+  <body class="admin-interface">
+    <form id="admin-csrf-form" hidden>{% csrf_token %}</form>
+    <div class="layout">
+      <aside class="sidebar">
+        <a class="brand" href="{% url 'dashboard' %}"><i class="fas fa-brain"></i> MindWell</a>
+        <nav class="nav" aria-label="{% trans 'Administration' %}">
+          {% for key, label, icon, route_name in admin_sections %}
+          <a class="nav-item {% if section == key %}active{% endif %}" href="{% url route_name %}" {% if section == key %}aria-current="page"{% endif %}>
+            <i class="fas {{ icon }}" aria-hidden="true"></i><span>{{ label }}</span>
+            {% if key == 'psychologues' %}<span class="badge" id="verified-psychologue-nav-count">{{ statistics.verified_psychologues }}</span>{% endif %}
+            {% if key == 'verifications' %}<span class="badge" id="pending-nav-count">{{ pending_verifications }}</span>{% endif %}
+            {% if key == 'reports' %}<span class="badge" id="unresolved-report-count">{{ unresolved_report_count }}</span>{% endif %}
+          </a>
+          {% endfor %}
+          <a class="nav-item" href="{% url 'accounts:logout' %}"><i class="fas fa-sign-out-alt"></i><span>{% trans "Déconnexion" %}</span></a>
+        </nav>
+      </aside>
+      <main class="main">
+        <div class="topbar">
+          <span>{{ request.user.get_full_name|default:request.user.username }} · {% trans "Super-administrateur" %}</span>
+          <div class="topbar-right">{% include "includes/language_switcher.html" %}{% include "admin_panel/includes/notification_menu.html" %}</div>
+        </div>
+        {% if messages %}{% for message in messages %}<div class="toast" role="status">{{ message }}</div>{% endfor %}{% endif %}
+        <h1>{{ section_title }}</h1>
+        <p class="description">{{ section_description }}</p>
+
+        {% if section == 'statistics' %}
+        <div class="stats">
+          <div class="stat"><div class="stat-label">{% trans "Patients" %}</div><div class="stat-value">{{ statistics.total_patients }}</div></div>
+          <div class="stat"><div class="stat-label">{% trans "Psychologues vérifiés et actifs" %}</div><div class="stat-value">{{ statistics.verified_psychologues }}</div></div>
+          <div class="stat"><div class="stat-label">{% trans "Vérifications en attente" %}</div><div class="stat-value">{{ statistics.pending_verifications }}</div></div>
+          <div class="stat"><div class="stat-label">{% trans "Rendez-vous actifs" %}</div><div class="stat-value">{{ statistics.active_appointments }}</div></div>
+          <div class="stat"><div class="stat-label">{% trans "Sessions réalisées" %}</div><div class="stat-value">{{ statistics.total_sessions }}</div></div>
+          <div class="stat"><div class="stat-label">{% trans "Signalements non résolus" %}</div><div class="stat-value">{{ statistics.unresolved_reports }}</div></div>
+        </div>
+        {% elif section == 'settings' %}
+        <div class="card">
+          <p>{% trans "Les paramètres de la plateforme sont gérés par la configuration du serveur. Aucun réglage administrateur modifiable n’est disponible ici." %}</p>
+        </div>
+        {% else %}
+        <div class="card">
+          <table>
+            <thead>
+              <tr>
+                {% if section == 'verifications' or section == 'psychologues' %}
+                <th>{% trans "Psychologue" %}</th><th>{% trans "Spécialité" %}</th><th>{% trans "N° ADELI / RPPS" %}</th><th>{% trans "Localisation" %}</th><th>{% trans "Statut" %}</th>
+                {% elif section == 'appointments' %}
+                <th>{% trans "Patient" %}</th><th>{% trans "Psychologue" %}</th><th>{% trans "Date" %}</th><th>{% trans "Statut" %}</th><th>{% trans "Paiement" %}</th>
+                {% elif section == 'reports' %}
+                <th>{% trans "Signalement" %}</th><th>{% trans "Signalé par" %}</th><th>{% trans "Personne concernée" %}</th><th>{% trans "Date" %}</th><th>{% trans "Statut" %}</th>
+                {% elif section == 'contact_messages' %}
+                <th>{% trans "Nom" %}</th><th>{% trans "E-mail" %}</th><th>{% trans "Sujet" %}</th><th>{% trans "Message" %}</th><th>{% trans "Date" %}</th>
+                {% else %}
+                <th>{% trans "Nom" %}</th><th>{% trans "E-mail" %}</th><th>{% trans "Rôle" %}</th><th>{% trans "Compte" %}</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in rows %}
+              {% if section == 'verifications' or section == 'psychologues' %}
+              <tr id="verification-row-{{ row.pk }}">
+                <td>{{ row.user.get_full_name|default:row.user.username }}</td>
+                <td>{{ row.get_specialty_display }}</td>
+                <td>{{ row.registration_number|default:row.rpps|default:"—" }}</td>
+                <td>{{ row.city|default:row.user.city|default:"—" }}</td>
+                <td>
+                  {% if row.is_verified %}<span class="status success">{% trans "Vérifié" %}</span>
+                  {% elif row.verification_status == 'rejected' %}<span class="status error">{% trans "Refusé" %}</span>
+                  {% else %}<span class="status">{% trans "En attente" %}</span>{% endif %}
+                  {% if section == 'verifications' %}
+                  <div class="actions">
+                    <a href="{% url 'admin_verification_detail' row.pk %}">{% trans "Voir le dossier" %}</a>
+                  </div>
+                  {% endif %}
+                </td>
+              </tr>
+              {% elif section == 'appointments' %}
+              <tr>
+                <td>{{ row.patient.get_full_name|default:row.patient.username }}</td>
+                <td>{{ row.psychologue.get_full_name|default:row.psychologue.username }}</td>
+                <td>{{ row.date|date:"d/m/Y" }} {{ row.start_time|time:"H:i" }}</td>
+                <td>{{ row.get_status_display }}</td>
+                <td>{{ row.get_payment_status_display }}</td>
+              </tr>
+              {% elif section == 'reports' %}
+              <tr id="report-row-{{ row.pk }}">
+                <td>{{ row.reason|truncatechars:180 }}</td>
+                <td>{{ row.reporter.get_full_name|default:row.reporter.username }}</td>
+                <td>{{ row.target.get_full_name|default:row.target.username }}</td>
+                <td>{{ row.created_at|date:"d/m/Y H:i" }}</td>
+                <td>
+                  {% if row.is_resolved %}<span class="status success">{% trans "Résolu" %}</span>
+                  {% else %}<span class="status" id="report-status-{{ row.pk }}">En attente</span>
+                  <div class="actions"><button type="button" onclick="handleReportResolution({{ row.pk }}, this)">{% trans "Marquer comme résolu" %}</button></div>{% endif %}
+                </td>
+              </tr>
+              {% elif section == 'contact_messages' %}
+              <tr>
+                <td>{{ row.name }}</td><td>{{ row.email }}</td><td>{{ row.get_subject_display }}</td>
+                <td>{{ row.message|linebreaksbr }}</td><td>{{ row.created_at|date:"d/m/Y H:i" }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td>{{ row.get_full_name|default:row.username }}</td>
+                <td>{{ row.email|default:"—" }}</td>
+                <td>{{ row.get_user_type_display }}</td>
+                <td>{% if row.is_active %}<span class="status success">{% trans "Actif" %}</span>{% else %}<span class="status error">{% trans "Inactif" %}</span>{% endif %}</td>
+              </tr>
+              {% endif %}
+              {% empty %}
+              <tr><td colspan="5">{% trans "No data to display." %}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% endif %}
+      </main>
+    </div>
+    <div id="admin-toast" class="toast" role="status" aria-live="polite" hidden></div>
+    {% trans "Jeton CSRF introuvable. Actualisez la page." as csrf_error %}
+    {% trans "La requête a échoué." as request_error %}
+    {% trans "Le dossier a été traité." as verification_success %}
+    {% trans "Erreur réseau. Réessayez." as network_error %}
+    {% trans "Signalement résolu." as report_success %}
+    {% trans "Résolu" as resolved_label %}
+    <script>
+      const adminMessages = {
+        csrfError: "{{ csrf_error|escapejs }}",
+        requestError: "{{ request_error|escapejs }}",
+        verificationSuccess: "{{ verification_success|escapejs }}",
+        networkError: "{{ network_error|escapejs }}",
+        reportSuccess: "{{ report_success|escapejs }}",
+        resolved: "{{ resolved_label|escapejs }}",
+      };
+      function getAdminCsrfToken() {
+        const cookieToken = document.cookie.split("; ").find((cookie) => cookie.startsWith("csrftoken="))?.split("=").slice(1).join("=");
+        return cookieToken || document.querySelector("#admin-csrf-form [name=csrfmiddlewaretoken]")?.value;
+      }
+      function showAdminToast(message, isError = false) {
+        const toast = document.getElementById("admin-toast");
+        toast.textContent = message;
+        toast.classList.toggle("error", isError);
+        toast.hidden = false;
+        clearTimeout(showAdminToast.timeoutId);
+        showAdminToast.timeoutId = setTimeout(() => { toast.hidden = true; }, 4000);
+      }
+      async function postAdminJson(url, payload) {
+        const token = getAdminCsrfToken();
+        if (!token) throw new Error(adminMessages.csrfError);
+        const response = await fetch(url, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: { "Content-Type": "application/json", "X-CSRFToken": token },
+          body: JSON.stringify(payload),
+        });
+        const data = await response.json().catch(() => null);
+        if (!response.ok) throw new Error(data?.message || adminMessages.requestError);
+        return data;
+      }
+      async function handleVerification(id, action) {
+        try {
+          const result = await postAdminJson(`/admin/api/verify-psychologue/${id}/`, { action });
+          const row = document.getElementById(`verification-row-${id}`);
+          if (row) {
+            row.classList.add("verification-row-removing");
+            setTimeout(() => row.remove(), 260);
+          }
+          const pending = document.getElementById("pending-nav-count");
+          if (pending && result.pending_count_delta) pending.textContent = Math.max(0, Number(pending.textContent) + result.pending_count_delta);
+          const verified = document.getElementById("verified-psychologue-count");
+          if (verified && result.verified_count_delta) verified.textContent = Math.max(0, Number(verified.textContent) + result.verified_count_delta);
+          const verifiedNav = document.getElementById("verified-psychologue-nav-count");
+          if (verifiedNav && result.verified_count_delta) verifiedNav.textContent = Math.max(0, Number(verifiedNav.textContent) + result.verified_count_delta);
+          showAdminToast(result.message || adminMessages.verificationSuccess);
+        } catch (error) {
+          showAdminToast(error.message || adminMessages.networkError, true);
+        }
+      }
+      async function handleReportResolution(id, button) {
+        try {
+          const result = await postAdminJson(`/admin/api/reports/${id}/resolve/`, {});
+          button.disabled = true;
+          button.textContent = adminMessages.resolved;
+          const count = document.getElementById("unresolved-report-count");
+          if (count) count.textContent = Math.max(0, Number(count.textContent) - 1);
+          showAdminToast(result.message || adminMessages.reportSuccess);
+        } catch (error) {
+          showAdminToast(error.message || adminMessages.networkError, true);
+        }
+      }
+    </script>
+  </body>
+</html>

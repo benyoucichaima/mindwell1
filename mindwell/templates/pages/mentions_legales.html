@@ -1,0 +1,199 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block title %}Mentions légales - MindWell{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <h1>Mentions légales</h1>
+    <p>Informations légales relatives à la plateforme MindWell.</p>
+</section>
+
+<section class="legal-content">
+
+    <div class="legal-card">
+        <h2>1. Présentation de la plateforme</h2>
+        <p>
+            MindWell est une plateforme web de consultation psychologique
+            à distance destinée à faciliter la mise en relation entre les
+            patients et les psychologues.
+        </p>
+        <p>
+            La plateforme permet notamment la gestion des comptes utilisateurs,
+            la prise de rendez-vous, les consultations à distance et l'utilisation
+            d'un assistant intelligent destiné à assister le psychologue dans
+            l'analyse des échanges.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>2. Éditeur du site</h2>
+        <p><strong>Nom de la plateforme :</strong> MindWell</p>
+        <p><strong>Nature :</strong> Projet académique / plateforme web de consultation psychologique</p>
+        <p><strong>Pays :</strong> Algérie</p>
+        <p><strong>Université :</strong> Université Saad Dahlab Blida 1</p>
+    </div>
+
+    <div class="legal-card">
+        <h2>3. Objet de la plateforme</h2>
+        <p>
+            MindWell a pour objectif de proposer un espace numérique permettant
+            aux utilisateurs de rechercher un psychologue, prendre rendez-vous
+            et bénéficier de consultations psychologiques à distance.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>4. Assistant intelligent</h2>
+        <p>
+            MindWell peut intégrer un assistant intelligent destiné à aider
+            le psychologue dans l'analyse des échanges réalisés lors des consultations.
+        </p>
+
+        <p>
+            Les résultats générés automatiquement peuvent notamment comprendre
+            l'identification d'émotions, de mots-clés, de thèmes importants
+            ainsi qu'un résumé de la consultation.
+        </p>
+
+        <p>
+            <strong>
+                L'assistant intelligent ne constitue pas un outil de diagnostic
+                médical ou psychologique.
+            </strong>
+            Les résultats générés doivent être vérifiés et validés par le psychologue.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>5. Responsabilité</h2>
+        <p>
+            Les informations et fonctionnalités proposées sur MindWell sont
+            fournies dans le cadre du fonctionnement de la plateforme.
+        </p>
+
+        <p>
+            MindWell ne remplace pas une prise en charge médicale ou psychologique
+            adaptée aux situations nécessitant une intervention professionnelle
+            ou urgente.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>6. Propriété intellectuelle</h2>
+        <p>
+            La structure, le design, les textes, les éléments graphiques,
+            le code source et les différents composants de la plateforme
+            MindWell sont protégés par les règles applicables en matière
+            de propriété intellectuelle.
+        </p>
+
+        <p>
+            Toute reproduction ou utilisation non autorisée de ces éléments
+            est interdite.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>7. Données personnelles</h2>
+        <p>
+            MindWell accorde une importance particulière à la protection
+            des données personnelles de ses utilisateurs.
+        </p>
+
+        <p>
+            Les données collectées sont utilisées uniquement dans le cadre
+            des fonctionnalités proposées par la plateforme et conformément
+            aux règles applicables en matière de protection des données.
+        </p>
+
+        <p>
+            Pour plus d'informations, consultez notre
+            <a href="{% url 'confidentialite' %}">politique de confidentialité</a>.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>8. Sécurité</h2>
+        <p>
+            Des mesures techniques et organisationnelles sont mises en œuvre
+            afin de protéger les comptes utilisateurs et les données traitées
+            par la plateforme.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>9. Contact</h2>
+        <p>
+            Pour toute question concernant la plateforme ou son fonctionnement,
+            vous pouvez consulter notre
+            <a href="{% url 'contact' %}">page de contact</a>.
+        </p>
+    </div>
+
+    <div class="legal-card">
+        <h2>10. Mise à jour</h2>
+        <p>
+            Les présentes mentions légales peuvent être mises à jour lorsque
+            cela est nécessaire afin de refléter l'évolution de la plateforme
+            et de ses fonctionnalités.
+        </p>
+    </div>
+
+</section>
+
+<style>
+    .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+        color: #111844;
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+    }
+
+    .page-header p {
+        color: #7288AE;
+        font-size: 1rem;
+    }
+
+    .legal-content {
+        max-width: 950px;
+        margin: 0 auto;
+    }
+
+    .legal-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 28px 32px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(17, 24, 68, 0.07);
+    }
+
+    .legal-card h2 {
+        color: #111844;
+        font-size: 1.25rem;
+        margin-bottom: 14px;
+    }
+
+    .legal-card p {
+        color: #4b5694;
+        line-height: 1.8;
+        margin-bottom: 10px;
+    }
+
+    .legal-card a {
+        color: #3B5998;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    .legal-card a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

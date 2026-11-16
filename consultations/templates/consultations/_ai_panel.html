@@ -1,0 +1,165 @@
+{% load static %}
+<div class="ai-panel" style="background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <h3 style="margin: 0 0 16px; color: var(--navy); font-size: 1.1rem;">🤖 Assistant IA</h3>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <button type="button" id="btn-analyze-keywords" class="ai-btn"
+      style="background: #4b5694; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+      🔍 Analyser les mots-clés
+    </button>
+
+    <button type="button" id="btn-generate-summary" class="ai-btn"
+      style="background: #0f9d58; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+      📝 Générer un résumé
+    </button>
+
+    <button type="button" id="btn-save-notes" class="ai-btn"
+      style="background: #d98b25; color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+      💾 Enregistrer notes
+    </button>
+  </div>
+
+  <div id="ai-results" style="margin-top: 16px; display: none;">
+    <div id="ai-keywords-result" style="display: none; padding: 12px; background: #f0f2f8; border-radius: 8px; margin-bottom: 10px;">
+      <h4 style="margin: 0 0 8px; font-size: 0.9rem;">Mots-clés détectés:</h4>
+      <div id="keywords-list"></div>
+      <div id="risk-level" style="margin-top: 8px; font-weight: 600;"></div>
+    </div>
+
+    <div id="ai-summary-result" style="display: none; padding: 12px; background: #f0f2f8; border-radius: 8px; margin-bottom: 10px;">
+      <h4 style="margin: 0 0 8px; font-size: 0.9rem;">Résumé de la session:</h4>
+      <p id="summary-text" style="margin: 0; white-space: pre-wrap; font-size: 0.9rem;"></p>
+    </div>
+
+    <div id="ai-notes-section" style="display: none;">
+      <textarea id="psychologist-notes" placeholder="Notes importantes du psychologue..."
+        style="width: 100%; min-height: 100px; padding: 10px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit;"></textarea>
+    </div>
+  </div>
+
+  <div id="ai-status" style="margin-top: 10px; font-size: 0.85rem; color: var(--muted); min-height: 20px;"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const consultationId = "{{ consultation.id }}";
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const aiStatus = document.getElementById('ai-status');
+  const aiResults = document.getElementById('ai-results');
+
+  function setStatus(text, isError = false) {
+    aiStatus.textContent = text;
+    aiStatus.style.color = isError ? '#dc2626' : '#0f9d58';
+  }
+
+  // Analyze Keywords
+  document.getElementById('btn-analyze-keywords').addEventListener('click', async function() {
+    this.disabled = true;
+    setStatus('Analyse en cours...');
+
+    try {
+      const response = await fetch(`/ai-service/consultation/${consultationId}/analyze-keywords/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken
+        }
+      });
+
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        aiResults.style.display = 'block';
+        document.getElementById('ai-keywords-result').style.display = 'block';
+
+        const keywordsList = document.getElementById('keywords-list');
+        keywordsList.innerHTML = data.keywords.length > 0
+          ? data.keywords.map(k =>
+            `<span style="display: inline-block; background: #eef1f8; padding: 4px 10px; border-radius: 12px; margin: 2px; font-size: 0.85rem;">${k}</span>`
+          ).join('')
+          : '<p>Aucun mot-clé détecté</p>';
+
+        const riskDiv = document.getElementById('risk-level');
+        const riskColors = { high: '#dc2626', medium: '#d98b25', low: '#0f9d58' };
+        const riskLabels = { high: 'Risque élevé', medium: 'Risque modéré', low: 'Risque faible' };
+        riskDiv.style.color = riskColors[data.risk_level];
+        riskDiv.textContent = `Niveau de risque: ${riskLabels[data.risk_level]}`;
+
+        setStatus('Analyse terminée avec succès');
+      } else {
+        setStatus(data.message || 'Erreur', true);
+      }
+    } catch (error) {
+      setStatus('Erreur réseau', true);
+    } finally {
+      this.disabled = false;
+    }
+  });
+
+  // Generate Summary
+  document.getElementById('btn-generate-summary').addEventListener('click', async function() {
+    this.disabled = true;
+    setStatus('Génération du résumé...');
+
+    try {
+      const response = await fetch(`/ai-service/consultation/${consultationId}/generate-summary/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken
+        }
+      });
+
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        aiResults.style.display = 'block';
+        document.getElementById('ai-summary-result').style.display = 'block';
+        document.getElementById('summary-text').textContent = data.summary;
+        setStatus('Résumé généré avec succès');
+      } else {
+        setStatus(data.message || 'Erreur', true);
+      }
+    } catch (error) {
+      setStatus('Erreur réseau', true);
+    } finally {
+      this.disabled = false;
+    }
+  });
+
+  // Save Notes
+  document.getElementById('btn-save-notes').addEventListener('click', async function() {
+    const notes = document.getElementById('psychologist-notes').value.trim();
+    if (!notes) {
+      setStatus('Veuillez écrire des notes d\'abord', true);
+      return;
+    }
+
+    this.disabled = true;
+    setStatus('Enregistrement...');
+
+    try {
+      const response = await fetch(`/ai-service/consultation/${consultationId}/save-notes/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken
+        },
+        body: JSON.stringify({ notes: notes })
+      });
+
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        setStatus('Notes enregistrées avec succès');
+      } else {
+        setStatus(data.message || 'Erreur', true);
+      }
+    } catch (error) {
+      setStatus('Erreur réseau', true);
+    } finally {
+      this.disabled = false;
+    }
+  });
+});
+</script>

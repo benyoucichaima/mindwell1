@@ -1,0 +1,176 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}MindWell Algérie{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --mw-page-bg: #f8fafc;
+        --mw-surface: #ffffff;
+        --mw-text: #0f172a;
+        --mw-muted: #475569;
+        --mw-border: #cbd5e1;
+        --mw-nav: #0f172a;
+        --mw-focus: #1d4ed8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --mw-page-bg: #111827;
+          --mw-surface: #1f2937;
+          --mw-text: #f8fafc;
+          --mw-muted: #cbd5e1;
+          --mw-border: #64748b;
+          --mw-nav: #030712;
+          --mw-focus: #93c5fd;
+        }
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        background-color: var(--mw-page-bg);
+        color: var(--mw-text);
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .site-header {
+        background: var(--mw-nav);
+        color: white;
+        padding: .75rem 0;
+      }
+      .site-header-inner, .site-nav, .site-nav-links, .site-nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .site-header-inner { justify-content: space-between; }
+      .site-brand { color: white; text-decoration: none; font-weight: 800; font-size: 1.2rem; }
+      .site-nav { gap: 1.5rem; }
+      .site-nav-links { gap: .5rem; }
+      .site-nav a, .site-nav button {
+        color: white;
+        text-decoration: none;
+        border: 0;
+        background: transparent;
+        border-radius: .5rem;
+        padding: .55rem .75rem;
+        font: inherit;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .site-nav a:hover, .site-nav button:hover,
+      .site-nav a[aria-current="page"] {
+        background: #334155;
+        color: white;
+      }
+      .site-nav .site-logout { border: 1px solid #94a3b8; }
+      .mobile-nav-toggle {
+        display: none;
+        min-width: 44px;
+        min-height: 44px;
+        border: 1px solid #94a3b8;
+        border-radius: .5rem;
+        color: white;
+        background: transparent;
+      }
+      .site-messages { display: grid; gap: .5rem; margin-bottom: 1rem; }
+      .site-message { padding: .75rem 1rem; border: 1px solid var(--mw-border); border-radius: .5rem; background: var(--mw-surface); color: var(--mw-text); }
+      .site-message.success { border-color: #15803d; }
+      .site-message.error { border-color: #b91c1c; }
+      .site-message.warning { border-color: #a16207; }
+      a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+        outline: 3px solid var(--mw-focus);
+        outline-offset: 3px;
+      }
+      @media (max-width: 768px) {
+        .site-header-inner { flex-wrap: wrap; }
+        .mobile-nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+        .site-nav { display: none; flex: 1 0 100%; align-items: stretch; flex-direction: column; gap: .5rem; padding-top: .5rem; }
+        .site-nav.is-open { display: flex; }
+        .site-nav-links, .site-nav-actions { align-items: stretch; flex-direction: column; gap: .25rem; }
+        .site-nav a, .site-nav button { width: 100%; text-align: start; }
+      }
+      footer {
+        background: var(--mw-surface);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: 3rem;
+        border-top: 1px solid var(--mw-border);
+      }
+    </style>
+    <script src="{% static 'js/navigation.js' %}" defer></script>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="site-brand" href="{% url 'home' %}">MindWell</a>
+        <button class="mobile-nav-toggle" type="button" aria-label="فتح قائمة التنقل"
+                aria-controls="siteNavigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true">&#9776;</span>
+        </button>
+        <nav class="site-nav" id="siteNavigation" aria-label="التنقل الرئيسي" data-nav-menu>
+          {% if request.user.is_authenticated and request.user.user_type == "psychologue" %}
+            <div class="site-nav-links">
+              <a href="{% url 'accounts:psychologue_dashboard' %}"
+                 {% if request.resolver_match.url_name == "psychologue_dashboard" %}aria-current="page"{% endif %}>لوحة الأخصائي</a>
+              <a href="{% url 'ai_service:ai_summaries_dashboard' %}"
+                 {% if request.resolver_match.url_name == "ai_summaries_dashboard" %}aria-current="page"{% endif %}>ملخصات المرضى</a>
+            </div>
+            <div class="site-nav-actions">
+              <form method="post" action="{% url 'accounts:logout' %}">
+                {% csrf_token %}
+                <button class="site-logout" type="submit">تسجيل الخروج</button>
+              </form>
+            </div>
+          {% else %}
+            <div class="site-nav-links">
+              <a href="{% url 'home' %}">{% trans "Accueil" %}</a>
+              <a href="{% url 'psychologists' %}">{% trans "Nos psychologues" %}</a>
+              <a href="{% url 'faq' %}">{% trans "FAQ" %}</a>
+              <a href="{% url 'aide' %}">{% trans "Centre d'aide" %}</a>
+              <a href="{% url 'contact' %}">{% trans "Contact" %}</a>
+            </div>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main style="padding: 3rem 0; min-height: 60vh">
+      <div class="container">
+        {% if messages %}
+          <div class="site-messages" aria-label="إشعارات">
+            {% for message in messages %}
+              <div class="site-message {{ message.tags }}"
+                   {% if "error" in message.tags %}role="alert"{% else %}role="status" aria-live="polite"{% endif %}>
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% block content %} {% endblock %}
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; {% now "Y" %} MindWell Algérie. {% trans "Tous droits réservés." %}</p>
+      </div>
+    </footer>
+  </body>
+</html>

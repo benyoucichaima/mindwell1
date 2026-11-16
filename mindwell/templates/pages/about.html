@@ -1,0 +1,491 @@
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindWell — À propos</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --navy: #0b1d3a;
+        --navy-light: #1a2d4a;
+        --cream: #faf8f5;
+        --white: #fff;
+        --text: #1a1a2e;
+        --muted: #4a4a5a;
+        --light: #7a7a8a;
+        --border: #e0ddd8;
+        --radius: 12px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        line-height: 1.6;
+      }
+      html[dir="rtl"] body {
+        font-family: "Cairo", sans-serif;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+      }
+      html[dir="rtl"] h1,
+      html[dir="rtl"] h2,
+      html[dir="rtl"] h3 {
+        font-family: "Cairo", sans-serif;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: var(--radius);
+        font-weight: 500;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-primary {
+        background: var(--navy);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--navy-light);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--navy);
+        border-color: var(--navy);
+      }
+      .btn-outline:hover {
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .navbar {
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .navbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+      .nav-links {
+        display: flex;
+        gap: 24px;
+      }
+      .nav-link {
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--navy);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      /* Language switcher */
+      .lang-switcher {
+        display: flex;
+        gap: 2px;
+        background: var(--cream);
+        border-radius: 50px;
+        padding: 4px;
+        border: 1px solid var(--border);
+      }
+      .lang-switcher button {
+        padding: 6px 12px;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .lang-switcher button.active {
+        background: var(--navy);
+        color: #fff;
+      }
+      .lang-switcher button:hover:not(.active) {
+        background: var(--white);
+      }
+
+      .hero {
+        background: var(--navy);
+        color: #fff;
+        padding: 70px 0;
+        text-align: center;
+      }
+      .hero h1 {
+        color: #fff;
+        font-size: 40px;
+        margin-bottom: 12px;
+      }
+      .hero p {
+        color: rgba(255, 255, 255, 0.75);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+      .section-light {
+        background: #fff;
+      }
+
+      .values {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+      }
+      .card {
+        background: #fff;
+        padding: 32px;
+        border-radius: 16px;
+        box-shadow: 0 4px 15px rgba(11, 29, 58, 0.06);
+        text-align: center;
+        border: 1px solid var(--border);
+      }
+      .card i {
+        font-size: 28px;
+        color: var(--navy);
+        margin-bottom: 16px;
+      }
+      .card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .card p {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .footer {
+        background: #060f1f;
+        color: #fff;
+        padding: 30px 0;
+        text-align: center;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .values {
+          grid-template-columns: 1fr;
+        }
+        .hero h1 {
+          font-size: 28px;
+        }
+        .nav-actions {
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="{% url 'home' %}" class="logo">
+          <div class="logo-icon"><i class="fas fa-brain"></i></div>
+          <strong>MindWell</strong>
+        </a>
+        <div class="nav-links">
+          <a href="{% url 'home' %}" class="nav-link" data-i18n="nav_home"
+            >Accueil</a
+          >
+          <a
+            href="{% url 'specialties' %}"
+            class="nav-link"
+            data-i18n="nav_specialties"
+            >Spécialités</a
+          >
+          <a
+            href="{% url 'about' %}"
+            class="nav-link active"
+            data-i18n="nav_about"
+            >À propos</a
+          >
+          <a href="{% url 'faq' %}" class="nav-link" data-i18n="nav_faq">FAQ</a>
+        </div>
+        <div class="nav-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+              EN
+            </button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
+              AR
+            </button>
+            <button
+              class="lang-btn active"
+              data-lang="fr"
+              onclick="setLanguage('fr')"
+            >
+              FR
+            </button>
+          </div>
+          <a
+            href="{% url 'accounts:login' %}"
+            class="btn btn-outline"
+            style="padding: 8px 14px; font-size: 13px"
+            data-i18n="nav_login"
+            >Se connecter</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="container">
+        <h1 data-i18n="hero_title">À propos de MindWell</h1>
+        <p data-i18n="hero_subtitle">
+          Une plateforme née d’une conviction simple : la santé mentale mérite
+          le même accès et la même confidentialité que n’importe quel autre
+          soin.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-bottom: 20px" data-i18n="mission_title">
+          Notre mission
+        </h2>
+        <p
+          style="color: var(--muted); max-width: 700px; line-height: 1.8"
+          data-i18n="mission_desc"
+        >
+          MindWell connecte des patients à des psychologues cliniciens diplômés
+          dans un environnement 100% sécurisé. Projet universitaire de fin
+          d’études, nous voulons rendre la téléconsultation psychologique
+          accessible, éthique et adaptée au contexte algérien.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container">
+        <h2
+          style="text-align: center; margin-bottom: 10px"
+          data-i18n="values_title"
+        >
+          Nos valeurs
+        </h2>
+        <div class="values">
+          <div class="card">
+            <i class="fas fa-lock"></i>
+            <h3 data-i18n="val1_title">Confidentialité</h3>
+            <p data-i18n="val1_desc">
+              Chiffrement de bout en bout et respect strict du secret médical.
+            </p>
+          </div>
+          <div class="card">
+            <i class="fas fa-user-md"></i>
+            <h3 data-i18n="val2_title">Excellence</h3>
+            <p data-i18n="val2_desc">
+              Uniquement des psychologues diplômés d’État et vérifiés.
+            </p>
+          </div>
+          <div class="card">
+            <i class="fas fa-heart"></i>
+            <h3 data-i18n="val3_title">Bienveillance</h3>
+            <p data-i18n="val3_desc">
+              Un espace sans jugement, accessible à tous.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <p data-i18n="footer_text">
+          Projet universitaire MindWell 2026 — Tous droits réservés
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // ==========================================
+      // 1. DICTIONNAIRE DE TRADUCTION (FR / AR / EN)
+      // ==========================================
+      const translations = {
+        fr: {
+          nav_home: "Accueil",
+          nav_specialties: "Spécialités",
+          nav_about: "À propos",
+          nav_faq: "FAQ",
+          nav_login: "Se connecter",
+          hero_title: "À propos de MindWell",
+          hero_subtitle:
+            "Une plateforme née d’une conviction simple : la santé mentale mérite le même accès et la même confidentialité que n’importe quel autre soin.",
+          mission_title: "Notre mission",
+          mission_desc:
+            "MindWell connecte des patients à des psychologues cliniciens diplômés dans un environnement 100% sécurisé. Projet universitaire de fin d’études, nous voulons rendre la téléconsultation psychologique accessible, éthique et adaptée au contexte algérien.",
+          values_title: "Nos valeurs",
+          val1_title: "Confidentialité",
+          val1_desc:
+            "Chiffrement de bout en bout et respect strict du secret médical.",
+          val2_title: "Excellence",
+          val2_desc: "Uniquement des psychologues diplômés d’État et vérifiés.",
+          val3_title: "Bienveillance",
+          val3_desc: "Un espace sans jugement, accessible à tous.",
+          footer_text:
+            "Projet universitaire MindWell 2026 — Tous droits réservés",
+        },
+        en: {
+          nav_home: "Home",
+          nav_specialties: "Specialties",
+          nav_about: "About",
+          nav_faq: "FAQ",
+          nav_login: "Log in",
+          hero_title: "About MindWell",
+          hero_subtitle:
+            "A platform born from a simple conviction: mental health deserves the same access and confidentiality as any other care.",
+          mission_title: "Our mission",
+          mission_desc:
+            "MindWell connects patients with licensed clinical psychologists in a 100% secure environment. As a university graduation project, we aim to make psychological teleconsultation accessible, ethical, and adapted to the Algerian context.",
+          values_title: "Our values",
+          val1_title: "Confidentiality",
+          val1_desc:
+            "End-to-end encryption and strict respect for medical secrecy.",
+          val2_title: "Excellence",
+          val2_desc: "Only state-licensed and verified psychologists.",
+          val3_title: "Compassion",
+          val3_desc: "A judgment-free space, accessible to everyone.",
+          footer_text: "MindWell University Project 2026 — All rights reserved",
+        },
+        ar: {
+          nav_home: "الرئيسية",
+          nav_specialties: "التخصصات",
+          nav_about: "من نحن",
+          nav_faq: "الأسئلة الشائعة",
+          nav_login: "تسجيل الدخول",
+          hero_title: "حول MindWell",
+          hero_subtitle:
+            "منصة ولدت من قناعة بسيطة: الصحة النفسية تستحق نفس مستوى الوصول والسرية مثل أي رعاية صحية أخرى.",
+          mission_title: "مهمتنا",
+          mission_desc:
+            "يربط MindWell المرضى بأخصائيين نفسيين سريريين مرخصين في بيئة آمنة بنسبة 100%. كمشروع تخرج جامعي، نهدف إلى جعل الاستشارات النفسية عن بُعد متاحة وأخلاقية ومتكيفة مع السياق الجزائري.",
+          values_title: "قيمنا",
+          val1_title: "السرية",
+          val1_desc: "تشفير من الطرف إلى الطرف واحترام صارم للسرية الطبية.",
+          val2_title: "التميز",
+          val2_desc: "فقط أخصائيون نفسيون حاصلون على شهادات الدولة وموثقون.",
+          val3_title: "التعاطف",
+          val3_desc: "مساحة خالية من الأحكام، متاحة للجميع.",
+          footer_text: "مشروع جامعي MindWell 2026 — جميع الحقوق محفوظة",
+        },
+      };
+
+      // ==========================================
+      // 2. دالة تغيير اللغة (بدون تحديث الصفحة)
+      // ==========================================
+      function setLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        // 1. تحديث اتجاه الصفحة واللغة
+        const html = document.getElementById("htmlRoot");
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+        // 2. تحديث كل النصوص التي تحمل data-i18n
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            const icon = el.querySelector("i");
+            if (icon && lang !== "ar") {
+              el.innerHTML = t[key] + " " + icon.outerHTML;
+            } else if (icon && lang === "ar") {
+              el.innerHTML = icon.outerHTML + " " + t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+
+        // 3. تحديث حالة الأزرار النشطة
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang") === lang,
+          );
+        });
+
+        // 4. حفظ الاختيار في localStorage
+        localStorage.setItem("mindwell_lang", lang);
+        localStorage.setItem("preferredLanguage", lang);
+        document.cookie = `django_language=${lang}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+
+      // ==========================================
+      // 3. التهيئة عند تحميل الصفحة
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        setLanguage("{{ LANGUAGE_CODE }}");
+      });
+    </script>
+  </body>
+</html>

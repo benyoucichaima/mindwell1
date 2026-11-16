@@ -1,0 +1,1947 @@
+{% load static i18n %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
+
+    <title>{% trans "Tableau de bord" %} — MindWell</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================================
+           MINDWELL — PATIENT DASHBOARD
+        ========================================================= */
+
+      :root {
+        --navy: #111844;
+        --navy-2: #1c2857;
+        --blue: #4b5694;
+        --blue-soft: #eef1f8;
+
+        --cream: #faf9f6;
+        --cream-dark: #f2eee7;
+
+        --white: #ffffff;
+        --text: #20243a;
+        --muted: #74798f;
+        --light: #a1a5b5;
+
+        --border: #e8e6e1;
+
+        --green: #159570;
+        --green-soft: #e7f7f1;
+
+        --orange: #d98b25;
+        --orange-soft: #fff5e5;
+
+        --red: #d9535f;
+        --red-soft: #fff0f1;
+
+        --shadow: 0 12px 35px rgba(17, 24, 68, 0.07);
+
+        --radius: 18px;
+      }
+
+      /* RESET */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(75, 86, 148, 0.06),
+            transparent 30%
+          ),
+          var(--cream);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      html[dir="rtl"] body {
+        font-family: "Cairo", sans-serif;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", serif;
+        color: var(--navy);
+      }
+
+      html[dir="rtl"] h1,
+      html[dir="rtl"] h2,
+      html[dir="rtl"] h3,
+      html[dir="rtl"] h4 {
+        font-family: "Cairo", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* =========================================================
+           LAYOUT
+        ========================================================= */
+
+      .dashboard-layout {
+        min-height: 100vh;
+        display: flex;
+      }
+
+      /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+
+        width: 270px;
+        height: 100vh;
+
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(15px);
+
+        border-right: 1px solid var(--border);
+
+        padding: 28px 16px;
+
+        z-index: 100;
+
+        display: flex;
+        flex-direction: column;
+
+        transition: 0.3s ease;
+      }
+
+      .sidebar-backdrop {
+        display: none;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+      }
+
+      html[dir="rtl"] .sidebar {
+        left: auto;
+        right: 0;
+        border-right: none;
+        border-left: 1px solid var(--border);
+      }
+
+      /* LOGO */
+
+      .sidebar-header {
+        padding: 5px 14px 28px;
+        margin-bottom: 18px;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        font-size: 1.35rem;
+        font-weight: 700;
+
+        color: var(--navy);
+      }
+
+      .logo-icon {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 13px;
+
+        background: var(--navy);
+        color: white;
+
+        box-shadow: 0 8px 20px rgba(17, 24, 68, 0.18);
+      }
+
+      .logo-text small {
+        display: block;
+
+        font-family: "Inter", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+
+        color: var(--muted);
+        letter-spacing: 0.7px;
+      }
+
+      /* NAVIGATION */
+
+      .nav-title {
+        padding: 0 14px;
+        margin: 18px 0 8px;
+
+        font-size: 0.68rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+
+        color: var(--light);
+        font-weight: 700;
+      }
+
+      .nav-item {
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        gap: 13px;
+
+        min-height: 44px;
+        padding: 12px 14px;
+        margin-bottom: 5px;
+
+        border-radius: 12px;
+
+        color: var(--muted);
+
+        font-size: 0.9rem;
+        font-weight: 500;
+
+        transition: 0.25s ease;
+      }
+
+      .nav-item i {
+        width: 21px;
+        text-align: center;
+        font-size: 0.95rem;
+      }
+
+      .nav-item:hover {
+        background: var(--blue-soft);
+        color: var(--navy);
+        transform: translateX(3px);
+      }
+
+      .nav-item.active {
+        background: var(--navy);
+        color: white;
+
+        box-shadow: 0 8px 20px rgba(17, 24, 68, 0.15);
+      }
+
+      .nav-item.active i {
+        color: #fff;
+      }
+
+      html[dir="rtl"] .nav-item:hover {
+        transform: translateX(-3px);
+      }
+
+      .sidebar-bottom {
+        margin-top: auto;
+        padding-top: 18px;
+
+        border-top: 1px solid var(--border);
+      }
+
+      .logout {
+        color: var(--red);
+      }
+
+      .logout:hover {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      /* =========================================================
+           MAIN
+        ========================================================= */
+
+      .main-content {
+        width: calc(100% - 270px);
+        min-width: 0;
+        margin-left: 270px;
+
+        padding: 34px 38px;
+      }
+
+      html[dir="rtl"] .main-content {
+        margin-left: 0;
+        margin-right: 270px;
+      }
+
+      /* =========================================================
+           TOPBAR
+        ========================================================= */
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 30px;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+
+        border: none;
+        background: white;
+
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+
+        border-radius: 12px;
+
+        color: var(--navy);
+        font-size: 1.1rem;
+
+        cursor: pointer;
+      }
+
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      /* NOTIFICATION */
+
+      .notification-wrapper {
+        position: relative;
+      }
+
+      .notification-btn {
+        position: relative;
+
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+
+        border-radius: 13px;
+
+        border: 1px solid var(--border);
+        background: white;
+
+        color: var(--muted);
+
+        cursor: pointer;
+
+        transition: 0.25s;
+      }
+
+      .notification-btn:hover {
+        color: var(--navy);
+        border-color: #ccd1e3;
+        transform: translateY(-2px);
+      }
+
+      .notification-badge {
+        position: absolute;
+
+        top: -5px;
+        right: -4px;
+
+        width: 18px;
+        height: 18px;
+
+        border-radius: 50%;
+
+        background: var(--red);
+        color: white;
+
+        font-size: 0.62rem;
+        font-weight: 700;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 2px solid var(--cream);
+      }
+
+      /* USER */
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+
+        padding-left: 14px;
+        border-left: 1px solid var(--border);
+      }
+
+      html[dir="rtl"] .user-profile {
+        padding-left: 0;
+        padding-right: 14px;
+
+        border-left: none;
+        border-right: 1px solid var(--border);
+      }
+
+      .user-avatar {
+        width: 43px;
+        height: 43px;
+
+        border-radius: 14px;
+
+        background: linear-gradient(135deg, var(--navy), var(--blue));
+
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-weight: 700;
+        font-size: 1rem;
+
+        box-shadow: 0 6px 16px rgba(17, 24, 68, 0.15);
+      }
+
+      .user-name {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .user-role {
+        font-size: 0.7rem;
+        color: var(--muted);
+      }
+
+      /* =========================================================
+           WELCOME
+        ========================================================= */
+
+      .welcome-card {
+        position: relative;
+        overflow: hidden;
+
+        background: linear-gradient(120deg, #111844 0%, #26346e 100%);
+
+        border-radius: 22px;
+
+        padding: 32px 36px;
+
+        margin-bottom: 26px;
+
+        color: white;
+
+        box-shadow: 0 18px 45px rgba(17, 24, 68, 0.15);
+      }
+
+      .welcome-card::before {
+        content: "";
+
+        position: absolute;
+
+        width: 240px;
+        height: 240px;
+
+        right: -70px;
+        top: -90px;
+
+        border-radius: 50%;
+
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .welcome-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 150px;
+        height: 150px;
+
+        right: 100px;
+        bottom: -90px;
+
+        border-radius: 50%;
+
+        border: 25px solid rgba(255, 255, 255, 0.04);
+      }
+
+      html[dir="rtl"] .welcome-card::before {
+        right: auto;
+        left: -70px;
+      }
+
+      .welcome-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .welcome-label {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        color: rgba(255, 255, 255, 0.65);
+
+        margin-bottom: 6px;
+      }
+
+      .welcome-card h1 {
+        color: white;
+
+        font-size: 2rem;
+        margin-bottom: 7px;
+      }
+
+      .welcome-card p {
+        max-width: 600px;
+
+        color: rgba(255, 255, 255, 0.75);
+
+        font-size: 0.9rem;
+      }
+
+      .welcome-decoration {
+        position: absolute;
+
+        right: 50px;
+        bottom: 22px;
+
+        font-size: 4.5rem;
+
+        color: rgba(255, 255, 255, 0.08);
+      }
+
+      html[dir="rtl"] .welcome-decoration {
+        right: auto;
+        left: 50px;
+      }
+
+      /* =========================================================
+           STATS
+        ========================================================= */
+
+      .stats-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 18px;
+
+        margin-bottom: 26px;
+      }
+
+      .stat-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: var(--radius);
+
+        padding: 21px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 15px;
+
+        box-shadow: 0 5px 20px rgba(17, 24, 68, 0.025);
+
+        transition: 0.25s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow);
+      }
+
+      .stat-icon {
+        flex-shrink: 0;
+
+        width: 50px;
+        height: 50px;
+
+        border-radius: 15px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--blue-soft);
+        color: var(--blue);
+
+        font-size: 1.1rem;
+      }
+
+      .stat-card:nth-child(2) .stat-icon {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .stat-card:nth-child(3) .stat-icon {
+        background: var(--orange-soft);
+        color: var(--orange);
+      }
+
+      .stat-info h4 {
+        font-family: "Inter", sans-serif;
+
+        color: var(--muted);
+
+        font-size: 0.72rem;
+        font-weight: 600;
+
+        margin-bottom: 2px;
+      }
+
+      html[dir="rtl"] .stat-info h4 {
+        font-family: "Cairo", sans-serif;
+      }
+
+      .stat-info p {
+        color: var(--navy);
+
+        font-size: 1.45rem;
+        font-weight: 700;
+
+        line-height: 1.2;
+      }
+
+      /* =========================================================
+           CONTENT
+        ========================================================= */
+
+      .content-grid {
+        display: grid;
+
+        grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+
+        gap: 22px;
+      }
+
+      .card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: var(--radius);
+
+        padding: 24px;
+
+        box-shadow: 0 5px 20px rgba(17, 24, 68, 0.025);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 16px;
+      }
+
+      .card-header h3 {
+        font-size: 1.1rem;
+      }
+
+      .view-all {
+        color: var(--blue);
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+
+      .view-all:hover {
+        color: var(--navy);
+      }
+
+      .flash-messages {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .flash-message {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--white);
+        color: var(--navy);
+      }
+
+      /* =========================================================
+           APPOINTMENTS
+        ========================================================= */
+
+      .appointment-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+
+        padding: 17px 0;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .appointment-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .appointment-item.past-appointment {
+        color: #7b8191;
+        opacity: 0.6;
+        pointer-events: none;
+        cursor: not-allowed;
+        text-decoration: line-through;
+      }
+
+      .appt-info {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .appt-details {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .appt-date {
+        min-width: 58px;
+
+        padding: 9px 7px;
+
+        border-radius: 13px;
+
+        background: var(--blue-soft);
+
+        text-align: center;
+      }
+
+      .appt-date .day {
+        display: block;
+
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        color: var(--navy);
+
+        line-height: 1;
+      }
+
+      .appt-date .month {
+        display: block;
+
+        margin-top: 4px;
+
+        font-size: 0.63rem;
+        text-transform: uppercase;
+
+        color: var(--blue);
+        font-weight: 600;
+      }
+
+      .appt-details h4 {
+        font-family: "Inter", sans-serif;
+
+        font-size: 0.9rem;
+        font-weight: 700;
+
+        margin-bottom: 4px;
+      }
+
+      html[dir="rtl"] .appt-details h4 {
+        font-family: "Cairo", sans-serif;
+      }
+
+      .appt-details p {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      .status-badge {
+        padding: 6px 11px;
+
+        border-radius: 30px;
+
+        font-size: 0.68rem;
+        font-weight: 700;
+
+        white-space: nowrap;
+      }
+
+      .status-confirmed {
+        color: var(--green);
+        background: var(--green-soft);
+      }
+
+      .status-pending {
+        color: var(--orange);
+        background: var(--orange-soft);
+      }
+
+      .appt-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .appointment-item .btn {
+        width: auto;
+        min-height: 36px;
+        padding: 8px 13px;
+        font-size: 0.74rem;
+        white-space: nowrap;
+      }
+
+      /* =========================================================
+           HELP CARD
+        ========================================================= */
+
+      .help-card {
+        text-align: center;
+
+        background: linear-gradient(145deg, #f7f7fb, #ffffff);
+      }
+
+      .help-icon {
+        width: 58px;
+        height: 58px;
+
+        margin: 0 auto 14px;
+
+        border-radius: 18px;
+
+        background: var(--blue-soft);
+        color: var(--navy);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 1.35rem;
+      }
+
+      .help-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 7px;
+      }
+
+      .help-card p {
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-bottom: 17px;
+      }
+
+      /* BUTTON */
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        min-height: 44px;
+        padding: 11px 18px;
+
+        border-radius: 11px;
+
+        font-size: 0.78rem;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.25s;
+      }
+
+      .btn-primary {
+        width: 100%;
+
+        background: var(--navy);
+        color: white;
+
+        box-shadow: 0 7px 17px rgba(17, 24, 68, 0.15);
+      }
+
+      .btn-primary:hover {
+        background: var(--blue);
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        border: 1px solid var(--border);
+        color: var(--navy);
+        background: white;
+      }
+
+      .btn-outline:hover {
+        background: var(--blue-soft);
+        border-color: #d8dcec;
+      }
+
+      /* =========================================================
+           ACTIVITY
+        ========================================================= */
+
+      .activity-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+
+        padding: 12px 0;
+      }
+
+      .activity-icon {
+        width: 31px;
+        height: 31px;
+
+        border-radius: 10px;
+
+        background: var(--green-soft);
+        color: var(--green);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        font-size: 0.75rem;
+      }
+
+      .activity-item p {
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+
+      .activity-item span {
+        display: block;
+
+        margin-top: 2px;
+
+        font-size: 0.68rem;
+        color: var(--light);
+      }
+
+      /* =========================================================
+           EMPTY
+        ========================================================= */
+
+      .empty-state {
+        text-align: center;
+        padding: 35px 15px;
+      }
+
+      .empty-state-icon {
+        width: 62px;
+        height: 62px;
+
+        margin: 0 auto 13px;
+
+        border-radius: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: var(--blue-soft);
+        color: var(--blue);
+
+        font-size: 1.35rem;
+      }
+
+      .empty-state p {
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-bottom: 5px;
+      }
+
+      /* =========================================================
+           NOTIFICATIONS
+        ========================================================= */
+
+      .notif-dropdown {
+        position: absolute;
+
+        top: 53px;
+        right: 0;
+
+        width: 350px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+        border-radius: 17px;
+
+        box-shadow: 0 18px 45px rgba(17, 24, 68, 0.13);
+
+        overflow: hidden;
+
+        display: none;
+
+        z-index: 1000;
+      }
+
+      html[dir="rtl"] .notif-dropdown {
+        right: auto;
+        left: 0;
+      }
+
+      .notif-header {
+        display: flex;
+        justify-content: space-between;
+
+        padding: 15px 17px;
+
+        background: var(--cream);
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .notif-header h4 {
+        font-family: "Inter", sans-serif;
+        font-size: 0.83rem;
+      }
+
+      html[dir="rtl"] .notif-header h4 {
+        font-family: "Cairo", sans-serif;
+      }
+
+      .mark-all-read {
+        padding: 0;
+        border: 0;
+        background: none;
+        font-size: 0.68rem;
+        color: var(--blue);
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .notif-item {
+        display: flex;
+        gap: 11px;
+
+        padding: 15px 17px;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .notif-item.unread {
+        background: #fafbff;
+      }
+
+      .notif-icon {
+        width: 34px;
+        height: 34px;
+
+        border-radius: 10px;
+
+        background: var(--blue-soft);
+        color: var(--blue);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        font-size: 0.75rem;
+      }
+
+      .notif-content p {
+        font-size: 0.75rem;
+        line-height: 1.5;
+      }
+
+      .notif-time {
+        color: var(--light);
+        font-size: 0.65rem;
+      }
+
+      .notif-footer {
+        padding: 11px;
+        text-align: center;
+      }
+
+      .view-all-btn {
+        font-size: 0.72rem;
+        color: var(--blue);
+        font-weight: 700;
+      }
+
+      @media (max-width: 1100px) {
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 800px) {
+        .sidebar {
+          width: min(86vw, 270px);
+          height: 100vh;
+          height: 100dvh;
+          overflow-y: auto;
+          overscroll-behavior: contain;
+          transform: translateX(-105%);
+          box-shadow: 15px 0 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .sidebar-backdrop.active {
+          display: block;
+          position: fixed;
+          inset: 0;
+          z-index: 90;
+          background: rgba(17, 24, 68, 0.35);
+        }
+
+        html[dir="rtl"] .sidebar {
+          transform: translateX(105%);
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+        }
+
+        .main-content {
+          width: 100%;
+          margin-left: 0;
+          padding: 20px;
+        }
+
+        html[dir="rtl"] .main-content {
+          margin-right: 0;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .topbar {
+          margin-bottom: 22px;
+        }
+
+        .welcome-card {
+          padding: 25px;
+        }
+
+        .welcome-card h1 {
+          font-size: 1.55rem;
+        }
+
+        .welcome-decoration {
+          display: none;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* =========================================================
+           RECURRING SESSIONS
+        ========================================================= */
+
+      #patient-recurring-sessions .rs-patient-card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 16px;
+        margin: 12px 0;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      #patient-recurring-sessions .rs-series__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #patient-recurring-sessions .rs-series__actions {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #patient-recurring-sessions .rs-badge {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 3px 9px;
+        border-radius: 999px;
+        background: var(--blue-soft);
+        color: var(--navy);
+      }
+
+      #patient-recurring-sessions .rs-badge--proposed {
+        background: var(--orange-soft);
+        color: var(--orange);
+      }
+
+      #patient-recurring-sessions .rs-badge--active {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      #patient-recurring-sessions .rs-badge--paused {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      #patient-recurring-sessions .btn-sm {
+        min-height: 40px;
+        padding: 9px 16px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        white-space: nowrap;
+        background: var(--navy);
+        color: white;
+        border: 1px solid var(--navy);
+        border-radius: 11px;
+        cursor: pointer;
+        transition: background 0.18s ease, color 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      #patient-recurring-sessions .rs-btn-accept {
+        flex: 1 1 220px;
+        font-weight: 700;
+      }
+
+      #patient-recurring-sessions .rs-btn-accept:hover:not(:disabled) {
+        background: var(--navy-2);
+        border-color: var(--navy-2);
+      }
+
+      #patient-recurring-sessions .rs-btn-decline {
+        flex: 0 0 auto;
+        background: var(--white);
+        color: var(--navy);
+        border: 1px solid var(--border);
+      }
+
+      #patient-recurring-sessions .rs-btn-decline:hover:not(:disabled) {
+        background: var(--red-soft);
+        color: var(--red);
+        border-color: var(--red-soft);
+      }
+
+      #patient-recurring-sessions .btn-sm:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      #patient-recurring-sessions .rs-patient-error {
+        color: var(--red);
+        font-size: 0.82rem;
+      }
+
+      #patient-recurring-sessions .rs-request {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+      }
+
+      #patient-recurring-sessions .rs-request__note {
+        width: 100%;
+        font: inherit;
+        font-size: 0.82rem;
+        padding: 9px 11px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        resize: vertical;
+        background: var(--white);
+        color: var(--text);
+      }
+
+      #patient-recurring-sessions .rs-request__send {
+        align-self: flex-start;
+        background: var(--blue);
+        color: #fff;
+        border: 1px solid var(--blue);
+      }
+
+      @media (max-width: 640px) {
+        #patient-recurring-sessions .rs-patient-card {
+          padding: 14px;
+        }
+
+        #patient-recurring-sessions .rs-series__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        #patient-recurring-sessions .rs-btn-accept,
+        #patient-recurring-sessions .rs-btn-decline {
+          flex: 1 1 auto;
+          width: 100%;
+        }
+
+        #patient-recurring-sessions .rs-request__send {
+          align-self: stretch;
+          width: 100%;
+        }
+      }
+
+      .rs-toast {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        z-index: 9999;
+        background: var(--navy);
+        color: white;
+        padding: 12px 16px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(17, 24, 68, 0.25);
+        max-width: 340px;
+      }
+
+      .rs-toast--error {
+        background: var(--red);
+      }
+
+      .rs-toast--success {
+        background: var(--green);
+      }
+
+      .rs-toast--hide {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      @media (max-width: 520px) {
+        .main-content {
+          padding: 15px;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .topbar-right {
+          gap: 8px;
+        }
+
+        .user-name,
+        .user-role {
+          display: none;
+        }
+
+        .user-profile {
+          border: none;
+          padding: 0;
+        }
+
+        html[dir="rtl"] .user-profile {
+          border: none;
+          padding: 0;
+        }
+
+        .welcome-card {
+          border-radius: 18px;
+          padding: 22px 18px;
+        }
+
+        .welcome-card h1 {
+          font-size: 1.4rem;
+          overflow-wrap: anywhere;
+        }
+
+        .card {
+          min-width: 0;
+          padding: 16px;
+        }
+
+        .card-header {
+          align-items: flex-start;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .appointment-item {
+          flex-wrap: wrap;
+        }
+
+        .appt-info {
+          flex: 1 1 100%;
+        }
+
+        .appt-actions {
+          flex: 1 1 100%;
+          justify-content: flex-start;
+        }
+
+        .appt-actions form {
+          flex: 0 0 auto;
+        }
+
+        .appointment-item {
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .status-badge {
+          font-size: 0.6rem;
+        }
+
+        .notif-dropdown {
+          position: fixed;
+
+          top: 75px;
+          left: 15px;
+          right: 15px;
+
+          width: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <div class="dashboard-layout">
+      {% if messages %}
+      <div class="flash-messages" role="status" aria-live="polite">
+        {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <!-- =========================================================
+         SIDEBAR
+    ========================================================= -->
+
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <a href="{% url 'home' %}" class="sidebar-logo">
+            <span class="logo-icon">
+              <i class="fas fa-brain"></i>
+            </span>
+
+            <span class="logo-text">
+              MindWell
+              <small>{% trans "YOUR WELLBEING MATTERS" %}</small>
+            </span>
+          </a>
+        </div>
+
+        <nav>
+          <div class="nav-title">{% trans "Menu" %}</div>
+
+          <a
+            href="{% url 'accounts:patient_dashboard' %}"
+            class="nav-item active"
+          >
+            <i class="fas fa-grid-2"></i>
+            <span>{% trans "Tableau de bord" %}</span>
+          </a>
+
+          <a href="{% url 'accounts:trouver_psychologue' %}" class="nav-item">
+            <i class="fas fa-user-md"></i>
+            <span>{% trans "Trouver un psychologue" %}</span>
+          </a>
+
+          <a href="{% url 'accounts:rendez_vous' %}" class="nav-item">
+            <i class="fas fa-calendar-check"></i>
+            <span>{% trans "Mes rendez-vous" %}</span>
+          </a>
+
+          <a href="{% url 'accounts:parametres' %}" class="nav-item">
+            <i class="fas fa-user-circle"></i>
+            <span>{% trans "Mon profil" %}</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <form
+            method="post"
+            action="{% url 'accounts:logout' %}"
+            class="logout-form"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="nav-item logout"
+              style="
+                background: none;
+                border: none;
+                width: 100%;
+                text-align: left;
+              "
+            >
+              <i class="fas fa-right-from-bracket"></i>
+              <span>{% trans "Déconnexion" %}</span>
+            </button>
+          </form>
+        </div>
+      </aside>
+      <button
+        type="button"
+        class="sidebar-backdrop"
+        id="sidebarBackdrop"
+        aria-label="{% trans 'Fermer le menu' %}"
+        tabindex="-1"
+      ></button>
+
+      <!-- =========================================================
+         MAIN CONTENT
+    ========================================================= -->
+
+      <main class="main-content">
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+          <div style="display: flex; align-items: center; gap: 13px">
+            <button
+              class="mobile-menu-btn"
+              type="button"
+              id="mobileMenuBtn"
+              aria-label="{% trans 'Ouvrir le menu' %}"
+              aria-controls="sidebar"
+              aria-expanded="false"
+            >
+              <i class="fas fa-bars"></i>
+            </button>
+
+            <div>
+              <div
+                style="
+                  font-size: 0.68rem;
+                  color: var(--light);
+                  margin-bottom: 2px;
+                "
+              >
+                MindWell
+              </div>
+
+              <div style="font-size: 0.82rem; color: var(--muted)">
+                {% trans "Espace patient" %}
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <!-- NOTIFICATIONS -->
+
+            <div class="notification-wrapper">
+              <button
+                type="button"
+                class="notification-btn"
+                id="notifBtn"
+                aria-label="{% trans 'Notifications' %}"
+              >
+                <i class="fas fa-bell"></i>
+
+                {% if unread_notification_count %}
+                <span class="notification-badge">{{ unread_notification_count }}</span>
+                {% endif %}
+              </button>
+
+              <div class="notif-dropdown" id="notifDropdown">
+                <div class="notif-header">
+                  <h4>{% trans "Notifications" %}</h4>
+                  {% if unread_notification_count %}
+                  <form method="post" action="{% url 'accounts:mark_notifications_read' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="mark-all-read">{% trans "Tout marquer comme lu" %}</button>
+                  </form>
+                  {% endif %}
+                </div>
+
+                <div>
+                  {% for notification in notifications %}
+                  <div class="notif-item{% if not notification.is_read %} unread{% endif %}">
+                    <div class="notif-icon">
+                      <i class="fas fa-bell"></i>
+                    </div>
+
+                    <div class="notif-content">
+                      {% if notification.title %}<p style="font-weight:700; margin-bottom:2px;">{{ notification.title }}</p>{% endif %}
+                      <p>{{ notification.message }}</p>
+                      <span class="notif-time">{{ notification.created_at|date:"DATETIME_FORMAT" }}</span>
+                      {% if notification.url %}
+                      <div style="margin-top: 6px;">
+                        <a href="{{ notification.url }}" style="color: var(--blue); font-weight: 600; font-size: 0.75rem;">{% trans "Ouvrir" %} &rarr;</a>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% empty %}
+                  <p class="notif-time">{% trans "Vous n'avez aucune notification." %}</p>
+                  {% endfor %}
+                </div>
+
+                <div class="notif-footer">
+                  <a href="{% url 'accounts:notifications' %}" class="view-all-btn">{% trans "Voir toutes les notifications" %}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- USER -->
+
+            <div class="user-profile">
+              <div class="user-avatar">
+                {{ user.first_name|default:user.username|first|upper }}
+              </div>
+
+              <div>
+                <div class="user-name">
+                  {{ user.get_full_name|default:user.username }}
+                </div>
+                <div class="user-role">{% trans "Patient" %}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             WELCOME CARD
+        ===================================================== -->
+
+        <section class="welcome-card">
+          <div class="welcome-content">
+            <div class="welcome-label">{% trans "Votre espace personnel" %}</div>
+
+            <h1>
+              {% trans "Bonjour" %}{% if user.first_name %}, {{ user.first_name }}{% endif %}
+            </h1>
+
+            <p>
+              {% trans "Prenez soin de votre bien-être. Retrouvez ici vos rendez-vous, vos consultations et votre activité récente." %}
+            </p>
+          </div>
+
+          <div class="welcome-decoration">
+            <i class="fas fa-brain"></i>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             STATS
+        ===================================================== -->
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-calendar-days"></i>
+            </div>
+
+            <div class="stat-info">
+              <h4>{% trans "Prochains rendez-vous" %}</h4>
+
+              <p>{{ upcoming_sessions|length }}</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-circle-check"></i>
+            </div>
+
+            <div class="stat-info">
+              <h4>{% trans "Consultations terminées" %}</h4>
+
+              <p>{{ completed_sessions|length }}</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-hourglass-half"></i>
+            </div>
+
+            <div class="stat-info">
+              <h4>{% trans "Demandes en attente" %}</h4>
+
+              <p>{{ pending_requests }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             CONTENT GRID
+        ===================================================== -->
+
+        <div class="content-grid">
+          <!-- APPOINTMENTS -->
+
+          <div>
+          <div class="card">
+            <div class="card-header">
+              <h3>{% trans "Mes prochains rendez-vous" %}</h3>
+
+              <a href="{% url 'accounts:rendez_vous' %}" class="view-all">
+                Voir tout
+                <i class="fas fa-arrow-right" style="font-size: 0.65rem"></i>
+              </a>
+            </div>
+
+            {% for session in upcoming_sessions %}
+
+            <div class="appointment-item">
+              <div class="appt-info">
+                <div class="appt-date">
+                  <span class="day"> {{ session.date|date:"d" }} </span>
+
+                  <span class="month"> {{ session.date|date:"M" }} </span>
+                </div>
+
+                <div class="appt-details">
+                  <h4>{% trans "Dr." %} {{ session.psychologue.get_full_name|default:session.psychologue.username }}</h4>
+
+                  <p>
+                    <i class="fas fa-video"></i>
+
+                    {{ session.get_session_type_display }}
+
+                    <span style="margin: 0 5px">•</span>
+
+                    {{ session.start_time|time:"H:i"|default:"15:00" }}
+                  </p>
+                </div>
+              </div>
+
+              <div class="appt-actions">
+                <span
+                  class="status-badge {% if session.status == 'confirmed' or session.status == 'in_progress' %} status-confirmed {% else %} status-pending {% endif %}"
+                >
+                  {{ session.get_status_display }}
+                </span>
+                {% if session.status == 'confirmed' and session.payment_status == 'unpaid' %}
+                <a
+                  href="{% url 'accounts:payment_page' session.id %}"
+                  class="btn btn-primary"
+                >
+                  {% trans "Payer" %}
+                </a>
+                {% endif %}
+                {% if session.can_be_cancelled %}
+                <form
+                  method="post"
+                  action="{% url 'accounts:cancel_appointment' session.id %}"
+                >
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline">{% trans "Annuler" %}</button>
+                </form>
+                {% endif %}
+              </div>
+            </div>
+
+            {% empty %}
+
+            <div class="empty-state">
+              <div class="empty-state-icon">
+                <i class="fas fa-calendar-xmark"></i>
+              </div>
+
+              <p>{% trans "Vous n'avez aucun rendez-vous à venir." %}</p>
+
+              <a
+                href="{% url 'accounts:trouver_psychologue' %}"
+                class="btn btn-primary"
+                style="width: auto; margin-top: 12px"
+              >
+                <i class="fas fa-search"></i>
+                {% trans "Réserver maintenant" %}
+              </a>
+            </div>
+
+            {% endfor %}
+          </div>
+
+          {% if completed_sessions %}
+          <div class="card" style="margin-top: 22px">
+            <div class="card-header">
+              <h3>{% trans "Consultations terminées" %}</h3>
+            </div>
+            {% for session in completed_sessions %}
+            <div class="appointment-item past-appointment">
+              <div class="appt-info">
+                <div class="appt-date">
+                  <span class="day">{{ session.date|date:"d" }}</span>
+                  <span class="month">{{ session.date|date:"M" }}</span>
+                </div>
+                <div class="appt-details">
+                  <h4>{% trans "Dr." %} {{ session.psychologue.get_full_name|default:session.psychologue.username }}</h4>
+                  <p>{{ session.start_time|time:"H:i" }} · {{ session.get_session_type_display }}</p>
+                </div>
+              </div>
+              <span class="status-badge">{{ session.get_status_display }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          </div>
+
+          <!-- COMPENSATORY SESSIONS -->
+          <div class="card" id="patient-recurring-sessions" style="margin-top: 22px">
+            <div class="card-header">
+              <h3>{% trans "Séances de rattrapage" %}</h3>
+            </div>
+            <div id="recurring-toast" aria-live="polite"></div>
+            <p class="muted" style="font-size: 0.78rem; color: var(--muted)">
+              {% trans "Lorsqu'une séance confirmée et payée est annulée par votre psychologue, vous avez droit à une séance de rattrapage gratuite. Voici vos séances de rattrapage disponibles :" %}
+            </p>
+            <p class="muted" style="font-size: 0.82rem; font-weight: 600; color: var(--navy); margin: 4px 0 6px">
+              {% trans "Rattrapages disponibles" %}
+            </p>
+            <div id="patient-series-list">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <i class="fas fa-rotate"></i>
+                </div>
+                <p>{% trans "Chargement de vos séances de rattrapage…" %}</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <!-- FIND PSYCHOLOGIST -->
+
+            <div class="card help-card" style="margin-bottom: 22px">
+              <div class="help-icon">
+                <i class="fas fa-user-doctor"></i>
+              </div>
+
+              <h3>{% trans "Besoin d'aide ?" %}</h3>
+
+              <p>
+                {% trans "Trouvez le psychologue qui correspond le mieux à vos besoins." %}
+              </p>
+
+              <a
+                href="{% url 'accounts:trouver_psychologue' %}"
+                class="btn btn-primary"
+              >
+                {% trans "Trouver un psychologue" %}
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <!-- RECENT ACTIVITY -->
+
+            <div class="card">
+              <div class="card-header">
+                <h3>{% trans "Activité récente" %}</h3>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-icon">
+                  <i class="fas fa-check"></i>
+                </div>
+
+                <div>
+                  <p>{% trans "Votre compte a été créé avec succès." %}</p>
+
+                  <span> {{ user.date_joined|date:"d M Y" }} </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      /* =========================================================
+      NOTIFICATIONS
+    ========================================================= */
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const sidebar = document.getElementById("sidebar");
+        const menuBtn = document.getElementById("mobileMenuBtn");
+        const sidebarBackdrop = document.getElementById("sidebarBackdrop");
+
+        if (sidebar && menuBtn && sidebarBackdrop) {
+          const closeSidebar = function () {
+            sidebar.classList.remove("open");
+            sidebarBackdrop.classList.remove("active");
+            menuBtn.setAttribute("aria-expanded", "false");
+            document.body.style.overflow = "";
+          };
+
+          menuBtn.addEventListener("click", function () {
+            const isOpen = sidebar.classList.toggle("open");
+            sidebarBackdrop.classList.toggle("active", isOpen);
+            menuBtn.setAttribute("aria-expanded", String(isOpen));
+            document.body.style.overflow = isOpen ? "hidden" : "";
+          });
+
+          sidebarBackdrop.addEventListener("click", closeSidebar);
+          sidebar.querySelectorAll(".nav-item").forEach(function (navItem) {
+            navItem.addEventListener("click", closeSidebar);
+          });
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+              closeSidebar();
+            }
+          });
+          window.addEventListener("resize", function () {
+            if (window.innerWidth > 800) {
+              closeSidebar();
+            }
+          });
+        }
+
+        const notifBtn = document.getElementById("notifBtn");
+
+        const notifDropdown = document.getElementById("notifDropdown");
+
+        if (notifBtn && notifDropdown) {
+          notifBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+
+            const visible = notifDropdown.style.display === "block";
+
+            notifDropdown.style.display = visible ? "none" : "block";
+          });
+
+          document.addEventListener("click", function (e) {
+            if (!e.target.closest(".notification-wrapper")) {
+              notifDropdown.style.display = "none";
+            }
+          });
+        }
+      });
+    </script>
+    <script
+      src="{% static 'js/realtime-notifications.js' %}"
+      data-user-type="{{ request.user.user_type }}"
+      defer
+    ></script>
+    <script src="{% static 'js/recurring_sessions.js' %}?v=20261114"></script>
+  </body>
+</html>

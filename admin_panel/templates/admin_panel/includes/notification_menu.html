@@ -1,0 +1,102 @@
+{% load i18n %}
+<style>
+  .admin-notification-menu { position:relative; }
+  .admin-notification-toggle { position:relative; width:38px; height:38px; border:1px solid var(--border,#e5e4e8); border-radius:50%; background:var(--bg,#fff); color:var(--text-secondary,#475569); cursor:pointer; }
+  .admin-notification-count { position:absolute; top:-5px; right:-5px; min-width:17px; padding:2px 4px; border-radius:12px; background:#c0392b; color:#fff; font-size:10px; line-height:1.2; text-align:center; }
+  .admin-notification-count[hidden] { display:none; }
+  .admin-notification-dropdown { position:absolute; z-index:3100; top:calc(100% + 10px); right:0; width:min(360px,calc(100vw - 32px)); max-height:430px; overflow:auto; border:1px solid var(--border,#e5e4e8); border-radius:12px; background:#fff; box-shadow:0 12px 32px #0002; }
+  .admin-notification-dropdown[hidden] { display:none; }
+  .admin-notification-heading,.admin-notification-footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 15px; border-bottom:1px solid #eee; color:var(--navy,#111844); font-weight:700; }
+  .admin-notification-heading button { padding:0; border:0; background:none; color:var(--accent,#4b5694); cursor:pointer; font:inherit; font-size:12px; }
+  .admin-notification-item { display:block; padding:12px 15px; border-bottom:1px solid #f1f1f1; color:var(--text-primary,#202236); }
+  .admin-notification-item.unread { background:#f2f5fc; }
+  .admin-notification-item strong,.admin-notification-item span { display:block; }
+  .admin-notification-item span { margin-top:4px; color:var(--text-muted,#73778b); font-size:12px; }
+  .admin-notification-empty { padding:18px 15px; color:var(--text-muted,#73778b); }
+  .admin-notification-error { padding:10px 15px; color:#b42318; font-size:12px; }
+  .admin-notification-footer { justify-content:center; border:0; }
+  .admin-interface .mw-language-switcher { position:static; z-index:auto; flex:0 0 auto; box-shadow:none; }
+  .admin-interface .mw-language-button { min-width:36px; min-height:32px; padding:6px 9px; }
+  @media(max-width:600px) {
+    .admin-notification-dropdown { position:fixed; top:58px; right:12px; }
+    .admin-interface .mw-language-button { min-width:31px; padding:5px 7px; }
+  }
+</style>
+<div class="admin-notification-menu">
+  <button class="admin-notification-toggle" type="button" aria-label="{% trans 'Notifications' %}" aria-expanded="false" aria-controls="admin-notification-dropdown">
+    <i class="far fa-bell" aria-hidden="true"></i>
+    <span class="admin-notification-count" data-notification-count {% if not unread_notification_count %}hidden{% endif %}>{{ unread_notification_count }}</span>
+  </button>
+  <div class="admin-notification-dropdown" id="admin-notification-dropdown" hidden>
+    <div class="admin-notification-heading">
+      <span>{% trans "Notifications" %}</span>
+      <button type="button" data-mark-all>{% trans "Mark all as read" %}</button>
+    </div>
+    <div data-notification-items>
+      {% for notification in admin_notifications %}
+      <a class="admin-notification-item{% if not notification.is_read %} unread{% endif %}"
+         href="{% if notification.url %}{{ notification.url }}{% else %}{% url 'admin_notifications' %}{% endif %}"
+         data-read-url="{% url 'admin_mark_notification_read' notification.pk %}"
+         data-notification-id="{{ notification.pk }}">
+        <strong>{{ notification.title|default:notification.message }}</strong>
+        {% if notification.title %}<span>{{ notification.message }}</span>{% endif %}
+        <span>{{ notification.created_at|date:"d/m/Y H:i" }}</span>
+      </a>
+      {% empty %}
+      <div class="admin-notification-empty">{% trans "No notifications yet." %}</div>
+      {% endfor %}
+    </div>
+    <div class="admin-notification-error" data-notification-error role="status" hidden>{% trans "Could not update notifications. Please try again." %}</div>
+    <a class="admin-notification-footer" href="{% url 'admin_notifications' %}">{% trans "View all notifications" %}</a>
+  </div>
+</div>
+<script>
+  (() => {
+    const menu = document.currentScript.previousElementSibling;
+    if (!menu) return;
+    const toggle = menu.querySelector(".admin-notification-toggle");
+    const dropdown = menu.querySelector(".admin-notification-dropdown");
+    const count = menu.querySelector("[data-notification-count]");
+    const errorMessage = menu.querySelector("[data-notification-error]");
+    const csrfInput = document.querySelector("#admin-csrf-form [name=csrfmiddlewaretoken]");
+    const csrfToken = () => document.cookie.split("; ").find((cookie) => cookie.startsWith("csrftoken="))?.split("=").slice(1).join("=") || csrfInput?.value;
+    const post = async (url) => {
+      const token = csrfToken();
+      if (!token) throw new Error("Missing CSRF token");
+      const response = await fetch(url, { method: "POST", credentials: "same-origin", headers: { "X-CSRFToken": token, "Accept": "application/json" } });
+      if (!response.ok) throw new Error(`Notification request failed (${response.status})`);
+      return response.json();
+    };
+    toggle.addEventListener("click", () => {
+      dropdown.hidden = !dropdown.hidden;
+      toggle.setAttribute("aria-expanded", String(!dropdown.hidden));
+    });
+    document.querySelectorAll("[data-read-url]").forEach((link) => {
+      link.addEventListener("click", async (event) => {
+        event.preventDefault();
+        try {
+          const result = await post(link.dataset.readUrl);
+          window.location.assign(result.url || link.href);
+        } catch {
+          errorMessage.hidden = false;
+        }
+      });
+    });
+    menu.querySelector("[data-mark-all]").addEventListener("click", async () => {
+      try {
+        await post("{% url 'admin_mark_all_notifications_read' %}");
+        menu.querySelectorAll(".admin-notification-item.unread").forEach((item) => item.classList.remove("unread"));
+        count.hidden = true;
+        count.textContent = "0";
+      } catch {
+        errorMessage.hidden = false;
+      }
+    });
+    document.addEventListener("click", (event) => {
+      if (!menu.contains(event.target)) {
+        dropdown.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  })();
+</script>

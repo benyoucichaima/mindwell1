@@ -1,0 +1,602 @@
+[
+  {
+    "scenario_id": 1,
+    "conversation_ids": {
+      "fr": "conv_001",
+      "ar": "conv_002",
+      "en": "conv_003"
+    },
+    "themes": {
+      "fr": "Anxiété généralisée",
+      "ar": "القلق العام",
+      "en": "Generalized Anxiety"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 2,
+    "conversation_ids": {
+      "fr": "conv_004",
+      "ar": "conv_005",
+      "en": "conv_006"
+    },
+    "themes": {
+      "fr": "Dépression légère",
+      "ar": "الاكتئاب الخفيف",
+      "en": "Mild Depression"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 3,
+    "conversation_ids": {
+      "fr": "conv_007",
+      "ar": "conv_008",
+      "en": "conv_009"
+    },
+    "themes": {
+      "fr": "Stress professionnel / burn-out",
+      "ar": "الإجهاد المهني / الاحتراق",
+      "en": "Professional Stress / Burn-out"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 4,
+    "conversation_ids": {
+      "fr": "conv_010",
+      "ar": "conv_011",
+      "en": "conv_012"
+    },
+    "themes": {
+      "fr": "Insomnie",
+      "ar": "الأرق",
+      "en": "Insomnia"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 5,
+    "conversation_ids": {
+      "fr": "conv_013",
+      "ar": "conv_014",
+      "en": "conv_015"
+    },
+    "themes": {
+      "fr": "Deuil d'un proche",
+      "ar": "حزن على قريب",
+      "en": "Grief of a Loved One"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 6,
+    "conversation_ids": {
+      "fr": "conv_016",
+      "ar": "conv_017",
+      "en": "conv_018"
+    },
+    "themes": {
+      "fr": "Problèmes de couple / relation",
+      "ar": "مشاكل الزوجية / العلاقة",
+      "en": "Couple Problems / Relationship"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 7,
+    "conversation_ids": {
+      "fr": "conv_019",
+      "ar": "conv_020",
+      "en": "conv_021"
+    },
+    "themes": {
+      "fr": "Crise de panique",
+      "ar": "نوبة ذعر",
+      "en": "Panic Attack"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 8,
+    "conversation_ids": {
+      "fr": "conv_022",
+      "ar": "conv_023",
+      "en": "conv_024"
+    },
+    "themes": {
+      "fr": "Estime de soi faible",
+      "ar": "انخفاض تقدير الذات",
+      "en": "Low Self-esteem"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 9,
+    "conversation_ids": {
+      "fr": "conv_025",
+      "ar": "conv_026",
+      "en": "conv_027"
+    },
+    "themes": {
+      "fr": "TOC léger",
+      "ar": "وسواس قهري خفيف",
+      "en": "Mild OCD"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 10,
+    "conversation_ids": {
+      "fr": "conv_028",
+      "ar": "conv_029",
+      "en": "conv_030"
+    },
+    "themes": {
+      "fr": "Phobie sociale",
+      "ar": "الرهاب الاجتماعي",
+      "en": "Social Phobia"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 11,
+    "conversation_ids": {
+      "fr": "conv_031",
+      "ar": "conv_032",
+      "en": "conv_033"
+    },
+    "themes": {
+      "fr": "Stress financier",
+      "ar": "ضغوط مالية",
+      "en": "Financial Stress"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 12,
+    "conversation_ids": {
+      "fr": "conv_034",
+      "ar": "conv_035",
+      "en": "conv_036"
+    },
+    "themes": {
+      "fr": "Pression scolaire et examens",
+      "ar": "الضغط المدرسي والامتحانات",
+      "en": "Academic Pressure and Exam Anxiety"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 13,
+    "conversation_ids": {
+      "fr": "conv_037",
+      "ar": "conv_038",
+      "en": "conv_039"
+    },
+    "themes": {
+      "fr": "Adaptation après déménagement",
+      "ar": "التكيف بعد الانتقال إلى مدينة جديدة",
+      "en": "Adjustment After Relocating"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 14,
+    "conversation_ids": {
+      "fr": "conv_040",
+      "ar": "conv_041",
+      "en": "conv_042"
+    },
+    "themes": {
+      "fr": "Stress d'aidant familial",
+      "ar": "ضغوط الرعاية الأسرية",
+      "en": "Caregiver Stress"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 15,
+    "conversation_ids": {
+      "fr": "conv_043",
+      "ar": "conv_044",
+      "en": "conv_045"
+    },
+    "themes": {
+      "fr": "Comparaison sur les réseaux sociaux",
+      "ar": "المقارنة على وسائل التواصل الاجتماعي",
+      "en": "Social Media Comparison and Self-Image"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 16,
+    "conversation_ids": {
+      "fr": "conv_046",
+      "ar": "conv_047",
+      "en": "conv_048"
+    },
+    "themes": {
+      "fr": "Difficulté à poser ses limites",
+      "ar": "صعوبة وضع الحدود الشخصية",
+      "en": "Difficulty Setting Personal Boundaries"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 17,
+    "conversation_ids": {
+      "fr": "conv_049",
+      "ar": "conv_050",
+      "en": "conv_051"
+    },
+    "themes": {
+      "fr": "Adaptation au premier emploi",
+      "ar": "التكيف مع العمل الأول",
+      "en": "Adapting to a First Job"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 18,
+    "conversation_ids": {
+      "fr": "conv_052",
+      "ar": "conv_053",
+      "en": "conv_054"
+    },
+    "themes": {
+      "fr": "Conflit d'amitié / exclusion sociale",
+      "ar": "نزاع في الصداقة / استبعاد اجتماعي",
+      "en": "Friendship Conflict and Social Exclusion"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 19,
+    "conversation_ids": {
+      "fr": "conv_055",
+      "ar": "conv_056",
+      "en": "conv_057"
+    },
+    "themes": {
+      "fr": "Stress post-traumatique",
+      "ar": "صدمة ما بعد الصدمة",
+      "en": "Post-traumatic Stress"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 20,
+    "conversation_ids": {
+      "fr": "conv_058",
+      "ar": "conv_059",
+      "en": "conv_060"
+    },
+    "themes": {
+      "fr": "Troubles alimentaires",
+      "ar": "اضطرابات الأكل",
+      "en": "Eating Disorders"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 21,
+    "conversation_ids": {
+      "fr": "conv_061",
+      "ar": "conv_062",
+      "en": "conv_063"
+    },
+    "themes": {
+      "fr": "Gestion de la colère",
+      "ar": "إدارة الغضب",
+      "en": "Anger Management"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 22,
+    "conversation_ids": {
+      "fr": "conv_064",
+      "ar": "conv_065",
+      "en": "conv_066"
+    },
+    "themes": {
+      "fr": "Solitude",
+      "ar": "الوحدة",
+      "en": "Loneliness"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 23,
+    "conversation_ids": {
+      "fr": "conv_067",
+      "ar": "conv_068",
+      "en": "conv_069"
+    },
+    "themes": {
+      "fr": "Conflit familial",
+      "ar": "النزاع الأسري",
+      "en": "Family Conflict"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 24,
+    "conversation_ids": {
+      "fr": "conv_070",
+      "ar": "conv_071",
+      "en": "conv_072"
+    },
+    "themes": {
+      "fr": "Équilibre vie pro / perso",
+      "ar": "التوازن بين العمل والحياة",
+      "en": "Work-Life Balance"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 25,
+    "conversation_ids": {
+      "fr": "conv_073",
+      "ar": "conv_074",
+      "en": "conv_075"
+    },
+    "themes": {
+      "fr": "Anxiété liée à la santé",
+      "ar": "القلق الصحي",
+      "en": "Health Anxiety"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 26,
+    "conversation_ids": {
+      "fr": "conv_076",
+      "ar": "conv_077",
+      "en": "conv_078"
+    },
+    "themes": {
+      "fr": "Perfectionnisme",
+      "ar": "الكمالوية",
+      "en": "Perfectionism"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 27,
+    "conversation_ids": {
+      "fr": "conv_079",
+      "ar": "conv_080",
+      "en": "conv_081"
+    },
+    "themes": {
+      "fr": "Anxiété de séparation",
+      "ar": "قلق الفراق",
+      "en": "Separation Anxiety"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 28,
+    "conversation_ids": {
+      "fr": "conv_082",
+      "ar": "conv_083",
+      "en": "conv_084"
+    },
+    "themes": {
+      "fr": "Inquiétude liée aux substances",
+      "ar": "مخاوف استخدام المواد",
+      "en": "Substance Use Concerns"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 29,
+    "conversation_ids": {
+      "fr": "conv_085",
+      "ar": "conv_086",
+      "en": "conv_087"
+    },
+    "themes": {
+      "fr": "Reconversion professionnelle",
+      "ar": "التحول المهني",
+      "en": "Career Transition"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  },
+  {
+    "scenario_id": 30,
+    "conversation_ids": {
+      "fr": "conv_088",
+      "ar": "conv_089",
+      "en": "conv_090"
+    },
+    "themes": {
+      "fr": "Vieillesse et retraite",
+      "ar": "الشيخوخة والتقاعد",
+      "en": "Aging and Retirement"
+    },
+    "expected_risk_level": null,
+    "reference_emotions": null,
+    "reference_themes": null,
+    "reference_keywords": null,
+    "reference_summary": null,
+    "risk_rationale": null,
+    "review_status": "pending_clinical_review"
+  }
+]

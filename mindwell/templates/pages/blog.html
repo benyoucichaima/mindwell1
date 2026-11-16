@@ -1,0 +1,415 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Blog - MindWell Algérie{% endblock %}
+
+{% block content %}
+
+<section
+    style="
+        text-align: center;
+        padding: 3rem 1rem 2rem;
+        margin-bottom: 2rem;
+    "
+>
+    <p
+        style="
+            color: #4b5694;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+        "
+    >
+        BLOG MINDWELL
+    </p>
+
+    <h1
+        style="
+            color: #0b1d3a;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        "
+    >
+        Comprendre pour mieux prendre soin de soi
+    </h1>
+
+    <p
+        style="
+            max-width: 700px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        "
+    >
+        Retrouvez nos conseils, ressources et informations autour de la
+        santé mentale et du bien-être psychologique.
+    </p>
+</section>
+
+
+<div
+    style="
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1rem 4rem;
+    "
+>
+
+    <section
+        style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        "
+    >
+
+        <!-- Article 1 -->
+
+        <article
+            style="
+                background: #fff;
+                border: 1px solid #e0ddd8;
+                border-radius: 16px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    height: 180px;
+                    background: #eae0cf;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0b1d3a;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                "
+            >
+                Santé mentale
+            </div>
+
+            <div style="padding: 1.75rem;">
+
+                <p style="color: #4b5694; font-size: 0.85rem; font-weight: 600;">
+                    SANTÉ MENTALE
+                </p>
+
+                <h2 style="color: #0b1d3a; font-size: 1.35rem;">
+                    Pourquoi prendre soin de sa santé mentale ?
+                </h2>
+
+                <p style="color: #666; line-height: 1.7;">
+                    La santé mentale fait partie intégrante de notre bien-être.
+                    Comprendre ses émotions et savoir demander de l'aide peut
+                    contribuer à améliorer notre quotidien.
+                </p>
+
+                <a
+                    href="{% url 'article_sante_mentale' %}"
+                    style="
+                        color: #4b5694;
+                        text-decoration: none;
+                        font-weight: 600;
+                    "
+                >
+                    Lire l'article →
+                </a>
+
+            </div>
+        </article>
+
+
+        <!-- Article 2 -->
+
+        <article
+            style="
+                background: #fff;
+                border: 1px solid #e0ddd8;
+                border-radius: 16px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    height: 180px;
+                    background: #dfe5ed;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0b1d3a;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                "
+            >
+                Gestion du stress
+            </div>
+
+            <div style="padding: 1.75rem;">
+
+                <p style="color: #4b5694; font-size: 0.85rem; font-weight: 600;">
+                    BIEN-ÊTRE
+                </p>
+
+                <h2 style="color: #0b1d3a; font-size: 1.35rem;">
+                    Comment mieux gérer son stress au quotidien ?
+                </h2>
+
+                <p style="color: #666; line-height: 1.7;">
+                    Le stress peut avoir différentes origines. Identifier
+                    ses sources et adopter de bonnes habitudes peut aider
+                    à mieux le gérer au quotidien.
+                </p>
+
+                <a
+                    href="{% url 'article_stress' %}"
+                    style="color: #4b5694; text-decoration: none; font-weight: 600;"
+                >
+                    Lire l'article →
+                </a>
+
+            </div>
+        </article>
+
+
+        <!-- Article 3 -->
+
+        <article
+            style="
+                background: #fff;
+                border: 1px solid #e0ddd8;
+                border-radius: 16px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    height: 180px;
+                    background: #e8e1e8;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0b1d3a;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                "
+            >
+                Consultation
+            </div>
+
+            <div style="padding: 1.75rem;">
+
+                <p style="color: #4b5694; font-size: 0.85rem; font-weight: 600;">
+                    CONSULTATION
+                </p>
+
+                <h2 style="color: #0b1d3a; font-size: 1.35rem;">
+                    Quand consulter un psychologue ?
+                </h2>
+
+                <p style="color: #666; line-height: 1.7;">
+                    Consulter un psychologue ne signifie pas forcément être
+                    confronté à un problème grave. Un professionnel peut
+                    accompagner différentes périodes de la vie.
+                </p>
+
+                <a
+                    href="{% url 'article_psychologue' %}"
+                    style="color: #4b5694; text-decoration: none; font-weight: 600;"
+                >
+                    Lire l'article →
+                </a>
+
+            </div>
+        </article>
+
+
+        <!-- Article 4 -->
+
+        <article
+            style="
+                background: #fff;
+                border: 1px solid #e0ddd8;
+                border-radius: 16px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    height: 180px;
+                    background: #e2e8e4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0b1d3a;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                "
+            >
+                Anxiété
+            </div>
+
+            <div style="padding: 1.75rem;">
+
+                <p style="color: #4b5694; font-size: 0.85rem; font-weight: 600;">
+                    PSYCHOLOGIE
+                </p>
+
+                <h2 style="color: #0b1d3a; font-size: 1.35rem;">
+                    Comprendre l'anxiété
+                </h2>
+
+                <p style="color: #666; line-height: 1.7;">
+                    L'anxiété peut se manifester de différentes façons.
+                    Mieux comprendre ses manifestations permet de savoir
+                    quand chercher un accompagnement professionnel.
+                </p>
+
+                <a
+                    href="{% url 'article_anxiete' %}"
+                    style="color: #4b5694; text-decoration: none; font-weight: 600;"
+                >
+                    Lire l'article →
+                </a>
+
+            </div>
+        </article>
+
+
+        <!-- Article 5 -->
+
+        <article
+            style="
+                background: #fff;
+                border: 1px solid #e0ddd8;
+                border-radius: 16px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    height: 180px;
+                    background: #e8e4d8;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0b1d3a;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                "
+            >
+                Téléconsultation
+            </div>
+
+            <div style="padding: 1.75rem;">
+
+                <p style="color: #4b5694; font-size: 0.85rem; font-weight: 600;">
+                    TÉLÉCONSULTATION
+                </p>
+
+                <h2 style="color: #0b1d3a; font-size: 1.35rem;">
+                    Comment se déroule une consultation en ligne ?
+                </h2>
+
+                <p style="color: #666; line-height: 1.7;">
+                    La consultation psychologique à distance permet
+                    d'échanger avec un professionnel depuis un environnement
+                    familier, dans le respect de la confidentialité.
+                </p>
+
+                <a
+                    href="{% url 'article_teleconsultation' %}"
+                    style="color: #4b5694; text-decoration: none; font-weight: 600;"
+                >
+                    Lire l'article →
+                </a>
+
+            </div>
+        </article>
+
+
+        <!-- Article 6 -->
+
+        <article
+            style="
+                background: #fff;
+                border: 1px solid #e0ddd8;
+                border-radius: 16px;
+                overflow: hidden;
+            "
+        >
+            <div
+                style="
+                    height: 180px;
+                    background: #dfe4ec;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #0b1d3a;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                "
+            >
+                Bien-être
+            </div>
+
+            <div style="padding: 1.75rem;">
+
+                <p style="color: #4b5694; font-size: 0.85rem; font-weight: 600;">
+                    CONSEILS
+                </p>
+
+                <h2 style="color: #0b1d3a; font-size: 1.35rem;">
+                    Quelques habitudes pour préserver son équilibre
+                </h2>
+
+                <p style="color: #666; line-height: 1.7;">
+                    Sommeil, repos, relations sociales et équilibre quotidien
+                    peuvent jouer un rôle important dans notre bien-être
+                    psychologique.
+                </p>
+
+                <a
+                    href="{% url 'article_bien_etre' %}"
+                    style="color: #4b5694; text-decoration: none; font-weight: 600;"
+                >
+                    Lire l'article →
+                </a>
+
+            </div>
+        </article>
+
+    </section>
+
+
+    <!-- Information -->
+
+    <section
+        style="
+            background: #f5f3ef;
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+        "
+    >
+        <h2 style="color: #0b1d3a; margin-bottom: 0.75rem;">
+            Prenez soin de votre santé mentale
+        </h2>
+
+        <p
+            style="
+                max-width: 650px;
+                margin: 0 auto;
+                color: #666;
+                line-height: 1.7;
+            "
+        >
+            Les informations proposées sur le blog ont un objectif
+            informatif et ne remplacent pas l'avis d'un professionnel
+            de santé mentale.
+        </p>
+    </section>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,474 @@
+{% load static %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ specialite.nom }} - MindWell Algérie</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- خط Cairo لدعم اللغة العربية بشكل احترافي -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --navy: #1a1a2e;
+        --navy-dark: #16213e;
+        --cream: #f5f3ef;
+        --white: #ffffff;
+        --text-dark: #1a1a2e;
+        --text-medium: #4a4a5a;
+        --text-light: #7a7a8a;
+        --border: #e0ddd8;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-ar: "Cairo", "Inter", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        background: var(--white);
+        line-height: 1.6;
+      }
+
+      /* تغيير الخط تلقائياً عند التحويل للعربية */
+      html[lang="ar"] body {
+        font-family: var(--font-ar);
+      }
+      html[lang="ar"] h1,
+      html[lang="ar"] h2,
+      html[lang="ar"] h3,
+      html[lang="ar"] h4 {
+        font-family: var(--font-ar);
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        position: relative;
+      }
+
+      /* Language switcher */
+      .lang-switcher {
+        position: absolute;
+        top: 2rem;
+        right: 1.5rem;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 4px;
+        display: flex;
+        gap: 2px;
+        box-shadow: var(--shadow);
+        font-size: 0.8rem;
+        font-weight: 500;
+        z-index: 100;
+      }
+
+      html[dir="rtl"] .lang-switcher {
+        right: auto;
+        left: 1.5rem;
+      }
+
+      .lang-switcher button {
+        padding: 6px 14px;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: var(--text-medium);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .lang-switcher button.active {
+        background: var(--navy);
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .lang-switcher button:hover:not(.active) {
+        background: var(--cream);
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-medium);
+        font-weight: 500;
+        margin-bottom: 2rem;
+      }
+
+      html[dir="rtl"] .back-link {
+        flex-direction: row-reverse;
+      }
+
+      .back-link:hover {
+        color: var(--navy);
+        gap: 0.75rem;
+      }
+
+      .specialty-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .specialty-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--cream);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        color: var(--navy);
+      }
+
+      .specialty-header h1 {
+        font-size: 2.5rem;
+        color: var(--navy);
+        margin-bottom: 1rem;
+      }
+
+      .specialty-header p {
+        font-size: 1.125rem;
+        color: var(--text-medium);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .info-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .info-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--navy);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .info-card ul {
+        list-style: none;
+      }
+
+      .info-card li {
+        padding: 0.5rem 0;
+        color: var(--text-medium);
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .info-card li i {
+        color: var(--navy);
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+      }
+
+      .cta-box {
+        background: var(--navy);
+        color: white;
+        padding: 3rem;
+        border-radius: var(--radius-lg);
+        text-align: center;
+      }
+
+      .cta-box h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .cta-box p {
+        color: #cbd5e1;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: var(--white);
+        color: var(--navy);
+        font-weight: 600;
+        border-radius: var(--radius-md);
+        transition: all 0.3s ease;
+      }
+
+      html[dir="rtl"] .btn {
+        flex-direction: row-reverse;
+      }
+
+      .btn:hover {
+        background: var(--cream);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .info-grid {
+          grid-template-columns: 1fr;
+        }
+        .specialty-header h1 {
+          font-size: 2rem;
+        }
+        .lang-switcher {
+          top: 1rem;
+          right: 1rem;
+        }
+        html[dir="rtl"] .lang-switcher {
+          right: auto;
+          left: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <div class="container">
+      <!-- Language switcher -->
+      <div class="lang-switcher">
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+          EN
+        </button>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
+          AR
+        </button>
+        <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">
+          FR
+        </button>
+      </div>
+
+      <!-- زر الرجوع -->
+      <a href="{% url 'specialties' %}" class="back-link">
+        <i class="fas fa-arrow-left"></i>
+        <span data-i18n="back_link">Retour aux spécialités</span>
+      </a>
+
+      <!-- رأس الصفحة -->
+      <div class="specialty-header">
+        <div class="specialty-icon">
+          <i class="fas {{ specialite.icone|default:'fa-brain' }}"></i>
+        </div>
+        <!-- ملاحظة: هذا النص يأتي من قاعدة البيانات وسيظهر باللغة المحفوظة فيها -->
+        <h1>{{ specialite.nom }}</h1>
+        <p>{{ specialite.description }}</p>
+      </div>
+
+      <!-- تفاصيل -->
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>
+            <i class="fas fa-stethoscope"></i>
+            <span data-i18n="symptoms_title">Symptômes courants</span>
+          </h3>
+          <ul>
+            {% for symptome in specialite.symptomes %}
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <!-- نص الأعراض يأتي من قاعدة البيانات -->
+              {{ symptome }}
+            </li>
+            {% empty %}
+            <li>
+              <i class="fas fa-info-circle"></i>
+              <span data-i18n="symptoms_default"
+                >Consultez un professionnel pour un diagnostic
+                personnalisé.</span
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>
+            <i class="fas fa-user-md"></i>
+            <span data-i18n="approach_title">Approche thérapeutique</span>
+          </h3>
+          <p style="color: var(--text-medium); line-height: 1.7">
+            <span data-i18n="approach_desc_1"
+              >Nos psychologues utilisent principalement :</span
+            ><br /><br />
+            <!-- نهج العلاج يأتي من قاعدة البيانات -->
+            <strong style="color: var(--navy)">{{ specialite.approche }}</strong
+            ><br /><br />
+            <span data-i18n="approach_desc_2"
+              >Cette méthode a fait ses preuves scientifiquement pour
+              accompagner les personnes traversant ce type de difficulté.</span
+            >
+          </p>
+        </div>
+      </div>
+
+      <!-- دعوة للحجز -->
+      <div class="cta-box">
+        <h2 data-i18n="cta_title">Prêt à consulter un spécialiste ?</h2>
+        <p data-i18n="cta_desc">
+          Parcourez notre annuaire de psychologues certifiés en Algérie qui sont
+          formés pour vous accompagner dans cette démarche.
+        </p>
+        <a href="{% url 'psychologists' %}" class="btn">
+          <span data-i18n="cta_btn">Voir les psychologues disponibles</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <script>
+      // ==========================================
+      // 1. DICTIONNAIRE DE TRADUCTION (FR / AR / EN)
+      // ==========================================
+      const translations = {
+        fr: {
+          back_link: "Retour aux spécialités",
+          symptoms_title: "Symptômes courants",
+          symptoms_default:
+            "Consultez un professionnel pour un diagnostic personnalisé.",
+          approach_title: "Approche thérapeutique",
+          approach_desc_1: "Nos psychologues utilisent principalement :",
+          approach_desc_2:
+            "Cette méthode a fait ses preuves scientifiquement pour accompagner les personnes traversant ce type de difficulté.",
+          cta_title: "Prêt à consulter un spécialiste ?",
+          cta_desc:
+            "Parcourez notre annuaire de psychologues certifiés en Algérie qui sont formés pour vous accompagner dans cette démarche.",
+          cta_btn: "Voir les psychologues disponibles",
+        },
+        en: {
+          back_link: "Back to specialties",
+          symptoms_title: "Common Symptoms",
+          symptoms_default:
+            "Consult a professional for a personalized diagnosis.",
+          approach_title: "Therapeutic Approach",
+          approach_desc_1: "Our psychologists mainly use:",
+          approach_desc_2:
+            "This method has been scientifically proven to support people going through this type of difficulty.",
+          cta_title: "Ready to consult a specialist?",
+          cta_desc:
+            "Browse our directory of certified psychologists in Algeria who are trained to support you in this process.",
+          cta_btn: "See available psychologists",
+        },
+        ar: {
+          back_link: "العودة إلى التخصصات",
+          symptoms_title: "الأعراض الشائعة",
+          symptoms_default: "استشر أخصائياً للحصول على تشخيص مخصص.",
+          approach_title: "النهج العلاجي",
+          approach_desc_1: "يستخدم أخصاؤنا النفسيون بشكل أساسي:",
+          approach_desc_2:
+            "ثبتت فعالية هذه الطريقة علمياً في مرافقة الأشخاص الذين يمرون بهذا النوع من الصعوبات.",
+          cta_title: "هل أنت مستعد لاستشارة أخصائي؟",
+          cta_desc:
+            "تصفح دليلنا للأخصائيين النفسيين المعتمدين في الجزائر والذين تم تدريبهم لمرافقتك في هذه الخطوة.",
+          cta_btn: "عرض الأخصائيين النفسيين المتاحين",
+        },
+      };
+
+      // ==========================================
+      // 2. دالة تغيير اللغة (بدون تحديث الصفحة)
+      // ==========================================
+      function setLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        // 1. تحديث اتجاه الصفحة واللغة
+        const html = document.getElementById("htmlRoot");
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+        // 2. تحديث كل النصوص التي تحمل data-i18n
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            const icon = el.querySelector("i");
+            if (icon && lang !== "ar") {
+              el.innerHTML = t[key] + " " + icon.outerHTML;
+            } else if (icon && lang === "ar") {
+              el.innerHTML = icon.outerHTML + " " + t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+
+        // 3. تحديث حالة الأزرار النشطة
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang") === lang,
+          );
+        });
+
+        // 4. حفظ الاختيار في localStorage
+        localStorage.setItem("mindwell_lang", lang);
+        localStorage.setItem("preferredLanguage", lang);
+        document.cookie = `django_language=${lang}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+
+      // ==========================================
+      // 3. التهيئة عند تحميل الصفحة
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        setLanguage("{{ LANGUAGE_CODE }}");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Calendrier des disponibilités" %} | MindWell{% endblock %}
+
+{% block content %}
+<style>
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .cal-head{font-weight:700;text-align:center;padding:6px 0;color:#111844}
+  .cal-cell{min-height:86px;border:1px solid #e8eaf1;border-radius:10px;padding:6px;background:#fff;display:flex;flex-direction:column;gap:4px}
+  .cal-cell a{color:inherit;text-decoration:none;font-weight:600}
+  .cal-cell.blank{border:0;background:transparent}
+  .cal-cell.today{border-color:#1d4ed8;box-shadow:0 0 0 2px #bfdbfe}
+  .cal-cell.past{opacity:.5;background:#f3f4f6}
+  .badge{display:inline-block;font-size:.68rem;padding:2px 6px;border-radius:6px;font-weight:600}
+  .badge-open{background:#d1fae5;color:#065f46}
+  .badge-closed{background:#fee2e2;color:#991b1b}
+  .badge-exception{background:#fef3c7;color:#92400e}
+  .badge-full{background:#e0e7ff;color:#3730a3}
+  .badge-past{background:#e5e7eb;color:#374151}
+  .slot-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #e8eaf1;flex-wrap:wrap}
+  .slot-free{color:#065f46;font-weight:600}
+  .slot-reserved{color:#991b1b;font-weight:600}
+  .slot-disabled{color:#6b7280}
+  .slot-past{color:#9ca3af;text-decoration:line-through}
+  .btn{display:inline-block;border:0;border-radius:8px;background:#111844;color:#fff;padding:10px 14px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+  .btn-secondary{background:#66708c}
+  .btn-sm{padding:6px 10px;font-size:.84rem}
+  .card{background:#fff;border:1px solid #e8eaf1;border-radius:16px;padding:20px;margin:16px 0}
+  .muted{color:#737d96}
+  .grid-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;align-items:end}
+  label{display:grid;gap:6px;font-size:.9rem;font-weight:600}
+  input,select{font:inherit;padding:9px;border:1px solid #d9deeb;border-radius:8px;min-width:0}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  @media(max-width:640px){.cal-cell{min-height:64px;font-size:.78rem}}
+</style>
+
+<header style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+  <div>
+    <h1 style="margin:0">{% trans "Calendrier des disponibilités" %}</h1>
+    <p class="muted" style="margin:4px 0 0">{{ status_message }}</p>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <a class="btn btn-secondary" href="{% url 'consultations:manage_availability' %}">{% trans "Retour à la gestion" %}</a>
+    <a class="btn" href="?{% if selected_day %}day={{ today|date:'Y-m-d' }}{% else %}year={{ today.year }}&month={{ today.month }}{% endif %}">{% trans "Aujourd’hui" %}</a>
+  </div>
+</header>
+
+{% if messages %}{% for message in messages %}<p class="card muted" role="status">{{ message }}</p>{% endfor %}{% endif %}
+
+{# ---------- Vue mois ---------- #}
+<section class="card">
+  <div class="nav-row">
+    <a class="btn btn-secondary btn-sm" href="?year={{ prev_year }}&month={{ prev_month }}">&larr; {% trans "Précédent" %}</a>
+    <h2 style="margin:0;text-transform:capitalize">{{ month_name }}</h2>
+    <a class="btn btn-secondary btn-sm" href="?year={{ next_year }}&month={{ next_month }}">{% trans "Suivant" %} &rarr;</a>
+  </div>
+  <div class="cal-grid">
+    {% for label in weekday_labels %}<div class="cal-head">{{ label }}</div>{% endfor %}
+    {% for cell in calendar_days %}
+      {% if cell is None %}<div class="cal-cell blank"></div>
+      {% else %}
+        <div class="cal-cell {% if cell.is_today %}today{% endif %} {% if cell.is_past %}past{% endif %}">
+          <a href="?day={{ cell.date|date:'Y-m-d' }}">{{ cell.date.day }}</a>
+          {% if cell.state == 'closed' %}<span class="badge badge-closed">{% trans "Fermé" %}</span>
+          {% elif cell.state == 'exception' %}<span class="badge badge-exception">{% trans "Exception" %}</span>
+          {% elif cell.state == 'full' %}<span class="badge badge-full">{% trans "Complet" %}</span>
+          {% elif cell.state == 'open' %}<span class="badge badge-open">{% trans "Ouvert" %} ({{ cell.slot_count }})</span>
+          {% elif cell.state == 'finished' %}<span class="badge badge-past">{% trans "Terminé" %}</span>
+          {% elif cell.state == 'no_more' %}<span class="badge badge-past">{% trans "Plus de créneaux aujourd'hui" %}</span>
+          {% elif cell.state == 'closed-past' %}<span class="badge badge-past">{% trans "Fermé" %}</span>
+          {% elif cell.state == 'exception-past' %}<span class="badge badge-past">{% trans "Exception" %}</span>
+          {% elif cell.state == 'full-past' %}<span class="badge badge-past">{% trans "Complet" %}</span>
+          {% elif cell.state == 'open-past' %}<span class="badge badge-past">{% trans "Ouvert" %}</span>
+          {% else %}<span class="badge badge-past">{% trans "Fermé" %}</span>{% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{# ---------- Vue jour ---------- #}
+{% if selected_day %}
+<section class="card">
+  <h2>{{ selected_day|date:"l d/m/Y" }}
+    {% if day_state == 'closed' %}<span class="badge badge-closed">{% trans "Fermé" %}</span>
+    {% elif day_state == 'exception' %}<span class="badge badge-exception">{% trans "Exception" %}</span>
+    {% elif day_state == 'full' %}<span class="badge badge-full">{% trans "Complet" %}</span>
+    {% elif day_state == 'open' %}<span class="badge badge-open">{% trans "Ouvert" %}</span>
+    {% elif day_state == 'finished' %}<span class="badge badge-past">{% trans "Terminé" %}</span>
+    {% elif day_state == 'no_more' %}<span class="badge badge-past">{% trans "Plus de créneaux aujourd'hui" %}</span>
+    {% endif %}
+    {% if selected_day < today %}<span class="badge badge-past">{% trans "Passé — lecture seule" %}</span>{% endif %}
+  </h2>
+
+  {% if day_exceptions %}
+    <p class="muted">
+      {% for exception in day_exceptions %}
+        {{ exception.get_kind_display }}{% if exception.start_time %} {{ exception.start_time|time:"H:i" }}–{{ exception.end_time|time:"H:i" }}{% endif %}{% if not forloop.last %} ; {% endif %}
+      {% endfor %}
+    </p>
+  {% endif %}
+
+  {% if day_slots %}
+    {% for slot in day_slots %}
+      <div class="slot-row">
+        <span class="slot-{{ slot.display_state }}">
+          {{ slot.heure_debut|time:"H:i" }} – {{ slot.heure_fin|time:"H:i" }}
+          {% if slot.is_generated %}({% trans "généré" %}){% else %}({% trans "manuel" %}){% endif %}
+        </span>
+        <span>
+          {% if slot.display_state == 'free' %}{% trans "Libre" %}
+          {% elif slot.display_state == 'reserved' %}{% trans "Réservé" %}
+          {% elif slot.display_state == 'disabled' %}{% trans "Désactivé" %}
+          {% else %}{% trans "Passé" %}{% endif %}
+        </span>
+      </div>
+    {% endfor %}
+  {% else %}<p class="muted">{% trans "Aucun créneau ce jour." %}</p>{% endif %}
+
+  {% if selected_day >= today %}
+    <div style="display:grid;gap:14px;margin-top:18px">
+      <form class="grid-form" method="post">
+        {% csrf_token %}<input type="hidden" name="action" value="add_replacement">
+        <input type="hidden" name="date" value="{{ selected_day|date:'Y-m-d' }}">
+        <h3 style="grid-column:1/-1;margin:0">{% trans "Ajouter un horaire de remplacement" %}</h3>
+        <label>{% trans "Début" %}<input type="time" name="start_time" required{% if selected_day == today %} min="{{ now_time }}"{% endif %}></label>
+        <label>{% trans "Fin" %}<input type="time" name="end_time" required></label>
+        <button class="btn" type="submit">{% trans "Ajouter le remplacement" %}</button>
+      </form>
+
+      <form class="grid-form" method="post">
+        {% csrf_token %}<input type="hidden" name="action" value="add_exception">
+        <input type="hidden" name="date" value="{{ selected_day|date:'Y-m-d' }}">
+        <h3 style="grid-column:1/-1;margin:0">{% trans "Ajouter une période supplémentaire" %}</h3>
+        <label>{% trans "Début" %}<input type="time" name="start_time" required{% if selected_day == today %} min="{{ now_time }}"{% endif %}></label>
+        <label>{% trans "Fin" %}<input type="time" name="end_time" required></label>
+        <button class="btn" type="submit">{% trans "Ajouter la période" %}</button>
+      </form>
+
+      <form method="post" onsubmit="return confirm('{% trans "Fermer toute la journée ?" %}');">
+        {% csrf_token %}<input type="hidden" name="action" value="close_day">
+        <input type="hidden" name="date" value="{{ selected_day|date:'Y-m-d' }}">
+        <button class="btn btn-secondary" type="submit">{% trans "Fermer la journée" %}</button>
+      </form>
+    </div>
+    {% if selected_day == today %}
+      <p class="muted">{% trans "Pour aujourd’hui, seuls les horaires futurs sont acceptés." %}</p>
+    {% endif %}
+  {% endif %}
+</section>
+{% endif %}
+{% endblock %}

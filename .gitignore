@@ -1,0 +1,43 @@
+# --- 1. البيانات الحساسة ووسائط المستخدمين (مهم جداً) ---
+media/
+*.sqlite3
+*.sqlite3.backup
+*.sqlite3.backup_*
+db.sqlite3-journal
+
+# --- 2. بيئات العمل والمكتبات ---
+venv/
+.venv/
+env/
+node_modules/
+
+# --- 3. ملفات بايثون المدمجة ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- 4. المتغيرات السرية ---
+.env
+.env.local
+.env.*.local
+
+# --- 5. ملفات النسخ الاحتياطي والملفات المؤقتة ---
+*.bak
+*.bak2
+debug_*.py
+check_users.py
+search_*.py
+apply_fix.py
+list_tests.py
+evaluate_dataset.py
+test_output.txt
+structure.txt
+seed_demo_sessions_state.json
+*_backup/
+templates_backup/
+
+# --- 6. ملفات المحرر ونظام التشغيل ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

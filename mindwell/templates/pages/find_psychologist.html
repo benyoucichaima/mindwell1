@@ -1,0 +1,938 @@
+{% extends "pages/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "Trouver un psychologue — MindWell" %}{% endblock %}
+
+{% block content %}
+<style>
+  :root {
+    --mw-navy: #070b2b;
+    --mw-blue: #4b5694;
+    --mw-light-blue: #e9ecf6;
+    --mw-muted: #71809b;
+    --mw-cream: #faf8f5;
+    --mw-success: #31745c;
+    --mw-white: #ffffff;
+    --mw-border: #e2e8f0;
+    --mw-danger: #a12828;
+    --mw-radius: 16px;
+  }
+
+  .psy-page {
+    min-height: 85vh;
+    padding-bottom: 48px;
+    color: var(--mw-navy);
+    background: var(--mw-cream);
+    font-family: "Inter", "Cairo", "Segoe UI", sans-serif;
+  }
+
+  .psy-hero {
+    margin: -3rem calc(50% - 50vw) 36px;
+    padding: clamp(42px, 7vw, 72px) 20px;
+    border-radius: 0 0 24px 24px;
+    background: #070b2b;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .psy-hero-inner {
+    width: min(760px, 100%);
+    margin: 0 auto;
+  }
+
+  .psy-eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #c7d2fe;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .psy-hero h1 {
+    margin: 0 0 14px;
+    color: #ffffff;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .psy-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .psy-container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
+  }
+
+  .psy-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 22px;
+    padding: 9px 15px;
+    border: 1.5px solid var(--mw-blue);
+    border-radius: 9px;
+    background: #ffffff;
+    color: var(--mw-blue);
+    font-weight: 650;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .psy-back-btn:hover {
+    background: var(--mw-blue);
+    color: #ffffff;
+  }
+
+  [dir="rtl"] .psy-back-btn i {
+    transform: scaleX(-1);
+  }
+
+  .psy-search-panel {
+    margin-bottom: 26px;
+    padding: 22px;
+    border: 1px solid rgba(7, 11, 43, 0.06);
+    border-radius: var(--mw-radius);
+    background: #ffffff;
+    box-shadow: 0 5px 22px rgba(7, 11, 43, 0.06);
+  }
+
+  .psy-search {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 14px;
+  }
+
+  .psy-field label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--mw-navy);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+
+  .psy-field input,
+  .psy-field select,
+  .rating-field select,
+  .rating-field textarea {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 13px;
+    border: 1px solid var(--mw-border);
+    border-radius: 9px;
+    outline: none;
+    background: #f8fafc;
+    color: var(--mw-navy);
+    font: inherit;
+  }
+
+  .psy-field input:focus,
+  .psy-field select:focus,
+  .rating-field select:focus,
+  .rating-field textarea:focus {
+    border-color: var(--mw-blue);
+    box-shadow: 0 0 0 3px rgba(75, 86, 148, 0.13);
+  }
+
+  .psy-button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 17px;
+    border: 1px solid var(--mw-navy);
+    border-radius: 9px;
+    background: var(--mw-navy);
+    color: #ffffff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .psy-button:hover {
+    transform: translateY(-1px);
+    border-color: var(--mw-blue);
+    background: var(--mw-blue);
+    color: #ffffff;
+  }
+
+  .psy-button-secondary {
+    border-color: var(--mw-blue);
+    background: #ffffff;
+    color: var(--mw-navy);
+  }
+
+  .psy-button-secondary:hover {
+    background: var(--mw-light-blue);
+    color: var(--mw-navy);
+  }
+
+  .psy-messages {
+    margin-bottom: 22px;
+  }
+
+  .psy-message {
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 9px;
+    background: #e8f5ed;
+    color: #20583d;
+  }
+
+  .psy-message.error {
+    background: #fff0f0;
+    color: var(--mw-danger);
+  }
+
+  .psy-results-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0 0 18px;
+  }
+
+  .psy-results-heading h2 {
+    margin: 0;
+    color: var(--mw-navy);
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+  }
+
+  .psy-count {
+    color: var(--mw-muted);
+    font-size: 0.92rem;
+  }
+
+  .psy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+    gap: 20px;
+  }
+
+  .psy-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: 23px;
+    border: 1px solid #e8eaf0;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 4px 18px rgba(7, 11, 43, 0.04);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .psy-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 13px 28px rgba(7, 11, 43, 0.09);
+  }
+
+  .psy-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .psy-avatar {
+    display: grid;
+    width: 64px;
+    height: 64px;
+    flex: 0 0 64px;
+    overflow: hidden;
+    place-items: center;
+    border-radius: 17px;
+    background: var(--mw-light-blue);
+    color: var(--mw-blue);
+    font-size: 1.45rem;
+  }
+
+  .psy-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .psy-avatar [hidden] {
+    display: none !important;
+  }
+
+  .psy-avatar-fallback {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    font-size: 1.45rem;
+  }
+
+  .psy-name {
+    margin: 0 0 5px;
+    color: var(--mw-navy);
+    font-size: 1.08rem;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+  }
+
+  .psy-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--mw-success);
+    font-size: 0.82rem;
+    font-weight: 650;
+  }
+
+  .psy-specialty {
+    align-self: flex-start;
+    margin: 0 0 13px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: var(--mw-light-blue);
+    color: var(--mw-navy);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .psy-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    color: #9a6d12;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .psy-rating-count,
+  .psy-no-rating {
+    color: var(--mw-muted);
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+
+  .psy-details {
+    display: grid;
+    gap: 7px;
+    margin: 0 0 12px;
+    color: var(--mw-muted);
+    font-size: 0.9rem;
+  }
+
+  .psy-details p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .psy-description {
+    display: -webkit-box;
+    overflow: hidden;
+    flex-grow: 1;
+    margin: 0 0 20px;
+    color: var(--mw-muted);
+    font-size: 0.93rem;
+    line-height: 1.65;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+
+  .psy-actions {
+    display: grid;
+    gap: 9px;
+    margin-top: auto;
+  }
+
+  .psy-empty {
+    grid-column: 1 / -1;
+    padding: 42px 20px;
+    border: 1px dashed #cbd2e2;
+    border-radius: var(--mw-radius);
+    background: #ffffff;
+    color: var(--mw-muted);
+    text-align: center;
+  }
+
+  .psy-modal-backdrop {
+    position: fixed;
+    z-index: 4000;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(7, 11, 43, 0.68);
+    backdrop-filter: blur(3px);
+  }
+
+  .psy-modal-backdrop.is-open {
+    display: flex;
+  }
+
+  .psy-modal {
+    position: relative;
+    width: min(100%, 490px);
+    max-height: min(90vh, 760px);
+    overflow-y: auto;
+    padding: 28px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+  }
+
+  .psy-modal h2 {
+    margin: 0 42px 6px 0;
+    color: var(--mw-navy);
+    font-size: 1.35rem;
+  }
+
+  .psy-modal-doctor {
+    margin: 0 0 20px;
+    color: var(--mw-muted);
+  }
+
+  .psy-modal-close {
+    position: absolute;
+    inset-block-start: 14px;
+    inset-inline-end: 14px;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #f1f3f8;
+    color: var(--mw-navy);
+    cursor: pointer;
+    font-size: 1.35rem;
+  }
+
+  .rating-field {
+    margin-bottom: 17px;
+  }
+
+  .rating-field label,
+  .rating-label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--mw-navy);
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .rating-field textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  .rating-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 7px;
+    margin: 6px 0 20px;
+    direction: ltr;
+  }
+
+  .rating-stars input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .rating-stars label {
+    color: #cbd2df;
+    cursor: pointer;
+    font-size: 2rem;
+    line-height: 1;
+    transition: color 0.15s ease, transform 0.15s ease;
+  }
+
+  .rating-stars label:hover,
+  .rating-stars label:hover ~ label,
+  .rating-stars input:checked ~ label {
+    color: #e0a528;
+  }
+
+  .rating-stars input:focus-visible + label {
+    outline: 2px solid var(--mw-blue);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  .psy-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 21px;
+  }
+
+  @media (max-width: 700px) {
+    .psy-hero {
+      margin-top: -3rem;
+      margin-bottom: 26px;
+      padding-inline: 5%;
+      border-radius: 0 0 18px 18px;
+    }
+
+    .psy-search {
+      grid-template-columns: 1fr;
+    }
+
+    .psy-search-panel {
+      padding: 17px;
+    }
+
+    .psy-search .psy-button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 430px) {
+    .psy-container {
+      width: 94%;
+    }
+
+    .psy-card,
+    .psy-modal {
+      padding: 20px;
+    }
+
+    .psy-results-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .psy-modal-actions {
+      flex-direction: column-reverse;
+    }
+
+    .psy-modal-actions .psy-button {
+      width: 100%;
+    }
+  }
+</style>
+
+<section class="psy-page">
+  <header class="psy-hero">
+    <div class="psy-hero-inner">
+      <span class="psy-eyebrow"
+            data-fr="MindWell · Votre bien-être compte"
+            data-ar="MindWell · صحتك النفسية تهمنا"
+            data-en="MindWell · Your well-being matters">
+        MindWell · Votre bien-être compte
+      </span>
+      <h1 data-fr="Trouvez le psychologue qui vous correspond"
+          data-ar="اعثر على الأخصائي النفسي المناسب لك"
+          data-en="Find the psychologist who is right for you">
+        Trouvez le psychologue qui vous correspond
+      </h1>
+      <p data-fr="Découvrez nos psychologues vérifiés et choisissez le professionnel qui correspond à vos besoins."
+         data-ar="اكتشف الأخصائيين النفسيين المعتمدين واختر المختص الذي يناسب احتياجاتك."
+         data-en="Explore our verified psychologists and choose the professional who best fits your needs.">
+        Découvrez nos psychologues vérifiés et choisissez le professionnel qui correspond à vos besoins.
+      </p>
+    </div>
+  </header>
+
+  <div class="psy-container">
+    <a class="psy-back-btn" href="{% url 'accounts:patient_dashboard' %}">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+      <span data-fr="Retour au tableau de bord"
+            data-ar="العودة إلى لوحة التحكم"
+            data-en="Back to dashboard">Retour au tableau de bord</span>
+    </a>
+
+    {% if messages %}
+    <div class="psy-messages" aria-live="polite">
+      {% for message in messages %}
+      <p class="psy-message{% if message.tags == 'error' %} error{% endif %}">{{ message }}</p>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <section class="psy-search-panel" aria-label="{% trans 'Recherche de psychologues' %}">
+      <form method="get" action="{% url 'accounts:trouver_psychologue' %}" class="psy-search">
+        <div class="psy-field">
+          <label for="psy-search"
+                 data-fr="Nom ou spécialité"
+                 data-ar="الاسم أو التخصص"
+                 data-en="Name or specialty">Nom ou spécialité</label>
+          <input id="psy-search"
+                 type="search"
+                 name="search"
+                 value="{{ search_query|default:'' }}"
+                 placeholder="Ex. : Amel, TCC..."
+                 data-placeholder-fr="Ex. : Amel, TCC..."
+                 data-placeholder-ar="مثال: أمل، العلاج السلوكي المعرفي..."
+                 data-placeholder-en="e.g. Amel, CBT..." />
+        </div>
+        <div class="psy-field">
+          <label for="psy-specialty"
+                 data-fr="Spécialité"
+                 data-ar="التخصص"
+                 data-en="Specialty">Spécialité</label>
+          <select id="psy-specialty" name="specialty">
+            <option value=""
+                    data-fr="Toutes les spécialités"
+                    data-ar="جميع التخصصات"
+                    data-en="All specialties"
+                    {% if not selected_specialty %}selected{% endif %}>
+              Toutes les spécialités
+            </option>
+            {% for value, label in specialty_choices %}
+            <option value="{{ value }}"
+                    data-specialty-label="{{ value }}"
+                    {% if selected_specialty == value %}selected{% endif %}>
+              {{ label }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <button class="psy-button" type="submit">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <span data-fr="Rechercher" data-ar="بحث" data-en="Search">Rechercher</span>
+        </button>
+      </form>
+    </section>
+
+    <div class="psy-results-heading">
+      <h2 data-fr="Nos psychologues" data-ar="الأخصائيون النفسيون" data-en="Our psychologists">
+        Nos psychologues
+      </h2>
+      <span class="psy-count">
+        <strong>{{ psychologists|length }}</strong>
+        <span data-fr="professionnel(s)" data-ar="أخصائي(ون)" data-en="professional(s)">professionnel(s)</span>
+      </span>
+    </div>
+
+    <div class="psy-grid">
+      {% for psy in psychologists %}
+      <article class="psy-card">
+        <div class="psy-card-heading">
+          <div class="psy-avatar">
+            {% if psy.psychologue_profile.photo %}
+            <img src="{{ psy.psychologue_profile.photo.url }}"
+                 alt="{% blocktrans with name=psy.get_full_name|default:psy.username %}Photo of {{ name }}{% endblocktrans %}"
+                 loading="lazy"
+                 onerror="this.hidden = true; this.nextElementSibling.hidden = false;" />
+            <span class="psy-avatar-fallback" data-avatar-fallback hidden aria-hidden="true">
+              <i class="fa-solid fa-user-doctor"></i>
+            </span>
+            {% else %}
+            <span class="psy-avatar-fallback" data-avatar-fallback aria-hidden="true">
+              <i class="fa-solid fa-user-doctor"></i>
+            </span>
+            {% endif %}
+          </div>
+          <div>
+            <h3 class="psy-name">{{ psy.get_full_name|default:psy.username }}</h3>
+            <span class="psy-verified">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+              <span data-fr="Profil vérifié" data-ar="ملف موثّق" data-en="Verified profile">Profil vérifié</span>
+            </span>
+          </div>
+        </div>
+
+        <p class="psy-specialty" data-specialty-label="{{ psy.psychologue_profile.specialty }}">
+          {{ psy.psychologue_profile.get_specialty_display }}
+        </p>
+
+        {% if psy.rating_count %}
+        <div class="psy-rating" aria-label="{% trans 'Note moyenne' %}">
+          <span aria-hidden="true">★</span>
+          <span>{{ psy.rating_average|floatformat:1 }}/5</span>
+          <span class="psy-rating-count">
+            · {{ psy.rating_count }}
+            <span data-fr="avis" data-ar="تقييم" data-en="reviews">avis</span>
+          </span>
+        </div>
+        {% else %}
+        <div class="psy-rating">
+          <span class="psy-no-rating"
+                data-fr="Nouveau profil"
+                data-ar="ملف جديد"
+                data-en="New profile">Nouveau profil</span>
+        </div>
+        {% endif %}
+
+        <div class="psy-details">
+          <p>
+            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+            <span>{{ psy.psychologue_profile.experience_years }}</span>
+            <span data-fr="ans d’expérience"
+                  data-ar="سنوات من الخبرة"
+                  data-en="years of experience">ans d’expérience</span>
+          </p>
+          <p>
+            <i class="fa-solid fa-wallet" aria-hidden="true"></i>
+            <span>{{ psy.psychologue_profile.hourly_rate|floatformat:0 }} DA</span>
+            <span data-fr="par séance"
+                  data-ar="للجلسة"
+                  data-en="per session">par séance</span>
+          </p>
+        </div>
+
+        <p class="psy-description">
+          {% if psy.psychologue_profile.biography %}
+            {{ psy.psychologue_profile.biography|truncatewords:35 }}
+          {% else %}
+            <span data-fr="Découvrez ce professionnel et réservez une consultation adaptée à vos besoins."
+                  data-ar="اكتشف هذا المختص واحجز استشارة تناسب احتياجاتك."
+                  data-en="Learn about this professional and book a consultation suited to your needs.">
+              Découvrez ce professionnel et réservez une consultation adaptée à vos besoins.
+            </span>
+          {% endif %}
+        </p>
+
+        <div class="psy-actions">
+          <a class="psy-button" href="{% url 'accounts:book_consultation' psy.pk %}">
+            <span data-fr="Prendre rendez-vous"
+                  data-ar="حجز موعد"
+                  data-en="Book an appointment">Prendre rendez-vous</span>
+          </a>
+          {% if psy.rating_consultations %}
+          <button class="psy-button psy-button-secondary js-open-rating"
+                  type="button"
+                  data-doctor-id="{{ psy.pk }}"
+                  data-doctor-name="{{ psy.get_full_name|default:psy.username }}">
+            <span data-fr="Évaluer une consultation"
+                  data-ar="تقييم استشارة"
+                  data-en="Rate a consultation">Évaluer une consultation</span>
+          </button>
+          {% endif %}
+        </div>
+      </article>
+      {% empty %}
+      <div class="psy-empty">
+        <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+        <p data-fr="Aucun psychologue ne correspond à votre recherche."
+           data-ar="لا يوجد أخصائي نفسي يطابق بحثك."
+           data-en="No psychologists match your search.">
+          Aucun psychologue ne correspond à votre recherche.
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<template id="rating-options-template">
+  {% for psy in psychologists %}
+    {% for consultation in psy.rating_consultations %}
+    <option value="{{ consultation.pk }}"
+            data-doctor-id="{{ psy.pk }}"
+            data-action="{% url 'accounts:rate_consultation' consultation.pk %}">
+      {{ consultation.date|date:"DATE_FORMAT" }} · {{ consultation.start_time|time:"TIME_FORMAT" }}
+    </option>
+    {% endfor %}
+  {% endfor %}
+</template>
+
+<div class="psy-modal-backdrop" id="rating-modal" aria-hidden="true">
+  <section class="psy-modal"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="rating-modal-title"
+           aria-describedby="rating-modal-doctor">
+    <button class="psy-modal-close" type="button" aria-label="{% trans 'Fermer' %}">&times;</button>
+    <h2 id="rating-modal-title"
+        data-fr="Évaluer une consultation"
+        data-ar="تقييم استشارة"
+        data-en="Rate a consultation">Évaluer une consultation</h2>
+    <p class="psy-modal-doctor" id="rating-modal-doctor"></p>
+
+    <form id="rating-form" method="post">
+      {% csrf_token %}
+      <div class="rating-field" id="rating-consultation-field">
+        <label for="rating-consultation"
+               data-fr="Consultation terminée"
+               data-ar="الاستشارة المكتملة"
+               data-en="Completed consultation">Consultation terminée</label>
+        <select id="rating-consultation" required>
+          <option value=""
+                  data-fr="Choisissez une consultation"
+                  data-ar="اختر استشارة"
+                  data-en="Choose a consultation">Choisissez une consultation</option>
+        </select>
+      </div>
+
+      <fieldset class="rating-field" style="border:0;padding:0;margin-inline:0">
+        <legend class="rating-label"
+                data-fr="Votre note"
+                data-ar="تقييمك"
+                data-en="Your rating">Votre note</legend>
+        <div class="rating-stars" role="radiogroup" aria-label="{% trans 'Votre note de 1 à 5 étoiles' %}">
+          {% for value in "54321" %}
+          <input id="rating-{{ value }}" type="radio" name="rating" value="{{ value }}" required />
+          <label for="rating-{{ value }}" title="{{ value }} / 5" aria-label="{{ value }} / 5">★</label>
+          {% endfor %}
+        </div>
+      </fieldset>
+
+      <div class="rating-field">
+        <label for="rating-comment"
+               data-fr="Commentaire (facultatif)"
+               data-ar="تعليق (اختياري)"
+               data-en="Comment (optional)">Commentaire (facultatif)</label>
+        <textarea id="rating-comment"
+                  name="comment"
+                  maxlength="2000"
+                  placeholder="Partagez votre expérience..."
+                  data-placeholder-fr="Partagez votre expérience..."
+                  data-placeholder-ar="شاركنا تجربتك..."
+                  data-placeholder-en="Share your experience..."></textarea>
+      </div>
+
+      <div class="psy-modal-actions">
+        <button class="psy-button psy-button-secondary js-close-rating" type="button">
+          <span data-fr="Annuler" data-ar="إلغاء" data-en="Cancel">Annuler</span>
+        </button>
+        <button class="psy-button" type="submit">
+          <span data-fr="Envoyer l’évaluation"
+                data-ar="إرسال التقييم"
+                data-en="Submit rating">Envoyer l’évaluation</span>
+        </button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script>
+  (() => {
+    const language = document.documentElement.lang || "fr";
+    const modal = document.getElementById("rating-modal");
+    const modalForm = document.getElementById("rating-form");
+    const consultationSelect = document.getElementById("rating-consultation");
+    const consultationField = document.getElementById("rating-consultation-field");
+    const modalDoctor = document.getElementById("rating-modal-doctor");
+    const optionsTemplate = document.getElementById("rating-options-template");
+    const translations = {
+      specialties: {
+        clinique: { fr: "Psychologie clinique", ar: "علم النفس العيادي", en: "Clinical psychology" },
+        tcc: { fr: "TCC", ar: "العلاج السلوكي المعرفي", en: "CBT" },
+        psychanalyse: { fr: "Psychanalyse", ar: "التحليل النفسي", en: "Psychoanalysis" },
+        systemique: { fr: "Systémique", ar: "العلاج المنظومي", en: "Systemic therapy" },
+        humaniste: { fr: "Humaniste", ar: "العلاج الإنساني", en: "Humanistic therapy" },
+        integrative: { fr: "Intégrative", ar: "العلاج التكاملي", en: "Integrative therapy" },
+        emdr: { fr: "EMDR", ar: "إزالة التحسس وإعادة المعالجة بحركات العين", en: "EMDR" },
+        enfant_ado: { fr: "Enfant et Adolescent", ar: "الأطفال والمراهقون", en: "Children and adolescents" },
+        travail: { fr: "Psychologie du travail", ar: "علم النفس المهني", en: "Work psychology" },
+        addictologie: { fr: "Addictologie", ar: "علاج الإدمان", en: "Addiction support" },
+        autre: { fr: "Autre", ar: "أخرى", en: "Other" }
+      }
+    };
+
+    function translateStaticText() {
+      document.querySelectorAll("[data-fr][data-ar][data-en]").forEach((element) => {
+        const translation = element.dataset[language] || element.dataset.fr;
+        if (translation !== undefined) element.textContent = translation;
+      });
+
+      document.querySelectorAll("[data-placeholder-fr]").forEach((element) => {
+        element.placeholder =
+          element.dataset[
+            `placeholder${language.charAt(0).toUpperCase()}${language.slice(1)}`
+          ] ||
+          element.dataset.placeholderFr;
+      });
+
+      document.querySelectorAll("[data-specialty-label]").forEach((element) => {
+        const labels = translations.specialties[element.dataset.specialtyLabel];
+        if (labels) element.textContent = labels[language] || labels.fr;
+      });
+    }
+
+    function closeRatingModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function openRatingModal(button) {
+      const doctorId = button.dataset.doctorId;
+      consultationSelect.replaceChildren();
+
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = {
+        fr: "Choisissez une consultation",
+        ar: "اختر استشارة",
+        en: "Choose a consultation"
+      }[language] || "Choisissez une consultation";
+      consultationSelect.append(placeholder);
+
+      const availableOptions = optionsTemplate.content.querySelectorAll(
+        `option[data-doctor-id="${CSS.escape(doctorId)}"]`
+      );
+      availableOptions.forEach((option) => consultationSelect.append(option.cloneNode(true)));
+
+      if (!consultationSelect.options.length || consultationSelect.options.length < 2) return;
+
+      consultationField.hidden = consultationSelect.options.length === 2;
+      if (consultationField.hidden) {
+        consultationSelect.selectedIndex = 1;
+        modalForm.action = consultationSelect.selectedOptions[0].dataset.action;
+      } else {
+        consultationSelect.selectedIndex = 0;
+        modalForm.action = "";
+      }
+
+      modalDoctor.textContent = button.dataset.doctorName;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      if (!consultationField.hidden) consultationSelect.focus();
+      else modal.querySelector('input[name="rating"]').focus();
+    }
+
+    document.querySelectorAll(".js-open-rating").forEach((button) => {
+      button.addEventListener("click", () => openRatingModal(button));
+    });
+
+    document.querySelectorAll(".js-close-rating, .psy-modal-close").forEach((button) => {
+      button.addEventListener("click", closeRatingModal);
+    });
+
+    consultationSelect.addEventListener("change", () => {
+      modalForm.action =
+        consultationSelect.selectedOptions[0]?.dataset.action || "";
+    });
+
+    modalForm.addEventListener("submit", (event) => {
+      if (!modalForm.action) {
+        event.preventDefault();
+        consultationSelect.focus();
+      }
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeRatingModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeRatingModal();
+      }
+    });
+
+    translateStaticText();
+  })();
+</script>
+{% endblock %}

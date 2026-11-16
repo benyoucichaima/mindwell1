@@ -1,0 +1,292 @@
+{% load i18n static %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% trans "Mes disponibilités" %} | MindWell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{font-family:Inter,sans-serif;color:#182039;background:#f6f7fb}*{box-sizing:border-box}body{margin:0;padding:30px 18px}html[lang="ar"] body{font-family:Cairo,sans-serif}html[dir="rtl"] body{direction:rtl}.wrap{max-width:1050px;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}h1,h2{font-family:"Playfair Display",serif;color:#111844}html[lang="ar"] h1,html[lang="ar"] h2{font-family:Cairo,serif}.card{background:#fff;border:1px solid #e8eaf1;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 8px 25px rgba(17,24,68,.05)}form.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;align-items:end}label{display:grid;gap:7px;font-size:.92rem;font-weight:600}input,select{font:inherit;padding:10px;border:1px solid #d9deeb;border-radius:8px;min-width:0}button,.link{display:inline-block;border:0;border-radius:8px;background:#111844;color:white;padding:11px 15px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}.secondary{background:#66708c}.btn-danger{background:#ef4444;padding:6px 12px;font-size:.84rem}.btn-danger:hover{background:#dc2626}.btn-sm{padding:6px 12px;font-size:.84rem}.notice{padding:12px;border-radius:8px;background:#eef1fa}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:start;padding:11px;border-bottom:1px solid #e8eaf1}.muted{color:#737d96}.rule-form{margin:12px 0;padding:12px;background:#f8f9fc;border-radius:10px}.inline{display:inline}.exception-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #e8eaf1}.language-bar{display:flex;justify-content:flex-end;margin-bottom:12px}.lang-switch{display:flex;gap:8px;align-items:center}.lang-switch a,.lang-switch button{background:#fff;color:#111844;border:1px solid #d9deeb;border-radius:8px;padding:6px 10px;font-size:.9rem;text-decoration:none}
+    .rs-series{border:1px solid #e8eaf1;border-radius:12px;padding:14px;margin:10px 0;background:#fff}
+    .rs-series__head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .rs-series__actions{margin-top:10px;display:flex;gap:8px}
+    .rs-badge{font-size:.72rem;font-weight:700;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:#eef1fa;color:#111844}
+    .rs-badge--proposed{background:#fff4e0;color:#c58c3c}
+    .rs-badge--active{background:#e4f5ec;color:#2f8f63}
+    .rs-badge--cancelled{background:#fde8e8;color:#c0392b}
+    .rs-toast{position:fixed;top:18px;right:18px;z-index:9999;background:#111844;color:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 10px 30px rgba(17,24,68,.25);max-width:340px}
+    .rs-toast--error{background:#c0392b}
+    .rs-toast--success{background:#2f8f63}
+    .rs-toast--hide{opacity:0;transition:opacity .3s ease}
+    #recurring-block .grid{align-items:end}
+    /* ===== Accordion Créneaux ===== */
+    #creneaux-avenir .accordion-item{border:1px solid #e8eaf1;border-radius:10px;margin-bottom:8px;overflow:hidden;background:#fff}
+    #creneaux-avenir .accordion-header{width:100%;padding:14px 18px;background:#f8f9fc;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;font:inherit;font-size:.95rem;font-weight:600;color:#182039;transition:background .2s}
+    #creneaux-avenir .accordion-header:hover{background:#eef0f2}
+    #creneaux-avenir .accordion-header[aria-expanded="true"]{background:#e6e9ec;border-bottom:1px solid #e8eaf1}
+    #creneaux-avenir .accordion-title{display:flex;align-items:center;gap:12px}
+    #creneaux-avenir .accordion-title strong{color:#111844;text-transform:capitalize}
+    #creneaux-avenir .badge{background:#111844;color:#fff;padding:2px 10px;border-radius:12px;font-size:.75rem;font-weight:600}
+    #creneaux-avenir .accordion-icon{transition:transform .2s ease;color:#737d96;font-size:.9rem}
+    #creneaux-avenir .accordion-header[aria-expanded="true"] .accordion-icon{transform:rotate(180deg)}
+    #creneaux-avenir .accordion-body{padding:12px 18px;background:#fff}
+    #creneaux-avenir .accordion-body table{width:100%;border-collapse:collapse}
+    #creneaux-avenir .accordion-body th{text-align:start;padding:8px 12px;font-size:.8rem;color:#737d96;text-transform:uppercase;border-bottom:1px solid #e8eaf1}
+    #creneaux-avenir .accordion-body td{padding:10px 12px;font-size:.9rem;border-bottom:1px solid #f0f0f0}
+    #creneaux-avenir .accordion-body tr:last-child td{border-bottom:none}
+    #creneaux-avenir .status-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:600}
+    #creneaux-avenir .status-libre{background:#d4edda;color:#155724}
+    #creneaux-avenir .status-reserve{background:#fff3cd;color:#856404}
+    #creneaux-avenir .status-bloque,
+    #creneaux-avenir .status-retire{background:#f8d7da;color:#721c24}
+    #creneaux-avenir .btn-sm{padding:6px 12px;font-size:.8rem;border:1px solid #d9deeb;background:#fff;color:#111844;border-radius:8px;cursor:pointer;transition:all .2s}
+    #creneaux-avenir .btn-sm:hover{background:#111844;color:#fff;border-color:#111844}
+    @media(max-width:620px){.top{align-items:flex-start;flex-direction:column}.table th,.table td{padding:8px 4px;font-size:.84rem}.exception-row{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="language-bar">
+      <div class="lang-switch">
+        <span class="muted">{% trans "Langue" %}:</span>
+        <a href="?lang=fr">Français</a>
+        <a href="?lang=ar">العربية</a>
+      </div>
+    </div>
+    <header class="top">
+      <div>
+        <p class="muted">{% trans "Espace professionnel" %}</p>
+        <h1>{% trans "Mes disponibilités" %}</h1>
+        <p class="muted">{% trans "L’horizon de génération comprend aujourd’hui et les 27 prochains jours. Les créneaux générés existants ne sont pas supprimés." %}</p>
+      </div>
+      <a class="link" href="{% url 'consultations:availability_calendar' %}">{% trans "Calendrier" %}</a>
+      <a class="link" href="{% url 'accounts:psychologue_dashboard' %}">{% trans "Retour au tableau de bord" %}</a>
+    </header>
+
+    {% if messages %}{% for message in messages %}<p class="notice" role="status">{{ message }}</p>{% endfor %}{% endif %}
+
+    <section class="card">
+      <h2>{% trans "Planning hebdomadaire" %}</h2>
+      <p class="muted">{% trans "Les périodes actives d’un même jour ne peuvent pas se chevaucher. Les séances sont générées à la suite, sans pause, avec la durée choisie." %}</p>
+      <form class="grid" method="post">
+        {% csrf_token %}<input type="hidden" name="action" value="add_weekly">
+        <label>{{ weekly_form.weekday.label }}{{ weekly_form.weekday }}</label>
+        <label>{{ weekly_form.start_time.label }}{{ weekly_form.start_time }}</label>
+        <label>{{ weekly_form.end_time.label }}{{ weekly_form.end_time }}</label>
+        <label>{{ weekly_form.session_duration.label }}{{ weekly_form.session_duration }}</label>
+        <label><span>{% trans "État" %}</span><input type="checkbox" name="is_active" value="on" checked> {% trans "Actif" %}</label>
+        <button type="submit">{% trans "Ajouter la période" %}</button>
+      </form>
+      {% for rule in weekly_rules %}
+        <form class="grid rule-form" method="post">
+          {% csrf_token %}<input type="hidden" name="action" value="update_weekly"><input type="hidden" name="rule_id" value="{{ rule.pk }}">
+          <label>{% trans "Jour" %}<select name="weekday">{% for value,label in weekday_choices %}<option value="{{ value }}"{% if rule.weekday == value %} selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+          <label>{% trans "Début" %}<input type="time" name="start_time" value="{{ rule.start_time|time:'H:i' }}" required></label>
+          <label>{% trans "Fin" %}<input type="time" name="end_time" value="{{ rule.end_time|time:'H:i' }}" required></label>
+          <label>{% trans "Durée des séances" %}<select name="session_duration">{% for value,label in duration_choices %}<option value="{{ value }}"{% if request.user.psychologue_profile.session_duration == value %} selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+          <label><span>{% trans "État" %}</span><input type="checkbox" name="is_active" value="on"{% if rule.is_active %} checked{% endif %}> {% trans "Actif" %}</label>
+          <button type="submit">{% trans "Enregistrer" %}</button>
+        </form>
+        {% if rule.is_active %}<form class="inline" method="post" onsubmit="return confirm('{% trans "Êtes-vous sûr de vouloir supprimer cette règle définitivement ?" %}');">{% csrf_token %}<input type="hidden" name="action" value="delete_weekly"><input type="hidden" name="rule_id" value="{{ rule.pk }}"><button class="btn btn-sm btn-danger" title="{% trans "Supprimer définitivement" %}">🗑️ {% trans "Supprimer" %}</button></form>{% endif %}
+      {% empty %}<p class="muted">{% trans "Aucune période hebdomadaire configurée." %}</p>{% endfor %}
+    </section>
+
+    <section class="card">
+      <h2>{% trans "Exceptions pour une date" %}</h2>
+      <p class="muted">{% trans "Une fermeture prime sur toutes les périodes de cette date. Un ou plusieurs remplacements remplacent le planning hebdomadaire ; les périodes supplémentaires s’y ajoutent. Plusieurs périodes le même jour sont permises uniquement si elles ne se chevauchent pas. Les autres exceptions restent enregistrées, mais ne produisent aucun créneau pendant une fermeture." %}</p>
+      <form class="grid" method="post" id="exception-form">
+        {% csrf_token %}<input type="hidden" name="action" value="add_exception">
+        <label>{{ exception_form.date.label }}{{ exception_form.date }}</label>
+        <label>{{ exception_form.kind.label }}{{ exception_form.kind }}</label>
+        <label>{{ exception_form.start_time.label }}{{ exception_form.start_time }}</label>
+        <label>{{ exception_form.end_time.label }}{{ exception_form.end_time }}</label>
+        <button type="submit">{% trans "Ajouter une exception" %}</button>
+      </form>
+      {% for exception in exceptions %}
+        <div class="exception-row">
+          <span>{{ exception.date|date:"d/m/Y" }} — {{ exception.get_kind_display }}{% if exception.start_time %}, {{ exception.start_time|time:"H:i" }}–{{ exception.end_time|time:"H:i" }}{% endif %}</span>
+          <div>
+            <form class="inline" method="post">{% csrf_token %}<input type="hidden" name="action" value="disable_exception"><input type="hidden" name="exception_id" value="{{ exception.pk }}"><button class="secondary" type="submit">{% trans "Désactiver" %}</button></form>
+            <form class="inline" method="post" onsubmit="return confirm('{% trans "Êtes-vous sûr de vouloir supprimer cette exception définitivement ?" %}');">{% csrf_token %}<input type="hidden" name="action" value="delete_exception"><input type="hidden" name="exception_id" value="{{ exception.pk }}"><button class="btn btn-sm btn-danger" title="{% trans "Supprimer définitivement" %}">🗑️ {% trans "Supprimer" %}</button></form>
+          </div>
+        </div>
+      {% empty %}<p class="muted">{% trans "Aucune exception active." %}</p>{% endfor %}
+    </section>
+
+    <section class="card">
+      <h2>{% trans "Génération des quatre semaines" %}</h2>
+      <p class="muted">{% trans "Le générateur est idempotent. Les créneaux manuels et les rendez-vous existants sont préservés." %}</p>
+      <form method="post">{% csrf_token %}<input type="hidden" name="action" value="generate"><button type="submit">{% trans "Générer / actualiser les créneaux" %}</button></form>
+    </section>
+
+    <section class="card">
+      <h2>{% trans "Ajouter une disponibilité manuelle" %}</h2>
+      <form class="grid" method="post">
+        {% csrf_token %}<input type="hidden" name="action" value="manual_slot">
+        <label>{% trans "Date" %}<input type="date" name="date" required></label>
+        <label>{% trans "Heure de début" %}<input type="time" name="heure_debut" required></label>
+        <label>{% trans "Heure de fin" %}<input type="time" name="heure_fin" required></label>
+        <button type="submit">{% trans "Ajouter la période manuelle" %}</button>
+      </form>
+    </section>
+
+    <section class="card" id="creneaux-avenir">
+      <div class="card-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <h2 style="margin:0">{% trans "Créneaux à venir" %}</h2>
+        <div style="display:flex;gap:8px">
+          <button type="button" id="btn-deplier-tout" class="btn-sm">{% trans "Tout déplier" %}</button>
+          <button type="button" id="btn-replier-tout" class="btn-sm">{% trans "Tout replier" %}</button>
+        </div>
+      </div>
+
+      <div class="accordion" id="creneaux-accordion">
+        {% for date, creneaux_du_jour in creneaux_grouped.items %}
+          <div class="accordion-item" data-date="{{ date|date:'Y-m-d' }}">
+            <button type="button" class="accordion-header" aria-expanded="false">
+              <span class="accordion-title">
+                <strong>{{ date|date:"l d/m/Y" }}</strong>
+                <span class="badge">{% blocktrans count counter=creneaux_du_jour|length %}{{ counter }} créneau{% plural %}{{ counter }} créneaux{% endblocktrans %}</span>
+              </span>
+              <span class="accordion-icon" aria-hidden="true">▾</span>
+            </button>
+            <div class="accordion-body" style="display:none">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>{% trans "Horaire" %}</th>
+                    <th>{% trans "Origine" %}</th>
+                    <th>{% trans "État" %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for creneau in creneaux_du_jour %}
+                    <tr>
+                      <td>{{ creneau.heure_debut|time:"H:i" }} – {{ creneau.heure_fin|time:"H:i" }}</td>
+                      <td>{% if creneau.is_generated %}{% trans "Généré" %}{% else %}{% trans "Manuel" %}{% endif %}</td>
+                      <td><span class="status-badge status-{{ creneau.statut }}{% if not creneau.is_bookable %} status-retire{% endif %}">{% if not creneau.is_bookable %}{% trans "Retiré du planning" %}{% else %}{{ creneau.get_statut_display }}{% endif %}</span></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% empty %}
+          <div class="empty-state"><p class="muted">{% trans "Aucun créneau à venir." %}</p></div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="card" id="recurring-block">
+      <h2>{% trans "Séances récurrentes" %}</h2>
+      <p class="muted">{% trans "Proposez une série hebdomadaire à un patient. Le patient doit accepter la première séance pour activer la série ; les séances suivantes sont alors confirmées automatiquement." %}</p>
+      <div id="recurring-toast" aria-live="polite"></div>
+      <form class="grid" id="recurring-create-form">
+        <label><span>{% trans "Patient" %}</span>
+          <select name="patient_id" required>
+            <option value="">— {% trans "Choisir un patient" %} —</option>
+            {% for patient in patients %}
+              <option value="{{ patient.pk }}">{{ patient.get_full_name|default:patient.username }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label><span>{% trans "Jour" %}</span>
+          <select name="weekday" required>
+            {% for value,label in weekday_choices %}
+              <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label><span>{% trans "Heure de début" %}</span><input type="time" name="start_time" value="09:00" required></label>
+        <label><span>{% trans "Date de début" %}</span><input type="date" name="start_date" min="{% now 'Y-m-d' %}" required></label>
+        <label><span>{% trans "Durée de la série" %}</span>
+          <select name="length_mode">
+            <option value="end">{% trans "Date de fin" %}</option>
+            <option value="count">{% trans "Nombre de séances" %}</option>
+          </select>
+        </label>
+        <label><span>{% trans "Date de fin" %}</span><input type="date" name="end_date"></label>
+        <label><span>{% trans "Nombre de séances" %}</span><input type="number" name="occurrence_count" min="1" max="52" placeholder="4"></label>
+        <button type="submit">{% trans "Proposer la série" %}</button>
+      </form>
+
+      <h3 style="margin-top:22px">{% trans "Séries configurées" %}</h3>
+      <div id="recurring-sessions-list">
+        {% if recurring_sessions %}
+          {% for session in recurring_sessions %}
+            <div class="rs-series">
+              <div class="rs-series__head">
+                <strong>{{ session.patient.get_full_name|default:session.patient.username }}</strong>
+                <span class="rs-badge rs-badge--{{ session.status }}">{{ session.get_status_display }}</span>
+              </div>
+              <p class="muted">{{ session.get_weekday_display }} {{ session.start_time|time:"H:i" }} · {{ session.start_date|date:"d/m/Y" }} → {{ session.end_date|date:"d/m/Y" }}</p>
+              <div class="rs-series__actions">
+                {% if session.status != 'cancelled' and session.status != 'completed' %}
+                  <button class="btn btn-sm" data-cancel-series="{{ session.pk }}">{% trans "Annuler la série" %}</button>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="muted">{% trans "Aucune série récurrente configurée." %}</p>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+  <script src="{% static 'js/recurring_sessions.js' %}"></script>
+  <script>
+    const exceptionKind = document.getElementById('id_kind');
+    const startInput = document.getElementById('id_start_time');
+    const endInput = document.getElementById('id_end_time');
+    function updateExceptionTimeFields() {
+      const closed = exceptionKind.value === 'closed';
+      startInput.required = !closed;
+      endInput.required = !closed;
+      startInput.disabled = closed;
+      endInput.disabled = closed;
+    }
+    exceptionKind.addEventListener('change', updateExceptionTimeFields);
+    updateExceptionTimeFields();
+
+    // ===== Accordion Créneaux à venir =====
+    (function () {
+      const headers = document.querySelectorAll('#creneaux-accordion .accordion-header');
+      headers.forEach(function (header) {
+        header.addEventListener('click', function () {
+          const item = header.closest('.accordion-item');
+          const body = item.querySelector('.accordion-body');
+          const expanded = header.getAttribute('aria-expanded') === 'true';
+          header.setAttribute('aria-expanded', String(!expanded));
+          body.style.display = expanded ? 'none' : 'block';
+        });
+      });
+
+      function setAll(expanded) {
+        document.querySelectorAll('#creneaux-accordion .accordion-header').forEach(function (header) {
+          header.setAttribute('aria-expanded', String(expanded));
+          const body = header.closest('.accordion-item').querySelector('.accordion-body');
+          body.style.display = expanded ? 'block' : 'none';
+        });
+      }
+      const expandAll = document.getElementById('btn-deplier-tout');
+      const collapseAll = document.getElementById('btn-replier-tout');
+      if (expandAll) { expandAll.addEventListener('click', function () { setAll(true); }); }
+      if (collapseAll) { collapseAll.addEventListener('click', function () { setAll(false); }); }
+
+      // Auto-expand today's group (local date).
+      const now = new Date();
+      const today = now.getFullYear() + '-' +
+        String(now.getMonth() + 1).padStart(2, '0') + '-' +
+        String(now.getDate()).padStart(2, '0');
+      const todayItem = document.querySelector('#creneaux-accordion .accordion-item[data-date="' + today + '"]');
+      if (todayItem) {
+        const header = todayItem.querySelector('.accordion-header');
+        header.setAttribute('aria-expanded', 'true');
+        todayItem.querySelector('.accordion-body').style.display = 'block';
+      }
+    })();
+  </script>
+</body>
+</html>

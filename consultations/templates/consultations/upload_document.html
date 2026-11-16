@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documents professionnels | MindWell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{font-family:Inter,sans-serif;color:#182039;background:#f6f7fb}*{box-sizing:border-box}body{margin:0;padding:36px 20px}.wrap{max-width:860px;margin:auto}h1,h2{font-family:"Playfair Display",serif;color:#111844}.muted{color:#7c849d}.card{background:#fff;border:1px solid #e8eaf1;border-radius:18px;padding:24px;margin:20px 0;box-shadow:0 12px 35px rgba(17,24,68,.06)}form{display:grid;gap:16px;max-width:520px}label{display:grid;gap:8px;font-weight:600}select,input{font:inherit;padding:12px;border:1px solid #d9deeb;border-radius:9px}button{border:0;border-radius:9px;background:#111844;color:white;padding:13px 18px;font:inherit;font-weight:600;cursor:pointer}.row{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid #e8eaf1}.status{color:#4b5694;font-weight:600}@media(max-width:560px){.row{flex-direction:column}}
+  </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+  <main class="wrap">
+    <p class="muted">Espace professionnel</p><h1>Documents professionnels</h1>
+    {% if messages %}{% for message in messages %}<p role="status">{{ message }}</p>{% endfor %}{% endif %}
+    <section class="card">
+      <h2>Envoyer un document</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="type_document">Type de document</label>
+        <select id="type_document" name="type_document" required>
+          <option value="">Sélectionner un type</option>
+          {% for value, label in document_types %}<option value="{{ value }}">{{ label }}</option>{% endfor %}
+        </select>
+        <label for="fichier">Fichier</label><input id="fichier" type="file" name="fichier" required>
+        <button type="submit">Envoyer pour validation</button>
+      </form>
+    </section>
+    <section class="card">
+      <h2>Historique des envois</h2>
+      {% for document in documents %}
+        <div class="row"><div><strong>{{ document.get_type_document_display }}</strong><div class="muted">{{ document.date_depot|date:"d/m/Y à H:i" }}</div></div><span class="status">{{ document.get_statut_display }}</span><a href="{{ document.fichier.url }}">Consulter le fichier</a></div>
+      {% empty %}<p class="muted">Aucun document envoyé pour le moment.</p>{% endfor %}
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,350 @@
+{% load static navigation_tags %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>المساعد الذكي | MindWell</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --navy: #0b1d3a;
+        --cream: #faf8f5;
+        --white: #fff;
+        --text: #1a1a2e;
+        --muted: #596173;
+        --border: #e0ddd8;
+        --user: #0b1d3a;
+        --assistant: #f0ede7;
+        --danger: #8d2923;
+        font-family: "Cairo", "Segoe UI", sans-serif;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--cream); color: var(--text); line-height: 1.65; }
+      a { color: inherit; }
+      button, textarea { font: inherit; }
+      .page { width: min(1120px, 100%); margin: 0 auto; padding: 24px; }
+      .topbar, .chat-tools, .composer-actions { display: flex; align-items: center; gap: 12px; }
+      .topbar { justify-content: space-between; margin-bottom: 20px; }
+      .brand { color: var(--navy); font-size: 1.25rem; font-weight: 800; text-decoration: none; }
+      .layout { display: grid; grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); gap: 20px; }
+      .panel { background: var(--white); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 8px 26px #0b1d3a0d; }
+      .history { padding: 18px; align-self: start; }
+      .history h2 { margin: 0 0 12px; font-size: 1.05rem; }
+      .history-list { display: grid; gap: 8px; max-height: 50vh; overflow: auto; }
+      .history-item { display: flex; align-items: center; gap: 8px; }
+      .history-item button { min-width: 0; flex: 1; text-align: right; overflow-wrap: anywhere; }
+      .chat-panel { display: flex; flex-direction: column; min-height: min(74vh, 760px); overflow: hidden; }
+      .chat-header { padding: 18px 22px; border-bottom: 1px solid var(--border); }
+      .chat-header h1 { margin: 0; color: var(--navy); font-size: 1.3rem; }
+      .chat-header p, .notice { margin: 6px 0 0; color: var(--muted); font-size: .9rem; }
+      .notice { padding: 12px 16px; background: #fff5e5; color: #63450f; border-bottom: 1px solid #f1dfba; }
+      .transcript { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+      .message { width: fit-content; max-width: min(85%, 680px); padding: 12px 16px; border-radius: 16px; overflow-wrap: anywhere; }
+      .message.user { align-self: flex-start; background: var(--user); color: white; border-bottom-right-radius: 4px; }
+      .message.assistant { align-self: flex-end; background: var(--assistant); color: var(--text); border-bottom-left-radius: 4px; }
+      .message p { margin: 0 0 8px; }
+      .message p:last-child { margin-bottom: 0; }
+      .message ul { margin: 4px 0; padding-right: 22px; }
+      .message h1, .message h2, .message h3 { margin: 8px 0 4px; font-size: 1.05rem; }
+      .empty-state { margin: auto; text-align: center; color: var(--muted); }
+      .typing { align-self: flex-end; color: var(--muted); padding: 8px 14px; }
+      .typing[hidden] { display: none; }
+      .quick-replies { padding: 0 20px 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+      .composer { border-top: 1px solid var(--border); padding: 16px 20px; }
+      .composer textarea { display: block; width: 100%; min-height: 94px; resize: vertical; border: 1px solid #9aa2b2; border-radius: 12px; padding: 12px; color: var(--text); }
+      .composer textarea:focus, button:focus-visible, a:focus-visible { outline: 3px solid #536fb2; outline-offset: 2px; }
+      .composer-actions { justify-content: space-between; margin-top: 10px; }
+      .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+      .button { min-height: 44px; padding: 9px 14px; border: 1px solid var(--border); border-radius: 10px; background: var(--white); color: var(--navy); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+      .button:hover { background: #eef1f8; }
+      .button.primary { background: var(--navy); color: white; border-color: var(--navy); }
+      .button:disabled { opacity: .55; cursor: not-allowed; }
+      .status { min-height: 1.6em; margin: 8px 0 0; color: var(--danger); }
+      .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+      @media (max-width: 760px) {
+        .page { padding: 14px; }
+        .layout { grid-template-columns: 1fr; }
+        .history { order: 2; }
+        .history-list { max-height: 180px; }
+        .chat-panel { min-height: 68vh; min-height: 68dvh; }
+        .topbar { align-items: flex-start; flex-wrap: wrap; }
+      }
+      @media (max-width: 420px) {
+        .chat-tools { width: 100%; }
+        .chat-tools .button { flex: 1; }
+        .composer-actions { align-items: stretch; flex-direction: column; }
+        .actions .button { flex: 1; }
+        .message { max-width: 96%; }
+      }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <main class="page">
+      {% back_button 'accounts:patient_dashboard' %}
+      <header class="topbar">
+        <a class="brand" href="{% url 'home' %}">MindWell</a>
+        <div class="chat-tools">
+          <a class="button" href="{% url 'ai_service:stress_assessment' %}">تقييم الضغط</a>
+          <a class="button" href="{% url 'accounts:patient_dashboard' %}">لوحة التحكم</a>
+        </div>
+      </header>
+      <div class="layout">
+        <aside class="panel history" aria-labelledby="history-title">
+          <h2 id="history-title">محادثاتي السابقة</h2>
+          <div class="history-list" id="historyList" aria-live="polite">
+            {% for conversation in conversations %}
+              <div class="history-item">
+                <button class="button history-open" type="button" data-conversation-id="{{ conversation.pk }}">
+                  {{ conversation.title|default:"محادثة" }} · {{ conversation.updated_at|date:"d/m/Y" }}
+                </button>
+                <a class="button export-link" href="{% url 'ai_service:export_support_conversation' conversation.pk %}" aria-label="تصدير المحادثة {{ conversation.pk }}">تصدير</a>
+              </div>
+            {% empty %}
+              <p class="empty-state" id="historyEmpty">لا توجد محادثات محفوظة بعد.</p>
+            {% endfor %}
+          </div>
+        </aside>
+        <section class="panel chat-panel"
+          id="supportChat"
+          data-send-url="{% url 'ai_service:send_support_message' %}"
+          data-history-url="{% url 'ai_service:support_chat_history' %}"
+          data-detail-url="{% url 'ai_service:support_chat_detail' 0 %}"
+          data-delete-url="{% url 'ai_service:delete_support_conversation' 0 %}"
+          data-export-url="{% url 'ai_service:export_support_conversation' 0 %}">
+          <header class="chat-header">
+            <h1>المساعد الذكي MindWell</h1>
+            <p>مساحة للكتابة والتأمل، وليست بديلاً عن الرعاية النفسية المتخصصة.</p>
+          </header>
+          <p class="notice" role="note">خدمة الردود الذكية غير مفعّلة حالياً. لا تُرسل رسائلك إلى أي خدمة خارجية؛ يمكن حفظ رسائلك في حسابك وحذفها أو تصديرها.</p>
+          <div class="transcript" id="transcript" role="log" aria-live="polite" aria-relevant="additions text">
+            <p class="empty-state" id="chatEmpty">اختر اقتراحاً للبدء أو اكتب ما يشغلك.</p>
+          </div>
+          <div class="typing" id="typingIndicator" role="status" aria-live="polite" hidden>يكتب...</div>
+          <div class="quick-replies" aria-label="اقتراحات للبدء">
+            <button type="button" class="button quick-reply">أشعر بالقلق</button>
+            <button type="button" class="button quick-reply">أحتاج دعماً عاطفياً</button>
+            <button type="button" class="button quick-reply">كيف أتعامل مع التوتر؟</button>
+          </div>
+          <form class="composer" id="messageForm">
+            {% csrf_token %}
+            <label class="sr-only" for="messageInput">اكتب رسالتك</label>
+            <textarea id="messageInput" maxlength="2000" placeholder="اكتب رسالتك هنا..." required></textarea>
+            <div class="composer-actions">
+              <span>لا تستخدم هذه الصفحة للطوارئ أو لمشاركة معلومات شديدة الحساسية.</span>
+              <div class="actions">
+                <button class="button primary" type="submit">حفظ الرسالة</button>
+                <button class="button" type="button" id="clearChat" disabled>مسح المحادثة</button>
+                <button class="button" id="exportChat" type="button" disabled>تصدير</button>
+              </div>
+            </div>
+            <p class="status" id="chatStatus" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </main>
+    <script>
+      (() => {
+        const chat = document.getElementById("supportChat");
+        const transcript = document.getElementById("transcript");
+        const form = document.getElementById("messageForm");
+        const input = document.getElementById("messageInput");
+        const status = document.getElementById("chatStatus");
+        const historyList = document.getElementById("historyList");
+        const clearButton = document.getElementById("clearChat");
+        const exportButton = document.getElementById("exportChat");
+        const typing = document.getElementById("typingIndicator");
+        const csrf = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+        let currentConversationId = null;
+        const replaceId = (url, id) => url.replace(/0\/?$/, `${id}/`);
+
+        function appendInlineMarkdown(parent, text) {
+          const parts = text.split(/(\*\*[^*]+\*\*)/g);
+          parts.forEach((part) => {
+            if (part.startsWith("**") && part.endsWith("**")) {
+              const strong = document.createElement("strong");
+              strong.textContent = part.slice(2, -2);
+              parent.appendChild(strong);
+            } else {
+              parent.appendChild(document.createTextNode(part));
+            }
+          });
+        }
+
+        function renderMarkdown(parent, text) {
+          let list = null;
+          text.split(/\r?\n/).forEach((line) => {
+            const heading = line.match(/^(#{1,3})\s+(.+)$/);
+            const bullet = line.match(/^\s*[-*]\s+(.+)$/);
+            if (bullet) {
+              if (!list) {
+                list = document.createElement("ul");
+                parent.appendChild(list);
+              }
+              const item = document.createElement("li");
+              appendInlineMarkdown(item, bullet[1]);
+              list.appendChild(item);
+              return;
+            }
+            list = null;
+            if (!line.trim()) return;
+            const block = document.createElement(heading ? `h${heading[1].length}` : "p");
+            appendInlineMarkdown(block, heading ? heading[2] : line);
+            parent.appendChild(block);
+          });
+        }
+
+        function renderMessage(message) {
+          const item = document.createElement("article");
+          item.className = `message ${message.role === "assistant" ? "assistant" : "user"}`;
+          if (message.role === "assistant") renderMarkdown(item, message.content);
+          else item.textContent = message.content;
+          transcript.appendChild(item);
+          transcript.scrollTop = transcript.scrollHeight;
+        }
+
+        function setConversation(id) {
+          const numericId = id === null ? null : Number(id);
+          currentConversationId =
+            Number.isSafeInteger(numericId) && numericId > 0 ? numericId : null;
+          clearButton.disabled = !currentConversationId;
+          exportButton.disabled = !currentConversationId;
+        }
+
+        exportButton.addEventListener("click", () => {
+          if (!currentConversationId) return;
+          window.location.assign(
+            replaceId(chat.dataset.exportUrl, currentConversationId),
+          );
+        });
+
+        async function loadConversation(id) {
+          status.textContent = "";
+          transcript.replaceChildren();
+          setConversation(id);
+          try {
+            const response = await fetch(replaceId(chat.dataset.detailUrl, id), {
+              headers: { "Accept": "application/json" },
+              credentials: "same-origin",
+            });
+            if (!response.ok) throw new Error("تعذر تحميل سجل المحادثة.");
+            const data = await response.json();
+            data.messages.forEach(renderMessage);
+            if (!data.messages.length) showEmpty();
+          } catch (error) {
+            status.textContent = error.message;
+          }
+        }
+
+        function showEmpty() {
+          const empty = document.createElement("p");
+          empty.className = "empty-state";
+          empty.textContent = "اختر اقتراحاً للبدء أو اكتب ما يشغلك.";
+          transcript.appendChild(empty);
+        }
+
+        async function refreshHistory() {
+          const response = await fetch(chat.dataset.historyUrl, {
+            headers: { "Accept": "application/json" },
+            credentials: "same-origin",
+          });
+          if (!response.ok) throw new Error("تعذر تحديث سجل المحادثات.");
+          const data = await response.json();
+          historyList.replaceChildren();
+          if (!data.conversations.length) {
+            const empty = document.createElement("p");
+            empty.className = "empty-state";
+            empty.textContent = "لا توجد محادثات محفوظة بعد.";
+            historyList.appendChild(empty);
+            return;
+          }
+          data.conversations.forEach((conversation) => {
+            const row = document.createElement("div");
+            row.className = "history-item";
+            const open = document.createElement("button");
+            open.className = "button";
+            open.type = "button";
+            open.textContent = conversation.title;
+            open.addEventListener("click", () => loadConversation(conversation.id));
+            const exportButton = document.createElement("a");
+            exportButton.className = "button";
+            exportButton.textContent = "تصدير";
+            exportButton.href = replaceId(chat.dataset.exportUrl, conversation.id);
+            exportButton.setAttribute("aria-label", `تصدير ${conversation.title}`);
+            row.append(open, exportButton);
+            historyList.appendChild(row);
+          });
+        }
+
+        document.querySelectorAll(".quick-reply").forEach((button) => {
+          button.addEventListener("click", () => {
+            input.value = button.textContent.trim();
+            input.focus();
+          });
+        });
+        historyList.addEventListener("click", (event) => {
+          const button = event.target.closest(".history-open");
+          if (button) loadConversation(button.dataset.conversationId);
+        });
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const message = input.value.trim();
+          if (!message) return;
+          document.getElementById("chatEmpty")?.remove();
+          renderMessage({ role: "user", content: message });
+          input.value = "";
+          status.textContent = "";
+          typing.hidden = false;
+          form.querySelector('[type="submit"]').disabled = true;
+          try {
+            const response = await fetch(chat.dataset.sendUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrf,
+                "Accept": "application/json",
+              },
+              credentials: "same-origin",
+              body: JSON.stringify({ message, conversation_id: currentConversationId }),
+            });
+            const data = await response.json();
+            if (data.conversation_id) setConversation(data.conversation_id);
+            if (!response.ok) throw new Error(data.error || "تعذر إرسال الرسالة.");
+            if (data.reply) renderMessage({ role: "assistant", content: data.reply });
+          } catch (error) {
+            status.textContent = error.message;
+            if (currentConversationId) {
+              try { await refreshHistory(); } catch (historyError) { status.textContent += ` ${historyError.message}`; }
+            }
+          } finally {
+            typing.hidden = true;
+            form.querySelector('[type="submit"]').disabled = false;
+          }
+        });
+        clearButton.addEventListener("click", async () => {
+          if (!currentConversationId || !confirm("هل تريد حذف هذه المحادثة نهائياً؟")) return;
+          try {
+            const response = await fetch(replaceId(chat.dataset.deleteUrl, currentConversationId), {
+              method: "POST",
+              headers: { "X-CSRFToken": csrf, "Accept": "application/json" },
+              credentials: "same-origin",
+            });
+            if (!response.ok) throw new Error("تعذر حذف المحادثة.");
+            setConversation(null);
+            transcript.replaceChildren();
+            showEmpty();
+            await refreshHistory();
+            status.textContent = "تم حذف المحادثة.";
+          } catch (error) {
+            status.textContent = error.message;
+          }
+        });
+        const initialConversationId = new URLSearchParams(location.search).get("conversation");
+        if (initialConversationId && /^\d+$/.test(initialConversationId)) loadConversation(initialConversationId);
+      })();
+    </script>
+  </body>
+</html>

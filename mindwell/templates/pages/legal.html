@@ -1,0 +1,164 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Mentions légales - MindWell Algérie{% endblock %}
+
+{% block content %}
+
+<section style="max-width: 900px; margin: 60px auto; padding: 0 20px;">
+
+    <div style="text-align: center; margin-bottom: 45px;">
+        <p style="color: #7288AE; font-weight: 600; letter-spacing: 1px;">
+            MINDWELL ALGÉRIE
+        </p>
+
+        <h1 style="color: #111844; font-size: 38px; margin-bottom: 15px;">
+            Mentions légales
+        </h1>
+
+        <p style="color: #666; font-size: 17px;">
+            Informations légales relatives à la plateforme MindWell.
+        </p>
+    </div>
+
+    <div style="
+        background: white;
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+        line-height: 1.8;
+        color: #444;
+    ">
+
+        <h2 style="color: #111844;">1. Présentation du site</h2>
+
+        <p>
+            MindWell est une plateforme web de consultation psychologique à distance
+            conçue pour faciliter la mise en relation entre les patients et les
+            psychologues et permettre l'accès à des services de consultation à distance.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            2. Éditeur de la plateforme
+        </h2>
+
+        <p>
+            <strong>Nom :</strong> MindWell
+        </p>
+
+        <p>
+            <strong>Projet :</strong> Plateforme web de consultation psychologique
+            à distance intégrant un assistant intelligent.
+        </p>
+
+        <p>
+            <strong>Localisation :</strong> Algérie
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            3. Objet de la plateforme
+        </h2>
+
+        <p>
+            MindWell permet notamment aux utilisateurs de créer un compte,
+            rechercher des psychologues, prendre rendez-vous et accéder à des
+            consultations psychologiques à distance.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            4. Responsabilité
+        </h2>
+
+        <p>
+            Les informations présentées sur la plateforme sont fournies dans un
+            objectif d'information et d'organisation des services proposés.
+            MindWell ne remplace pas l'avis, l'évaluation ou le suivi réalisé
+            par un professionnel de santé qualifié.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            5. Assistant intelligent
+        </h2>
+
+        <p>
+            Certaines fonctionnalités de MindWell peuvent utiliser un assistant
+            intelligent afin d'aider le psychologue à analyser des informations
+            textuelles issues des consultations.
+        </p>
+
+        <p>
+            Les résultats générés par cet assistant sont indicatifs et doivent
+            être vérifiés et interprétés par le psychologue. L'assistant intelligent
+            ne constitue pas un outil de diagnostic médical ou psychologique autonome.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            6. Propriété intellectuelle
+        </h2>
+
+        <p>
+            La structure, le design, les textes, les éléments graphiques,
+            le logo et les différents composants de la plateforme MindWell
+            sont protégés par les règles applicables en matière de propriété
+            intellectuelle.
+        </p>
+
+        <p>
+            Toute reproduction ou utilisation non autorisée d'une partie de la
+            plateforme peut être interdite.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            7. Données personnelles
+        </h2>
+
+        <p>
+            La protection des données personnelles des utilisateurs constitue
+            une priorité pour MindWell. Pour plus d'informations concernant
+            la collecte et l'utilisation des données, veuillez consulter notre
+            <a href="{% url 'privacy' %}"
+               style="color: #3B5998; font-weight: 600;">
+                Politique de confidentialité
+            </a>.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            8. Contact
+        </h2>
+
+        <p>
+            Pour toute question concernant la plateforme ou ses conditions
+            d'utilisation, les utilisateurs peuvent consulter la page
+            <a href="{% url 'contact' %}"
+               style="color: #3B5998; font-weight: 600;">
+                Contactez-nous
+            </a>.
+        </p>
+
+        <div style="
+            margin-top: 40px;
+            padding: 20px;
+            background: #F5F3EF;
+            border-radius: 12px;
+        ">
+            <strong style="color: #111844;">
+                Dernière mise à jour :
+            </strong>
+            Octobre 2026
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{% url 'home' %}"
+           style="
+               color: #111844;
+               text-decoration: none;
+               font-weight: 600;
+           ">
+            ← Retour à l'accueil
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}

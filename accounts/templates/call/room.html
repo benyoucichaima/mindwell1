@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultation vidéo | MindWell</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{font-family:Inter,sans-serif;color:#182039;background:#f6f7fb}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px}.card{max-width:620px;text-align:center;background:#fff;border:1px solid #e8eaf1;border-radius:22px;padding:40px;box-shadow:0 12px 35px rgba(17,24,68,.08)}h1{font:700 2rem "Playfair Display",serif;color:#111844}.room{font-weight:700;color:#4b5694;background:#f0f2f8;border-radius:9px;padding:12px;overflow-wrap:anywhere}.note{color:#7c849d;line-height:1.7}.link{display:inline-block;margin-top:14px;border-radius:9px;background:#111844;color:#fff;text-decoration:none;padding:13px 18px;font-weight:600}
+  </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+  <main class="card">
+    <p class="note">MindWell · Consultation {{ call_type }}</p>
+    <h1>Salle de consultation</h1>
+    <p>Votre échange avec {{ patient.get_full_name|default:patient.email }} est prêt à être organisé.</p>
+    <p class="room">Référence : {{ room_name }}</p>
+    <p class="note">La salle est créée, mais aucun fournisseur de visioconférence n’est configuré pour établir l’appel vidéo/audio.</p>
+    <a class="link" href="{% url 'accounts:messages_list' %}">Retour aux échanges</a>
+  </main>
+</body>
+</html>

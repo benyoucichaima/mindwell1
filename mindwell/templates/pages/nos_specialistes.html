@@ -1,0 +1,931 @@
+{% load static %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nos psychologues cliniciens - MindWell Algérie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- خط Cairo لدعم اللغة العربية بشكل احترافي -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* ===== Palette de couleurs - Design moderne Slate ===== */
+      :root {
+        --primary-dark: #0f172a;
+        --primary-medium: #1e293b;
+        --primary-light: #64748b;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-light: #94a3b8;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #f1f5f9;
+        --bg-warm: #f8fafc;
+        --border-color: #e2e8f0;
+        --border-light: #f1f5f9;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+        --shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+        --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08);
+        --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+        --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.08);
+        --radius-sm: 0.375rem;
+        --radius: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        --transition: all 0.3s ease;
+        --font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        --font-ar: "Cairo", "Inter", sans-serif;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--font-family);
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      html[lang="ar"] body { font-family: var(--font-ar); }
+
+      img { max-width: 100%; height: auto; display: block; }
+      a { text-decoration: none; color: inherit; }
+      button { font-family: inherit; cursor: pointer; border: none; background: none; }
+      ul { list-style: none; }
+
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+      .header {
+        background: var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .navbar { padding: 1rem 0; }
+      .navbar-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        position: relative;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      .logo i { font-size: 1.75rem; color: var(--primary-dark); }
+      
+      .nav-menu { display: flex; align-items: center; gap: 1.5rem; }
+      .nav-link {
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: var(--transition);
+        padding: 0.5rem 0;
+        position: relative;
+      }
+      .nav-link:hover, .nav-link.active { color: var(--text-primary); }
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--primary-dark);
+      }
+      
+      .nav-actions { display: flex; align-items: center; gap: 1rem; }
+      .mobile-menu-toggle { display: none; font-size: 1.5rem; color: var(--text-primary); }
+
+      .lang-switcher {
+        display: flex;
+        gap: 2px;
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-xl);
+        padding: 4px;
+        border: 1px solid var(--border-color);
+      }
+      .lang-switcher button {
+        padding: 4px 10px;
+        border-radius: var(--radius);
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+      .lang-switcher button.active { background: var(--primary-dark); color: white; }
+      .lang-switcher button:hover:not(.active) { background: var(--bg-secondary); }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        border-radius: var(--radius);
+        transition: var(--transition);
+        border: 2px solid transparent;
+      }
+      .btn-primary { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
+      .btn-primary:hover {
+        background: var(--primary-medium);
+        border-color: var(--primary-medium);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+      .btn-outline { background: transparent; color: var(--text-primary); border-color: var(--border-color); }
+      .btn-outline:hover { background: var(--bg-tertiary); border-color: var(--text-primary); }
+      .btn-sm { padding: 0.5rem 1rem; font-size: 0.875rem; }
+      .btn-lg { padding: 0.875rem 2rem; font-size: 1rem; }
+
+      .main-content { padding: 3rem 0; min-height: calc(100vh - 400px); }
+
+      .page-header { text-align: center; max-width: 800px; margin: 0 auto 3rem; }
+      .page-header h1 { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; line-height: 1.2; }
+      .page-header p { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.7; }
+
+      .filters-section {
+        margin-bottom: 3rem;
+        background: var(--bg-primary);
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+      }
+      .filters-container { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
+      .filter-group { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-xl);
+        transition: var(--transition);
+        border: 1px solid transparent;
+      }
+      .filter-btn:hover { background: var(--bg-secondary); color: var(--text-primary); }
+      .filter-btn.active { background: var(--primary-dark); color: white; }
+      
+      .search-box { position: relative; flex: 1; min-width: 250px; max-width: 350px; }
+      .search-box i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-light); }
+      html[dir="rtl"] .search-box i { left: auto; right: 1rem; }
+      .search-box input {
+        width: 100%;
+        padding: 0.625rem 1rem 0.625rem 2.75rem;
+        font-size: 0.9375rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        background: var(--bg-primary);
+        transition: var(--transition);
+        font-family: inherit;
+      }
+      html[dir="rtl"] .search-box input { padding: 0.625rem 2.75rem 0.625rem 1rem; }
+      .search-box input:focus { outline: none; border-color: var(--primary-dark); box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08); }
+      .search-box input::placeholder { color: var(--text-light); }
+
+      /* ===== تحسين عرض الأطباء: شبكة موحدة وصور متساوية ===== */
+      .psychologists-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 2rem;
+        margin-bottom: 4rem;
+      }
+      .psychologist-card {
+        display: flex;
+        flex-direction: column;
+        background: var(--bg-primary);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+        height: 100%;
+      }
+      .psychologist-card:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-4px);
+        border-color: var(--primary-light);
+      }
+      
+      .card-image {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1 / 1; /* يجعل جميع الصور مربعة ومتساوية الحجم تماماً */
+        overflow: hidden;
+        background: var(--bg-tertiary);
+      }
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%; /* يركز على الوجه ويمنع قص الرأس */
+        transition: transform 0.5s ease;
+      }
+      .psychologist-card:hover .card-image img { transform: scale(1.05); }
+
+      .availability-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-xl);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        box-shadow: var(--shadow-md);
+        backdrop-filter: blur(4px);
+      }
+      html[dir="rtl"] .availability-badge { left: auto; right: 1rem; }
+      .availability-badge.online { background: var(--success); }
+      .availability-badge.offline { background: var(--primary-light); }
+      .availability-badge i { font-size: 0.5rem; }
+
+      .card-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1; /* يأخذ المساحة المتبقية لدفع الفوتر للأسفل */
+      }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .card-header h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+        line-height: 1.3;
+      }
+      .card-header .title {
+        font-size: 0.9375rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        background: var(--bg-tertiary);
+        padding: 0.375rem 0.75rem;
+        border-radius: var(--radius);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .rating i { color: var(--warning); font-size: 0.875rem; }
+      .rating span:first-child { font-weight: 700; color: var(--text-primary); font-size: 0.9375rem; }
+      .reviews { color: var(--text-light); font-size: 0.8125rem; }
+
+      .specialties-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .tag {
+        padding: 0.375rem 0.75rem;
+        background: var(--bg-tertiary);
+        color: var(--text-secondary);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+      }
+      .tag:hover { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
+
+      .card-details {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 0.75rem 0;
+        border-top: 1px solid var(--border-light);
+        border-bottom: 1px solid var(--border-light);
+      }
+      .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+      }
+      .detail-item i { color: var(--primary-light); width: 1rem; text-align: center; }
+      
+      .description {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        font-size: 0.9375rem;
+        flex: 1;
+      }
+
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1rem;
+        margin-top: auto; /* يدفع الفوتر دائماً للأسفل لمحاذاة موحدة */
+        gap: 1rem;
+      }
+      .price { display: flex; flex-direction: column; }
+      .price .amount { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); line-height: 1; }
+      .price .period { font-size: 0.8125rem; color: var(--text-light); margin-top: 0.25rem; }
+      .card-actions { display: flex; gap: 0.75rem; }
+
+      .cta-section {
+        background: var(--bg-tertiary);
+        border-radius: var(--radius-xl);
+        padding: 4rem 3rem;
+        text-align: center;
+        margin-bottom: 4rem;
+        border: 1px solid var(--border-color);
+      }
+      .cta-content h2 { font-size: 2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; }
+      .cta-content p { font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem; }
+      .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+      .info-section { margin-bottom: 4rem; }
+      .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+      .info-card {
+        background: var(--bg-primary);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+      }
+      .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+      .info-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--bg-tertiary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+      }
+      .info-icon i { font-size: 1.75rem; color: var(--primary-dark); }
+      .info-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--text-primary); }
+      .info-card p { color: var(--text-secondary); font-size: 0.9375rem; line-height: 1.6; }
+
+      .footer { background: var(--bg-tertiary); color: var(--text-primary); padding: 4rem 0 2rem; border-top: 1px solid var(--border-color); }
+      .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3rem; }
+      .footer-brand .logo { color: var(--text-primary); margin-bottom: 1rem; display: inline-flex; }
+      .footer-brand p { color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.7; }
+      .social-links { display: flex; gap: 1rem; }
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+        color: var(--text-secondary);
+      }
+      .social-links a:hover { background: var(--primary-dark); color: white; border-color: var(--primary-dark); transform: translateY(-3px); }
+      .footer-links h4, .footer-contact h4 { font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary); }
+      .footer-links ul, .footer-contact ul { display: flex; flex-direction: column; gap: 0.75rem; }
+      .footer-links a, .footer-contact li { color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; gap: 0.5rem; }
+      .footer-links a:hover { color: var(--text-primary); padding-left: 0.5rem; }
+      html[dir="rtl"] .footer-links a:hover { padding-left: 0; padding-right: 0.5rem; }
+      .footer-contact li i { color: var(--primary-light); width: 1.25rem; }
+      
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      html[dir="rtl"] .footer-bottom { flex-direction: row-reverse; }
+      .footer-bottom p { color: var(--text-light); font-size: 0.875rem; }
+      .footer-legal { display: flex; gap: 2rem; }
+      .footer-legal a { color: var(--text-light); font-size: 0.875rem; transition: var(--transition); }
+      .footer-legal a:hover { color: var(--text-primary); }
+
+      @media (max-width: 1024px) {
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+        .footer-brand { grid-column: 1 / -1; }
+      }
+      @media (max-width: 768px) {
+        .nav-menu, .nav-actions { display: none; }
+        .mobile-menu-toggle { display: block; }
+        .page-header h1 { font-size: 1.875rem; }
+        .filters-container { flex-direction: column; align-items: stretch; }
+        .filter-group { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .filter-group::-webkit-scrollbar { display: none; }
+        .search-box { max-width: 100%; }
+        .psychologists-list { grid-template-columns: 1fr; }
+        .cta-section { padding: 2.5rem 1.5rem; }
+        .cta-content h2 { font-size: 1.5rem; }
+        .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .footer-bottom { flex-direction: column; text-align: center; }
+        html[dir="rtl"] .footer-bottom { flex-direction: column; }
+      }
+      @media (max-width: 480px) {
+        .container { padding: 0 1rem; }
+        .page-header h1 { font-size: 1.5rem; }
+        .page-header p { font-size: 1rem; }
+        .card-content { padding: 1.25rem; }
+        .card-header h3 { font-size: 1.125rem; }
+        .price .amount { font-size: 1.25rem; }
+        .card-actions { flex-direction: column; width: 100%; }
+        .card-actions .btn { width: 100%; }
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .psychologist-card { animation: fadeIn 0.6s ease-out; }
+      .psychologist-card.hidden { display: none; }
+
+      .nav-menu.active, .nav-actions.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-primary);
+        padding: 1rem;
+        box-shadow: var(--shadow-lg);
+        border-top: 1px solid var(--border-color);
+      }
+      html[dir="rtl"] .nav-menu.active, html[dir="rtl"] .nav-actions.active { left: auto; right: 0; }
+      .nav-menu.active .nav-link { padding: 0.75rem; width: 100%; text-align: center; }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <header class="header">
+      <nav class="navbar">
+        <div class="container navbar-container">
+          <a href="{% url 'home' %}" class="logo">
+            <i class="fas fa-brain"></i>
+            <span>MindWell</span>
+          </a>
+
+          <div class="nav-menu" id="navMenu">
+            <a href="{% url 'home' %}" class="nav-link" data-i18n="nav_home">Accueil</a>
+            <a href="{% url 'specialties' %}" class="nav-link" data-i18n="nav_specialties">Spécialités</a>
+            <a href="{% url 'psychologists' %}" class="nav-link active" data-i18n="nav_psychologists">Nos psychologues</a>
+            <a href="{% url 'comment_ca_marche' %}" class="nav-link" data-i18n="nav_how">Comment ça marche</a>
+            <a href="{% url 'about' %}" class="nav-link" data-i18n="nav_about">À propos</a>
+            <a href="{% url 'faq' %}" class="nav-link" data-i18n="nav_faq">FAQ</a>
+          </div>
+
+          <div class="nav-actions">
+            <div class="lang-switcher">
+              <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+              <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+              <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+            </div>
+            <a href="{% url 'accounts:login' %}" class="btn btn-outline" data-i18n="btn_login">Connexion</a>
+            <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary" data-i18n="btn_signup">S'inscrire</a>
+          </div>
+
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+        <section class="page-header">
+          <h1 data-i18n="page_title">Nos psychologues cliniciens à votre écoute</h1>
+          <p data-i18n="page_subtitle">
+            Consultez en ligne ou en cabinet avec nos psychologues certifiés et expérimentés à travers l'Algérie. Choisissez le professionnel qui correspond le mieux à vos besoins.
+          </p>
+        </section>
+
+        <section class="filters-section">
+          <div class="filters-container">
+            <div class="filter-group">
+              <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Tous</button>
+              <button class="filter-btn" data-filter="anxiety" data-i18n="filter_anxiety">Anxiété</button>
+              <button class="filter-btn" data-filter="depression" data-i18n="filter_depression">Dépression</button>
+              <button class="filter-btn" data-filter="couple" data-i18n="filter_couple">Thérapie de couple</button>
+              <button class="filter-btn" data-filter="children" data-i18n="filter_children">Enfants & Adolescents</button>
+              <button class="filter-btn" data-filter="trauma" data-i18n="filter_trauma">Traumatismes</button>
+              <button class="filter-btn" data-filter="addiction" data-i18n="filter_addiction">Addictions</button>
+            </div>
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" data-i18n-placeholder="search_placeholder" placeholder="Rechercher un psychologue..." id="searchInput" />
+            </div>
+          </div>
+        </section>
+
+        <section class="psychologists-list" id="psychologistsList">
+          {% for psy in psychologists %}
+          <article
+            class="psychologist-card"
+            data-specialties="{{ psy.specialty }} {{ psy.sub_specialties|default:''|lower }}"
+          >
+            <div class="card-image">
+              {% if psy.photo %}
+                <img src="{{ psy.photo.url }}" alt="Dr. {{ psy.user.first_name }}" />
+              {% else %}
+                {% if psy.user.first_name == 'Amel' %}
+                  <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop" alt="Dr. Amel" />
+                {% elif psy.user.first_name == 'Karim' and psy.user.last_name == 'Mansouri' %}
+                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" alt="Dr. Karim" />
+                {% elif psy.user.first_name == 'Leila' %}
+                  <img src="https://i.pinimg.com/736x/51/fe/49/51fe4985b301e6667b5dbc455d278147.jpg" alt="Dr. Leila" />
+                {% elif psy.user.first_name == 'Yacine' %}
+                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop" alt="Dr. Yacine" />
+                {% elif psy.user.first_name == 'Nadia' %}
+                  <img src="https://i.pinimg.com/736x/3d/d5/14/3dd51424ec49dd4b550596da7e48e680.jpg" alt="Dr. Nadia" />
+                {% elif psy.user.first_name == 'Samia' %}
+                  <img src="https://i.pinimg.com/1200x/29/4c/e2/294ce244da19775f9f08ee36ba3a1cf6.jpg" alt="Dr. Samia" />
+                {% elif psy.user.first_name == 'Farid' %}
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Dr. Farid" />
+                {% elif psy.user.first_name == 'Sarah' %}
+                  <img src="https://i.pinimg.com/736x/c8/24/41/c82441758d43aea1c1df5131aafefbd3.jpg" alt="Dr. Sarah" />
+                {% elif psy.user.first_name == 'Rachid' %}
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop" alt="Dr. Rachid" />
+                {% elif psy.user.first_name == 'Amina' %}
+                  <img src="https://i.pinimg.com/736x/9d/4f/81/9d4f8163cc84126715db309f1b07273f.jpg" alt="Dr. Amina" />
+                {% elif psy.user.first_name == 'Karim' and psy.user.last_name == 'Bouzid' %}
+                  <img src="https://i.pinimg.com/1200x/e4/fc/85/e4fc85f8036228126b83e837038f4353.jpg" alt="Dr. Karim B." />
+                {% elif psy.user.first_name == 'Lina' %}
+                  <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop" alt="Dr. Lina" />
+                {% elif psy.user.first_name == 'Yassine' %}
+                  <img src="https://i.pinimg.com/736x/1d/f1/48/1df148bff017c65474e302ce4b0d3ec5.jpg" alt="Dr. Yassine" />
+                {% elif psy.user.first_name == 'Nour El Houda' %}
+                  <img src="https://i.pinimg.com/736x/18/d1/8b/18d18ba9be61fd9a9e75dc2ce1c64296.jpg" alt="Dr. Nour" />
+                {% elif psy.user.first_name == 'Mehdi' %}
+                  <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=400&fit=crop" alt="Dr. Mehdi" />
+                {% else %}
+                  <img src="https://pin.it/pZTjBF6pZ" alt="Photo par défaut" />
+                {% endif %}
+              {% endif %}
+
+              <div class="availability-badge {% if psy.consultation_mode == 'online' or psy.consultation_mode == 'both' %}online{% else %}offline{% endif %}">
+                <i class="fas fa-circle"></i>
+                <span>
+                  {% if psy.consultation_mode == 'online' %}Disponible en ligne
+                  {% elif psy.consultation_mode == 'cabinet' %}En cabinet uniquement
+                  {% else %}En cabinet et en ligne{% endif %}
+                </span>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-header">
+                <div>
+                  <h3>Dr. {{ psy.user.first_name }} {{ psy.user.last_name }}</h3>
+                  <p class="title">{{ psy.title }} - {{ psy.get_specialty_display }}</p>
+                </div>
+                {% if psy.rating_count %}
+                <div class="rating" aria-label="Note moyenne {{ psy.rating_average|floatformat:1 }} sur 5">
+                  <i class="fas fa-star" aria-hidden="true"></i>
+                  <span>{{ psy.rating_average|floatformat:1 }}/5</span>
+                  <span class="reviews">({{ psy.rating_count }} avis)</span>
+                </div>
+                {% else %}
+                <span class="rating-new">Nouveau</span>
+                {% endif %}
+              </div>
+
+              <div class="specialties-tags">
+                <span class="tag">{{ psy.get_specialty_display }}</span>
+                {% if psy.sub_specialties %}
+                  <span class="tag">{{ psy.sub_specialties }}</span>
+                {% endif %}
+              </div>
+
+              <div class="card-details">
+                <div class="detail-item">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>{{ psy.experience_years }} <span data-i18n="detail_exp">ans d'expérience</span></span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-language"></i>
+                  <span>{{ psy.languages }}</span>
+                </div>
+                <div class="detail-item">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>{{ psy.city }}</span>
+                </div>
+              </div>
+
+              <p class="description">{{ psy.biography|truncatewords:25 }}</p>
+
+              <div class="card-footer">
+                <div class="price">
+                  <span class="amount">{{ psy.hourly_rate|floatformat:0 }} DA</span>
+                  <span class="period" data-i18n="detail_session">/ séance ({{ psy.session_duration }} min)</span>
+                </div>
+                <div class="card-actions">
+                  <a href="{% url 'psychologist_detail' psy.user.id %}" class="btn btn-outline btn-sm" data-i18n="btn_learn_more">En savoir plus</a>
+                  <a href="{% url 'booking' psy.user.id %}" class="btn btn-primary btn-sm" data-i18n="btn_book">Réserver</a>
+                </div>
+              </div>
+            </div>
+          </article>
+          {% empty %}
+          <div style="text-align: center; padding: 3rem; color: var(--text-secondary); grid-column: 1 / -1;">
+            <i class="fas fa-user-md" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5"></i>
+            <p>Aucun psychologue disponible pour le moment.</p>
+          </div>
+          {% endfor %}
+        </section>
+
+        <section class="cta-section">
+          <div class="cta-content">
+            <h2 data-i18n="cta_title">Consultez sans vous déplacer partout en Algérie</h2>
+            <p data-i18n="cta_desc">
+              Bénéficiez d'un suivi psychologique de qualité depuis votre domicile. Nos psychologues sont disponibles en visioconférence sécurisée.
+            </p>
+            <div class="cta-buttons">
+              <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary btn-lg" data-i18n="cta_btn_start">Commencer maintenant</a>
+              <a href="{% url 'comment_ca_marche' %}" class="btn btn-outline btn-lg" data-i18n="cta_btn_how">Comment ça marche ?</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="info-section">
+          <div class="info-grid">
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-shield-alt"></i></div>
+              <h3 data-i18n="info_conf_title">Confidentialité garantie</h3>
+              <p data-i18n="info_conf_desc">Vos échanges sont protégés et confidentiels. Plateforme sécurisée.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-clock"></i></div>
+              <h3 data-i18n="info_flex_title">Disponibilité flexible</h3>
+              <p data-i18n="info_flex_desc">Réservez vos séances 24h/24 et 7j/7 selon vos disponibilités.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-money-bill-wave"></i></div>
+              <h3 data-i18n="info_price_title">Tarifs transparents</h3>
+              <p data-i18n="info_price_desc">Pas de frais cachés. Paiement sécurisé en ligne ou en cabinet.</p>
+            </div>
+            <div class="info-card">
+              <div class="info-icon"><i class="fas fa-certificate"></i></div>
+              <h3 data-i18n="info_cert_title">Professionnels certifiés</h3>
+              <p data-i18n="info_cert_desc">Tous nos psychologues sont diplômés et inscrits auprès des autorités compétentes.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="{% url 'home' %}" class="logo">
+              <i class="fas fa-brain"></i>
+              <span>MindWell</span>
+            </a>
+            <p data-i18n="footer_brand_desc">
+              Votre santé mentale est notre priorité. Consultez des psychologues qualifiés en ligne ou en cabinet à travers l'Algérie.
+            </p>
+          </div>
+          <div class="footer-links">
+            <h4 data-i18n="footer_plat">Plateforme</h4>
+            <ul>
+              <li><a href="{% url 'specialties' %}" data-i18n="nav_specialties">Spécialités</a></li>
+              <li><a href="{% url 'psychologists' %}" data-i18n="footer_psychologists">Nos psychologues</a></li>
+              <li><a href="{% url 'comment_ca_marche' %}" data-i18n="nav_how">Comment ça marche</a></li>
+              <li><a href="{% url 'tarifs' %}" data-i18n="footer_tarifs">Tarifs</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4 data-i18n="footer_comp">Entreprise</h4>
+            <ul>
+              <li><a href="{% url 'about' %}" data-i18n="nav_about">À propos</a></li>
+              <li><a href="{% url 'carriere' %}" data-i18n="footer_careers">Carrières</a></li>
+              <li><a href="{% url 'presse' %}" data-i18n="footer_press">Presse</a></li>
+              <li><a href="{% url 'blog' %}" data-i18n="footer_blog">Blog</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4 data-i18n="footer_supp">Support</h4>
+            <ul>
+              <li><a href="{% url 'faq' %}" data-i18n="nav_faq">FAQ</a></li>
+              <li><a href="{% url 'contact' %}" data-i18n="footer_contact_link">Contact</a></li>
+              <li><a href="{% url 'urgence' %}" data-i18n="footer_emergency">Urgences</a></li>
+              <li><a href="{% url 'aide' %}" data-i18n="footer_help">Centre d'aide</a></li>
+            </ul>
+          </div>
+          <div class="footer-contact">
+            <h4 data-i18n="footer_contact">Contact</h4>
+            <ul>
+              <li><i class="fas fa-envelope"></i> contact@mindwell.dz</li>
+              <li><i class="fas fa-phone"></i> +213 21 XX XX XX</li>
+              <li><i class="fas fa-map-marker-alt"></i> Alger, Algérie</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-i18n="footer_copy">&copy; 2024 MindWell Algérie. Tous droits réservés.</p>
+          <div class="footer-legal">
+            <a href="{% url 'mentions_legales' %}" data-i18n="footer_legal_mentions">Mentions légales</a>
+            <a href="{% url 'confidentialite' %}" data-i18n="footer_legal_privacy">Confidentialité</a>
+            <a href="{% url 'cookies' %}">Cookies</a>
+            <a href="{% url 'cgv' %}" data-i18n="footer_legal_cgu">CGU</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const translations = {
+        fr: {
+          nav_home: "Accueil", nav_specialties: "Spécialités", nav_psychologists: "Nos psychologues", nav_how: "Comment ça marche", nav_about: "À propos", nav_faq: "FAQ", btn_login: "Connexion", btn_signup: "S'inscrire", page_title: "Nos psychologues cliniciens à votre écoute", page_subtitle: "Consultez en ligne ou en cabinet avec nos psychologues certifiés et expérimentés à travers l'Algérie. Choisissez le professionnel qui correspond le mieux à vos besoins.", filter_all: "Tous", filter_anxiety: "Anxiété", filter_depression: "Dépression", filter_couple: "Thérapie de couple", filter_children: "Enfants & Adolescents", filter_trauma: "Traumatismes", filter_addiction: "Addictions", search_placeholder: "Rechercher un psychologue...", detail_exp: "ans d'expérience", detail_session: "/ séance", btn_learn_more: "En savoir plus", btn_book: "Réserver", cta_title: "Consultez sans vous déplacer partout en Algérie", cta_desc: "Bénéficiez d'un suivi psychologique de qualité depuis votre domicile. Nos psychologues sont disponibles en visioconférence sécurisée.", cta_btn_start: "Commencer maintenant", cta_btn_how: "Comment ça marche ?", info_conf_title: "Confidentialité garantie", info_conf_desc: "Vos échanges sont protégés et confidentiels. Plateforme sécurisée.", info_flex_title: "Disponibilité flexible", info_flex_desc: "Réservez vos séances 24h/24 et 7j/7 selon vos disponibilités.", info_price_title: "Tarifs transparents", info_price_desc: "Pas de frais cachés. Paiement sécurisé en ligne ou en cabinet.", info_cert_title: "Professionnels certifiés", info_cert_desc: "Tous nos psychologues sont diplômés et inscrits auprès des autorités compétentes.", footer_brand_desc: "Votre santé mentale est notre priorité. Consultez des psychologues qualifiés en ligne ou en cabinet à travers l'Algérie.", footer_plat: "Plateforme", footer_psychologists: "Nos psychologues", footer_tarifs: "Tarifs", footer_comp: "Entreprise", footer_careers: "Carrières", footer_press: "Presse", footer_blog: "Blog", footer_supp: "Support", footer_contact_link: "Contact", footer_emergency: "Urgences", footer_help: "Centre d'aide", footer_contact: "Contact", footer_copy: "© 2024 MindWell Algérie. Tous droits réservés.", footer_legal_mentions: "Mentions légales", footer_legal_privacy: "Confidentialité", footer_legal_cgu: "CGU"
+        },
+        en: {
+          nav_home: "Home", nav_specialties: "Specialties", nav_psychologists: "Our Psychologists", nav_how: "How it works", nav_about: "About", nav_faq: "FAQ", btn_login: "Log in", btn_signup: "Sign up", page_title: "Our Clinical Psychologists at Your Service", page_subtitle: "Consult online or in-office with our certified and experienced psychologists across Algeria. Choose the professional that best fits your needs.", filter_all: "All", filter_anxiety: "Anxiety", filter_depression: "Depression", filter_couple: "Couples Therapy", filter_children: "Children & Teens", filter_trauma: "Trauma", filter_addiction: "Addictions", search_placeholder: "Search for a psychologist...", detail_exp: "years of experience", detail_session: "/ session", btn_learn_more: "Learn more", btn_book: "Book now", cta_title: "Consult from anywhere in Algeria", cta_desc: "Benefit from quality psychological support from your home. Our psychologists are available via secure video conferencing.", cta_btn_start: "Start now", cta_btn_how: "How it works?", info_conf_title: "Guaranteed Confidentiality", info_conf_desc: "Your exchanges are protected and confidential. Secure platform.", info_flex_title: "Flexible Availability", info_flex_desc: "Book your sessions 24/7 according to your availability.", info_price_title: "Transparent Pricing", info_price_desc: "No hidden fees. Secure payment online or in-office.", info_cert_title: "Certified Professionals", info_cert_desc: "All our psychologists are degree-holders and registered with competent authorities.", footer_brand_desc: "Your mental health is our priority. Consult qualified psychologists online or in-office across Algeria.", footer_plat: "Platform", footer_psychologists: "Our Psychologists", footer_tarifs: "Pricing", footer_comp: "Company", footer_careers: "Careers", footer_press: "Press", footer_blog: "Blog", footer_supp: "Support", footer_contact_link: "Contact", footer_emergency: "Emergencies", footer_help: "Help Center", footer_contact: "Contact", footer_copy: "© 2024 MindWell Algeria. All rights reserved.", footer_legal_mentions: "Legal Notices", footer_legal_privacy: "Privacy", footer_legal_cgu: "Terms of Use"
+        },
+        ar: {
+          nav_home: "الرئيسية", nav_specialties: "التخصصات", nav_psychologists: "أخصاؤنا النفسيون", nav_how: "كيف يعمل", nav_about: "من نحن", nav_faq: "الأسئلة الشائعة", btn_login: "تسجيل الدخول", btn_signup: "إنشاء حساب", page_title: "أخصاؤنا النفسيون السريريون في خدمتك", page_subtitle: "استشر عبر الإنترنت أو في العيادة مع أخصائيينا النفسيين المعتمدين وذوي الخبرة في جميع أنحاء الجزائر. اختر المهني الذي يناسب احتياجاتك بشكل أفضل.", filter_all: "الكل", filter_anxiety: "القلق", filter_depression: "الاكتئاب", filter_couple: "علاج الأزواج", filter_children: "الأطفال والمراهقين", filter_trauma: "الصدمات", filter_addiction: "الإدمان", search_placeholder: "ابحث عن أخصائي نفسي...", detail_exp: "سنوات خبرة", detail_session: "/ جلسة", btn_learn_more: "اعرف المزيد", btn_book: "احجز الآن", cta_title: "استشر من أي مكان في الجزائر", cta_desc: "استفد من متابعة نفسية عالية الجودة من منزلك. أخصاؤنا النفسيون متاحون عبر مؤتمرات الفيديو الآمنة.", cta_btn_start: "ابدأ الآن", cta_btn_how: "كيف يعمل؟", info_conf_title: "سرية مضمونة", info_conf_desc: "تبادلاتك محمية وسرية. منصة آمنة.", info_flex_title: "مرونة في المواعيد", info_flex_desc: "احجز جلساتك على مدار 24 ساعة طوال أيام الأسبوع حسب توافرك.", info_price_title: "أسعار شفافة", info_price_desc: "لا رسوم خفية. دفع آمن عبر الإنترنت أو في العيادة.", info_cert_title: "مهنيون معتمدون", info_cert_desc: "جميع أخصائيينا النفسيون حاصلون على شهادات ومسجلون لدى السلطات المختصة.", footer_brand_desc: "صحتك النفسية هي أولويتنا. استشر أخصائيين نفسيين مؤهلين عبر الإنترنت أو في العيادة في جميع أنحاء الجزائر.", footer_plat: "المنصة", footer_psychologists: "أخصاؤنا النفسيون", footer_tarifs: "الأسعار", footer_comp: "الشركة", footer_careers: "الوظائف", footer_press: "الصحافة", footer_blog: "المدونة", footer_supp: "الدعم", footer_contact_link: "اتصل بنا", footer_emergency: "حالات الطوارئ", footer_help: "مركز المساعدة", footer_contact: "اتصل بنا", footer_copy: "© 2024 MindWell الجزائر. جميع الحقوق محفوظة.", footer_legal_mentions: "إشعارات قانونية", footer_legal_privacy: "الخصوصية", footer_legal_cgu: "شروط الاستخدام"
+        }
+      };
+
+      function setLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        const html = document.getElementById("htmlRoot");
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            const icon = el.querySelector("i");
+            if (icon && lang !== "ar") {
+              el.innerHTML = t[key] + " " + icon.outerHTML;
+            } else if (icon && lang === "ar") {
+              el.innerHTML = icon.outerHTML + " " + t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((input) => {
+          const key = input.getAttribute("data-i18n-placeholder");
+          if (t[key]) input.setAttribute("placeholder", t[key]);
+        });
+
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+        });
+
+        localStorage.setItem("mindwell_lang", lang);
+        localStorage.setItem("preferredLanguage", lang);
+        document.cookie = `django_language=${lang}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setLanguage("{{ LANGUAGE_CODE }}");
+
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const navMenu = document.getElementById("navMenu");
+        const navActions = document.querySelector(".nav-actions");
+
+        if (mobileMenuToggle) {
+          mobileMenuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+            navActions.classList.toggle("active");
+            const icon = mobileMenuToggle.querySelector("i");
+            if (navMenu.classList.contains("active")) {
+              icon.classList.remove("fa-bars");
+              icon.classList.add("fa-times");
+            } else {
+              icon.classList.remove("fa-times");
+              icon.classList.add("fa-bars");
+            }
+          });
+        }
+
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const psychologistCards = document.querySelectorAll(".psychologist-card");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            filterButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            const filterValue = button.getAttribute("data-filter");
+            psychologistCards.forEach((card) => {
+              if (filterValue === "all") {
+                card.classList.remove("hidden");
+                card.style.animation = "fadeIn 0.6s ease-out";
+              } else {
+                const specialties = card.getAttribute("data-specialties");
+                if (specialties && specialties.includes(filterValue)) {
+                  card.classList.remove("hidden");
+                  card.style.animation = "fadeIn 0.6s ease-out";
+                } else {
+                  card.classList.add("hidden");
+                }
+              }
+            });
+          });
+        });
+
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) {
+          searchInput.addEventListener("input", (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            psychologistCards.forEach((card) => {
+              const name = card.querySelector("h3").textContent.toLowerCase();
+              const title = card.querySelector(".title").textContent.toLowerCase();
+              const description = card.querySelector(".description").textContent.toLowerCase();
+              const tags = Array.from(card.querySelectorAll(".tag")).map((tag) => tag.textContent.toLowerCase());
+
+              const matchesSearch = name.includes(searchTerm) || title.includes(searchTerm) || description.includes(searchTerm) || tags.some((tag) => tag.includes(searchTerm));
+
+              if (matchesSearch) {
+                card.classList.remove("hidden");
+                card.style.animation = "fadeIn 0.6s ease-out";
+              } else {
+                card.classList.add("hidden");
+              }
+            });
+          });
+        }
+
+        const currentPath = window.location.pathname;
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          const href = link.getAttribute("href");
+          if (href && href !== "#" && !href.includes("{%")) {
+            const cleanPath = currentPath.replace(/\/$/, "");
+            const cleanHref = href.replace(/\/$/, "");
+            if (cleanPath === cleanHref || cleanPath.startsWith(cleanHref + "/")) {
+              link.classList.add("active");
+            }
+          }
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { root: null, rootMargin: "0px", threshold: 0.1 }
+        );
+
+        psychologistCards.forEach((card, index) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(20px)";
+          card.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
+          observer.observe(card);
+        });
+
+        if ("loading" in HTMLImageElement.prototype) {
+          document.querySelectorAll(".card-image img").forEach((img) => img.setAttribute("loading", "lazy"));
+        }
+      });
+    </script>
+  </body>
+</html>

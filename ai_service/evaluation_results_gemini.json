@@ -1,0 +1,117 @@
+[
+  {
+    "conversation_id": "conv_001",
+    "scenario_id": 1,
+    "language": "fr",
+    "theme": "Anxiété généralisée",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "success": true,
+    "error": null,
+    "latency_ms": 26840,
+    "output": {
+      "summary": "Le patient rapporte se sentir sur le qui-vive depuis plusieurs mois, perturbant son sommeil et générant des inquiétudes constantes. Il identifie le travail et les relations sociales comme des déclencheurs majeurs, craignant le jugement et les erreurs. Il décrit des symptômes physiques d'anxiété, notamment une accélération du rythme cardiaque et une respiration difficile. Après l'intervention du praticien, le patient accepte d'essayer un exercice de relaxation à domicile tout en exprimant des doutes quant à son efficacité.",
+      "themes": [
+        "Anxiété générale et hypervigilance",
+        "Troubles du sommeil",
+        "Stress professionnel et social",
+        "Peur du jugement et de l'erreur",
+        "Manifestations somatiques de l'anxiété",
+        "Réceptivité et doutes face aux techniques de gestion de la tension"
+      ],
+      "emotions": [
+        "Inquiétude",
+        "Peur",
+        "Tension",
+        "Doute"
+      ],
+      "keywords": [
+        "sur le qui-vive",
+        "dors mal",
+        "inquiète",
+        "travail",
+        "relations sociales",
+        "peur d'être jugé",
+        "cœur s'accélère",
+        "mal à respirer"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par verbaliser un état d'alerte et de peur généralisée. Au fil des questions, il précise ses symptômes physiques et contextuels. Confronté à une proposition d'exercice, il exprime une hésitation et un doute sur l'efficacité de la méthode pour lui, avant de montrer une disposition prudente à l'expérimentation."
+    },
+    "timestamp": 1794337184.243941,
+    "structural_validation": {
+      "valid": true,
+      "errors": []
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      }
+    },
+    "quality_passed": true,
+    "requires_human_review": true
+  },
+  {
+    "conversation_id": "conv_004",
+    "scenario_id": 2,
+    "language": "fr",
+    "theme": "Dépression légère",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "success": false,
+    "error": "The AI service is unavailable. Check the server logs and provider status.",
+    "latency_ms": 13747,
+    "output": null,
+    "timestamp": 1794337197.9963748,
+    "structural_validation": {
+      "valid": false,
+      "errors": [
+        "The AI service is unavailable. Check the server logs and provider status."
+      ]
+    },
+    "quality_checks": {},
+    "quality_passed": false,
+    "requires_human_review": false
+  },
+  {
+    "conversation_id": "conv_007",
+    "scenario_id": 3,
+    "language": "fr",
+    "theme": "Stress professionnel / burn-out",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash",
+    "success": false,
+    "error": "The AI provider rate limit or usage quota has been reached. Check the provider's usage and billing limits; automatic retries are not attempted.",
+    "latency_ms": 6091,
+    "output": null,
+    "timestamp": 1794337204.0961876,
+    "structural_validation": {
+      "valid": false,
+      "errors": [
+        "The AI provider rate limit or usage quota has been reached. Check the provider's usage and billing limits; automatic retries are not attempted."
+      ]
+    },
+    "quality_checks": {},
+    "quality_passed": false,
+    "requires_human_review": false
+  }
+]

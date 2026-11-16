@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes de consultation - MindWell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --navy:#111844; --blue:#4b5694; --cream:#faf9f6; --border:#e8e6e1; --muted:#74798f;
+                --green:#159570; --green-soft:#e7f7f1; --orange:#d98b25; --orange-soft:#fff5e5; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--cream); color: #20243a; margin: 0; padding: 32px 18px; }
+        .wrap { max-width: 1080px; margin: 0 auto; }
+        h1, h2 { font-family: Georgia, 'Times New Roman', serif; color: var(--navy); }
+        h1 { font-size: 1.7rem; margin: 0 0 4px; }
+        .sub { color: var(--muted); margin: 0 0 22px; }
+        .card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px; margin: 18px 0; box-shadow: 0 8px 25px rgba(17,24,68,.05); }
+        .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+        label { display: block; font-weight: 600; font-size: .9rem; margin-bottom: 8px; }
+        select, textarea { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid #d9deeb; border-radius: 10px; background: #fff; }
+        textarea { min-height: 130px; resize: vertical; line-height: 1.5; }
+        button { border: 0; border-radius: 10px; padding: 11px 16px; font: inherit; font-weight: 600; cursor: pointer; color: #fff; background: var(--navy); }
+        button:hover { background: var(--blue); }
+        button.send { background: var(--green); }
+        button.send:hover { background: #0f7a5b; }
+        .hint { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+        .back { display: inline-block; margin-bottom: 18px; color: var(--blue); text-decoration: none; font-weight: 600; }
+        .msg { padding: 12px 14px; border-radius: 10px; margin-bottom: 10px; }
+        .msg.success { background: var(--green-soft); color: #0f7a5b; }
+        .msg.error { background: #fde8e8; color: #c0392b; }
+        .note-list { display: grid; gap: 12px; margin-top: 14px; }
+        .note-item { border: 1px solid var(--border); border-radius: 12px; padding: 14px; background: #fff; }
+        .note-item.private { border-color: #f0d9b0; background: #fffaf0; }
+        .note-head { display: flex; justify-content: space-between; gap: 10px; align-items: center; margin-bottom: 8px; }
+        .badge { font-size: .7rem; font-weight: 700; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+        .badge.patient { background: var(--green-soft); color: var(--green); }
+        .badge.private { background: var(--orange-soft); color: var(--orange); }
+        .badge.rattrapage { background: #e3f2fd; color: #1976d2; }
+        .note-badges { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+        .note-date { font-size: .78rem; color: var(--muted); }
+        .note-body { white-space: pre-wrap; line-height: 1.55; font-size: .92rem; }
+        .section-title { display: flex; align-items: center; gap: 8px; font-size: 1.05rem; margin: 0 0 4px; }
+        .empty { color: var(--muted); font-size: .9rem; padding: 8px 0; }
+        .note-item.retracted { border-color: #e3b8b8; background: #fdf3f3; }
+        .badge.retracted { background: #fde8e8; color: #c0392b; }
+        .retract-box { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .retract-box input[type="text"] { flex: 1; min-width: 200px; font: inherit; padding: 8px 10px; border: 1px solid #d9deeb; border-radius: 8px; }
+        button.danger { background: #c0392b; }
+        button.danger:hover { background: #a5281b; }
+        .field { margin-bottom: 12px; }
+        .retraction-note { font-size: .82rem; color: #c0392b; margin-top: 6px; }
+    </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+<div class="wrap">
+    <a class="back" href="{% url 'accounts:psychologue_dashboard' %}"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+    <h1><i class="fas fa-notes-medical"></i> Notes de consultation</h1>
+    <p class="sub">Ces notes sont manuelles et indépendantes de l'analyse IA. Les notes privées ne sont jamais visibles par le patient.</p>
+
+    {% if messages %}{% for message in messages %}<div class="msg {{ message.tags }}">{{ message }}</div>{% endfor %}{% endif %}
+
+    {% if not patients %}
+        <div class="card"><p class="empty">Aucun patient suivi pour le moment.</p></div>
+    {% else %}
+    <div class="card">
+        <form method="get" style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;">
+            <div style="flex:1; min-width:240px;">
+                <label for="patient-select">Patient concerné</label>
+                <select id="patient-select" name="patient" onchange="this.form.submit()">
+                    <option value="">— Choisir un patient —</option>
+                    {% for p in patients %}
+                        <option value="{{ p.pk }}"{% if selected_patient and selected_patient.pk == p.pk %} selected{% endif %}>{{ p.get_full_name|default:p.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit">Afficher les notes</button>
+        </form>
+    </div>
+
+    {% if selected_patient %}
+    <div class="grid2">
+        <div class="card">
+            <h2 class="section-title"><i class="fas fa-user"></i> Note destinée au patient</h2>
+            <p class="hint">Visible par le patient, accompagnée d'une notification.</p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="note_type" value="patient">
+                <input type="hidden" name="patient" value="{{ selected_patient.pk }}">
+                <div class="field">
+                    <label for="patient-consultation">Consultation associée (facultatif)</label>
+                    <select id="patient-consultation" name="consultation">
+                        <option value="">— Aucune consultation précise —</option>
+                        {% for c in consultations %}
+                            <option value="{{ c.pk }}">{{ c.date|date:"d/m/Y" }} {{ c.start_time|time:"H:i" }} — {{ c.get_status_display }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <label for="patient-content">Contenu de la note</label>
+                <textarea id="patient-content" name="content" placeholder="Rédigez la note destinée au patient…" required></textarea>
+                <div style="margin-top:12px;"><button class="send" type="submit"><i class="fas fa-paper-plane"></i> Enregistrer et envoyer</button></div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title"><i class="fas fa-lock"></i> Notes professionnelles privées</h2>
+            <p class="hint">Réservées au psychologue. Jamais visibles par le patient, aucune notification.</p>
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="note_type" value="professional">
+                <input type="hidden" name="patient" value="{{ selected_patient.pk }}">
+                <div class="field">
+                    <label for="private-consultation">Consultation associée (facultatif)</label>
+                    <select id="private-consultation" name="consultation">
+                        <option value="">— Aucune consultation précise —</option>
+                        {% for c in consultations %}
+                            <option value="{{ c.pk }}">{{ c.date|date:"d/m/Y" }} {{ c.start_time|time:"H:i" }} — {{ c.get_status_display }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <label for="private-content">Observations personnelles</label>
+                <textarea id="private-content" name="content" placeholder="Observations, points à approfondir, suivi…" required></textarea>
+                <div style="margin-top:12px;"><button type="submit"><i class="fas fa-floppy-disk"></i> Enregistrer</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="section-title"><i class="fas fa-clock-rotate-left"></i> Historique — {{ selected_patient.get_full_name|default:selected_patient.username }}</h2>
+        {% if notes %}
+        <div class="note-list">
+            {% for note in notes %}
+            <div class="note-item {% if note.note_type == 'professional' %}private{% endif %}{% if note.retracted_at %} retracted{% endif %}">
+                <div class="note-head">
+                    <span class="note-badges">
+                        <span class="badge {% if note.note_type == 'patient' %}patient{% else %}private{% endif %}">
+                            {% if note.note_type == 'patient' %}Patient{% else %}Privée{% endif %}
+                        </span>
+                        {% if note.consultation.is_replacement %}
+                        <span class="badge rattrapage">Séance de rattrapage</span>
+                        {% endif %}
+                    </span>
+                    <span class="note-date">
+                        {% if note.sent_at %}{{ note.sent_at|date:"d/m/Y H:i" }}{% else %}{{ note.created_at|date:"d/m/Y H:i" }}{% endif %}
+                        {% if note.consultation %} · Consultation du {{ note.consultation.date|date:"d/m/Y" }}{% endif %}
+                    </span>
+                </div>
+                {% if note.retracted_at %}
+                <div class="note-body"><em>Cette note a été rétractée le {{ note.retracted_at|date:"d/m/Y H:i" }}.</em></div>
+                {% if note.retraction_reason %}<div class="retraction-note">Motif : {{ note.retraction_reason }}</div>{% endif %}
+                {% else %}
+                <div class="note-body">{{ note.content|linebreaks }}</div>
+                {% if note.note_type == 'patient' and note.sent_at %}
+                <form class="retract-box" method="post" action="{% url 'accounts:retract_consultation_note' note.pk %}">
+                    {% csrf_token %}
+                    <input type="text" name="reason" placeholder="Motif de rétractation (facultatif)">
+                    <button class="danger" type="submit"><i class="fas fa-rotate-left"></i> Rétracter</button>
+                </form>
+                {% endif %}
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty">Aucune note pour ce patient.</p>
+        {% endif %}
+    </div>
+    {% else %}
+        <div class="card"><p class="empty">Sélectionnez un patient pour consulter ou rédiger des notes.</p></div>
+    {% endif %}
+    {% endif %}
+</div>
+</body>
+</html>

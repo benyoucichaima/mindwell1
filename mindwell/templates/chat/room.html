@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversation | MindWell</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --navy: #111844;
+        --blue: #4b5694;
+        --cream: #faf8f5;
+        --border: #e5e7eb;
+        --muted: #64748b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, sans-serif;
+        background: var(--cream);
+        color: var(--navy);
+      }
+
+      header {
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 18px 22px;
+      }
+
+      .brand {
+        max-width: 850px;
+        margin: auto;
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .brand span {
+        color: var(--blue);
+      }
+
+      main {
+        max-width: 850px;
+        margin: 28px auto;
+        padding: 0 16px;
+      }
+
+      .back {
+        display: inline-block;
+        margin-bottom: 18px;
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .panel {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .conversation-header {
+        padding: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 0 0 6px;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .messages {
+        padding: 20px;
+        min-height: 280px;
+        max-height: 55vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .message {
+        max-width: 80%;
+        padding: 12px 15px;
+        border-radius: 13px;
+        background: #f1f3f9;
+        overflow-wrap: anywhere;
+      }
+
+      .message.mine {
+        align-self: flex-end;
+        background: var(--blue);
+        color: white;
+      }
+
+      .sender {
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        opacity: 0.8;
+      }
+
+      .content {
+        white-space: pre-wrap;
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      .timestamp {
+        font-size: 10px;
+        margin-top: 7px;
+        opacity: 0.7;
+      }
+
+      .empty {
+        margin: auto;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .message-form {
+        border-top: 1px solid var(--border);
+        padding: 16px;
+        display: flex;
+        gap: 10px;
+      }
+
+      textarea {
+        flex: 1;
+        resize: vertical;
+        min-height: 48px;
+        max-height: 140px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px;
+        font: inherit;
+        outline-color: var(--blue);
+      }
+
+      button {
+        border: 0;
+        border-radius: 10px;
+        padding: 0 20px;
+        background: var(--navy);
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: var(--blue);
+      }
+
+      @media (max-width: 520px) {
+        .message {
+          max-width: 92%;
+        }
+
+        .message-form {
+          flex-direction: column;
+        }
+
+        button {
+          min-height: 44px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <header>
+      <div class="brand">Mind<span>Well</span></div>
+    </header>
+
+    <main>
+      <a class="back" href="{% url 'accounts:messages_list' %}">← Mes conversations</a>
+
+      <section class="panel">
+        <div class="conversation-header">
+          {% if request.user == conversation.psychologue %}
+          <h1>
+            {{
+            conversation.patient.get_full_name|default:conversation.patient.username
+            }}
+          </h1>
+          <p class="subtitle">Conversation avec votre patient</p>
+          {% else %}
+          <h1>
+            Dr. {{
+            conversation.psychologue.get_full_name|default:conversation.psychologue.username
+            }}
+          </h1>
+          <p class="subtitle">Conversation avec votre psychologue</p>
+          {% endif %}
+        </div>
+
+        <div class="messages" id="message-list">
+          {% for message in messages %}
+          <article
+            class="message{% if message.sender_id == request.user.id %} mine{% endif %}"
+          >
+            <div class="sender">
+              {% if message.sender_id == request.user.id %} Vous {% else %} {{
+              message.sender.get_full_name|default:message.sender.username }}
+              {%endif %}
+            </div>
+
+            <div class="content">{{ message.content }}</div>
+            <div class="timestamp">
+              {{ message.timestamp|date:"d/m/Y H:i" }}
+            </div>
+          </article>
+          {% empty %}
+          <p class="empty">
+            Aucun message pour le moment. Vous pouvez commencer la conversation.
+          </p>
+          {% endfor %}
+        </div>
+
+        <form
+          class="message-form"
+          method="post"
+          action="{% url 'accounts:send_message' conversation.id %}"
+        >
+          {% csrf_token %}
+
+          <textarea
+            id="msg-input"
+            name="content"
+            placeholder="Écrivez votre message..."
+            required
+            maxlength="10000"
+          ></textarea>
+
+          <button type="submit">Envoyer</button>
+        </form>
+      </section>
+    </main>
+    <script>
+      const proto = location.protocol === "https:" ? "wss" : "ws";
+      const socket = new WebSocket(
+        `${proto}://${location.host}/ws/chat/{{ conversation.id }}/`
+      );
+      const messageList = document.getElementById("message-list");
+      const messageForm = document.querySelector(".message-form");
+      const messageInput = document.getElementById("msg-input");
+      const currentUserId = Number("{{ request.user.pk }}");
+
+      function addBubble(message) {
+        const emptyState = messageList.querySelector(".empty");
+        if (emptyState) emptyState.remove();
+
+        const article = document.createElement("article");
+        article.className = `message${Number(message.sender_id) === currentUserId ? " mine" : ""}`;
+
+        const sender = document.createElement("div");
+        sender.className = "sender";
+        sender.textContent = Number(message.sender_id) === currentUserId
+          ? "Vous"
+          : "Votre interlocuteur";
+
+        const content = document.createElement("div");
+        content.className = "content";
+        content.textContent = message.content;
+
+        const timestamp = document.createElement("div");
+        timestamp.className = "timestamp";
+        timestamp.textContent = message.time
+          ? new Date(message.time).toLocaleString()
+          : "";
+
+        article.append(sender, content, timestamp);
+        messageList.appendChild(article);
+        messageList.scrollTop = messageList.scrollHeight;
+      }
+
+      socket.addEventListener("message", (event) => {
+        let message;
+        try {
+          message = JSON.parse(event.data);
+        } catch (error) {
+          console.error("Invalid chat message received.", error);
+          return;
+        }
+
+        if (message.kind === "chat") addBubble(message);
+        {% if request.user.user_type == 'psychologue' %}
+        if (message.kind === "ai" && typeof updateAiPanel === "function") {
+          updateAiPanel(message);
+        }
+        {% endif %}
+      });
+
+      messageForm.addEventListener("submit", (event) => {
+        const content = messageInput.value.trim();
+        if (!content || socket.readyState !== WebSocket.OPEN) return;
+
+        event.preventDefault();
+        socket.send(JSON.stringify({ content }));
+        messageInput.value = "";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,644 @@
+{% extends "pages/base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .booking-page {
+    --mw-navy: #111844;
+    --mw-blue: #4b5694;
+    --mw-light: #f8f9fc;
+    --mw-success: #31745c;
+    --mw-error: #dc3545;
+    --mw-warning: #ffc107;
+    background: var(--mw-light);
+    min-height: 100vh;
+    padding: 40px 0;
+  }
+
+  .booking-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .booking-header {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(17, 24, 68, 0.06);
+  }
+
+  .booking-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--mw-blue);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--mw-blue);
+    transition: all 0.2s;
+  }
+
+  .booking-back:hover {
+    background: var(--mw-blue);
+    color: white;
+  }
+
+  .doctor-info-card {
+    background: linear-gradient(135deg, var(--mw-navy) 0%, var(--mw-blue) 100%);
+    border-radius: 12px;
+    padding: 24px;
+    color: white;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .doctor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .doctor-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .doctor-details h2 {
+    margin: 0 0 8px;
+    font-size: 1.5rem;
+  }
+
+  .doctor-specialty {
+    opacity: 0.9;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .doctor-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+  }
+
+  .booking-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .booking-section {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(17, 24, 68, 0.06);
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--mw-navy);
+    margin: 0 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--mw-light);
+  }
+
+  .availability-info {
+    background: #e8f5e9;
+    border: 1px solid #66bb6a;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .availability-info.warning {
+    background: #fff3e0;
+    border-color: #ffa726;
+  }
+
+  .availability-info h4 {
+    margin: 0 0 8px;
+    color: #2e7d32;
+    font-size: 0.95rem;
+  }
+
+  .availability-info.warning h4 {
+    color: #ef6c00;
+  }
+
+  .time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .time-slot {
+    padding: 10px;
+    border: 1.5px solid #dfe3eb;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    background: white;
+  }
+
+  .time-slot:hover:not(.booked) {
+    border-color: var(--mw-blue);
+    background: var(--mw-light);
+  }
+
+  .time-slot.selected {
+    background: var(--mw-navy);
+    color: white;
+    border-color: var(--mw-navy);
+  }
+
+  .time-slot.booked {
+    background: #f5f5f5;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    text-decoration: line-through;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--mw-navy);
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #dfe3eb;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--mw-blue);
+    box-shadow: 0 0 0 3px rgba(75, 86, 148, 0.1);
+  }
+
+  .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  .consultation-types {
+    display: grid;
+    gap: 10px;
+  }
+
+  .consultation-type {
+    padding: 14px;
+    border: 1.5px solid #dfe3eb;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .consultation-type:hover {
+    border-color: var(--mw-blue);
+    background: var(--mw-light);
+  }
+
+  .consultation-type input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--mw-navy);
+  }
+
+  .consultation-type.active {
+    border-color: var(--mw-navy);
+    background: rgba(17, 24, 68, 0.05);
+  }
+
+  .booking-summary {
+    background: var(--mw-light);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+  }
+
+  .summary-row.total {
+    border-top: 2px solid var(--mw-blue);
+    padding-top: 12px;
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--mw-navy);
+  }
+
+  .btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--mw-navy);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-submit:hover {
+    background: var(--mw-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(17, 24, 68, 0.3);
+  }
+
+  .btn-submit:disabled {
+    background: #9e9e9e;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .error-message {
+    background: #ffebee;
+    border: 1px solid var(--mw-error);
+    color: var(--mw-error);
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+  }
+
+  .success-message {
+    background: #e8f5e9;
+    border: 1px solid #66bb6a;
+    color: #2e7d32;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .booking-main {
+      grid-template-columns: 1fr;
+    }
+    
+    .time-slots {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+<div class="booking-page">
+  <div class="booking-container">
+    <a href="{% url 'accounts:trouver_psychologue' %}" class="booking-back">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Retour aux psychologues
+    </a>
+
+    <div class="booking-header">
+      <div class="doctor-info-card">
+        <div class="doctor-avatar">
+          {% if psy.psychologue_profile.photo %}
+            <img src="{{ psy.psychologue_profile.photo.url }}" alt="{{ psy.get_full_name }}">
+          {% else %}
+            {{ psy.first_name|first }}{{ psy.last_name|first }}
+          {% endif %}
+        </div>
+        <div class="doctor-details">
+          <h2>Dr. {{ psy.get_full_name }}</h2>
+          <div class="doctor-specialty">
+            {% for value, label in specialty_choices %}
+              {% if value == psy.psychologue_profile.specialty %}
+                {{ label }}
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% if psy.avg_rating %}
+          <div class="doctor-rating">
+            <span>★</span>
+            <span>{{ psy.avg_rating|floatformat:1 }}/5</span>
+            <span>({{ psy.review_count }} avis)</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <form method="post" id="bookingForm">
+      {% csrf_token %}
+      
+      <div class="booking-main">
+        <!-- Left Column: Availability & Time Selection -->
+        <div class="booking-section">
+          <h3 class="section-title">Disponibilités</h3>
+          
+          <div class="availability-info" id="availabilityInfo">
+            <h4>📅 Horaires disponibles</h4>
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">
+              Sélectionnez une date pour voir les créneaux disponibles
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="bookingDate">Date souhaitée *</label>
+            <input 
+              type="date" 
+              id="bookingDate" 
+              name="date" 
+              required
+              min="{{ min_date }}"
+              onchange="loadAvailableTimes()"
+            >
+          </div>
+
+          <div id="timeSlotsContainer" style="display: none;">
+            <label style="display: block; font-weight: 600; margin-bottom: 12px;">
+              Créneaux disponibles (cliquez pour sélectionner)
+            </label>
+            <div class="time-slots" id="timeSlots">
+              <!-- Time slots will be loaded here -->
+            </div>
+            <input type="hidden" id="selectedTime" name="time" required>
+          </div>
+
+          <div class="form-group">
+            <label>Type de consultation *</label>
+            <div class="consultation-types">
+              <label class="consultation-type active">
+                <input type="radio" name="consultation_type" value="video" checked onchange="updatePrice()">
+                <div>
+                  <strong>Visioconférence</strong>
+                  <div style="font-size: 0.85rem; color: #71809b;">Consultation en ligne sécurisée</div>
+                </div>
+              </label>
+              <label class="consultation-type">
+                <input type="radio" name="consultation_type" value="phone" onchange="updatePrice()">
+                <div>
+                  <strong>Téléphone</strong>
+                  <div style="font-size: 0.85rem; color: #71809b;">Consultation téléphonique</div>
+                </div>
+              </label>
+              <label class="consultation-type">
+                <input type="radio" name="consultation_type" value="inperson" onchange="updatePrice()">
+                <div>
+                  <strong>En présentiel</strong>
+                  <div style="font-size: 0.85rem; color: #71809b;">Au cabinet du psychologue</div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Booking Details -->
+        <div class="booking-section">
+          <h3 class="section-title">Détails de la réservation</h3>
+
+          {% if error_message %}
+          <div class="error-message">
+            {{ error_message }}
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            <label for="patientName">Votre nom complet *</label>
+            <input 
+              type="text" 
+              id="patientName" 
+              name="patient_name" 
+              value="{{ user.get_full_name|default:user.username }}"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="patientEmail">Votre email *</label>
+            <input 
+              type="email" 
+              id="patientEmail" 
+              name="patient_email" 
+              value="{{ user.email }}"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="patientPhone">Votre téléphone *</label>
+            <input 
+              type="tel" 
+              id="patientPhone" 
+              name="patient_phone" 
+              required
+              placeholder="Ex: 0555123456"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="motif">Motif ou informations complémentaires</label>
+            <textarea 
+              id="motif" 
+              name="motif" 
+              placeholder="Décrivez brièvement le motif de votre consultation..."
+            ></textarea>
+            <small style="color: #71809b; font-size: 0.8rem; display: block; margin-top: 6px;">
+              Évitez d'inclure des informations personnelles sensibles
+            </small>
+          </div>
+
+          <div class="booking-summary">
+            <div class="summary-row">
+              <span>Durée de la consultation</span>
+              <strong>45 minutes</strong>
+            </div>
+            <div class="summary-row">
+              <span>Prix</span>
+              <strong id="consultationPrice">3000 DZD</strong>
+            </div>
+            <div class="summary-row total">
+              <span>Total à payer</span>
+              <span id="totalPrice">3000 DZD</span>
+            </div>
+            <small style="color: #71809b; display: block; margin-top: 12px;">
+              * Le paiement se fait après confirmation du rendez-vous
+            </small>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn" disabled>
+            Confirmer la réservation
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Available time slots for the psychologist
+  const doctorAvailability = {
+    '09:00': true,
+    '10:00': true,
+    '11:00': true,
+    '14:00': true,
+    '15:00': true,
+    '16:00': true,
+    '17:00': true
+  };
+
+  // Prices for different consultation types
+  const prices = {
+    'video': 3000,
+    'phone': 2500,
+    'inperson': 4000
+  };
+
+  let bookedSlots = [];
+
+  // Load available times when date is selected
+  async function loadAvailableTimes() {
+    const date = document.getElementById('bookingDate').value;
+    if (!date) return;
+
+    const container = document.getElementById('timeSlotsContainer');
+    const slotsDiv = document.getElementById('timeSlots');
+    const infoDiv = document.getElementById('availabilityInfo');
+
+    try {
+      // Fetch booked slots from server
+      const response = await fetch(`/api/booked-slots/?date=${date}&psychologue_id={{ psy.id }}`);
+      const data = await response.json();
+      bookedSlots = data.booked_slots || [];
+
+      // Clear previous slots
+      slotsDiv.innerHTML = '';
+
+      // Generate time slots
+      for (const [time, available] of Object.entries(doctorAvailability)) {
+        const isBooked = bookedSlots.includes(time);
+        const slot = document.createElement('div');
+        slot.className = `time-slot ${isBooked ? 'booked' : ''}`;
+        slot.textContent = time;
+        
+        if (!isBooked && available) {
+          slot.onclick = () => selectTime(time, slot);
+        } else if (isBooked) {
+          slot.title = 'Déjà réservé';
+        }
+        
+        slotsDiv.appendChild(slot);
+      }
+
+      container.style.display = 'block';
+      infoDiv.className = 'availability-info';
+      infoDiv.innerHTML = `
+        <h4>✅ Créneaux du ${new Date(date).toLocaleDateString('fr-FR')}</h4>
+        <p style="margin: 0; font-size: 0.9rem;">Cliquez sur un créneau disponible pour le sélectionner</p>
+      `;
+
+    } catch (error) {
+      console.error('Error loading times:', error);
+      infoDiv.className = 'availability-info warning';
+      infoDiv.innerHTML = `
+        <h4>⚠️ Erreur de chargement</h4>
+        <p style="margin: 0; font-size: 0.9rem;">Impossible de charger les disponibilités. Veuillez réessayer.</p>
+      `;
+    }
+  }
+
+  // Select a time slot
+  function selectTime(time, element) {
+    // Remove previous selection
+    document.querySelectorAll('.time-slot').forEach(slot => {
+      slot.classList.remove('selected');
+    });
+
+    // Add selection to clicked slot
+    element.classList.add('selected');
+    document.getElementById('selectedTime').value = time;
+    
+    // Enable submit button
+    document.getElementById('submitBtn').disabled = false;
+    
+    // Show success message
+    const infoDiv = document.getElementById('availabilityInfo');
+    infoDiv.className = 'availability-info';
+    infoDiv.innerHTML = `
+      <h4>✅ Créneau sélectionné: ${time}</h4>
+      <p style="margin: 0; font-size: 0.9rem;">Date: ${new Date(document.getElementById('bookingDate').value).toLocaleDateString('fr-FR')}</p>
+    `;
+  }
+
+  // Update price based on consultation type
+  function updatePrice() {
+    const type = document.querySelector('input[name="consultation_type"]:checked').value;
+    const price = prices[type];
+    
+    document.getElementById('consultationPrice').textContent = price + ' DZD';
+    document.getElementById('totalPrice').textContent = price + ' DZD';
+
+    // Update active class
+    document.querySelectorAll('.consultation-type').forEach(el => {
+      el.classList.remove('active');
+    });
+    event.target.closest('.consultation-type').classList.add('active');
+  }
+
+  // Form validation
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    const date = document.getElementById('bookingDate').value;
+    const time = document.getElementById('selectedTime').value;
+    
+    if (!date || !time) {
+      e.preventDefault();
+      alert('Veuillez sélectionner une date et un créneau horaire');
+      return false;
+    }
+
+    // Disable button to prevent double submission
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Traitement en cours...';
+  });
+
+  // Set minimum date to today
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('bookingDate').setAttribute('min', today);
+</script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Supprimer mon compte - MindWell" %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 24px; background: #f8f9fb; color: #111844; font-family: 'Segoe UI', Tahoma, sans-serif; line-height: 1.6; }
+        main { max-width: 650px; margin: 7vh auto; background: white; border: 1px solid #e7e9ef; border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(17,24,68,.08); }
+        h1 { margin-top: 0; }
+        .warning { background: #fff4e5; border-inline-start: 4px solid #c2410c; padding: 14px; border-radius: 8px; color: #7c2d12; }
+        label { display: block; font-weight: 600; margin: 18px 0 6px; }
+        input[type="password"] { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; }
+        .checkbox { display: flex; align-items: flex-start; gap: 10px; }
+        .checkbox label { margin: 0; }
+        .errors { color: #b42318; }
+        button { border: 0; border-radius: 8px; padding: 12px 18px; background: #b42318; color: white; font: inherit; font-weight: 700; cursor: pointer; }
+        a { color: #4B5694; }
+        .actions { display: flex; align-items: center; gap: 18px; margin-top: 24px; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+<main>
+    {% if deleted %}
+    <h1>{% trans "Votre compte a été désactivé." %}</h1>
+    <p>{% trans "Les informations d'identification de votre compte ont été supprimées et celui-ci est désormais désactivé. Les dossiers médicaux et financiers associés sont conservés." %}</p>
+    <a href="{% url 'home' %}">{% trans "Retour à l'accueil" %}</a>
+    {% else %}
+    <h1>{% trans "Supprimer mon compte" %}</h1>
+    <p class="warning">{% trans "Après confirmation, votre compte sera désactivé et les informations d'identification de votre profil seront supprimées. Les dossiers médicaux et les données financières associées seront conservés. Vous ne pourrez plus vous connecter." %}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div>
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {% if form.password.errors %}<ul class="errors">{% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
+        </div>
+        <div class="checkbox">
+            {{ form.confirm }}
+            {{ form.confirm.label_tag }}
+        </div>
+        {% if form.confirm.errors %}<ul class="errors">{% for error in form.confirm.errors %}<li>{{ error }}</li>{% endfor %}</ul>{% endif %}
+        <div class="actions">
+            <button type="submit">{% trans "Supprimer mon compte" %}</button>
+            <a href="{% url 'aide' %}">{% trans "Annuler et revenir au centre d'aide" %}</a>
+        </div>
+    </form>
+    {% endif %}
+</main>
+</body>
+</html>

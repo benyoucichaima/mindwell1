@@ -1,0 +1,217 @@
+[
+  {
+    "conversation_id": "conv_001",
+    "scenario_id": 1,
+    "language": "fr",
+    "theme": "Anxiété généralisée",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "error": null,
+    "latency_ms": 2043,
+    "output": {
+      "summary": "Le patient décrit une anxiété persistante, se sentant constamment sur le qui‑vite et redoutant que quelque chose de terrible se produise. Il signale des troubles du sommeil, une inquiétude généralisée et des peurs liées au travail et aux interactions sociales, notamment la crainte d’être jugé. Des symptômes physiques tels qu’un cœur qui s’accélère et des difficultés respiratoires sont mentionnés. Il montre une certaine réticence mais accepte d’essayer un exercice proposé, tout en exprimant un doute quant à son efficacité.",
+      "themes": [
+        "anxiété généralisée",
+        "peur du jugement",
+        "situations professionnelles et sociales stressantes",
+        "symptômes physiques de l’anxiété",
+        "intention d’essayer des stratégies de régulation"
+      ],
+      "emotions": [
+        "anxiété",
+        "peur",
+        "inquiétude",
+        "doute"
+      ],
+      "keywords": [
+        "qui‑vite",
+        "terrible",
+        "dormir mal",
+        "inquiétude",
+        "travail",
+        "relations sociales",
+        "jugement",
+        "erreur",
+        "cœur accélère",
+        "respirer",
+        "essayer"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence la séance avec une forte sensation de vigilance et de peur, décrivant une anxiété intense. Au fil de l’échange, il accepte d’essayer l’exercice proposé, montrant une ouverture tentative, mais termine en exprimant encore du doute quant à son efficacité."
+    },
+    "timestamp": 1794338140.54256,
+    "structural_validation": {
+      "valid": true,
+      "errors": []
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      }
+    },
+    "quality_passed": true,
+    "requires_human_review": true
+  },
+  {
+    "conversation_id": "conv_004",
+    "scenario_id": 2,
+    "language": "fr",
+    "theme": "Dépression légère",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "error": null,
+    "latency_ms": 2574,
+    "output": {
+      "summary": "Le patient décrit une tristesse persistante depuis plusieurs semaines, accompagnée d’une perte d’intérêt pour les activités habituellement plaisantes. Il mentionne que sa sœur est au courant mais ne veut pas l’inquiéter davantage, et envisage d’appeler la sœur ce week‑end. Il exprime des doutes quant à sa capacité à passer à l’action, tout en montrant une volonté d’essayer et de réfléchir. Aucun signe de danger immédiat n’est présent.",
+      "themes": [
+        "tristesse persistante",
+        "perte de plaisir (anhédonie)",
+        "soutien familial",
+        "stratégies d'engagement (appel à la sœur)",
+        "incertitude quant à la capacité d'agir"
+      ],
+      "emotions": [
+        "tristesse",
+        "incertitude",
+        "préoccupation"
+      ],
+      "keywords": [
+        "tristesse persistante",
+        "pas envie de rien",
+        "anhedonie",
+        "sœur",
+        "appeler",
+        "incapable",
+        "réfléchir",
+        "essayer"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par exprimer une tristesse profonde, puis décrit une perte de plaisir et une préoccupation de ne pas déranger sa sœur. Il montre ensuite une intention d’action (appeler) mais exprime un doute sur sa capacité, pour finir par une attitude plus réfléchie et une volonté d’essayer, indiquant une légère transition vers un ton plus engagé malgré la persistance du doute."
+    },
+    "timestamp": 1794338143.1195831,
+    "structural_validation": {
+      "valid": true,
+      "errors": []
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      }
+    },
+    "quality_passed": true,
+    "requires_human_review": true
+  },
+  {
+    "conversation_id": "conv_007",
+    "scenario_id": 3,
+    "language": "fr",
+    "theme": "Stress professionnel / burn-out",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "error": null,
+    "latency_ms": 3839,
+    "output": {
+      "summary": "Le patient décrit un épuisement lié à une charge de travail accrue depuis sa promotion il y a un an. Il signale des difficultés à dormir à cause des dossiers en retard et exprime la peur d’être perçu comme incompétent s’il aborde le problème avec son responsable. Il envisage de préparer une liste de tâches pour discuter de ses limites. Le psychologue propose des stratégies de communication. Le patient termine la séance en remerciant le psychologue.",
+      "themes": [
+        "épuisement professionnel",
+        "charge de travail et promotion",
+        "troubles du sommeil",
+        "crainte de communication avec le responsable",
+        "stratégies d’affirmation"
+      ],
+      "emotions": [
+        "épuisement",
+        "peur",
+        "gratitude"
+      ],
+      "keywords": [
+        "travail",
+        "épuisé",
+        "promotion",
+        "responsabilités",
+        "nuit",
+        "dossiers",
+        "déconnecter",
+        "responsable",
+        "engagement",
+        "compétence",
+        "liste de tâches",
+        "faible"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par exprimer de la fatigue et de l’épuisement, puis mentionne de la peur concernant la perception de son manager, et se termine par un ton plus positif et reconnaissant, montrant une légère amélioration de l’état d’esprit."
+    },
+    "timestamp": 1794338146.9616354,
+    "structural_validation": {
+      "valid": true,
+      "errors": []
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      }
+    },
+    "quality_passed": true,
+    "requires_human_review": true
+  }
+]

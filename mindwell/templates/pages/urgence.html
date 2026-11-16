@@ -1,0 +1,61 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindWell — {% trans "Urgences" %}</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--navy:#0b1d3a;--cream:#faf8f5;--danger:#c0392b;--text:#1a1a2e;--muted:#4a4a5a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text)}
+html[dir=rtl] body{font-family:'Cairo',sans-serif}
+.container{max-width:700px;margin:0 auto;padding:40px 24px}
+.alert{background:#fef2f2;border:2px solid var(--danger);border-radius:16px;padding:28px;text-align:center;margin-bottom:40px}
+.alert h1{color:var(--danger);font-size:26px;margin-bottom:10px}
+.card{background:#fff;border-radius:12px;padding:24px;margin-bottom:16px;display:flex;align-items:center;gap:20px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.icon{width:56px;height:56px;background:#fef2f2;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--danger);font-size:22px}
+.phone{font-size:26px;font-weight:700;color:var(--navy)}
+.note{background:#fff;border-radius:12px;padding:24px;margin-top:30px}
+.back{display:inline-flex;align-items:center;gap:8px;color:var(--navy);font-weight:500;margin-bottom:30px;text-decoration:none}
+</style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+<div class="container">
+  <a href="{% url 'home' %}" class="back"><i class="fas fa-arrow-left"></i> {% trans "Retour à l'accueil" %}</a>
+
+  <div class="alert">
+    <h1><i class="fas fa-exclamation-triangle"></i> {% trans "Urgence ?" %}</h1>
+    <p>{% trans "MindWell n’est pas un service d’urgence. En cas de danger immédiat, contactez les numéros ci-dessous." %}</p>
+  </div>
+
+  <div class="card">
+    <div class="icon"><i class="fas fa-ambulance"></i></div>
+    <div>
+      <strong>{% trans "Protection Civile" %}</strong>
+      <div class="phone">14</div>
+      <small style="color:var(--muted)">{% trans "Urgences médicales" %}</small>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="icon"><i class="fas fa-phone-alt"></i></div>
+    <div>
+      <strong>{% trans "Police" %}</strong>
+      <div class="phone">1548</div>
+      <small style="color:var(--muted)">{% trans "Sécurité" %}</small>
+    </div>
+  </div>
+
+  <div class="note">
+    <h3 style="margin-bottom:10px;color:var(--navy)">{% trans "Quand utiliser MindWell ?" %}</h3>
+    <p style="color:var(--muted);line-height:1.7">
+      {% trans "MindWell est pour un accompagnement planifié (anxiété, stress, dépression…). Pour une crise aiguë ou un risque suicidaire, appelez toujours les services d’urgence." %}
+    </p>
+  </div>
+</div>
+</body>
+</html>

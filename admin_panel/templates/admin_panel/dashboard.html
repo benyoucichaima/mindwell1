@@ -1,0 +1,1760 @@
+ 
+{% load i18n %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% trans "Tableau de bord administrateur" %} — MindWell</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --bg: #f5f3ef;
+        --sidebar-bg: #fafaf8;
+        --white: #ffffff;
+        --navy: #1a2340;
+        --navy-light: #2a3558;
+        --accent: #3b5998;
+        --accent-light: #e8edf5;
+        --text-primary: #1a1a2e;
+        --text-secondary: #5a5a6e;
+        --text-muted: #8a8a9a;
+        --border: #e8e5e0;
+        --border-light: #f0ede8;
+        --success: #2d8a4e;
+        --success-bg: #e8f5ee;
+        --warning: #c47f17;
+        --warning-bg: #fff3e0;
+        --danger: #c0392b;
+        --danger-bg: #fde8e8;
+        --info: #3b82f6;
+        --info-bg: #e8f0fe;
+        --purple: #7c3aed;
+        --purple-bg: #f3e8ff;
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+        --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --radius-sm: 6px;
+        --radius-md: 10px;
+        --radius-lg: 14px;
+        --radius-xl: 18px;
+        --font-sans: "Inter", -apple-system, sans-serif;
+        --font-serif: "Playfair Display", Georgia, serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text-primary);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      /* LAYOUT */
+      .admin-layout {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      /* SIDEBAR */
+      .sidebar {
+        width: 260px;
+        background: var(--sidebar-bg);
+        border-right: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        overflow-y: auto;
+      }
+
+      .sidebar-header {
+        padding: 20px 20px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-logo-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--navy);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+      }
+
+      .sidebar-logo-text {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .sidebar-logo-sub {
+        font-size: 10px;
+        color: var(--text-muted);
+        letter-spacing: 0.5px;
+        margin-left: 46px;
+        margin-bottom: 16px;
+      }
+
+      .sidebar-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-size: 12px;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .sidebar-badge i {
+        color: var(--success);
+        font-size: 14px;
+      }
+
+      .sidebar-nav {
+        padding: 12px 12px;
+        flex: 1;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 14px;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 2px;
+        position: relative;
+      }
+
+      .nav-item:hover {
+        background: var(--white);
+        color: var(--text-primary);
+      }
+
+      .nav-item.active {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .nav-item i {
+        width: 18px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      .nav-badge {
+        margin-left: auto;
+        padding: 2px 8px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .nav-badge.blue {
+        background: var(--accent-light);
+        color: var(--accent);
+      }
+
+      .nav-badge.red {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+
+      .sidebar-footer {
+        padding: 16px;
+        border-top: 1px solid var(--border);
+      }
+
+      .audit-box {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      .audit-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--success);
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+      }
+
+      .audit-box-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .audit-box-sub {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        cursor: pointer;
+        border-radius: var(--radius-md);
+        transition: all 0.2s;
+      }
+
+      .logout-btn:hover {
+        background: var(--white);
+        color: var(--danger);
+      }
+
+      /* MAIN CONTENT */
+      .main-content {
+        flex: 1;
+        margin-left: 260px;
+        min-height: 100vh;
+      }
+
+      /* TOP BAR */
+      .topbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 12px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .topbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .topbar-logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--navy);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+      }
+
+      .topbar-logo-text {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .topbar-badges {
+        display: flex;
+        gap: 10px;
+      }
+
+      .topbar-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        font-size: 12px;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+
+      .topbar-badge i {
+        font-size: 12px;
+      }
+
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+        min-width: 0;
+      }
+
+      .topbar-notif {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        color: var(--text-secondary);
+      }
+
+      .topbar-notif .dot {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        width: 7px;
+        height: 7px;
+        background: var(--danger);
+        border-radius: 50%;
+        border: 2px solid var(--white);
+      }
+
+      .topbar-user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+
+      .topbar-user-info {
+        text-align: right;
+      }
+
+      .topbar-user-name {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-primary);
+        overflow-wrap: anywhere;
+      }
+
+      .topbar-user-role {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .topbar-user-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      /* PAGE CONTENT */
+      .page-content {
+        padding: 28px;
+      }
+
+      .breadcrumb {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        letter-spacing: 0.5px;
+      }
+
+      .breadcrumb span {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .page-title {
+        font-family: var(--font-serif);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+
+      .page-subtitle {
+        font-size: 14px;
+        color: var(--text-secondary);
+        max-width: 520px;
+        line-height: 1.6;
+      }
+
+      .page-header-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+      }
+
+      .sync-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .sync-badge .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--success);
+        border-radius: 50%;
+      }
+
+      .header-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+        outline: none;
+      }
+
+      .btn-outline {
+        background: var(--white);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn-outline:hover {
+        background: var(--bg);
+      }
+
+      .btn-primary {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--navy-light);
+      }
+
+      /* ALERT BANNER */
+      .alert-banner {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .alert-banner-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .alert-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--accent-light);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 18px;
+      }
+
+      .alert-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .alert-title .priority {
+        display: inline-block;
+        padding: 2px 10px;
+        background: var(--accent-light);
+        color: var(--accent);
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .alert-desc {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      /* STATS GRID */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .stat-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .stat-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .stat-card-label {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+      }
+
+      .stat-card-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+      }
+
+      .stat-card-icon.blue {
+        background: var(--info-bg);
+        color: var(--info);
+      }
+      .stat-card-icon.purple {
+        background: var(--purple-bg);
+        color: var(--purple);
+      }
+      .stat-card-icon.green {
+        background: var(--success-bg);
+        color: var(--success);
+      }
+      .stat-card-icon.orange {
+        background: var(--warning-bg);
+        color: var(--warning);
+      }
+
+      .stat-card-value {
+        font-family: var(--font-serif);
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+        margin-bottom: 4px;
+      }
+
+      .stat-card-sub {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+
+      .stat-card-sub strong {
+        color: var(--text-secondary);
+      }
+
+      .stat-card-footer {
+        background: var(--bg);
+        border-radius: var(--radius-sm);
+        padding: 10px 12px;
+        font-size: 12px;
+        color: var(--text-secondary);
+        line-height: 1.4;
+      }
+
+      .stat-card-footer a {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* TWO COLUMN LAYOUT */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .card-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 4px;
+      }
+
+      .card-subtitle {
+        font-size: 13px;
+        color: var(--text-muted);
+      }
+
+      .card-link {
+        font-size: 13px;
+        color: var(--accent);
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .card-link:hover {
+        text-decoration: underline;
+      }
+
+      /* TABLE */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .data-table th {
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--text-muted);
+        text-align: left;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .data-table td {
+        padding: 14px 12px;
+        border-bottom: 1px solid var(--border-light);
+        font-size: 13px;
+        vertical-align: middle;
+      }
+
+      .data-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .practitioner-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .practitioner-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        background: var(--bg);
+      }
+
+      .practitioner-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .practitioner-avatar.initials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--text-secondary);
+        background: var(--border-light);
+      }
+
+      .practitioner-name {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-primary);
+      }
+
+      .practitioner-specialty {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .practitioner-location {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .adeli-number {
+        font-size: 12px;
+        color: var(--text-secondary);
+        font-family: monospace;
+      }
+
+      .pieces-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 10px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 500;
+      }
+
+      .pieces-badge.complete {
+        background: var(--success-bg);
+        color: var(--success);
+      }
+
+      .pieces-badge.partial {
+        background: var(--warning-bg);
+        color: var(--warning);
+      }
+
+      .pieces-badge.submitted {
+        background: var(--bg);
+        color: var(--text-secondary);
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .status-badge.pending {
+        background: var(--warning-bg);
+        color: var(--warning);
+      }
+
+      .status-badge.incomplete {
+        background: var(--bg);
+        color: var(--text-secondary);
+      }
+
+      .status-badge.ready {
+        background: var(--info-bg);
+        color: var(--info);
+      }
+
+      .status-badge.waiting {
+        background: var(--accent-light);
+        color: var(--accent);
+      }
+
+      .verification-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .verification-actions .btn {
+        padding: 6px 9px;
+        font-size: 11px;
+      }
+
+      .verification-row-removing {
+        opacity: 0;
+        transform: translateX(12px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      .report-resolve {
+        margin-top: 8px;
+        padding: 5px 9px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        background: var(--white);
+        color: var(--accent);
+        cursor: pointer;
+        font: 500 11px var(--font-sans);
+      }
+
+      .report-resolve[hidden] {
+        display: none;
+      }
+
+      .admin-toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 1000;
+        max-width: min(420px, calc(100vw - 48px));
+        padding: 14px 18px;
+        border-radius: var(--radius-md);
+        background: var(--success);
+        color: var(--white);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .admin-toast.error {
+        background: var(--danger);
+      }
+
+      .admin-toast[hidden] {
+        display: none;
+      }
+
+      .date-cell {
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+
+      .date-cell .time {
+        color: var(--text-muted);
+      }
+
+      /* DEONTOLOGY REMINDER */
+      .deontology-box {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 18px 20px;
+        margin-top: 20px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .deontology-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 14px;
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+      }
+
+      .deontology-text {
+        font-size: 12px;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+
+      .deontology-text strong {
+        color: var(--text-primary);
+      }
+
+      /* INFRASTRUCTURE CARD */
+      .infra-card {
+        margin-bottom: 16px;
+      }
+
+      .infra-card:last-child {
+        margin-bottom: 0;
+      }
+
+      .infra-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .infra-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .infra-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+      }
+
+      .infra-item {
+        background: var(--bg);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        padding: 16px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .infra-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .infra-item-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .infra-item-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: var(--text-secondary);
+      }
+
+      .infra-item-icon.blue {
+        background: var(--info-bg);
+        color: var(--info);
+      }
+      .infra-item-icon.green {
+        background: var(--success-bg);
+        color: var(--success);
+      }
+      .infra-item-icon.red {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+
+      .infra-item-value {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      .infra-item-label {
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .infra-item-status {
+        padding: 3px 10px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .infra-item-status.active {
+        background: var(--success-bg);
+        color: var(--success);
+      }
+
+      .infra-item-status.moderation {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+
+      /* BOTTOM ROW */
+      .bottom-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 340px;
+        gap: 24px;
+      }
+
+      .chart-placeholder {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        height: 100px;
+        padding: 16px 0;
+      }
+
+      .chart-bar {
+        flex: 1;
+        background: var(--border-light);
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        min-height: 20px;
+      }
+
+      .chart-bar.active {
+        background: var(--navy);
+      }
+
+      .chart-bar-label {
+        text-align: center;
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 8px;
+      }
+
+      .chart-labels {
+        display: flex;
+        gap: 12px;
+      }
+
+      .chart-labels span {
+        flex: 1;
+        text-align: center;
+        font-size: 11px;
+        color: var(--text-muted);
+      }
+
+      .chart-growth {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 12px;
+        color: var(--success);
+        font-weight: 600;
+      }
+
+      .compliance-row {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-top: 16px;
+      }
+
+      .compliance-value {
+        font-family: var(--font-serif);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .compliance-label {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .compliance-circle {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 4px solid var(--accent);
+        border-top-color: var(--border);
+        margin-left: auto;
+      }
+
+      .compliance-footer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .compliance-footer .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+      }
+
+      /* REPORTS */
+      .report-item {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+
+      .report-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .report-item:first-child {
+        padding-top: 0;
+      }
+
+      .report-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 6px;
+      }
+
+      .report-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .report-status {
+        padding: 3px 10px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+
+      .report-status.resolved {
+        background: var(--bg);
+        color: var(--text-secondary);
+      }
+
+      .report-status.progress {
+        background: var(--info-bg);
+        color: var(--info);
+      }
+
+      .report-desc {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+        margin-bottom: 6px;
+      }
+
+      .report-meta {
+        font-size: 11px;
+        color: var(--text-muted);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* CERTIFICATION BOX */
+      .cert-box {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .cert-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--success);
+        font-size: 16px;
+        border: 1px solid var(--border);
+        flex-shrink: 0;
+      }
+
+      .cert-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 2px;
+      }
+
+      .cert-desc {
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1400px) {
+        .stats-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .bottom-row {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 1024px) {
+        .sidebar {
+          display: none;
+        }
+        .main-content {
+          margin-left: 0;
+        }
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .bottom-row {
+          grid-template-columns: 1fr;
+        }
+        .page-title {
+          font-size: 26px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .topbar { flex-wrap: wrap; }
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+        .topbar-badges {
+          display: none;
+        }
+        .page-content {
+          padding: 16px;
+        }
+        .alert-banner {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
+        .topbar-right { justify-content: flex-end; gap: 9px; }
+        .topbar-user { max-width: 100%; }
+        .topbar-user-role { display: none; }
+      }
+      html[dir="rtl"] .sidebar { left:auto; right:0; border-right:0; border-left:1px solid var(--border); }
+      html[dir="rtl"] .main-content { margin-left:0; margin-right:260px; }
+      html[dir="rtl"] .sidebar-logo-sub { margin-left:0; margin-right:46px; }
+      html[dir="rtl"] .nav-badge { margin-left:0; margin-right:auto; }
+      html[dir="rtl"] .topbar-user-info { text-align:left; }
+      html[dir="rtl"] .alert-title .priority { margin-left:0; margin-right:8px; }
+      @media (max-width: 1024px) { html[dir="rtl"] .main-content { margin-right:0; } }
+    </style>
+  </head>
+
+  <body class="admin-interface">
+    <div class="admin-layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <div class="sidebar-logo-icon"><i class="fas fa-brain"></i></div>
+            <span class="sidebar-logo-text">MindWell</span>
+          </div>
+          <div class="sidebar-logo-sub">{% trans "SUPER-ADMIN" %}</div>
+          <div class="sidebar-badge">
+            <i class="fas fa-user-shield"></i>
+            <span>{% trans "Administration" %}</span>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a class="nav-item active" href="{% url 'dashboard' %}" aria-current="page">
+            <i class="fas fa-th-large"></i>
+            <span>{% trans "Tableau de bord" %}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_users' %}">
+            <i class="fas fa-users"></i>
+            <span>{% trans "Utilisateurs" %}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_patients' %}">
+            <i class="fas fa-user"></i>
+            <span>{% trans "Patients" %}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_psychologues' %}">
+            <i class="fas fa-user-md"></i>
+            <span>{% trans "Psychologues" %}</span>
+            <span class="nav-badge blue" id="verified-psychologue-nav-count">{{ verified_psychologues }}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_verifications' %}">
+            <i class="fas fa-clipboard-check"></i>
+            <span>{% trans "Vérifications" %}</span>
+            <span class="nav-badge blue"><span id="pending-nav-count">{{ pending_verifications }}</span> {% trans "en attente" %}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_appointments' %}">
+            <i class="fas fa-calendar-alt"></i>
+            <span>{% trans "Rendez-vous" %}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_statistics' %}">
+            <i class="fas fa-chart-bar"></i>
+            <span>{% trans "Statistiques" %}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_reports' %}">
+            <i class="fas fa-exclamation-circle"></i>
+            <span>{% trans "Signalements" %}</span>
+            <span class="nav-badge red" id="unresolved-report-nav-count">{{ unresolved_report_count }}</span>
+          </a>
+          <a class="nav-item" href="{% url 'admin_settings' %}">
+            <i class="fas fa-cog"></i>
+            <span>{% trans "Paramètres" %}</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a class="logout-btn" href="{% url 'accounts:logout' %}">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>{% trans "Déconnexion" %}</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-content">
+        <!-- TOPBAR -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="topbar-logo">
+              <div class="topbar-logo-icon"><i class="fas fa-brain"></i></div>
+              <span class="topbar-logo-text">MindWell</span>
+            </div>
+          </div>
+          <div class="topbar-right">
+            {% include "includes/language_switcher.html" %}
+            {% include "admin_panel/includes/notification_menu.html" %}
+            <div class="topbar-user">
+              <div class="topbar-user-info">
+                <div class="topbar-user-name">{{ request.user.get_full_name|default:request.user.username }}</div>
+                <div class="topbar-user-role">{% trans "Administrateur plateforme" %}</div>
+              </div>
+              <div class="topbar-user-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="page-content">
+          <div class="breadcrumb">
+            {% trans "ADMINISTRATION" %} &gt; <span>{% trans "VUE D'ENSEMBLE DE LA PLATEFORME" %}</span>
+          </div>
+
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">{% trans "Tableau de bord administrateur" %}</h1>
+              <p class="page-subtitle">
+                {% trans "Indicateurs et dossiers calculés à partir des données enregistrées dans MindWell." %}
+              </p>
+            </div>
+            <div class="page-header-actions">
+              <div class="header-buttons">
+                <a class="btn btn-outline" href="{% url 'admin_settings' %}">
+                  <i class="fas fa-cog"></i> {% trans "Paramètres" %}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- ALERT BANNER -->
+          <div class="alert-banner">
+            <div class="alert-banner-left">
+              <div class="alert-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <div class="alert-title">
+                  {% trans "Vérifications en attente" %}
+                </div>
+                <div class="alert-desc">
+                  <span id="pending-verification-summary">{{ pending_verifications }}</span> {% trans "dossier(s) de psychologues nécessitent une vérification." %}
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="{% url 'admin_verifications' %}">
+              {% trans "Accéder aux vérifications" %} <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+
+          <!-- STATS GRID -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">{% trans "PATIENTS" %}</span>
+                <div class="stat-card-icon blue">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">{{ total_patients }}</div>
+              <div class="stat-card-sub">{% trans "Comptes patients enregistrés" %}</div>
+              <div class="stat-card-footer">{% trans "Total des patients" %}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">{% trans "PSYCHOLOGUES" %}</span>
+                <div class="stat-card-icon purple">
+                  <i class="fas fa-user-md"></i>
+                </div>
+              </div>
+              <div class="stat-card-value" id="verified-psychologue-count">{{ verified_psychologues }}</div>
+              <div class="stat-card-sub">
+                {% trans "Psychologues vérifiés et actifs" %}
+              </div>
+              <div class="stat-card-footer">{% trans "Profils validés" %}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">{% trans "EN ATTENTE" %}</span>
+                <div class="stat-card-icon orange">
+                  <i class="fas fa-clock"></i>
+                </div>
+              </div>
+              <div class="stat-card-value" id="pending-verification-count">{{ pending_verifications }}</div>
+              <div class="stat-card-sub">
+                {% trans "Psychologues à valider" %}
+              </div>
+              <div class="stat-card-footer">{% trans "Demandes en attente" %}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">{% trans "RENDEZ-VOUS ACTIFS" %}</span>
+                <div class="stat-card-icon green">
+                  <i class="fas fa-user-check"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">{{ active_appointments }}</div>
+              <div class="stat-card-sub">{% trans "Confirmés ou en cours" %}</div>
+              <div class="stat-card-footer">{% trans "Consultations actuellement actives" %}</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <span class="stat-card-label">{% trans "SESSIONS RÉALISÉES" %}</span>
+                <div class="stat-card-icon blue">
+                  <i class="fas fa-calendar"></i>
+                </div>
+              </div>
+              <div class="stat-card-value">{{ total_sessions }}</div>
+              <div class="stat-card-sub">{% trans "Consultations terminées" %}</div>
+              <div class="stat-card-footer">{% trans "Sessions réalisées" %}</div>
+            </div>
+          </div>
+
+          <!-- TWO COLUMN -->
+          <div class="two-col">
+            <!-- LEFT: Verification requests -->
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <div class="card-title">
+                    {% trans "Dernières demandes de vérification praticiens" %}
+                  </div>
+                  <div class="card-subtitle">
+                    {% trans "Dossiers d'agrément réglementaire en cours d'étude déontologique" %}
+                  </div>
+                </div>
+                <a class="card-link" href="{% url 'admin_verifications' %}">
+                  <span id="pending-verification-link-count">{{ pending_verifications }}</span> {% trans "dossier(s) en attente" %} <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>{% trans "PRATICIEN & SPÉCIALITÉ" %}</th>
+                    <th>{% trans "N° ADELI / RPPS" %}</th>
+                    <th>{% trans "LOCALISATION" %}</th>
+                    <th>{% trans "INSCRIPTION" %}</th>
+                    <th>{% trans "STATUT" %}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for profile in unverified_psychologues %}
+                  <tr id="verification-row-{{ profile.pk }}">
+                    <td>
+                      <div class="practitioner-cell">
+                        <div class="practitioner-avatar initials">
+                          {% if profile.photo %}
+                          <img src="{{ profile.photo.url }}" alt="">
+                          {% else %}
+                          {{ profile.user.first_name|first|upper }}{{ profile.user.last_name|first|upper }}
+                          {% endif %}
+                        </div>
+                        <div>
+                          <div class="practitioner-name">{{ profile.user.get_full_name|default:profile.user.username }}</div>
+                          <div class="practitioner-specialty">{{ profile.get_specialty_display }}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><span class="adeli-number">{{ profile.registration_number|default:profile.rpps|default:"—" }}</span></td>
+                    <td>{{ profile.city|default:profile.user.city|default:"—" }}</td>
+                    <td><div class="date-cell">{{ profile.created_at|date:"d/m/Y" }}</div></td>
+                    <td>
+                      <span class="status-badge pending">{% trans "En attente" %}</span>
+                      <div class="verification-actions">
+                        <a class="btn btn-outline" href="{% url 'admin_verification_detail' profile.pk %}">{% trans "Voir le dossier" %}</a>
+                      </div>
+                    </td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="5">{% trans "Aucune demande de vérification en attente." %}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <div class="deontology-box">
+                <div class="deontology-icon">
+                  <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="deontology-text">
+                  {% trans "Les profils apparaissant dans cette liste ne sont pas encore validés par un administrateur." %}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="card">
+                <div class="card-header" style="margin-bottom: 12px">
+                  <div>
+                    <div class="card-title">{% trans "Signalements récents" %}</div>
+                    <div class="card-subtitle">
+                      {% trans "Modération et support technique" %}
+                    </div>
+                  </div>
+                  <span
+                    style="
+                      background: var(--bg);
+                      padding: 4px 10px;
+                      border-radius: 50px;
+                      font-size: 11px;
+                      color: var(--text-muted);
+                      font-weight: 600;
+                    "
+                    ><span id="unresolved-report-count">{{ unresolved_report_count }}</span> {% trans "non résolu(s)" %}</span
+                  >
+                </div>
+
+                {% for report in recent_reports %}
+                <div class="report-item" id="report-row-{{ report.pk }}">
+                  <div class="report-header">
+                    <div class="report-title">
+                      {% trans "Signalement de" %} {{ report.reporter.get_full_name|default:report.reporter.username }}
+                    </div>
+                    <span class="report-status progress" id="report-status-{{ report.pk }}">{% trans "En attente" %}</span>
+                  </div>
+                  <div class="report-desc">{{ report.reason|truncatechars:180 }}</div>
+                  <div class="report-meta">
+                    <span>{% trans "Personne signalée" %} : {{ report.target.get_full_name|default:report.target.username }}</span>
+                    <span>{{ report.created_at|date:"d/m/Y H:i" }}</span>
+                  </div>
+                  <button class="report-resolve" type="button" onclick="handleReportResolution({{ report.pk }}, this)">{% trans "Marquer comme résolu" %}</button>
+                </div>
+                {% empty %}
+                <p class="report-desc">{% trans "Aucun signalement en attente." %}</p>
+                {% endfor %}
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form id="admin-csrf-form" hidden>{% csrf_token %}</form>
+    <div id="admin-toast" class="admin-toast" role="status" aria-live="polite" hidden></div>
+    {% trans "Jeton CSRF introuvable. Actualisez la page." as csrf_error %}
+    {% trans "La requête a échoué." as request_error %}
+    {% trans "Le dossier a été traité." as verification_success %}
+    {% trans "Erreur réseau. Réessayez." as network_error %}
+    {% trans "Résolu" as resolved_label %}
+    {% trans "Signalement résolu." as report_success %}
+    <script>
+      const adminMessages = {
+        csrfError: "{{ csrf_error|escapejs }}",
+        requestError: "{{ request_error|escapejs }}",
+        verificationSuccess: "{{ verification_success|escapejs }}",
+        networkError: "{{ network_error|escapejs }}",
+        resolved: "{{ resolved_label|escapejs }}",
+        reportSuccess: "{{ report_success|escapejs }}",
+      };
+      function getAdminCsrfToken() {
+        const cookieToken = document.cookie
+          .split("; ")
+          .find((cookie) => cookie.startsWith("csrftoken="))
+          ?.split("=")
+          .slice(1)
+          .join("=");
+        return cookieToken || document.querySelector("#admin-csrf-form [name=csrfmiddlewaretoken]")?.value;
+      }
+
+      function showAdminToast(message, isError = false) {
+        const toast = document.getElementById("admin-toast");
+        toast.textContent = message;
+        toast.classList.toggle("error", isError);
+        toast.hidden = false;
+        window.clearTimeout(showAdminToast.timeoutId);
+        showAdminToast.timeoutId = window.setTimeout(() => {
+          toast.hidden = true;
+        }, 4000);
+      }
+
+      async function postAdminJson(url, payload) {
+        const csrfToken = getAdminCsrfToken();
+        if (!csrfToken) {
+          throw new Error(adminMessages.csrfError);
+        }
+        const response = await fetch(url, {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken,
+          },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => null);
+        if (!response.ok) {
+          throw new Error(result?.message || adminMessages.requestError);
+        }
+        return result;
+      }
+
+      async function handleVerification(id, action) {
+        try {
+          const result = await postAdminJson(
+            `/admin/api/verify-psychologue/${id}/`,
+            { action },
+          );
+          const row = document.getElementById(`verification-row-${id}`);
+          if (row) {
+            row.classList.add("verification-row-removing");
+            window.setTimeout(() => row.remove(), 260);
+          }
+          [
+            ["pending-nav-count", result.pending_count_delta],
+            ["pending-verification-count", result.pending_count_delta],
+            ["pending-verification-summary", result.pending_count_delta],
+            ["pending-verification-link-count", result.pending_count_delta],
+            ["verified-psychologue-count", result.verified_count_delta],
+            ["verified-psychologue-nav-count", result.verified_count_delta],
+          ].forEach(([counterId, delta]) => {
+            const counter = document.getElementById(counterId);
+            if (counter && delta) {
+              counter.textContent = Math.max(0, Number(counter.textContent) + delta);
+            }
+          });
+          showAdminToast(result.message || adminMessages.verificationSuccess);
+        } catch (error) {
+          showAdminToast(error.message || adminMessages.networkError, true);
+        }
+      }
+
+      async function handleReportResolution(id, button) {
+        try {
+          const result = await postAdminJson(
+            `/admin/api/reports/${id}/resolve/`,
+            {},
+          );
+          const status = document.getElementById(`report-status-${id}`);
+          if (status) {
+            status.textContent = adminMessages.resolved;
+            status.classList.remove("progress");
+            status.classList.add("resolved");
+          }
+          button.hidden = true;
+          ["unresolved-report-nav-count", "unresolved-report-count"].forEach((counterId) => {
+            const count = document.getElementById(counterId);
+            if (count) count.textContent = Math.max(0, Number(count.textContent) - 1);
+          });
+          showAdminToast(result.message || adminMessages.reportSuccess);
+        } catch (error) {
+          showAdminToast(error.message || adminMessages.networkError, true);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // Button interactions
+        document.querySelectorAll(".btn").forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            this.style.transform = "scale(0.97)";
+            setTimeout(() => {
+              this.style.transform = "";
+            }, 150);
+          });
+        });
+
+        // Animate stat values on load
+        const statValues = document.querySelectorAll(".stat-card-value");
+        statValues.forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(10px)";
+          el.style.transition = "all 0.5s ease";
+        });
+
+        setTimeout(() => {
+          statValues.forEach((el, i) => {
+            setTimeout(() => {
+              el.style.opacity = "1";
+              el.style.transform = "translateY(0)";
+            }, i * 80);
+          });
+        }, 200);
+
+        // Animate cards
+        const cards = document.querySelectorAll(".card, .stat-card");
+        cards.forEach((card, i) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(15px)";
+          card.style.transition = "all 0.4s ease";
+          setTimeout(
+            () => {
+              card.style.opacity = "1";
+              card.style.transform = "translateY(0)";
+            },
+            300 + i * 60,
+          );
+        });
+
+        console.log("MindWell Admin Dashboard loaded");
+      });
+    </script>
+  </body>
+</html>

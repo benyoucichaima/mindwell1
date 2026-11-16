@@ -1,0 +1,2268 @@
+{% load static %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindWell — Nos domaines d'expertise psychologique</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- خط Cairo لدعم اللغة العربية بشكل احترافي -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --navy: #1a1a2e;
+        --navy-dark: #16213e;
+        --cream: #f5f3ef;
+        --white: #ffffff;
+        --text-dark: #1a1a2e;
+        --text-medium: #4a4a5a;
+        --text-light: #7a7a8a;
+        --border: #e0ddd8;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-ar: "Cairo", "Inter", sans-serif;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        background: var(--white);
+        line-height: 1.6;
+      }
+
+      /* تغيير الخط تلقائياً عند التحويل للعربية */
+      html[lang="ar"] body {
+        font-family: var(--font-ar);
+      }
+      html[lang="ar"] h1,
+      html[lang="ar"] h2,
+      html[lang="ar"] h3,
+      html[lang="ar"] h4 {
+        font-family: var(--font-ar);
+        font-weight: 700;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navigation */
+      .navbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+      }
+
+      .logo-text {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-weight: 500;
+        color: var(--text-medium);
+        font-size: 15px;
+      }
+
+      .nav-links a:hover {
+        color: var(--navy);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+      }
+
+      .btn-primary {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--navy-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--navy);
+        border: 2px solid var(--navy);
+      }
+
+      .btn-outline:hover {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      /* Language switcher */
+      .lang-switcher {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        padding: 4px;
+        display: flex;
+        gap: 2px;
+        box-shadow: var(--shadow);
+        font-size: 0.8rem;
+        font-weight: 500;
+        z-index: 1001;
+      }
+
+      html[dir="rtl"] .lang-switcher {
+        right: auto;
+        left: 24px;
+      }
+
+      .lang-switcher button {
+        padding: 6px 14px;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: var(--text-medium);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .lang-switcher button.active {
+        background: var(--navy);
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .lang-switcher button:hover:not(.active) {
+        background: var(--cream);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 60px 0 40px;
+        text-align: center;
+        background: var(--white);
+      }
+
+      .hero-tag {
+        display: inline-block;
+        padding: 6px 16px;
+        background: var(--cream);
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-medium);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        color: var(--navy);
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+        color: var(--text-medium);
+        max-width: 700px;
+        margin: 0 auto 40px;
+        line-height: 1.7;
+      }
+
+      /* Search and Filters */
+      .search-section {
+        background: var(--cream);
+        padding: 24px;
+        border-radius: var(--radius-lg);
+        max-width: 800px;
+        margin: 0 auto 60px;
+      }
+
+      .search-box {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+
+      html[dir="rtl"] .search-box {
+        flex-direction: row-reverse;
+      }
+
+      .search-input {
+        flex: 1;
+        padding: 14px 20px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-size: 15px;
+        outline: none;
+        background: var(--white);
+      }
+
+      .search-input:focus {
+        border-color: var(--navy);
+      }
+
+      .search-btn {
+        padding: 14px 28px;
+        background: var(--navy);
+        color: var(--white);
+        border: none;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .search-btn:hover {
+        background: var(--navy-dark);
+      }
+
+      .filter-tags {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .filter-tag {
+        padding: 8px 20px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        font-size: 13px;
+        color: var(--text-medium);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .filter-tag:hover,
+      .filter-tag.active {
+        background: var(--navy);
+        color: var(--white);
+        border-color: var(--navy);
+      }
+
+      /* Section Header */
+      .section-header {
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .section-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-light);
+        margin-bottom: 8px;
+      }
+
+      .section-title {
+        font-size: 28px;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .section-subtitle {
+        font-size: 14px;
+        color: var(--text-medium);
+      }
+
+      /* Services Grid */
+      .services-section {
+        padding: 0 0 80px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-bottom: 60px;
+      }
+
+      .service-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .service-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e8e5e0 0%, #d5d0c8 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover .service-image img {
+        transform: scale(1.05);
+      }
+
+      .service-category {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--navy);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      html[dir="rtl"] .service-category {
+        left: auto;
+        right: 16px;
+      }
+
+      .service-content {
+        padding: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .service-content h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+
+      .service-content p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+        margin-bottom: 16px;
+        flex: 1;
+      }
+
+      .service-meta {
+        font-size: 12px;
+        color: var(--text-light);
+        margin-bottom: 16px;
+      }
+
+      .service-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      html[dir="rtl"] .service-link {
+        flex-direction: row-reverse;
+      }
+
+      .service-link:hover {
+        gap: 10px;
+      }
+      html[dir="rtl"] .service-link:hover {
+        gap: 10px; /* Maintains hover effect direction */
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        display: none;
+      }
+
+      .no-results i {
+        font-size: 48px;
+        color: var(--text-light);
+        margin-bottom: 16px;
+      }
+
+      .no-results h3 {
+        font-size: 20px;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .no-results p {
+        color: var(--text-medium);
+      }
+
+      /* Bottom CTA Section */
+      .cta-section {
+        background: var(--cream);
+        padding: 60px 0;
+      }
+
+      .cta-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+      }
+
+      .cta-card {
+        background: var(--white);
+        padding: 40px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+      }
+
+      .cta-card h3 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        color: var(--navy);
+      }
+
+      .cta-card p {
+        font-size: 15px;
+        color: var(--text-medium);
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      html[dir="rtl"] .cta-button {
+        flex-direction: row-reverse;
+      }
+
+      .cta-button:hover {
+        background: var(--navy-dark);
+      }
+
+      .features-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .feature-item {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      html[dir="rtl"] .feature-item {
+        flex-direction: row-reverse;
+      }
+
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .feature-content h4 {
+        font-size: 16px;
+        margin-bottom: 6px;
+        color: var(--navy);
+      }
+
+      .feature-content p {
+        font-size: 13px;
+        color: var(--text-medium);
+        line-height: 1.5;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--navy);
+        color: var(--white);
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 40px;
+      }
+
+      .footer-brand .logo {
+        color: white;
+        margin-bottom: 16px;
+      }
+
+      .footer-brand p {
+        font-size: 14px;
+        opacity: 0.7;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .footer-column h4 {
+        font-size: 14px;
+        margin-bottom: 20px;
+        font-family: var(--font-sans);
+        font-weight: 600;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links a {
+        font-size: 13px;
+        opacity: 0.7;
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        opacity: 0.5;
+      }
+
+      html[dir="rtl"] .footer-bottom {
+        flex-direction: row-reverse;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .cta-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .search-box {
+          flex-direction: column;
+        }
+
+        html[dir="rtl"] .search-box {
+          flex-direction: column;
+        }
+
+        .lang-switcher {
+          top: 12px;
+          right: 12px;
+          font-size: 0.75rem;
+        }
+
+        html[dir="rtl"] .lang-switcher {
+          right: auto;
+          left: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <!-- Language switcher -->
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
+        EN
+      </button>
+      <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
+        AR
+      </button>
+      <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">
+        FR
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="{% url 'home' %}" class="logo">
+          <div class="logo-icon"><i class="fas fa-brain"></i></div>
+          <span class="logo-text">MindWell</span>
+        </a>
+        <div class="nav-links">
+          <a href="{% url 'home' %}" data-i18n="nav_home">Accueil</a>
+          <a href="{% url 'specialties' %}" data-i18n="nav_specialties"
+            >Spécialités</a
+          >
+          <a href="{% url 'nos_specialistes' %}" data-i18n="nav_specialists"
+            >Nos spécialistes</a
+          >
+          <a href="{% url 'comment_ca_marche' %}" data-i18n="nav_how"
+            >Comment ça marche ?</a
+          >
+          <a href="{% url 'about' %}" data-i18n="nav_about">À propos</a>
+          <a href="{% url 'faq' %}" data-i18n="nav_faq">FAQ</a>
+          <a href="{% url 'psychologists' %}" data-i18n="nav_psychologists"
+            >Psychologues</a
+          >
+        </div>
+        <div class="nav-actions">
+          <a
+            href="{% url 'accounts:login' %}"
+            class="btn btn-outline"
+            data-i18n="nav_login"
+            >Se connecter</a
+          >
+          <a
+            href="{% url 'accounts:choose_account_type' %}"
+            class="btn btn-primary"
+            data-i18n="nav_signup"
+            >Créer un compte</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <span class="hero-tag" data-i18n="hero_tag"
+          >Domaines d'intervention & Accompagnement clinique</span
+        >
+        <h1 data-i18n="hero_title">Nos domaines d'expertise psychologique</h1>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">
+          Découvrez nos 20 spécialités d'accompagnement thérapeutique. Chaque
+          motif de consultation fait l'objet d'une prise en charge sur mesure
+          par des psychologues cliniciens diplômés d'État et formés aux
+          approches validées (TCC, systémique, intégrative).
+        </p>
+
+        <div class="search-section">
+          <div class="search-box">
+            <input
+              type="text"
+              class="search-input"
+              id="searchInput"
+              data-i18n-placeholder="search_placeholder"
+              placeholder="Rechercher une spécialité, un symptôme (ex: angoisse, sommeil, épuisement...)"
+            />
+            <button class="search-btn" data-i18n="search_btn">
+              Rechercher
+            </button>
+          </div>
+          <div class="filter-tags">
+            <span
+              class="filter-tag active"
+              data-filter="all"
+              data-i18n="filter_all"
+              >Tous les domaines</span
+            >
+            <span
+              class="filter-tag"
+              data-filter="emotion"
+              data-i18n="filter_emotion"
+              >Émotionnel & Humeur</span
+            >
+            <span
+              class="filter-tag"
+              data-filter="travail"
+              data-i18n="filter_travail"
+              >Travail & Épuisement</span
+            >
+            <span
+              class="filter-tag"
+              data-filter="relation"
+              data-i18n="filter_relation"
+              >Relations & Famille</span
+            >
+            <span
+              class="filter-tag"
+              data-filter="comportement"
+              data-i18n="filter_comportement"
+              >Comportements & Addict</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label" data-i18n="sec_label">
+            Consultations cliniques
+          </div>
+          <h2 class="section-title" data-i18n="sec_title">
+            Répertoire exhaustif des motifs de soin
+          </h2>
+          <p class="section-subtitle" data-i18n="sec_subtitle">
+            Séances de 45 à 50 minutes en visioconférence chiffrée
+          </p>
+        </div>
+
+        <div class="services-grid" id="servicesGrid">
+          <!-- Service 1: Anxiété -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="anxiété angoisse panique peur stress anxiety panic fear قلق هلع توتر"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/Anxiete.jpg' %}" alt="Anxiété" />
+              <span class="service-category" data-i18n="svc_anxiete_cat"
+                >Troubles anxieux</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_anxiete_title">Anxiété</h3>
+              <p data-i18n="svc_anxiete_desc">
+                Prise en charge de l'anxiété généralisée, des crises d'angoisse
+                aiguës et des attaques de panique. Approche basée sur la TCC.
+              </p>
+              <div class="service-meta" data-i18n="svc_anxiete_meta">
+                TCC • Exposition progressive
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='anxiete' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 2: Dépression -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="dépression tristesse mélancolie humeur baisse moral découragement depression sadness melancholy اكتئاب حزن مزاج"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Depression.jpg' %}"
+                alt="Dépression"
+              />
+              <span class="service-category" data-i18n="svc_depression_cat"
+                >Troubles de l'humeur</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_depression_title">Dépression</h3>
+              <p data-i18n="svc_depression_desc">
+                Accompagnement de l'épisode dépressif caractérisé, de la baisse
+                d'élan vital et de la mélancolie. Thérapie intégrative adaptée.
+              </p>
+              <div class="service-meta" data-i18n="svc_depression_meta">
+                Thérapie intégrative
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='depression' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 3: Addiction -->
+          <div
+            class="service-card"
+            data-category="comportement"
+            data-keywords="addiction dépendance alcool drogue écran jeu tabac substance addiction dependency alcohol screens إدمان كحول شاشات"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/Addiction.jpg' %}" alt="Addiction" />
+              <span class="service-category" data-i18n="svc_addiction_cat"
+                >Addictologie</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_addiction_title">Addiction</h3>
+              <p data-i18n="svc_addiction_desc">
+                Prise en charge bienveillante des dépendances avec ou sans
+                substance (alcool, écrans, jeu d'argent). Entretien
+                motivationnel.
+              </p>
+              <div class="service-meta" data-i18n="svc_addiction_meta">
+                Entretien motivationnel
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='addiction' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 4: Stress -->
+          <div
+            class="service-card"
+            data-category="travail"
+            data-keywords="stress tension pression surmenage anxiété performance relaxation stress tension pressure توتر ضغط عمل"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/job stress.jpg' %}" alt="Stress" />
+              <span class="service-category" data-i18n="svc_stress_cat"
+                >Gestion du stress</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_stress_title">Stress</h3>
+              <p data-i18n="svc_stress_desc">
+                Apprentissage de techniques de gestion du stress chronique,
+                identification des déclencheurs et mise en place de stratégies
+                d'adaptation.
+              </p>
+              <div class="service-meta" data-i18n="svc_stress_meta">
+                Biofeedback & Relaxation
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='stress' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 5: Burn-out -->
+          <div
+            class="service-card"
+            data-category="travail"
+            data-keywords="burn-out épuisement professionnel fatigue travail surmenage effondrement burnout exhaustion work fatigue احتراق وظيفي إرهاق عمل"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/Burn-out.jpg' %}" alt="Burn-out" />
+              <span class="service-category" data-i18n="svc_burnout_cat"
+                >Clinique du travail</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_burnout_title">Burn-out</h3>
+              <p data-i18n="svc_burnout_desc">
+                Reconstruction progressive après l'effondrement professionnel.
+                Réévaluation des limites personnelles et des valeurs de vie.
+              </p>
+              <div class="service-meta" data-i18n="svc_burnout_meta">
+                Psychologie du travail
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='burn-out' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 6: Troubles du sommeil -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="sommeil insomnie cauchemar réveil nuit repos fatigue circadien sleep insomnia nightmare fatigue نوم أرق تعب"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Troubles du sommeil.jpg' %}"
+                alt="Troubles du sommeil"
+              />
+              <span class="service-category" data-i18n="svc_sommeil_cat"
+                >Chronobiologie & Repos</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_sommeil_title">Troubles du sommeil</h3>
+              <p data-i18n="svc_sommeil_desc">
+                Thérapie comportementale de l'insomnie (TCC-I), régulation du
+                rythme circadien, gestion des ruminations nocturnes.
+              </p>
+              <div class="service-meta" data-i18n="svc_sommeil_meta">
+                Protocole TCC-I
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='troubles-du-sommeil' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 7: Estime de soi -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="estime soi confiance valeur identité critique intérieure schémas self-esteem confidence value تقدير ذات ثقة قيمة"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Estime de soi.jpg' %}"
+                alt="Estime de soi"
+              />
+              <span class="service-category" data-i18n="svc_estime_cat"
+                >Identité & Valeur</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_estime_title">Estime de soi</h3>
+              <p data-i18n="svc_estime_desc">
+                Désamorçage du critique intérieur impitoyable, réconciliation
+                avec son histoire et développement d'une auto-compassion.
+              </p>
+              <div class="service-meta" data-i18n="svc_estime_meta">
+                Thérapie des schémas
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='estime-de-soi' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 8: Confiance en soi -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="confiance soi affirmation imposteur légitimité assertivité habiletés confidence impostor syndrome ثقة نفس متلازمة المحتال"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/career.jpg' %}"
+                alt="Confiance en soi"
+              />
+              <span class="service-category" data-i18n="svc_confiance_cat"
+                >Affirmation & Action</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_confiance_title">Confiance en soi</h3>
+              <p data-i18n="svc_confiance_desc">
+                Dépassement du sentiment d'illégitimité (syndrome de
+                l'imposteur), affirmation de soi dans la sphère personnelle et
+                professionnelle.
+              </p>
+              <div class="service-meta" data-i18n="svc_confiance_meta">
+                Entraînement aux habiletés
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='confiance-en-soi' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 9: Phobies -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="phobie peur évitement anxiété spécifique sociale agoraphobie exposition phobia fear avoidance رهاب خوف تجنب"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/Phobies.jpg' %}" alt="Phobies" />
+              <span class="service-category" data-i18n="svc_phobies_cat"
+                >Peur & Évitement</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_phobies_title">Phobies</h3>
+              <p data-i18n="svc_phobies_desc">
+                Désensibilisation des phobies spécifiques (avion, animaux, sang)
+                et sociales. Protocoles d'exposition graduée validés.
+              </p>
+              <div class="service-meta" data-i18n="svc_phobies_meta">
+                Exposition graduée
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='phobies' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 10: TOC -->
+          <div
+            class="service-card"
+            data-category="comportement"
+            data-keywords="TOC obsession compulsif rituel pensée intrusive anxiété répétition OCD obsessive compulsive وسواس قهري طقس تكرار"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/TOC.jpg' %}" alt="TOC" />
+              <span class="service-category" data-i18n="svc_toc_cat"
+                >Obsessions & Rituels</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_toc_title">TOC</h3>
+              <p data-i18n="svc_toc_desc">
+                Traitement des pensées intrusives anxiogènes et réduction des
+                rituels compulsifs par l'exposition avec prévention de la
+                réponse.
+              </p>
+              <div class="service-meta" data-i18n="svc_toc_meta">
+                Protocole ERP validé
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='toc' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 11: Troubles alimentaires -->
+          <div
+            class="service-card"
+            data-category="comportement"
+            data-keywords="troubles alimentaires TCA anorexie boulimie hyperphagie corps image eating disorder anorexia bulimia اضطراب أكل شره فقدان شهية"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/pexels.jpg' %}"
+                alt="Troubles alimentaires"
+              />
+              <span class="service-category" data-i18n="svc_tca_cat"
+                >Nutrition & Image du corps</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_tca_title">Troubles alimentaires (TCA)</h3>
+              <p data-i18n="svc_tca_desc">
+                Prise en charge des anorexies, boulimies et hyperphagies.
+                Approche pluridisciplinaire et dénouement des liens affectifs à
+                la nourriture.
+              </p>
+              <div class="service-meta" data-i18n="svc_tca_meta">
+                Approche pluridisciplinaire
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='troubles-alimentaires' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 12: Gestion des émotions -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="émotions régulation colère tristesse joie TDA hyperactivité affective emotions regulation anger sadness تنظيم مشاعر غضب حزن"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Gestion des émotions.jpg' %}"
+                alt="Gestion des émotions"
+              />
+              <span class="service-category" data-i18n="svc_emotions_cat"
+                >Régulation affective</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_emotions_title">Gestion des émotions</h3>
+              <p data-i18n="svc_emotions_desc">
+                Compréhension des tempêtes affectives et de l'hyperactivité
+                émotionnelle. Acquisition d'outils concrets pour réguler les
+                ressentis.
+              </p>
+              <div class="service-meta" data-i18n="svc_emotions_meta">
+                Thérapie dialectique (TCD)
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='gestion-des-emotions' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 13: Traumatismes -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="traumatisme SSPT EMDR choc violence abus enfance résilience souvenir trauma PTSD violence abuse صدمة عنف إساءة طفولة"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/storma.jpg' %}" alt="Traumatismes" />
+              <span class="service-category" data-i18n="svc_trauma_cat"
+                >Trauma & Résilience</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_trauma_title">Traumatismes & SSPT</h3>
+              <p data-i18n="svc_trauma_desc">
+                Désactivation des souvenirs traumatiques (chocs récents ou
+                blessures d'enfance). Apaisement des symptômes
+                post-traumatiques.
+              </p>
+              <div class="service-meta" data-i18n="svc_trauma_meta">
+                Protocoles type EMDR / TCC
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='traumatismes' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 14: Deuil -->
+          <div
+            class="service-card"
+            data-category="relation"
+            data-keywords="deuil perte séparation rupture décès chagrin tristesse transition grief loss separation breakup حزن فقدان فراق وفاة"
+          >
+            <div class="service-image">
+              <img src="{% static 'images/Deuil.jpg' %}" alt="Deuil" />
+              <span class="service-category" data-i18n="svc_deuil_cat"
+                >Transition & Perte</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_deuil_title">Deuil & Séparation</h3>
+              <p data-i18n="svc_deuil_desc">
+                Traversée des étapes du deuil (perte d'un proche, deuil
+                périnatal) et des ruptures sentimentales. Clinique du deuil.
+              </p>
+              <div class="service-meta" data-i18n="svc_deuil_meta">
+                Clinique du deuil
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='deuil' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 15: Difficultés relationnelles -->
+          <div
+            class="service-card"
+            data-category="relation"
+            data-keywords="relation couple attachement dépendance affective communication conflit relationship couple attachment communication conflict علاقة زوجية تعلق تواصل صراع"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Difficultés.jpg' %}"
+                alt="Difficultés relationnelles"
+              />
+              <span class="service-category" data-i18n="svc_relation_cat"
+                >Interpersonnel & Attachement</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_relation_title">Difficultés relationnelles</h3>
+              <p data-i18n="svc_relation_desc">
+                Sortie des schémas de répétition, de dépendance affective ou
+                d'évitement. Instauration d'une communication non-violente.
+              </p>
+              <div class="service-meta" data-i18n="svc_relation_meta">
+                Théorie de l'attachement
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='difficultes-relationnelles' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 16: Difficultés familiales -->
+          <div
+            class="service-card"
+            data-category="relation"
+            data-keywords="famille parentalité conflit génération couple éducation enfants systémique family parenting conflict generation children عائلة أبوة صراع تربية أطفال"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/familias.jpg' %}"
+                alt="Difficultés familiales"
+              />
+              <span class="service-category" data-i18n="svc_famille_cat"
+                >Systémique & Famille</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_famille_title">Difficultés familiales</h3>
+              <p data-i18n="svc_famille_desc">
+                Médiation des conflits intergénérationnels, soutien à la
+                parentalité en crise et dénouement des dynamiques familiales.
+              </p>
+              <div class="service-meta" data-i18n="svc_famille_meta">
+                Approche systémique
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='difficultes-familiales' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 17: Gestion de la colère -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="colère irritation agressivité impulsivité explosion contrôle régulation anger irritation aggression impulsivity control غضب تهيج عدوانية اندفاع تحكم"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Anger.jpg' %}"
+                alt="Gestion de la colère"
+              />
+              <span class="service-category" data-i18n="svc_colere_cat"
+                >Contrôle des impulsions</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_colere_title">Gestion de la colère</h3>
+              <p data-i18n="svc_colere_desc">
+                Identification des signaux précurseurs de l'irritabilité et des
+                explosions colériques. Mise en place de temps de pause et
+                régulation.
+              </p>
+              <div class="service-meta" data-i18n="svc_colere_meta">
+                Régulation émotionnelle
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='gestion-de-la-colere' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 18: Solitude -->
+          <div
+            class="service-card"
+            data-category="relation"
+            data-keywords="solitude isolement lien social exclusion marginalisation existence sens vie solitude isolation social link exclusion وحدة عزلة ارتباط اجتماعي إقصاء"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/just moving alone.jpg' %}"
+                alt="Solitude"
+              />
+              <span class="service-category" data-i18n="svc_solitude_cat"
+                >Lien & Présence</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_solitude_title">Solitude & Isolement</h3>
+              <p data-i18n="svc_solitude_desc">
+                Accompagnement du sentiment d'isolement social ou affectif.
+                Exploration des résistances au lien et reconstruction
+                relationnelle.
+              </p>
+              <div class="service-meta" data-i18n="svc_solitude_meta">
+                Thérapie existentielle
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='solitude' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 19: Difficultés adolescent -->
+          <div
+            class="service-card"
+            data-category="relation"
+            data-keywords="adolescent ado jeune crise identité scolaire rejet parental addiction teenager youth crisis identity school مراهق شاب أزمة هوية مدرسة رفض"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/kids.jpg' %}"
+                alt="Difficultés adolescent"
+              />
+              <span class="service-category" data-i18n="svc_ado_cat"
+                >Pédopsychologie & Ados</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_ado_title">Difficultés adolescent</h3>
+              <p data-i18n="svc_ado_desc">
+                Écoute et engagement des adolescents : difficultés scolaires,
+                rejet parental, addiction aux écrans et construction
+                identitaire.
+              </p>
+              <div class="service-meta" data-i18n="svc_ado_meta">
+                Consultation 12-25 ans
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='difficultes-adolescent' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+
+          <!-- Service 20: Soutien général -->
+          <div
+            class="service-card"
+            data-category="emotion"
+            data-keywords="soutien général écoute accompagnement cap vie transition déménagement retraite general support listening life transition move retirement دعم عام استماع مرافقة انتقال حياة تقاعد"
+          >
+            <div class="service-image">
+              <img
+                src="{% static 'images/Supporting.jpg' %}"
+                alt="Soutien général"
+              />
+              <span class="service-category" data-i18n="svc_soutien_cat"
+                >Soutien général</span
+              >
+            </div>
+            <div class="service-content">
+              <h3 data-i18n="svc_soutien_title">Soutien général</h3>
+              <p data-i18n="svc_soutien_desc">
+                Espace confidentiel pour traverser un cap de vie majeur ou
+                incompréhensible : déménagement, retraite ou questionnement
+                existentiel.
+              </p>
+              <div class="service-meta" data-i18n="svc_soutien_meta">
+                Entretien clinique ouvert
+              </div>
+              <a
+                href="{% url 'specialite_detail' slug='soutien-general' %}"
+                class="service-link"
+                ><span data-i18n="card_link">Découvrir</span>
+                <i class="fas fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+          <i class="fas fa-search"></i>
+          <h3 data-i18n="no_results_title">Aucun résultat trouvé</h3>
+          <p data-i18n="no_results_desc">
+            Essayez avec d'autres mots-clés ou parcourez toutes les spécialités.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-grid">
+          <div class="cta-card">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 20px;
+              "
+            >
+              <i
+                class="fas fa-user-md"
+                style="color: var(--navy); font-size: 24px"
+              ></i>
+              <span
+                style="
+                  font-size: 12px;
+                  font-weight: 600;
+                  color: var(--text-medium);
+                  text-transform: uppercase;
+                  letter-spacing: 1px;
+                "
+                data-i18n="cta_orientation_label"
+                >Orientation clinique personnalisée</span
+              >
+            </div>
+            <h3 data-i18n="cta_orientation_title">
+              Vous hésitez sur la spécialité qui correspond à votre situation ?
+            </h3>
+            <p data-i18n="cta_orientation_desc">
+              Il est fréquent d'éprouver plusieurs ressentis entremêlés. Lors
+              d'un premier entretien d'orientation de 30 minutes, un psychologue
+              référent vous écoute et vous guide vers le professionnel le plus
+              adapté.
+            </p>
+            <a href="{% url 'psychologists' %}" class="cta-button">
+              <span data-i18n="cta_orientation_btn"
+                >Prendre un rendez-vous d'orientation</span
+              >
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <div
+              style="
+                margin-top: 24px;
+                padding-top: 24px;
+                border-top: 1px solid var(--border);
+              "
+            >
+              <a
+                href="{% url 'psychologists' %}"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  font-size: 14px;
+                  color: var(--text-medium);
+                "
+              >
+                <i class="fas fa-users"></i>
+                <span data-i18n="cta_dir_annuaire"
+                  >Consulter l'annuaire des spécialistes</span
+                >
+              </a>
+            </div>
+          </div>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+              <div class="feature-content">
+                <h4 data-i18n="feat_diplomes_title">100% diplômés d'État</h4>
+                <p data-i18n="feat_diplomes_desc">
+                  Psychologues cliniciens enregistrés et vérifiés.
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-lock"></i></div>
+              <div class="feature-content">
+                <h4 data-i18n="feat_confidentialite_title">
+                  Confidentialité stricte
+                </h4>
+                <p data-i18n="feat_confidentialite_desc">
+                  Données hébergées et chiffrées sur serveurs sécurisés.
+                </p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-clock"></i></div>
+              <div class="feature-content">
+                <h4 data-i18n="feat_flexibilite_title">Flexibilité horaire</h4>
+                <p data-i18n="feat_flexibilite_desc">
+                  Créneaux du lundi au samedi, de 8h à 21h.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <a href="{% url 'home' %}" class="logo">
+              <div class="logo-icon"><i class="fas fa-brain"></i></div>
+              <span class="logo-text">MindWell</span>
+            </a>
+            <p data-i18n="foot_brand_desc">
+              Votre espace sécurisé de téléconsultation psychologique et
+              d'accompagnement bienveillant en Algérie.
+            </p>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="foot_platform">Plateforme</h4>
+            <div class="footer-links">
+              <a href="{% url 'home' %}" data-i18n="nav_home">Accueil</a>
+              <a href="{% url 'specialties' %}" data-i18n="nav_specialties"
+                >Spécialités</a
+              >
+              <a href="{% url 'psychologists' %}" data-i18n="foot_psychologists"
+                >Nos psychologues</a
+              >
+              <a href="{% url 'comment_ca_marche' %}" data-i18n="nav_how"
+                >Comment ça marche ?</a
+              >
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="foot_info">Informations</h4>
+            <div class="footer-links">
+              <a href="{% url 'about' %}" data-i18n="nav_about">À propos</a>
+              <a href="{% url 'faq' %}" data-i18n="nav_faq">FAQ</a>
+              <a href="{% url 'ethics' %}" data-i18n="foot_ethics">Éthique & Déontologie</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="foot_legal">Légal & Sécurité</h4>
+            <div class="footer-links">
+              <a href="{% url 'confidentialite' %}" data-i18n="foot_privacy"
+                >Politique de confidentialité</a
+              >
+              <a href="{% url 'cgv' %}" data-i18n="foot_terms">Conditions d'utilisation</a>
+              <a href="{% url 'mentions_legales' %}" data-i18n="foot_mentions">Mentions légales</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-i18n="foot_copy">
+            Projet universitaire de fin d'études - MindWell 2026. Tous droits
+            réservés.
+          </p>
+          <p data-i18n="foot_secret">
+            Confidentialité garantie • Secret professionnel préservé
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ==========================================
+      // 1. DICTIONNAIRE DE TRADUCTION (FR / AR / EN)
+      // ==========================================
+      const translations = {
+        fr: {
+          nav_home: "Accueil",
+          nav_specialties: "Spécialités",
+          nav_specialists: "Nos spécialistes",
+          nav_how: "Comment ça marche ?",
+          nav_about: "À propos",
+          nav_faq: "FAQ",
+          nav_psychologists: "Psychologues",
+          nav_login: "Se connecter",
+          nav_signup: "Créer un compte",
+          hero_tag: "Domaines d'intervention & Accompagnement clinique",
+          hero_title: "Nos domaines d'expertise psychologique",
+          hero_subtitle:
+            "Découvrez nos 20 spécialités d'accompagnement thérapeutique. Chaque motif de consultation fait l'objet d'une prise en charge sur mesure par des psychologues cliniciens diplômés d'État et formés aux approches validées (TCC, systémique, intégrative).",
+          search_placeholder:
+            "Rechercher une spécialité, un symptôme (ex: angoisse, sommeil, épuisement...)",
+          search_btn: "Rechercher",
+          filter_all: "Tous les domaines",
+          filter_emotion: "Émotionnel & Humeur",
+          filter_travail: "Travail & Épuisement",
+          filter_relation: "Relations & Famille",
+          filter_comportement: "Comportements & Addict",
+          sec_label: "Consultations cliniques",
+          sec_title: "Répertoire exhaustif des motifs de soin",
+          sec_subtitle:
+            "Séances de 45 à 50 minutes en visioconférence chiffrée",
+          card_link: "Découvrir",
+          svc_anxiete_cat: "Troubles anxieux",
+          svc_anxiete_title: "Anxiété",
+          svc_anxiete_desc:
+            "Prise en charge de l'anxiété généralisée, des crises d'angoisse aiguës et des attaques de panique. Approche basée sur la TCC.",
+          svc_anxiete_meta: "TCC • Exposition progressive",
+          svc_depression_cat: "Troubles de l'humeur",
+          svc_depression_title: "Dépression",
+          svc_depression_desc:
+            "Accompagnement de l'épisode dépressif caractérisé, de la baisse d'élan vital et de la mélancolie. Thérapie intégrative adaptée.",
+          svc_depression_meta: "Thérapie intégrative",
+          svc_addiction_cat: "Addictologie",
+          svc_addiction_title: "Addiction",
+          svc_addiction_desc:
+            "Prise en charge bienveillante des dépendances avec ou sans substance (alcool, écrans, jeu d'argent). Entretien motivationnel.",
+          svc_addiction_meta: "Entretien motivationnel",
+          svc_stress_cat: "Gestion du stress",
+          svc_stress_title: "Stress",
+          svc_stress_desc:
+            "Apprentissage de techniques de gestion du stress chronique, identification des déclencheurs et mise en place de stratégies d'adaptation.",
+          svc_stress_meta: "Biofeedback & Relaxation",
+          svc_burnout_cat: "Clinique du travail",
+          svc_burnout_title: "Burn-out",
+          svc_burnout_desc:
+            "Reconstruction progressive après l'effondrement professionnel. Réévaluation des limites personnelles et des valeurs de vie.",
+          svc_burnout_meta: "Psychologie du travail",
+          svc_sommeil_cat: "Chronobiologie & Repos",
+          svc_sommeil_title: "Troubles du sommeil",
+          svc_sommeil_desc:
+            "Thérapie comportementale de l'insomnie (TCC-I), régulation du rythme circadien, gestion des ruminations nocturnes.",
+          svc_sommeil_meta: "Protocole TCC-I",
+          svc_estime_cat: "Identité & Valeur",
+          svc_estime_title: "Estime de soi",
+          svc_estime_desc:
+            "Désamorçage du critique intérieur impitoyable, réconciliation avec son histoire et développement d'une auto-compassion.",
+          svc_estime_meta: "Thérapie des schémas",
+          svc_confiance_cat: "Affirmation & Action",
+          svc_confiance_title: "Confiance en soi",
+          svc_confiance_desc:
+            "Dépassement du sentiment d'illégitimité (syndrome de l'imposteur), affirmation de soi dans la sphère personnelle et professionnelle.",
+          svc_confiance_meta: "Entraînement aux habiletés",
+          svc_phobies_cat: "Peur & Évitement",
+          svc_phobies_title: "Phobies",
+          svc_phobies_desc:
+            "Désensibilisation des phobies spécifiques (avion, animaux, sang) et sociales. Protocoles d'exposition graduée validés.",
+          svc_phobies_meta: "Exposition graduée",
+          svc_toc_cat: "Obsessions & Rituels",
+          svc_toc_title: "TOC",
+          svc_toc_desc:
+            "Traitement des pensées intrusives anxiogènes et réduction des rituels compulsifs par l'exposition avec prévention de la réponse.",
+          svc_toc_meta: "Protocole ERP validé",
+          svc_tca_cat: "Nutrition & Image du corps",
+          svc_tca_title: "Troubles alimentaires (TCA)",
+          svc_tca_desc:
+            "Prise en charge des anorexies, boulimies et hyperphagies. Approche pluridisciplinaire et dénouement des liens affectifs à la nourriture.",
+          svc_tca_meta: "Approche pluridisciplinaire",
+          svc_emotions_cat: "Régulation affective",
+          svc_emotions_title: "Gestion des émotions",
+          svc_emotions_desc:
+            "Compréhension des tempêtes affectives et de l'hyperactivité émotionnelle. Acquisition d'outils concrets pour réguler les ressentis.",
+          svc_emotions_meta: "Thérapie dialectique (TCD)",
+          svc_trauma_cat: "Trauma & Résilience",
+          svc_trauma_title: "Traumatismes & SSPT",
+          svc_trauma_desc:
+            "Désactivation des souvenirs traumatiques (chocs récents ou blessures d'enfance). Apaisement des symptômes post-traumatiques.",
+          svc_trauma_meta: "Protocoles type EMDR / TCC",
+          svc_deuil_cat: "Transition & Perte",
+          svc_deuil_title: "Deuil & Séparation",
+          svc_deuil_desc:
+            "Traversée des étapes du deuil (perte d'un proche, deuil périnatal) et des ruptures sentimentales. Clinique du deuil.",
+          svc_deuil_meta: "Clinique du deuil",
+          svc_relation_cat: "Interpersonnel & Attachement",
+          svc_relation_title: "Difficultés relationnelles",
+          svc_relation_desc:
+            "Sortie des schémas de répétition, de dépendance affective ou d'évitement. Instauration d'une communication non-violente.",
+          svc_relation_meta: "Théorie de l'attachement",
+          svc_famille_cat: "Systémique & Famille",
+          svc_famille_title: "Difficultés familiales",
+          svc_famille_desc:
+            "Médiation des conflits intergénérationnels, soutien à la parentalité en crise et dénouement des dynamiques familiales.",
+          svc_famille_meta: "Approche systémique",
+          svc_colere_cat: "Contrôle des impulsions",
+          svc_colere_title: "Gestion de la colère",
+          svc_colere_desc:
+            "Identification des signaux précurseurs de l'irritabilité et des explosions colériques. Mise en place de temps de pause et régulation.",
+          svc_colere_meta: "Régulation émotionnelle",
+          svc_solitude_cat: "Lien & Présence",
+          svc_solitude_title: "Solitude & Isolement",
+          svc_solitude_desc:
+            "Accompagnement du sentiment d'isolement social ou affectif. Exploration des résistances au lien et reconstruction relationnelle.",
+          svc_solitude_meta: "Thérapie existentielle",
+          svc_ado_cat: "Pédopsychologie & Ados",
+          svc_ado_title: "Difficultés adolescent",
+          svc_ado_desc:
+            "Écoute et engagement des adolescents : difficultés scolaires, rejet parental, addiction aux écrans et construction identitaire.",
+          svc_ado_meta: "Consultation 12-25 ans",
+          svc_soutien_cat: "Soutien général",
+          svc_soutien_title: "Soutien général",
+          svc_soutien_desc:
+            "Espace confidentiel pour traverser un cap de vie majeur ou incompréhensible : déménagement, retraite ou questionnement existentiel.",
+          svc_soutien_meta: "Entretien clinique ouvert",
+          no_results_title: "Aucun résultat trouvé",
+          no_results_desc:
+            "Essayez avec d'autres mots-clés ou parcourez toutes les spécialités.",
+          cta_orientation_label: "Orientation clinique personnalisée",
+          cta_orientation_title:
+            "Vous hésitez sur la spécialité qui correspond à votre situation ?",
+          cta_orientation_desc:
+            "Il est fréquent d'éprouver plusieurs ressentis entremêlés. Lors d'un premier entretien d'orientation de 30 minutes, un psychologue référent vous écoute et vous guide vers le professionnel le plus adapté.",
+          cta_orientation_btn: "Prendre un rendez-vous d'orientation",
+          cta_dir_annuaire: "Consulter l'annuaire des spécialistes",
+          feat_diplomes_title: "100% diplômés d'État",
+          feat_diplomes_desc:
+            "Psychologues cliniciens enregistrés et vérifiés.",
+          feat_confidentialite_title: "Confidentialité stricte",
+          feat_confidentialite_desc:
+            "Données hébergées et chiffrées sur serveurs sécurisés.",
+          feat_flexibilite_title: "Flexibilité horaire",
+          feat_flexibilite_desc: "Créneaux du lundi au samedi, de 8h à 21h.",
+          foot_brand_desc:
+            "Votre espace sécurisé de téléconsultation psychologique et d'accompagnement bienveillant en Algérie.",
+          foot_platform: "Plateforme",
+          foot_psychologists: "Nos psychologues",
+          foot_info: "Informations",
+          foot_legal: "Légal & Sécurité",
+          foot_ethics: "Éthique & Déontologie",
+          foot_privacy: "Politique de confidentialité",
+          foot_terms: "Conditions d'utilisation",
+          foot_mentions: "Mentions légales",
+          foot_copy:
+            "Projet universitaire de fin d'études - MindWell 2026. Tous droits réservés.",
+          foot_secret:
+            "Confidentialité garantie • Secret professionnel préservé",
+        },
+        en: {
+          nav_home: "Home",
+          nav_specialties: "Specialties",
+          nav_specialists: "Our Specialists",
+          nav_how: "How it works",
+          nav_about: "About",
+          nav_faq: "FAQ",
+          nav_psychologists: "Psychologists",
+          nav_login: "Log in",
+          nav_signup: "Sign up",
+          hero_tag: "Areas of Intervention & Clinical Support",
+          hero_title: "Our Psychological Expertise Areas",
+          hero_subtitle:
+            "Discover our 20 therapeutic support specialties. Each consultation reason receives tailored care from state-licensed clinical psychologists trained in validated approaches (CBT, systemic, integrative).",
+          search_placeholder:
+            "Search for a specialty, a symptom (e.g., anxiety, sleep, burnout...)",
+          search_btn: "Search",
+          filter_all: "All areas",
+          filter_emotion: "Emotional & Mood",
+          filter_travail: "Work & Burnout",
+          filter_relation: "Relationships & Family",
+          filter_comportement: "Behaviors & Addiction",
+          sec_label: "Clinical Consultations",
+          sec_title: "Comprehensive Directory of Care Reasons",
+          sec_subtitle:
+            "45 to 50-minute sessions via encrypted video conference",
+          card_link: "Discover",
+          svc_anxiete_cat: "Anxiety Disorders",
+          svc_anxiete_title: "Anxiety",
+          svc_anxiete_desc:
+            "Management of generalized anxiety, acute panic attacks, and panic disorders. CBT-based approach.",
+          svc_anxiete_meta: "CBT • Progressive Exposure",
+          svc_depression_cat: "Mood Disorders",
+          svc_depression_title: "Depression",
+          svc_depression_desc:
+            "Support for major depressive episodes, loss of vital drive, and melancholy. Adapted integrative therapy.",
+          svc_depression_meta: "Integrative Therapy",
+          svc_addiction_cat: "Addictology",
+          svc_addiction_title: "Addiction",
+          svc_addiction_desc:
+            "Compassionate care for substance and behavioral addictions (alcohol, screens, gambling). Motivational interviewing.",
+          svc_addiction_meta: "Motivational Interviewing",
+          svc_stress_cat: "Stress Management",
+          svc_stress_title: "Stress",
+          svc_stress_desc:
+            "Learning chronic stress management techniques, identifying triggers, and implementing coping strategies.",
+          svc_stress_meta: "Biofeedback & Relaxation",
+          svc_burnout_cat: "Occupational Health",
+          svc_burnout_title: "Burn-out",
+          svc_burnout_desc:
+            "Progressive reconstruction after professional collapse. Reevaluation of personal boundaries and life values.",
+          svc_burnout_meta: "Occupational Psychology",
+          svc_sommeil_cat: "Chronobiology & Rest",
+          svc_sommeil_title: "Sleep Disorders",
+          svc_sommeil_desc:
+            "Cognitive Behavioral Therapy for Insomnia (CBT-I), circadian rhythm regulation, managing nighttime rumination.",
+          svc_sommeil_meta: "CBT-I Protocol",
+          svc_estime_cat: "Identity & Value",
+          svc_estime_title: "Self-Esteem",
+          svc_estime_desc:
+            "Disarming the ruthless inner critic, reconciling with one's history, and developing self-compassion.",
+          svc_estime_meta: "Schema Therapy",
+          svc_confiance_cat: "Assertion & Action",
+          svc_confiance_title: "Self-Confidence",
+          svc_confiance_desc:
+            "Overcoming feelings of illegitimacy (impostor syndrome), self-assertion in personal and professional spheres.",
+          svc_confiance_meta: "Skills Training",
+          svc_phobies_cat: "Fear & Avoidance",
+          svc_phobies_title: "Phobias",
+          svc_phobies_desc:
+            "Desensitization of specific (flying, animals, blood) and social phobias. Validated graded exposure protocols.",
+          svc_phobies_meta: "Graded Exposure",
+          svc_toc_cat: "Obsessions & Rituals",
+          svc_toc_title: "OCD",
+          svc_toc_desc:
+            "Treatment of anxiety-inducing intrusive thoughts and reduction of compulsive rituals through Exposure and Response Prevention.",
+          svc_toc_meta: "Validated ERP Protocol",
+          svc_tca_cat: "Nutrition & Body Image",
+          svc_tca_title: "Eating Disorders (ED)",
+          svc_tca_desc:
+            "Management of anorexia, bulimia, and binge eating. Multidisciplinary approach and unraveling affective ties to food.",
+          svc_tca_meta: "Multidisciplinary Approach",
+          svc_emotions_cat: "Affective Regulation",
+          svc_emotions_title: "Emotion Management",
+          svc_emotions_desc:
+            "Understanding affective storms and emotional hyperactivity. Acquiring concrete tools to regulate feelings.",
+          svc_emotions_meta: "Dialectical Behavior Therapy (DBT)",
+          svc_trauma_cat: "Trauma & Resilience",
+          svc_trauma_title: "Trauma & PTSD",
+          svc_trauma_desc:
+            "Deactivation of traumatic memories (recent shocks or childhood wounds). Soothing post-traumatic symptoms.",
+          svc_trauma_meta: "EMDR / CBT Protocols",
+          svc_deuil_cat: "Transition & Loss",
+          svc_deuil_title: "Grief & Separation",
+          svc_deuil_desc:
+            "Navigating the stages of grief (loss of a loved one, perinatal grief) and romantic breakups. Grief clinic.",
+          svc_deuil_meta: "Grief Clinic",
+          svc_relation_cat: "Interpersonal & Attachment",
+          svc_relation_title: "Relationship Difficulties",
+          svc_relation_desc:
+            "Breaking free from repetition, affective dependency, or avoidance patterns. Establishing non-violent communication.",
+          svc_relation_meta: "Attachment Theory",
+          svc_famille_cat: "Systemic & Family",
+          svc_famille_title: "Family Difficulties",
+          svc_famille_desc:
+            "Mediation of intergenerational conflicts, support for parents in crisis, and unraveling family dynamics.",
+          svc_famille_meta: "Systemic Approach",
+          svc_colere_cat: "Impulse Control",
+          svc_colere_title: "Anger Management",
+          svc_colere_desc:
+            "Identifying precursor signals of irritability and angry outbursts. Implementing time-outs and regulation.",
+          svc_colere_meta: "Emotional Regulation",
+          svc_solitude_cat: "Connection & Presence",
+          svc_solitude_title: "Loneliness & Isolation",
+          svc_solitude_desc:
+            "Support for feelings of social or affective isolation. Exploring resistance to connection and relational reconstruction.",
+          svc_solitude_meta: "Existential Therapy",
+          svc_ado_cat: "Child Psychology & Teens",
+          svc_ado_title: "Adolescent Difficulties",
+          svc_ado_desc:
+            "Listening to and engaging adolescents: school difficulties, parental rejection, screen addiction, and identity construction.",
+          svc_ado_meta: "12-25 years consultation",
+          svc_soutien_cat: "General Support",
+          svc_soutien_title: "General Support",
+          svc_soutien_desc:
+            "Confidential space to navigate a major or incomprehensible life transition: moving, retirement, or existential questioning.",
+          svc_soutien_meta: "Open Clinical Interview",
+          no_results_title: "No results found",
+          no_results_desc: "Try different keywords or browse all specialties.",
+          cta_orientation_label: "Personalized Clinical Orientation",
+          cta_orientation_title:
+            "Unsure which specialty matches your situation?",
+          cta_orientation_desc:
+            "It is common to experience multiple intertwined feelings. During a 30-minute initial orientation interview, a lead psychologist will listen to you and guide you to the most suitable professional.",
+          cta_orientation_btn: "Book an orientation appointment",
+          cta_dir_annuaire: "Consult the specialists directory",
+          feat_diplomes_title: "100% State-Licensed",
+          feat_diplomes_desc: "Registered and verified clinical psychologists.",
+          feat_confidentialite_title: "Strict Confidentiality",
+          feat_confidentialite_desc:
+            "Data hosted and encrypted on secure servers.",
+          feat_flexibilite_title: "Schedule Flexibility",
+          feat_flexibilite_desc:
+            "Slots available Monday to Saturday, 8 AM to 9 PM.",
+          foot_brand_desc:
+            "Your secure space for psychological teleconsultation and compassionate support in Algeria.",
+          foot_platform: "Platform",
+          foot_psychologists: "Our Psychologists",
+          foot_info: "Information",
+          foot_legal: "Legal & Security",
+          foot_ethics: "Ethics & Deontology",
+          foot_privacy: "Privacy Policy",
+          foot_terms: "Terms of Use",
+          foot_mentions: "Legal Notices",
+          foot_copy:
+            "University end-of-study project - MindWell 2026. All rights reserved.",
+          foot_secret:
+            "Confidentiality guaranteed • Professional secrecy preserved",
+        },
+        ar: {
+          nav_home: "الرئيسية",
+          nav_specialties: "التخصصات",
+          nav_specialists: "أخصائيونا",
+          nav_how: "كيف يعمل؟",
+          nav_about: "من نحن",
+          nav_faq: "الأسئلة الشائعة",
+          nav_psychologists: "الأخصائيون النفسيون",
+          nav_login: "تسجيل الدخول",
+          nav_signup: "إنشاء حساب",
+          hero_tag: "مجالات التدخل والمرافقة السريرية",
+          hero_title: "مجالات خبرتنا النفسية",
+          hero_subtitle:
+            "اكتشف تخصصاتنا الـ 20 في المرافقة العلاجية. يحظى كل سبب للاستشارة بعلاج مخصص من قبل أخصائيين نفسيين سريريين حاصلين على شهادات الدولة ومدربين على مناهج معتمدة (سلوكي معرفي، نظامي، تكاملي).",
+          search_placeholder: "ابحث عن تخصص أو عرض (مثال: قلق، نوم، إرهاق...)",
+          search_btn: "بحث",
+          filter_all: "جميع المجالات",
+          filter_emotion: "العاطفي والمزاج",
+          filter_travail: "العمل والإرهاق",
+          filter_relation: "العلاقات والأسرة",
+          filter_comportement: "السلوكيات والإدمان",
+          sec_label: "استشارات سريرية",
+          sec_title: "دليل شامل لأسباب العلاج",
+          sec_subtitle: "جلسات من 45 إلى 50 دقيقة عبر فيديو مشفر",
+          card_link: "اكتشف المزيد",
+          svc_anxiete_cat: "اضطرابات القلق",
+          svc_anxiete_title: "القلق",
+          svc_anxiete_desc:
+            "علاج القلق العام، نوبات الهلع الحادة، ونوبات الذعر. منهج قائم على العلاج السلوكي المعرفي.",
+          svc_anxiete_meta: "سلوكي معرفي • تعريض تدريجي",
+          svc_depression_cat: "اضطرابات المزاج",
+          svc_depression_title: "الاكتئاب",
+          svc_depression_desc:
+            "مرافقة نوبات الاكتئاب الحادة، فقدان الدافع الحيوي، والميلانخوليا. علاج تكاملي مكيف.",
+          svc_depression_meta: "علاج تكاملي",
+          svc_addiction_cat: "علاج الإدمان",
+          svc_addiction_title: "الإدمان",
+          svc_addiction_desc:
+            "رعاية داعمة للإدمان مع أو بدون مواد (كحول، شاشات، قمار). مقابلة تحفيزية.",
+          svc_addiction_meta: "مقابلة تحفيزية",
+          svc_stress_cat: "إدارة التوتر",
+          svc_stress_title: "التوتر",
+          svc_stress_desc:
+            "تعلم تقنيات إدارة التوتر المزمن، تحديد المحفزات، ووضع استراتيجيات للتكيف.",
+          svc_stress_meta: "ارتجاع بيولوجي واسترخاء",
+          svc_burnout_cat: "صحة العمل",
+          svc_burnout_title: "الاحتراق الوظيفي",
+          svc_burnout_desc:
+            "إعادة البناء التدريجي بعد الانهيار المهني. إعادة تقييم الحدود الشخصية وقيم الحياة.",
+          svc_burnout_meta: "علم نفس العمل",
+          svc_sommeil_cat: "الإيقاع البيولوجي والراحة",
+          svc_sommeil_title: "اضطرابات النوم",
+          svc_sommeil_desc:
+            "العلاج السلوكي المعرفي للأرق، تنظيم الإيقاع اليومي، وإدارة اجترار الأفكار الليلي.",
+          svc_sommeil_meta: "بروتوكول سلوكي معرفي للأرق",
+          svc_estime_cat: "الهوية والقيمة",
+          svc_estime_title: "تقدير الذات",
+          svc_estime_desc:
+            "تحييد الناقد الداخلي القاسي، المصالحة مع التاريخ الشخصي، وتطوير التعاطف مع الذات.",
+          svc_schemata_meta: "علاج المخططات",
+          svc_confiance_cat: "التأكيد والعمل",
+          svc_confiance_title: "الثقة بالنفس",
+          svc_confiance_desc:
+            "التغلب على شعور عدم الشرعية (متلازمة المحتال)، والتأكيد على الذات في المجالين الشخصي والمهني.",
+          svc_confiance_meta: "تدريب على المهارات",
+          svc_phobies_cat: "الخوف والتجنب",
+          svc_phobies_title: "الرهاب",
+          svc_phobies_desc:
+            "إزالة حساسية الرهاب المحدد (طيران، حيوانات، دم) والاجتماعي. بروتوكولات تعريض تدريجي معتمدة.",
+          svc_phobies_meta: "تعريض تدريجي",
+          svc_toc_cat: "هواجس وطقوس",
+          svc_toc_title: "الوسواس القهري",
+          svc_toc_desc:
+            "علاج الأفكار المتطفلة المثيرة للقلق وتقليل الطقوس القهرية من خلال التعرض ومنع الاستجابة.",
+          svc_toc_meta: "بروتوكول منع الاستجابة معتمد",
+          svc_tca_cat: "التغذية وصورة الجسد",
+          svc_tca_title: "اضطرابات الأكل",
+          svc_tca_desc:
+            "علاج فقدان الشهية، الشره المرضي، ونهم الأكل. نهج متعدد التخصصات وفك الارتباط العاطفي بالطعام.",
+          svc_tca_meta: "نهج متعدد التخصصات",
+          svc_emotions_cat: "التنظيم العاطفي",
+          svc_emotions_title: "إدارة المشاعر",
+          svc_emotions_desc:
+            "فهم العواصف العاطفية وفرط النشاط العاطفي. اكتساب أدوات ملموسة لتنظيم المشاعر.",
+          svc_emotions_meta: "علاج سلوكي جدلي",
+          svc_trauma_cat: "الصدمة والمرونة",
+          svc_trauma_title: "الصدمات واضطراب ما بعد الصدمة",
+          svc_trauma_desc:
+            "إلغاء تنشيط الذكريات المؤلمة (صدمات حديثة أو جروح طفولة). تهدئة أعراض ما بعد الصدمة.",
+          svc_trauma_meta: "بروتوكولات EMDR / سلوكي معرفي",
+          svc_deuil_cat: "الانتقال والفقدان",
+          svc_deuil_title: "الحزن والفراق",
+          svc_deuil_desc:
+            "اجتياز مراحل الحزن (فقدان عزيز، حزن ما حول الولادة) والانفصالات العاطفية. عيادة الحزن.",
+          svc_deuil_meta: "عيادة الحزن",
+          svc_relation_cat: "الشخصي والتعلق",
+          svc_relation_title: "صعوبات العلاقات",
+          svc_relation_desc:
+            "الخروج من أنماط التكرار، أو الاعتماد العاطفي، أو التجنب. إرساء تواصل غير عنيف.",
+          svc_relation_meta: "نظرية التعلق",
+          svc_famille_cat: "نظامي وأسري",
+          svc_famille_title: "صعوبات أسرية",
+          svc_famille_desc:
+            "الوساطة في النزاعات بين الأجيال، دعم الأبوة في الأزمات، وفك تشابك الديناميكيات الأسرية.",
+          svc_famille_meta: "نهج نظامي",
+          svc_colere_cat: "التحكم في الدوافع",
+          svc_colere_title: "إدارة الغضب",
+          svc_colere_desc:
+            "تحديد الإشارات المسبقة للتهيج ونوبات الغضب. تطبيق فترات استراحة وتنظيم.",
+          svc_colere_meta: "تنظيم عاطفي",
+          svc_solitude_cat: "الارتباط والحضور",
+          svc_solitude_title: "الوحدة والعزلة",
+          svc_solitude_desc:
+            "مرافقة شعور العزلة الاجتماعية أو العاطفية. استكشاف مقاومة الارتباط وإعادة البناء العلائقي.",
+          svc_solitude_meta: "علاج وجودي",
+          svc_ado_cat: "علم نفس الطفل والمراهقين",
+          svc_ado_title: "صعوبات المراهقة",
+          svc_ado_desc:
+            "الاستماع للمراهقين وإشراكهم: صعوبات مدرسية، رفض الوالدين، إدمان الشاشات، وبناء الهوية.",
+          svc_ado_meta: "استشارة 12-25 سنة",
+          svc_soutien_cat: "دعام عام",
+          svc_soutien_title: "دعم عام",
+          svc_soutien_desc:
+            "مساحة سرية لاجتياز منعطف حياتي كبير أو غير مفهوم: انتقال، تقاعد، أو تساؤل وجودي.",
+          svc_soutien_meta: "مقابلة سريرية مفتوحة",
+          no_results_title: "لم يتم العثور على نتائج",
+          no_results_desc: "جرب كلمات مفتاحية أخرى أو تصفح جميع التخصصات.",
+          cta_orientation_label: "توجيه سريري مخصص",
+          cta_orientation_title: "هل تتردد في معرفة التخصص الذي يناسب وضعك؟",
+          cta_orientation_desc:
+            "من الشائع الشعور بمشاعر متعددة ومتداخلة. خلال مقابلة توجيه أولية مدتها 30 دقيقة، سيستمع إليك أخصائي نفسي مرجعي ويوجهك نحو المهني الأنسب.",
+          cta_orientation_btn: "احجز موعد توجيه",
+          cta_dir_annuaire: "تصفح دليل الأخصائيين",
+          feat_diplomes_title: "100% حاصلون على شهادات الدولة",
+          feat_diplomes_desc: "أخصائيون نفسيون سريريون مسجلون وموثقون.",
+          feat_confidentialite_title: "سرية تامة",
+          feat_confidentialite_desc: "بيانات مستضافة ومشفرة على خوادم آمنة.",
+          feat_flexibilite_title: "مرونة في المواعيد",
+          feat_flexibilite_desc:
+            "مواعيد متاحة من الاثنين إلى السبت، من 8 صباحاً إلى 9 مساءً.",
+          foot_brand_desc:
+            "مساحتك الآمنة للاستشارة النفسية عن بُعد والمرافقة الداعمة في الجزائر.",
+          foot_platform: "المنصة",
+          foot_psychologists: "أخصائيونا النفسيون",
+          foot_info: "معلومات",
+          foot_legal: "القانون والأمان",
+          foot_ethics: "الأخلاقيات والمهنية",
+          foot_privacy: "سياسة الخصوصية",
+          foot_terms: "شروط الاستخدام",
+          foot_mentions: "الإشعارات القانونية",
+          foot_copy:
+            "مشروع جامعي لنهاية الدراسة - MindWell 2026. جميع الحقوق محفوظة.",
+          foot_secret: "السرية مضمونة • السر المهني محفوظ",
+        },
+      };
+
+      // ==========================================
+      // 2. دالة تغيير اللغة (بدون تحديث الصفحة)
+      // ==========================================
+      function setLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        // 1. تحديث اتجاه الصفحة واللغة
+        const html = document.getElementById("htmlRoot");
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+        // 2. تحديث كل النصوص التي تحمل data-i18n
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            const icon = el.querySelector("i");
+            if (icon && lang !== "ar") {
+              el.innerHTML = t[key] + " " + icon.outerHTML;
+            } else if (icon && lang === "ar") {
+              el.innerHTML = icon.outerHTML + " " + t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+
+        // 3. تحديث placeholders للحقول
+        document
+          .querySelectorAll("[data-i18n-placeholder]")
+          .forEach((input) => {
+            const key = input.getAttribute("data-i18n-placeholder");
+            if (t[key]) {
+              input.setAttribute("placeholder", t[key]);
+            }
+          });
+
+        // 4. تحديث حالة الأزرار النشطة
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang") === lang,
+          );
+        });
+
+        // 5. حفظ الاختيار في localStorage
+        localStorage.setItem("mindwell_lang", lang);
+        localStorage.setItem("preferredLanguage", lang);
+        document.cookie = `django_language=${lang}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+
+      // ==========================================
+      // 3. التهيئة عند تحميل الصفحة + وظيفة البحث الأصلية
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        // تحميل اللغة المحفوظة أو الافتراضية (الفرنسية)
+        setLanguage("{{ LANGUAGE_CODE }}");
+
+        // ==========================================
+        // وظيفة البحث والفلترة الأصلية (محسنة لتعمل مع الترجمة)
+        // ==========================================
+        const searchInput = document.getElementById("searchInput");
+        const serviceCards = document.querySelectorAll(".service-card");
+        const noResults = document.getElementById("noResults");
+        const filterTags = document.querySelectorAll(".filter-tag");
+        let currentFilter = "all";
+
+        function filterServices() {
+          const searchTerm = searchInput.value.toLowerCase().trim();
+          let visibleCount = 0;
+
+          serviceCards.forEach((card) => {
+            // البحث يعتمد على النص المرئي الحالي (الذي تم ترجمته بالفعل) + الكلمات المفتاحية متعددة اللغات
+            const title = card.querySelector("h3").textContent.toLowerCase();
+            const description = card
+              .querySelector("p")
+              .textContent.toLowerCase();
+            const category = card
+              .querySelector(".service-category")
+              .textContent.toLowerCase();
+            const keywords = card.getAttribute("data-keywords").toLowerCase();
+            const cardCategory = card.getAttribute("data-category");
+
+            const matchesSearch =
+              searchTerm === "" ||
+              title.includes(searchTerm) ||
+              description.includes(searchTerm) ||
+              category.includes(searchTerm) ||
+              keywords.includes(searchTerm);
+
+            const matchesFilter =
+              currentFilter === "all" || cardCategory === currentFilter;
+
+            if (matchesSearch && matchesFilter) {
+              card.style.display = "flex"; // استخدم flex للحفاظ على تنسيق البطاقة
+              visibleCount++;
+            } else {
+              card.style.display = "none";
+            }
+          });
+
+          noResults.style.display = visibleCount === 0 ? "block" : "none";
+        }
+
+        searchInput.addEventListener("input", filterServices);
+
+        filterTags.forEach((tag) => {
+          tag.addEventListener("click", function () {
+            filterTags.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+            currentFilter = this.getAttribute("data-filter");
+            filterServices();
+          });
+        });
+
+        window.addEventListener("scroll", () => {
+          const navbar = document.querySelector(".navbar");
+          if (window.scrollY > 100) {
+            navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

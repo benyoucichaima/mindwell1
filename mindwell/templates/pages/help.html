@@ -1,0 +1,30 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Centre d'aide - MindWell Algérie{% endblock %}
+
+{% block content %}
+<section class="page-header" style="text-align: center; margin-bottom: 2rem;">
+    <h1>Centre d'aide</h1>
+    <p>Besoin d'assistance ? Explorez nos guides et ressources.</p>
+</section>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="color: #0f172a; margin-bottom: 1rem;"><i class="fas fa-user-circle"></i> Compte et profil</h3>
+        <ul style="list-style: none; padding: 0; color: #475569;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Créer un compte</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Modifier mon profil</li>
+            <li style="padding: 0.5rem 0;">Supprimer mon compte</li>
+        </ul>
+    </div>
+
+    <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3 style="color: #0f172a; margin-bottom: 1rem;"><i class="fas fa-calendar-check"></i> Réservations</h3>
+        <ul style="list-style: none; padding: 0; color: #475569;">
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Comment réserver</li>
+            <li style="padding: 0.5rem 0; border-bottom: 1px solid #e2e8f0;">Annuler une séance</li>
+            <li style="padding: 0.5rem 0;">Reprogrammer</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

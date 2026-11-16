@@ -1,0 +1,153 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "MindWell Algérie - Centre d'aide" %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fb;
+            color: #111844;
+            line-height: 1.6;
+        }
+        .navbar {
+            background: #111844;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo { color: white; font-size: 22px; font-weight: 700; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; list-style: none; align-items: center; margin: 0; padding: 0; }
+        .nav-links a { color: #e8ebf5; text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { color: #EAE0CF; }
+        .help-header { text-align: center; padding: 55px 20px 35px; }
+        .eyebrow { color: #7288AE; font-weight: 700; font-size: 14px; letter-spacing: 1px; margin-bottom: 10px; }
+        h1, h2, h3 { color: #111844; }
+        .help-header h1 { font-size: 38px; margin: 0 0 12px; }
+        .help-header p { color: #667085; font-size: 17px; max-width: 700px; margin: auto; }
+        .help-page { max-width: 1100px; margin: auto; padding: 0 20px 60px; }
+        .help-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+        .help-card, .faq-item {
+            background: white; border: 1px solid #e7e9ef; border-radius: 16px; padding: 25px;
+            transition: box-shadow .2s, transform .2s;
+        }
+        .help-card:hover, .faq-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(17,24,68,.08); }
+        .help-card h3 { display: flex; align-items: center; gap: 10px; font-size: 20px; margin: 0 0 12px; }
+        .help-card p { color: #667085; margin: 0 0 8px; }
+        .help-link { display: block; color: #4B5694; text-decoration: none; font-weight: 600; padding: 9px 0; border-bottom: 1px solid #e7e9ef; }
+        .help-link:last-child { border-bottom: 0; }
+        .help-link::after { content: "→"; float: right; }
+        [dir="rtl"] .help-link::after { content: "←"; float: left; }
+        .help-link:hover { color: #111844; }
+        .faq-section { margin-top: 48px; }
+        .faq-section h2 { text-align: center; font-size: 30px; margin: 0 0 24px; }
+        .faq-item { margin-bottom: 14px; }
+        .faq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; cursor: pointer; font-weight: 700; list-style: none; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: "+"; color: #4B5694; font-size: 22px; }
+        .faq-item[open] summary::after { content: "−"; }
+        .faq-item p { color: #667085; margin: 12px 0 0; }
+        .contact-box { margin-top: 40px; padding: 40px 25px; background: #111844; border-radius: 18px; text-align: center; color: white; }
+        .contact-box h2 { color: white; margin: 0 0 10px; }
+        .contact-box p { color: #e8ebf5; max-width: 600px; margin: 0 auto 20px; }
+        .contact-button { display: inline-block; background: #EAE0CF; color: #111844; padding: 12px 26px; border-radius: 10px; text-decoration: none; font-weight: 700; }
+        .footer { text-align: center; padding: 25px 20px; color: #7288AE; font-size: 14px; }
+        @media (max-width: 760px) {
+            .navbar { flex-direction: column; gap: 14px; padding: 16px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px; }
+            .help-header h1 { font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+    {% include "includes/language_switcher.html" %}
+    <nav class="navbar">
+        <a href="{% url 'home' %}" class="logo">MindWell</a>
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">{% trans "Accueil" %}</a></li>
+            <li><a href="{% url 'faq' %}">{% trans "FAQ" %}</a></li>
+            <li><a href="{% url 'psychologists' %}">{% trans "Spécialistes" %}</a></li>
+            <li><a href="{% url 'aide' %}">{% trans "Centre d'aide" %}</a></li>
+        </ul>
+    </nav>
+
+    <header class="help-header">
+        <div class="eyebrow">{% trans "MindWell Algérie" %}</div>
+        <h1>{% trans "Centre d'aide" %}</h1>
+        <p>{% trans "Besoin d'assistance ? Retrouvez ici les informations essentielles pour utiliser MindWell et accéder facilement à nos services." %}</p>
+    </header>
+
+    <main class="help-page">
+        <section class="help-grid" aria-label="{% trans 'Rubriques d’aide' %}">
+            <article class="help-card">
+                <h3><span aria-hidden="true">📅</span> {% trans "Réservations" %}</h3>
+                <a class="help-link" href="{% url 'comment_ca_marche' %}">{% trans "Comment réserver" %}</a>
+                <a class="help-link" href="{% url 'accounts:rendez_vous' %}">{% trans "Annuler une session" %}</a>
+                <a class="help-link" href="{% url 'accounts:rendez_vous' %}">{% trans "Reprogrammer" %}</a>
+            </article>
+            <article class="help-card">
+                <h3><span aria-hidden="true">👤</span> {% trans "Compte et profil" %}</h3>
+                <a class="help-link" href="{% url 'accounts:register_patient' %}">{% trans "Créer un compte" %}</a>
+                <a class="help-link" href="{% url 'accounts:parametres' %}">{% trans "Modifier mon profil" %}</a>
+                <a class="help-link" href="{% url 'accounts:delete_account' %}">{% trans "Supprimer mon compte" %}</a>
+            </article>
+            <article class="help-card">
+                <h3><span aria-hidden="true">🩺</span> {% trans "Prendre rendez-vous" %}</h3>
+                <p>{% trans "Choisissez un psychologue, consultez son profil et demandez un rendez-vous selon vos disponibilités." %}</p>
+                <a class="help-link" href="{% url 'psychologists' %}">{% trans "Voir les spécialistes" %}</a>
+            </article>
+            <article class="help-card">
+                <h3><span aria-hidden="true">🔐</span> {% trans "Connexion" %}</h3>
+                <p>{% trans "Vous avez déjà un compte ? Connectez-vous pour accéder à votre espace personnel." %}</p>
+                <a class="help-link" href="{% url 'accounts:login' %}">{% trans "Se connecter" %}</a>
+            </article>
+            <article class="help-card">
+                <h3><span aria-hidden="true">❓</span> {% trans "Questions fréquentes" %}</h3>
+                <p>{% trans "Consultez les réponses aux questions les plus fréquentes concernant l'utilisation de la plateforme." %}</p>
+                <a class="help-link" href="{% url 'faq' %}">{% trans "Consulter la FAQ" %}</a>
+            </article>
+            <article class="help-card">
+                <h3><span aria-hidden="true">📞</span> {% trans "Nous contacter" %}</h3>
+                <p>{% trans "Vous n'avez pas trouvé la réponse à votre question ? Notre équipe reste à votre disposition." %}</p>
+                <a class="help-link" href="{% url 'contact' %}">{% trans "Contactez-nous" %}</a>
+            </article>
+        </section>
+
+        <section class="faq-section">
+            <h2>{% trans "Questions fréquentes" %}</h2>
+            <details class="faq-item">
+                <summary>{% trans "Comment prendre rendez-vous avec un psychologue ?" %}</summary>
+                <p>{% trans "Accédez à la liste des spécialistes, choisissez le psychologue qui vous convient puis envoyez une demande de rendez-vous." %}</p>
+            </details>
+            <details class="faq-item">
+                <summary>{% trans "Est-ce que mes informations sont confidentielles ?" %}</summary>
+                <p>{% trans "MindWell accorde une grande importance à la confidentialité et à la protection des informations personnelles des utilisateurs." %}</p>
+            </details>
+            <details class="faq-item">
+                <summary>{% trans "Comment contacter MindWell ?" %}</summary>
+                <p>{% trans "Vous pouvez utiliser la page Contactez-nous pour envoyer votre demande ou obtenir les informations de contact." %}</p>
+            </details>
+            <details class="faq-item">
+                <summary>{% trans "Je rencontre un problème avec mon compte, que faire ?" %}</summary>
+                <p>{% trans "Vérifiez vos informations de connexion. Si le problème persiste, contactez l'équipe MindWell pour obtenir de l'aide." %}</p>
+            </details>
+        </section>
+
+        <section class="contact-box">
+            <h2>{% trans "Vous avez encore besoin d'aide ?" %}</h2>
+            <p>{% trans "Notre équipe est disponible pour répondre à vos questions et vous accompagner dans l'utilisation de MindWell." %}</p>
+            <a class="contact-button" href="{% url 'contact' %}">{% trans "Contactez-nous" %}</a>
+        </section>
+    </main>
+    <footer class="footer">{% trans "Tous droits réservés." %}</footer>
+</body>
+</html>

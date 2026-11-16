@@ -1,0 +1,33 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Mes notifications" %} - MindWell{% endblock %}
+
+{% block content %}
+<section style="max-width: 850px; margin: 2rem auto; color: #111844;">
+  <h1>{% trans "Mes notifications" %}</h1>
+  <p>{% trans "Retrouvez ici les notifications liées à votre compte MindWell." %}</p>
+
+  {% if notifications %}
+    <div style="display: grid; gap: 1rem;">
+      {% for notification in notifications %}
+        <article style="background: #fff; border: 1px solid #EAE0CF; border-radius: 12px; padding: 1rem 1.25rem;">
+          {% if notification.title %}<p style="margin: 0 0 .35rem; font-weight: 700;">{{ notification.title }}</p>{% endif %}
+          <p style="margin: 0 0 .5rem;">{{ notification.message }}</p>
+          <time datetime="{{ notification.created_at|date:'c' }}" style="color: #64748b;">{{ notification.created_at|date:"DATETIME_FORMAT" }}</time>
+          {% if not notification.is_read %}
+            <span style="display: inline-block; margin-inline-start: .5rem; padding: .15rem .5rem; border-radius: 999px; background: #EAE0CF;">{% trans "Non lue" %}</span>
+          {% endif %}
+          {% if notification.url %}
+            <div style="margin-top: .6rem;"><a href="{{ notification.url }}" style="color: #111844; font-weight: 600;">{% trans "Ouvrir" %} &rarr;</a></div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p style="background: #EAE0CF; border-radius: 12px; padding: 1.25rem;">{% trans "Vous n'avez aucune notification pour le moment." %}</p>
+  {% endif %}
+
+  <a href="{% if request.user.user_type == 'psychologue' %}{% url 'accounts:psychologue_dashboard' %}{% else %}{% url 'accounts:patient_dashboard' %}{% endif %}" style="display: inline-block; margin-top: 1.5rem; color: #111844;">{% trans "Retour au tableau de bord" %}</a>
+</section>
+{% endblock %}

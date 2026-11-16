@@ -1,0 +1,1312 @@
+{% load static %}
+<!doctype html>
+<html id="htmlRoot" lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comment fonctionne votre parcours sur MindWell ?</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- خط Cairo لدعم اللغة العربية بشكل احترافي -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --navy: #1a1a2e;
+        --navy-light: #2a2a4e;
+        --cream: #f5f3ef;
+        --white: #ffffff;
+        --text-dark: #1a1a2e;
+        --text-medium: #4a4a5a;
+        --text-light: #7a7a8a;
+        --border: #e0ddd8;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.1);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-ar: "Cairo", "Inter", sans-serif;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        background: var(--white);
+        line-height: 1.6;
+      }
+
+      /* تغيير الخط تلقائياً عند التحويل للعربية */
+      html[lang="ar"] body {
+        font-family: var(--font-ar);
+      }
+      html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4, html[lang="ar"] h5, html[lang="ar"] h6 {
+        font-family: var(--font-ar);
+        font-weight: 700;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: all 0.3s ease;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navigation */
+      .navbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 18px;
+      }
+
+      .logo-text {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-weight: 500;
+        color: var(--text-medium);
+        font-size: 15px;
+      }
+
+      .nav-links a:hover {
+        color: var(--navy);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        outline: none;
+      }
+
+      .btn-primary {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--navy-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--navy);
+        border: 2px solid var(--navy);
+      }
+
+      .btn-outline:hover {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      /* Language switcher */
+      .lang-switcher {
+        display: flex;
+        gap: 2px;
+        background: var(--cream);
+        border-radius: 50px;
+        padding: 4px;
+        border: 1px solid var(--border);
+      }
+
+      .lang-switcher button {
+        padding: 6px 14px;
+        border-radius: 50px;
+        border: none;
+        background: transparent;
+        color: var(--text-medium);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 0.8rem;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .lang-switcher button.active {
+        background: var(--navy);
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .lang-switcher button:hover:not(.active) {
+        background: var(--white);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 80px 0 60px;
+        background: var(--white);
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+        color: var(--navy);
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero-content p {
+        font-size: 16px;
+        color: var(--text-medium);
+        margin-bottom: 32px;
+        line-height: 1.7;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+
+      .hero-trust {
+        display: flex;
+        gap: 24px;
+        font-size: 13px;
+        color: var(--text-light);
+      }
+
+      .hero-trust span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .hero-trust i {
+        color: #2d8a4e;
+      }
+
+      .hero-image {
+        position: relative;
+      }
+
+      .hero-image img {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .hero-card {
+        position: absolute;
+        bottom: 30px;
+        left: -30px;
+        background: var(--white);
+        padding: 20px 24px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        max-width: 280px;
+      }
+
+      html[dir="rtl"] .hero-card {
+        left: auto;
+        right: -30px;
+      }
+
+      .hero-card h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+        color: var(--navy);
+      }
+
+      .hero-card p {
+        font-size: 13px;
+        color: var(--text-medium);
+      }
+
+      /* Steps Section */
+      .steps-section {
+        padding: 80px 0;
+        background: var(--cream);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 60px;
+      }
+
+      .section-tag {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-light);
+        margin-bottom: 12px;
+        display: block;
+      }
+
+      .section-title {
+        font-size: 36px;
+        color: var(--navy);
+        margin-bottom: 16px;
+      }
+
+      .section-subtitle {
+        font-size: 16px;
+        color: var(--text-medium);
+        line-height: 1.6;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+
+      .step-card {
+        background: var(--white);
+        padding: 32px 28px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+      }
+
+      .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .step-number {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+
+      .step-card h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+
+      .step-card p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .step-features {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .step-feature {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text-medium);
+      }
+
+      .step-feature i {
+        color: #2d8a4e;
+        font-size: 12px;
+      }
+
+      /* Formats Section */
+      .formats-section {
+        padding: 100px 0;
+        background: var(--white);
+      }
+
+      .formats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-top: 60px;
+      }
+
+      .format-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+      }
+
+      .format-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .format-image {
+        position: relative;
+        height: 280px;
+        overflow: hidden;
+      }
+
+      .format-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .format-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: var(--navy);
+        color: white;
+        padding: 6px 16px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      html[dir="rtl"] .format-badge {
+        left: auto;
+        right: 20px;
+      }
+
+      .format-content {
+        padding: 28px;
+      }
+
+      .format-content h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+
+      .format-content p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .format-features {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .format-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--text-medium);
+      }
+
+      .format-feature i {
+        color: #2d8a4e;
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      /* Security Section */
+      .security-section {
+        padding: 80px 0;
+        background: var(--cream);
+      }
+
+      .security-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .security-content h2 {
+        font-size: 32px;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+
+      .security-content p {
+        font-size: 15px;
+        color: var(--text-medium);
+        line-height: 1.7;
+        margin-bottom: 32px;
+      }
+
+      .security-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .security-card {
+        background: var(--white);
+        padding: 28px 24px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow);
+      }
+
+      .security-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        color: var(--navy);
+        font-size: 20px;
+      }
+
+      .security-card h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--navy);
+      }
+
+      .security-card p {
+        font-size: 13px;
+        color: var(--text-medium);
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      /* FAQ Section */
+      .faq-section {
+        padding: 80px 0;
+        background: var(--white);
+      }
+
+      .faq-list {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        margin-bottom: 16px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        padding: 20px 24px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500;
+        color: var(--text-dark);
+        transition: all 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background: var(--cream);
+      }
+
+      .faq-question i {
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        padding: 0 24px;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 0 24px 20px;
+        max-height: 500px; /* Increased for longer Arabic text */
+      }
+
+      .faq-answer p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: var(--navy);
+        color: var(--white);
+        padding: 60px 0;
+      }
+
+      .cta-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cta-content h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
+      }
+
+      .cta-content p {
+        font-size: 15px;
+        opacity: 0.9;
+        max-width: 600px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 12px;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--navy);
+        color: var(--white);
+        padding: 60px 0 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 40px;
+      }
+
+      .footer-brand .logo {
+        color: white;
+        margin-bottom: 16px;
+      }
+
+      .footer-brand p {
+        font-size: 14px;
+        opacity: 0.7;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .footer-cert {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        opacity: 0.6;
+      }
+
+      .footer-column h4 {
+        font-size: 14px;
+        margin-bottom: 20px;
+        font-family: var(--font-sans);
+        font-weight: 600;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links a {
+        font-size: 13px;
+        opacity: 0.7;
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        opacity: 0.5;
+      }
+
+      html[dir="rtl"] .footer-bottom {
+        flex-direction: row-reverse;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .steps-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .formats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .security-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .security-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-content h1 {
+          font-size: 36px;
+        }
+
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .cta-inner {
+          flex-direction: column;
+          gap: 24px;
+          text-align: center;
+        }
+        
+        html[dir="rtl"] .cta-inner {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="{% url 'home' %}" class="logo">
+          <div class="logo-icon"><i class="fas fa-brain"></i></div>
+          <span class="logo-text">MindWell</span>
+        </a>
+        <div class="nav-links">
+          <a href="{% url 'home' %}" data-i18n="nav_home">Accueil</a>
+          <a href="{% url 'specialties' %}" data-i18n="nav_specialties">Spécialités</a>
+          <a href="{% url 'comment_ca_marche' %}" class="active" data-i18n="nav_how">Comment ça marche ?</a>
+          <a href="{% url 'about' %}" data-i18n="nav_about">À propos</a>
+          <a href="{% url 'faq' %}" data-i18n="nav_faq">FAQ</a>
+        </div>
+        <div class="nav-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+            <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+          </div>
+          <a href="{% url 'accounts:login' %}" class="btn btn-outline" data-i18n="nav_login">Se connecter</a>
+          <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary" data-i18n="nav_signup">Créer un compte</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <h1 data-i18n="hero_title">Comment fonctionne votre parcours sur MindWell ?</h1>
+          <p data-i18n="hero_subtitle">
+            Un cheminement thérapeutique pensé pour votre apaisement et votre liberté. Accédez en quelques clics à des psychologues cliniciens diplômés d'État, dans le respect scrupuleux du secret médical et selon les normes de sécurité sanitaire HDS les plus exigeantes.
+          </p>
+          <div class="hero-buttons">
+            <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary" data-i18n="hero_btn_1">Créer mon compte patient</a>
+            <a href="{% url 'psychologists' %}" class="btn btn-outline" data-i18n="hero_btn_2">Voir l'annuaire</a>
+          </div>
+          <div class="hero-trust">
+            <span><i class="fas fa-check-circle"></i> <span data-i18n="trust_1">100% Psychologues vérifiés ARS</span></span>
+            <span><i class="fas fa-check-circle"></i> <span data-i18n="trust_2">Données certifiées HDS & RGPD</span></span>
+            <span><i class="fas fa-check-circle"></i> <span data-i18n="trust_3">Remb. de mutuelle à 70% en moyenne</span></span>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop" alt="Consultation thérapeutique" />
+          <div class="hero-card">
+            <h3 data-i18n="hero_card_title">Alliance Thérapeutique</h3>
+            <p data-i18n="hero_card_desc">Prenez en charge personnellement le choix de votre psychologue</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="steps-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="steps_tag">Parcours de soins structuré</span>
+          <h2 class="section-title" data-i18n="steps_title">Votre chemin de soin en 8 étapes simples</h2>
+          <p class="section-subtitle" data-i18n="steps_subtitle">
+            De la première prise de contact jusqu'à la consolidation de vos acquis thérapeutiques, découvrez un suivi fluide et respectueux de votre rythme.
+          </p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3 data-i18n="step1_title">Créer votre compte</h3>
+            <p data-i18n="step1_desc">Inscription sécurisée en moins de 2 minutes. Répondez à un questionnaire d'accueil pour orienter votre prise en charge vers les professionnels les plus adaptés.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step1_feat">Confidentialité RGPD garantie</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3 data-i18n="step2_title">Compléter votre profil</h3>
+            <p data-i18n="step2_desc">Décrivez vos motifs de consultation (anxiété, deuil, transitions de vie, management) ou préférences d'orientation thérapeutique pour un ciblage optimal.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step2_feat">Personnalisation clinique</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3 data-i18n="step3_title">Choisir un spécialiste</h3>
+            <p data-i18n="step3_desc">Filtrez selon vos critères : approche (TCC, systémique, psychanalyse), intégrative ou EMDR, disponibilités et tarifs.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step3_feat">Vérification ARS / RPPS</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <h3 data-i18n="step4_title">Choisir une disponibilité</h3>
+            <p data-i18n="step4_desc">Profitez d'une flexibilité horaire étendue : lundi au samedi, de 8h à 21h. Nos thérapeutes en téléconsultation s'adaptent à vos contraintes professionnelles.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step4_feat">Créneau 10 min max à saisir</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">05</div>
+            <h3 data-i18n="step5_title">Prendre rendez-vous</h3>
+            <p data-i18n="step5_desc">Validation immédiate sans frais cachés. Recevez une confirmation SMS/email ainsi qu'un rappel 24h avant l'entretien pour un maximum de sérénité.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step5_feat">Rappels discrets par SMS</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">06</div>
+            <h3 data-i18n="step6_title">Participer à la séance</h3>
+            <p data-i18n="step6_desc">Connectez-vous directement à l'URL sans téléchargement ni configuration. Le serveur est certifié par des tiers de confiance et accessible via mot de passe unique.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step6_feat">Flux vidéo/WebRTC chiffré</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">07</div>
+            <h3 data-i18n="step7_title">Consulter le résumé</h3>
+            <p data-i18n="step7_desc">Retrouvez la synthèse des axes de travail abordés, mise en forme avec l'accord de votre clinicien et disponible dans votre espace personnel.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step7_feat">Synthèse clinique validée</span></div>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">08</div>
+            <h3 data-i18n="step8_title">Suivre son évolution</h3>
+            <p data-i18n="step8_desc">Consultez votre historique de progression grâce à notre espace personnel sécurisé : notes cliniques, objectifs thérapeutiques et rendez-vous récurrents simplifiés.</p>
+            <div class="step-features">
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step8_feat">Continuité thérapeutique</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formats Section -->
+    <section class="formats-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="formats_tag">Modalités de séance</span>
+          <h2 class="section-title" data-i18n="formats_title">Trois formats adaptés à votre sensibilité</h2>
+          <p class="section-subtitle" data-i18n="formats_subtitle">
+            Chaque patient chemine différemment. MindWell propose trois manières distinctes de dialoguer avec votre thérapeute, garantissant toujours le même niveau d'engagement clinique.
+          </p>
+        </div>
+        <div class="formats-grid">
+          <div class="format-card">
+            <div class="format-image">
+              <img src="{% static 'images/video.jpg' %}" alt="Consultation Vidéo" />
+              <span class="format-badge" data-i18n="format1_badge">Plus demandé</span>
+            </div>
+            <div class="format-content">
+              <h3 data-i18n="format1_title">Consultation Vidéo HD</h3>
+              <p data-i18n="format1_desc">Le cadre le plus proche de la consultation en cabinet physique. Permet la perception du langage non-verbal, facial et de l'expression affective dans un cadre chaleureux.</p>
+              <div class="format-features">
+                <div class="format-feature"><i class="fas fa-check"></i> <span data-i18n="format1_f1">Fluidité de la relation par le canal visuel HD</span></div>
+                <div class="format-feature"><i class="fas fa-check"></i> <span data-i18n="format1_f2">Compatible avec les espaces guidés en direct (ECC, méditation)</span></div>
+              </div>
+              <a href="{% url 'psychologists' %}" class="btn btn-outline" style="width: 100%" data-i18n="format1_btn">Réserver en vidéo</a>
+            </div>
+          </div>
+          <div class="format-card">
+            <div class="format-image">
+              <img src="{% static 'images/voice.jpg' %}" alt="Consultation Audio" />
+              <span class="format-badge" data-i18n="format2_badge">Intimité</span>
+            </div>
+            <div class="format-content">
+              <h3 data-i18n="format2_title">Consultation Audio</h3>
+              <p data-i18n="format2_desc">Parfaitement adaptée aux personnes qui ressentent un grand malaise face-à-face ou qui souhaitent libérer leur parole sans le regard de l'autre. Une écoute bienveillante sans jugement.</p>
+              <div class="format-features">
+                <div class="format-feature"><i class="fas fa-check"></i> <span data-i18n="format2_f1">Absence de fatigue visuelle, concentration vocalisée</span></div>
+                <div class="format-feature"><i class="fas fa-check"></i> <span data-i18n="format2_f2">Accessible même en cas de mauvaise liaison débit</span></div>
+              </div>
+              <a href="{% url 'psychologists' %}" class="btn btn-outline" style="width: 100%" data-i18n="format2_btn">Réserver en audio</a>
+            </div>
+          </div>
+          <div class="format-card">
+            <div class="format-image">
+              <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=400&fit=crop" alt="Accompagnement Textuel" />
+              <span class="format-badge" data-i18n="format3_badge">Suivi asynchrone</span>
+            </div>
+            <div class="format-content">
+              <h3 data-i18n="format3_title">Accompagnement Textuel</h3>
+              <p data-i18n="format3_desc">Un canal d'échange privilégié pour formuler positivement ses ressentis. Conçu pour les personnes souffrant d'inhibition verbale, d'anxiété sociale ou désirant un agenda libre.</p>
+              <div class="format-features">
+                <div class="format-feature"><i class="fas fa-check"></i> <span data-i18n="format3_f1">Temps de réflexion libre avant chaque prise de message</span></div>
+                <div class="format-feature"><i class="fas fa-check"></i> <span data-i18n="format3_f2">Réponses approfondies de votre psychologue sous 24h ouvrées</span></div>
+              </div>
+              <a href="{% url 'psychologists' %}" class="btn btn-outline" style="width: 100%" data-i18n="format3_btn">Découvrir le format textuel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security-section">
+      <div class="container">
+        <div class="security-grid">
+          <div class="security-content">
+            <span class="section-tag" data-i18n="sec_tag">Sécurité & Éthique</span>
+            <h2 data-i18n="sec_title">La sécurité clinique comme fondement</h2>
+            <p data-i18n="sec_desc">La relation thérapeutique requiert une confiance absolue. Notre infrastructure est rigoureusement auditée afin de préserver votre sanctuaire personnel.</p>
+          </div>
+          <div class="security-cards">
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-server"></i></div>
+              <h3 data-i18n="sec1_title">Hébergement sécurisé en Algérie</h3>
+              <p data-i18n="sec1_desc">Les données des utilisateurs sont hébergées dans un environnement sécurisé, avec des mesures techniques et organisationnelles destinées à assurer leur protection.</p>
+            </div>
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-user-shield"></i></div>
+              <h3 data-i18n="sec2_title">Confidentialité des consultations</h3>
+              <p data-i18n="sec2_desc">Les échanges entre le patient et le psychologue sont traités de manière confidentielle, dans le respect des règles professionnelles et de la protection des données.</p>
+            </div>
+            <div class="security-card">
+              <div class="security-icon"><i class="fas fa-calendar-check"></i></div>
+              <h3 data-i18n="sec3_title">Annulation sans frais</h3>
+              <p data-i18n="sec3_desc">Un imprévu survient ? Modifiez ou annulez votre rendez-vous gratuitement jusqu'à 24 heures avant la séance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="faq_tag">Questions courantes</span>
+          <h2 class="section-title" data-i18n="faq_title">Tout ce que vous devez savoir avant de commencer</h2>
+          <p class="section-subtitle" data-i18n="faq_subtitle">Des réponses concrètes et transparentes pour débuter votre accompagnement en toute clarté.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq1_q">Ai-je besoin d'installer un logiciel ou une application spécifique ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p data-i18n="faq1_a">Non, notre plateforme fonctionne directement depuis votre navigateur web (Chrome, Firefox, Safari, Edge). Aucun téléchargement n'est nécessaire pour accéder aux consultations vidéo ou audio.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq2_q">Mes consultations sont-elles remboursées par ma mutuelle de santé ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p data-i18n="faq2_a">Oui, la plupart des mutuelles santé proposent un remboursement partiel ou total des séances de psychologie. Nous vous fournissons une facture détaillée après chaque consultation pour faciliter vos démarches.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq3_q">Puis-je changer de psychologue au cours de mon suivi ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p data-i18n="faq3_a">Absolument. L'alliance thérapeutique est fondamentale. Si vous souhaitez changer de praticien, vous pouvez consulter notre annuaire et sélectionner un nouveau psychologue. Vos données restent confidentielles.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span data-i18n="faq4_q">Que se passe-t-il en cas de coupure de réseau pendant l'entretien ?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p data-i18n="faq4_a">En cas de problème technique, reconnectez-vous simplement à l'URL de votre séance. Si la coupure persiste, votre psychologue vous recontactera par téléphone ou vous proposera un nouveau créneau sans frais.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-inner">
+          <div class="cta-content">
+            <h2 data-i18n="cta_title">Prêt à entamer votre démarche de soin ?</h2>
+            <p data-i18n="cta_desc">Première séance - 45 min pour faire connaissance et définir vos objectifs thérapeutiques. Le premier paiement est sécurisé et remboursable selon votre mutuelle.</p>
+          </div>
+          <div class="cta-buttons">
+            <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary" data-i18n="cta_btn1">Créer un compte patient</a>
+            <a href="{% url 'psychologists' %}" class="btn btn-outline" style="border-color: white; color: white" data-i18n="cta_btn2">Explorer l'annuaire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            <a href="{% url 'home' %}" class="logo">
+              <div class="logo-icon"><i class="fas fa-brain"></i></div>
+              <span class="logo-text">MindWell</span>
+            </a>
+            <p data-i18n="footer_desc">Votre espace sécurisé de téléconsultation psychologique et d'accompagnement bienveillant.</p>
+            <div class="footer-cert">
+              <i class="fas fa-shield-alt"></i>
+              <span data-i18n="footer_cert">Conforme hébergement certifié santé HDS</span>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="footer_plat">Plateforme</h4>
+            <div class="footer-links">
+              <a href="{% url 'home' %}" data-i18n="nav_home">Accueil</a>
+              <a href="{% url 'specialties' %}" data-i18n="nav_specialties">Spécialités</a>
+              <a href="{% url 'nos_specialistes' %}" data-i18n="footer_specs">Nos spécialistes</a>
+              <a href="{% url 'comment_ca_marche' %}" data-i18n="nav_how">Comment ça marche ?</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="footer_info">Informations</h4>
+            <div class="footer-links">
+              <a href="{% url 'about' %}" data-i18n="nav_about">À propos</a>
+              <a href="{% url 'faq' %}" data-i18n="nav_faq">FAQ</a>
+              <a href="{% url 'ethics' %}" data-i18n="footer_ethics">Éthique & Déontologie</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="footer_legal">Légal & Sécurité</h4>
+            <div class="footer-links">
+              <a href="{% url 'confidentialite' %}" data-i18n="footer_privacy">Politique de confidentialité</a>
+              <a href="{% url 'cgv' %}" data-i18n="footer_terms">Conditions d'utilisation</a>
+              <a href="{% url 'confidentialite' %}" data-i18n="footer_hds">Protection des données</a>
+              <a href="{% url 'mentions_legales' %}" data-i18n="footer_mentions">Mentions légales</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-i18n="footer_copy">Projet universitaire de fin d'études - MindWell 2025. Tous droits réservés.</p>
+          <p data-i18n="footer_secret">Confidentialité garantie • Secret professionnel préservé</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ==========================================
+      // 1. DICTIONNAIRE DE TRADUCTION (FR / AR / EN)
+      // ==========================================
+      const translations = {
+        fr: {
+          nav_home: "Accueil", nav_specialties: "Spécialités", nav_how: "Comment ça marche ?", nav_about: "À propos", nav_faq: "FAQ", nav_login: "Se connecter", nav_signup: "Créer un compte",
+          hero_title: "Comment fonctionne votre parcours sur MindWell ?",
+          hero_subtitle: "Un cheminement thérapeutique pensé pour votre apaisement et votre liberté. Accédez en quelques clics à des psychologues cliniciens diplômés d'État, dans le respect scrupuleux du secret médical et selon les normes de sécurité sanitaire HDS les plus exigeantes.",
+          hero_btn_1: "Créer mon compte patient", hero_btn_2: "Voir l'annuaire",
+          trust_1: "100% Psychologues vérifiés ARS", trust_2: "Données certifiées HDS & RGPD", trust_3: "Remb. de mutuelle à 70% en moyenne",
+          hero_card_title: "Alliance Thérapeutique", hero_card_desc: "Prenez en charge personnellement le choix de votre psychologue",
+          steps_tag: "Parcours de soins structuré", steps_title: "Votre chemin de soin en 8 étapes simples", steps_subtitle: "De la première prise de contact jusqu'à la consolidation de vos acquis thérapeutiques, découvrez un suivi fluide et respectueux de votre rythme.",
+          step1_title: "Créer votre compte", step1_desc: "Inscription sécurisée en moins de 2 minutes. Répondez à un questionnaire d'accueil pour orienter votre prise en charge vers les professionnels les plus adaptés.", step1_feat: "Confidentialité RGPD garantie",
+          step2_title: "Compléter votre profil", step2_desc: "Décrivez vos motifs de consultation (anxiété, deuil, transitions de vie, management) ou préférences d'orientation thérapeutique pour un ciblage optimal.", step2_feat: "Personnalisation clinique",
+          step3_title: "Choisir un spécialiste", step3_desc: "Filtrez selon vos critères : approche (TCC, systémique, psychanalyse), intégrative ou EMDR, disponibilités et tarifs.", step3_feat: "Vérification ARS / RPPS",
+          step4_title: "Choisir une disponibilité", step4_desc: "Profitez d'une flexibilité horaire étendue : lundi au samedi, de 8h à 21h. Nos thérapeutes en téléconsultation s'adaptent à vos contraintes professionnelles.", step4_feat: "Créneau 10 min max à saisir",
+          step5_title: "Prendre rendez-vous", step5_desc: "Validation immédiate sans frais cachés. Recevez une confirmation SMS/email ainsi qu'un rappel 24h avant l'entretien pour un maximum de sérénité.", step5_feat: "Rappels discrets par SMS",
+          step6_title: "Participer à la séance", step6_desc: "Connectez-vous directement à l'URL sans téléchargement ni configuration. Le serveur est certifié par des tiers de confiance et accessible via mot de passe unique.", step6_feat: "Flux vidéo/WebRTC chiffré",
+          step7_title: "Consulter le résumé", step7_desc: "Retrouvez la synthèse des axes de travail abordés, mise en forme avec l'accord de votre clinicien et disponible dans votre espace personnel.", step7_feat: "Synthèse clinique validée",
+          step8_title: "Suivre son évolution", step8_desc: "Consultez votre historique de progression grâce à notre espace personnel sécurisé : notes cliniques, objectifs thérapeutiques et rendez-vous récurrents simplifiés.", step8_feat: "Continuité thérapeutique",
+          formats_tag: "Modalités de séance", formats_title: "Trois formats adaptés à votre sensibilité", formats_subtitle: "Chaque patient chemine différemment. MindWell propose trois manières distinctes de dialoguer avec votre thérapeute, garantissant toujours le même niveau d'engagement clinique.",
+          format1_badge: "Plus demandé", format1_title: "Consultation Vidéo HD", format1_desc: "Le cadre le plus proche de la consultation en cabinet physique. Permet la perception du langage non-verbal, facial et de l'expression affective dans un cadre chaleureux.", format1_f1: "Fluidité de la relation par le canal visuel HD", format1_f2: "Compatible avec les espaces guidés en direct (ECC, méditation)", format1_btn: "Réserver en vidéo",
+          format2_badge: "Intimité", format2_title: "Consultation Audio", format2_desc: "Parfaitement adaptée aux personnes qui ressentent un grand malaise face-à-face ou qui souhaitent libérer leur parole sans le regard de l'autre. Une écoute bienveillante sans jugement.", format2_f1: "Absence de fatigue visuelle, concentration vocalisée", format2_f2: "Accessible même en cas de mauvaise liaison débit", format2_btn: "Réserver en audio",
+          format3_badge: "Suivi asynchrone", format3_title: "Accompagnement Textuel", format3_desc: "Un canal d'échange privilégié pour formuler positivement ses ressentis. Conçu pour les personnes souffrant d'inhibition verbale, d'anxiété sociale ou désirant un agenda libre.", format3_f1: "Temps de réflexion libre avant chaque prise de message", format3_f2: "Réponses approfondies de votre psychologue sous 24h ouvrées", format3_btn: "Découvrir le format textuel",
+          sec_tag: "Sécurité & Éthique", sec_title: "La sécurité clinique comme fondement", sec_desc: "La relation thérapeutique requiert une confiance absolue. Notre infrastructure est rigoureusement auditée afin de préserver votre sanctuaire personnel.",
+          sec1_title: "Hébergement sécurisé en Algérie", sec1_desc: "Les données des utilisateurs sont hébergées dans un environnement sécurisé, avec des mesures techniques et organisationnelles destinées à assurer leur protection.",
+          sec2_title: "Confidentialité des consultations", sec2_desc: "Les échanges entre le patient et le psychologue sont traités de manière confidentielle, dans le respect des règles professionnelles et de la protection des données.",
+          sec3_title: "Annulation sans frais", sec3_desc: "Un imprévu survient ? Modifiez ou annulez votre rendez-vous gratuitement jusqu'à 24 heures avant la séance.",
+          faq_tag: "Questions courantes", faq_title: "Tout ce que vous devez savoir avant de commencer", faq_subtitle: "Des réponses concrètes et transparentes pour débuter votre accompagnement en toute clarté.",
+          faq1_q: "Ai-je besoin d'installer un logiciel ou une application spécifique ?", faq1_a: "Non, notre plateforme fonctionne directement depuis votre navigateur web (Chrome, Firefox, Safari, Edge). Aucun téléchargement n'est nécessaire pour accéder aux consultations vidéo ou audio.",
+          faq2_q: "Mes consultations sont-elles remboursées par ma mutuelle de santé ?", faq2_a: "Oui, la plupart des mutuelles santé proposent un remboursement partiel ou total des séances de psychologie. Nous vous fournissons une facture détaillée après chaque consultation pour faciliter vos démarches.",
+          faq3_q: "Puis-je changer de psychologue au cours de mon suivi ?", faq3_a: "Absolument. L'alliance thérapeutique est fondamentale. Si vous souhaitez changer de praticien, vous pouvez consulter notre annuaire et sélectionner un nouveau psychologue. Vos données restent confidentielles.",
+          faq4_q: "Que se passe-t-il en cas de coupure de réseau pendant l'entretien ?", faq4_a: "En cas de problème technique, reconnectez-vous simplement à l'URL de votre séance. Si la coupure persiste, votre psychologue vous recontactera par téléphone ou vous proposera un nouveau créneau sans frais.",
+          cta_title: "Prêt à entamer votre démarche de soin ?", cta_desc: "Première séance - 45 min pour faire connaissance et définir vos objectifs thérapeutiques. Le premier paiement est sécurisé et remboursable selon votre mutuelle.", cta_btn1: "Créer un compte patient", cta_btn2: "Explorer l'annuaire",
+          footer_desc: "Votre espace sécurisé de téléconsultation psychologique et d'accompagnement bienveillant.", footer_cert: "Conforme hébergement certifié santé HDS",
+          footer_plat: "Plateforme", footer_specs: "Nos spécialistes", footer_info: "Informations", footer_ethics: "Éthique & Déontologie", footer_legal: "Légal & Sécurité", footer_privacy: "Politique de confidentialité", footer_terms: "Conditions d'utilisation", footer_hds: "Protection des données HDS", footer_mentions: "Mentions légales",
+          footer_copy: "Projet universitaire de fin d'études - MindWell 2025. Tous droits réservés.", footer_secret: "Confidentialité garantie • Secret professionnel préservé"
+        },
+        en: {
+          nav_home: "Home", nav_specialties: "Specialties", nav_how: "How it works", nav_about: "About", nav_faq: "FAQ", nav_login: "Log in", nav_signup: "Sign up",
+          hero_title: "How does your journey on MindWell work?",
+          hero_subtitle: "A therapeutic pathway designed for your peace of mind and freedom. Access state-licensed clinical psychologists in a few clicks, with strict respect for medical secrecy and the highest HDS health security standards.",
+          hero_btn_1: "Create my patient account", hero_btn_2: "View directory",
+          trust_1: "100% ARS verified psychologists", trust_2: "HDS & GDPR certified data", trust_3: "Avg. 70% mutual insurance reimbursement",
+          hero_card_title: "Therapeutic Alliance", hero_card_desc: "Take personal charge of choosing your psychologist",
+          steps_tag: "Structured care pathway", steps_title: "Your care journey in 8 simple steps", steps_subtitle: "From the first contact to the consolidation of your therapeutic gains, discover a smooth follow-up respectful of your pace.",
+          step1_title: "Create your account", step1_desc: "Secure registration in under 2 minutes. Answer a welcome questionnaire to direct your care to the most suitable professionals.", step1_feat: "GDPR confidentiality guaranteed",
+          step2_title: "Complete your profile", step2_desc: "Describe your consultation reasons (anxiety, grief, life transitions, management) or therapeutic orientation preferences for optimal targeting.", step2_feat: "Clinical personalization",
+          step3_title: "Choose a specialist", step3_desc: "Filter by your criteria: approach (CBT, systemic, psychoanalysis), integrative or EMDR, availability, and rates.", step3_feat: "ARS / RPPS verification",
+          step4_title: "Choose an availability", step4_desc: "Enjoy extended time flexibility: Monday to Saturday, 8 AM to 9 PM. Our teleconsultation therapists adapt to your professional constraints.", step4_feat: "10 min max slot to book",
+          step5_title: "Book an appointment", step5_desc: "Immediate validation with no hidden fees. Receive an SMS/email confirmation and a reminder 24h before the interview for maximum serenity.", step5_feat: "Discreet SMS reminders",
+          step6_title: "Participate in the session", step6_desc: "Connect directly to the URL without download or configuration. The server is certified by trusted third parties and accessible via a unique password.", step6_feat: "Encrypted video/WebRTC stream",
+          step7_title: "Consult the summary", step7_desc: "Find the synthesis of the work axes addressed, formatted with your clinician's agreement and available in your personal space.", step7_feat: "Validated clinical synthesis",
+          step8_title: "Track your progress", step8_desc: "Consult your progress history through our secure personal space: clinical notes, therapeutic objectives, and simplified recurring appointments.", step8_feat: "Therapeutic continuity",
+          formats_tag: "Session modalities", formats_title: "Three formats adapted to your sensitivity", formats_subtitle: "Every patient journeys differently. MindWell offers three distinct ways to dialogue with your therapist, always guaranteeing the same level of clinical engagement.",
+          format1_badge: "Most requested", format1_title: "HD Video Consultation", format1_desc: "The setting closest to a physical office consultation. Allows perception of non-verbal, facial language, and affective expression in a warm setting.", format1_f1: "Fluidity of the relationship via HD visual channel", format1_f2: "Compatible with live guided spaces (ECC, meditation)", format1_btn: "Book via video",
+          format2_badge: "Intimacy", format2_title: "Audio Consultation", format2_desc: "Perfectly suited for those who feel great discomfort face-to-face or wish to free their speech without the other's gaze. A benevolent listening without judgment.", format2_f1: "No visual fatigue, vocalized concentration", format2_f2: "Accessible even with poor bandwidth connection", format2_btn: "Book via audio",
+          format3_badge: "Asynchronous follow-up", format3_title: "Textual Support", format3_desc: "A privileged exchange channel to positively formulate your feelings. Designed for people suffering from verbal inhibition, social anxiety, or desiring a free schedule.", format3_f1: "Free reflection time before each message", format3_f2: "In-depth responses from your psychologist within 24 business hours", format3_btn: "Discover text format",
+          sec_tag: "Security & Ethics", sec_title: "Clinical security as a foundation", sec_desc: "The therapeutic relationship requires absolute trust. Our infrastructure is rigorously audited to preserve your personal sanctuary.",
+          sec1_title: "Secure hosting in Algeria", sec1_desc: "User data is hosted in a secure environment, with technical and organizational measures designed to ensure their protection.",
+          sec2_title: "Consultation confidentiality", sec2_desc: "Exchanges between the patient and the psychologist are treated confidentially, in compliance with professional rules and data protection.",
+          sec3_title: "Free cancellation", sec3_desc: "Something came up? Modify or cancel your appointment for free up to 24 hours before the session.",
+          faq_tag: "Frequent questions", faq_title: "Everything you need to know before starting", faq_subtitle: "Concrete and transparent answers to begin your support with complete clarity.",
+          faq1_q: "Do I need to install specific software or an app?", faq1_a: "No, our platform works directly from your web browser (Chrome, Firefox, Safari, Edge). No download is required to access video or audio consultations.",
+          faq2_q: "Are my consultations reimbursed by my health insurance?", faq2_a: "Yes, most health insurance providers offer partial or full reimbursement for psychology sessions. We provide a detailed invoice after each consultation to facilitate your reimbursement process.",
+          faq3_q: "Can I change psychologists during my follow-up?", faq3_a: "Absolutely. The therapeutic alliance is fundamental. If you wish to change practitioners, you can consult our directory and select a new psychologist. Your data remains confidential.",
+          faq4_q: "What happens in case of a network drop during the interview?", faq4_a: "In case of a technical issue, simply reconnect to your session URL. If the drop persists, your psychologist will contact you by phone or offer a new slot at no extra cost.",
+          cta_title: "Ready to start your care journey?", cta_desc: "First session - 45 min to get to know each other and define your therapeutic objectives. The first payment is secure and reimbursable according to your insurance.", cta_btn1: "Create a patient account", cta_btn2: "Explore the directory",
+          footer_desc: "Your secure space for psychological teleconsultation and compassionate support.", footer_cert: "Compliant with certified health HDS hosting",
+          footer_plat: "Platform", footer_specs: "Our specialists", footer_info: "Information", footer_ethics: "Ethics & Deontology", footer_legal: "Legal & Security", footer_privacy: "Privacy policy", footer_terms: "Terms of use", footer_hds: "HDS data protection", footer_mentions: "Legal notices",
+          footer_copy: "University end-of-study project - MindWell 2025. All rights reserved.", footer_secret: "Confidentiality guaranteed • Professional secrecy preserved"
+        },
+        ar: {
+          nav_home: "الرئيسية", nav_specialties: "التخصصات", nav_how: "كيف يعمل", nav_about: "من نحن", nav_faq: "الأسئلة الشائعة", nav_login: "تسجيل الدخول", nav_signup: "إنشاء حساب",
+          hero_title: "كيف تعمل رحلتك العلاجية على MindWell؟",
+          hero_subtitle: "مسار علاجي مصمم لراحة بالك وحريتك. احصل على استشارة أخصائيين نفسيين سريريين حاصلين على شهادات الدولة في بضع نقرات، مع احترام صارم للسرية الطبية وأعلى معايير الأمان الصحي HDS.",
+          hero_btn_1: "إنشاء حساب مريض", hero_btn_2: "عرض الدليل",
+          trust_1: "100% أخصائيون موثقون", trust_2: "بيانات معتمدة HDS ومتوافقة مع الخصوصية", trust_3: "تغطية تأمينية تصل إلى 70% في المتوسط",
+          hero_card_title: "التحالف العلاجي", hero_card_desc: "تحكم شخصياً في اختيار أخصائك النفسي",
+          steps_tag: "مسار رعاية منظم", steps_title: "رحلة علاجك في 8 خطوات بسيطة", steps_subtitle: "من أول اتصال حتى ترسيخ مكتسباتك العلاجية، اكتشف متابعة سلسة تحترم وتيرتك الخاصة.",
+          step1_title: "إنشاء حسابك", step1_desc: "تسجيل آمن في أقل من دقيقتين. أجب على استبيان ترحيبي لتوجيه رعايتك نحو المهنيين الأنسب.", step1_feat: "ضمان سرية البيانات",
+          step2_title: "إكمال ملفك الشخصي", step2_desc: "صف أسباب استشارتك (القلق، الحزن، تحولات الحياة) أو تفضيلاتك للعلاج للحصول على توجيه أمثل.", step2_feat: "تخصيص سريري",
+          step3_title: "اختيار أخصائي", step3_desc: "قم بالتصفية حسب معاييرك: النهج (سلوكي معرفي، نظامي، تحليل نفسي)، التوافر، والتعريفات.", step3_feat: "التحقق من التراخيص",
+          step4_title: "اختيار موعد", step4_desc: "استمتع بمرونة زمنية ممتدة: من الاثنين إلى السبت، من 8 صباحاً إلى 9 مساءً. يتكيف معالجونا عن بُعد مع جدولك المهني.", step4_feat: "حجز الموعد في 10 دقائق كحد أقصى",
+          step5_title: "تأكيد الحجز", step5_desc: "تأكيد فوري بدون رسوم خفية. استلم تأكيداً عبر الرسائل القصيرة/البريد الإلكتروني وتذكيراً قبل 24 ساعة من الجلسة.", step5_feat: "تذكيرات عبر الرسائل القصيرة",
+          step6_title: "حضور الجلسة", step6_desc: "اتصل مباشرة بالرابط دون تحميل أو إعداد. الخادم معتمد من جهات موثوقة ويمكن الوصول إليه عبر كلمة مرور فريدة.", step6_feat: "بث فيديو/WebRTC مشفر",
+          step7_title: "مراجعة الملخص", step7_desc: "اعثر على ملخص لمحاور العمل التي تمت مناقشتها، والذي تم إعداده بموافقة طبيبك السريري والمتاح في مساحتك الشخصية.", step7_feat: "ملخص سريري معتمد",
+          step8_title: "متابعة تطورك", step8_desc: "راجع سجل تقدمك من خلال مساحتك الشخصية الآمنة: الملاحظات السريرية، الأهداف العلاجية، وتبسيط المواعيد المتكررة.", step8_feat: "استمرارية علاجية",
+          formats_tag: "طرق الجلسة", formats_title: "ثلاثة تنسيقات تتكيف مع حساسيتك", formats_subtitle: "كل مريض يسير بطريقة مختلفة. يقدم MindWell ثلاث طرق مميزة للحوار مع معالجك، مع ضمان نفس مستوى الالتزام السريري دائماً.",
+          format1_badge: "الأكثر طلباً", format1_title: "استشارة فيديو عالية الدقة", format1_desc: "الإطار الأقرب للاستشارة في العيادة الفعلية. يسمح بإدراك لغة الجسد وتعبيرات الوجه في جو دافئ.", format1_f1: "سلاسة العلاقة عبر القناة البصرية", format1_f2: "متوافق مع الجلسات التوجيهية المباشرة", format1_btn: "حجز عبر الفيديو",
+          format2_badge: "خصوصية", format2_title: "استشارة صوتية", format2_desc: "مناسبة تماماً للأشخاص الذين يشعرون بعدم الارتياح وجهاً لوجه أو يرغبون في التحرر من نظرة الآخر. استماع داعم بدون أحكام.", format2_f1: "عدم وجود إجهاد بصري، تركيز على الصوت", format2_f2: "يمكن الوصول إليه حتى مع ضعف سرعة الإنترنت", format2_btn: "حجز عبر الصوت",
+          format3_badge: "متابعة غير متزامنة", format3_title: "دعم نصي", format3_desc: "قناة تبادل مميزة لصياغة مشاعرك إيجابياً. مصممة للأشخاص الذين يعانون من كبت لفظي، قلق اجتماعي، أو يرغبون في جدول حر.", format3_f1: "وقت تفكير حر قبل كل رسالة", format3_f2: "ردود متعمقة من أخصائك النفسي خلال 24 ساعة عمل", format3_btn: "اكتشف التنسيق النصي",
+          sec_tag: "الأمان والأخلاقيات", sec_title: "الأمان السريري كأساس", sec_desc: "تتطلب العلاقة العلاجية ثقة مطلقة. يتم تدقيق بنيتنا التحتية بدقة للحفاظ على ملاذك الشخصي.",
+          sec1_title: "استضافة آمنة في الجزائر", sec1_desc: "تستضاف بيانات المستخدمين في بيئة آمنة، مع تدابير تقنية وتنظيمية مصممة لضمان حمايتها.",
+          sec2_title: "سرية الاستشارات", sec2_desc: "تتم معالجة التبادلات بين المريض والأخصائي النفسي بسرية تامة، احتراماً للقواعد المهنية وحماية البيانات.",
+          sec3_title: "إلغاء بدون رسوم", sec3_desc: "طرأ شيء غير متوقع؟ يمكنك تعديل أو إلغاء موعدك مجاناً حتى 24 ساعة قبل الجلسة.",
+          faq_tag: "أسئلة شائعة", faq_title: "كل ما تحتاج معرفته قبل البدء", faq_subtitle: "إجابات ملموسة وشفافة لبدء دعمك بكل وضوح.",
+          faq1_q: "هل أحتاج إلى تثبيت برنامج أو تطبيق معين؟", faq1_a: "لا، تعمل منصتنا مباشرة من متصفح الويب الخاص بك (Chrome, Firefox, Safari, Edge). لا يلزم أي تنزيل للوصول إلى استشارات الفيديو أو الصوت.",
+          faq2_q: "هل يتم تعويض استشاراتي من قبل التأمين الصحي؟", faq2_a: "نعم، تقدم معظم شركات التأمين الصحي تعويضاً جزئياً أو كلياً عن جلسات علم النفس. نوفر لك فاتورة مفصلة بعد كل استشارة لتسهيل إجراءات التعويض.",
+          faq3_q: "هل يمكنني تغيير الأخصائي النفسي أثناء متابعتي؟", faq3_a: "بالتأكيد. التحالف العلاجي أمر أساسي. إذا كنت ترغب في تغيير الممارس، يمكنك الرجوع إلى دليلنا واختيار أخصائي نفسي جديد. تظل بياناتك سرية.",
+          faq4_q: "ماذا يحدث في حالة انقطاع الشبكة أثناء المقابلة؟", faq4_a: "في حالة وجود مشكلة تقنية، ما عليك سوى إعادة الاتصال بعنوان URL الخاص بجلستك. إذا استمر الانقطاع، سيتصل بك أخصائك النفسي عبر الهاتف أو سيقترح عليك موعداً جديداً بدون تكلفة إضافية.",
+          cta_title: "هل أنت مستعد لبدء رحلة علاجك؟", cta_desc: "الجلسة الأولى - 45 دقيقة للتعارف وتحديد أهدافك العلاجية. الدفعة الأولى آمنة وقابلة للاسترداد حسب تأمينك.", cta_btn1: "إنشاء حساب مريض", cta_btn2: "استكشاف الدليل",
+          footer_desc: "مساحتك الآمنة للاستشارة النفسية عن بُعد والمرافقة الداعمة.", footer_cert: "متوافق مع استضافة الصحة المعتمدة HDS",
+          footer_plat: "المنصة", footer_specs: "أخصاؤنا", footer_info: "معلومات", footer_ethics: "الأخلاقيات والمهنية", footer_legal: "القانون والأمان", footer_privacy: "سياسة الخصوصية", footer_terms: "شروط الاستخدام", footer_hds: "حماية بيانات HDS", footer_mentions: "الإشعارات القانونية",
+          footer_copy: "مشروع جامعي لنهاية الدراسة - MindWell 2025. جميع الحقوق محفوظة.", footer_secret: "السرية مضمونة • السر المهني محفوظ"
+        }
+      };
+
+      // ==========================================
+      // 2. دالة تغيير اللغة (بدون تحديث الصفحة)
+      // ==========================================
+      function setLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        // 1. تحديث اتجاه الصفحة واللغة
+        const html = document.getElementById("htmlRoot");
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+        // 2. تحديث كل النصوص التي تحمل data-i18n
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            const icon = el.querySelector("i");
+            if (icon && lang !== "ar") {
+              el.innerHTML = t[key] + " " + icon.outerHTML;
+            } else if (icon && lang === "ar") {
+              el.innerHTML = icon.outerHTML + " " + t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+
+        // 3. تحديث حالة الأزرار النشطة
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
+        });
+
+        // 4. حفظ الاختيار في localStorage
+        localStorage.setItem("mindwell_lang", lang);
+        localStorage.setItem("preferredLanguage", lang);
+        document.cookie = `django_language=${lang}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+
+      // ==========================================
+      // 3. التهيئة عند تحميل الصفحة + السكربتات الأصلية
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        // تحميل اللغة المحفوظة أو الافتراضية (الفرنسية)
+        setLanguage("{{ LANGUAGE_CODE }}");
+
+        // --- FAQ Toggle Logic ---
+        window.toggleFaq = function(element) {
+          const item = element.parentElement;
+          const isActive = item.classList.contains("active");
+
+          // Close all FAQ items
+          document.querySelectorAll(".faq-item").forEach((faq) => {
+            faq.classList.remove("active");
+          });
+
+          // Open clicked item if it wasn't active
+          if (!isActive) {
+            item.classList.add("active");
+          }
+        };
+
+        // --- Smooth scroll for anchor links ---
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute("href"));
+            if (target) {
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
+          });
+        });
+
+        // --- Add scroll effect to navbar ---
+        window.addEventListener("scroll", () => {
+          const navbar = document.querySelector(".navbar");
+          if (window.scrollY > 100) {
+            navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

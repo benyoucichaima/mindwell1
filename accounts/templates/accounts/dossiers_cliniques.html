@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Dossiers Cliniques - MindWell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h2 { color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #065f46; padding-bottom: 10px; display: inline-block; }
+        .record-card { padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 15px; transition: 0.2s; }
+        .record-card:hover { border-color: #065f46; background: #f0fdf4; }
+        .record-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .record-title { font-size: 1.1rem; font-weight: 600; color: #065f46; margin: 0; }
+        .record-date { font-size: 0.85rem; color: #64748b; }
+        .record-patient { font-weight: 500; color: #1e293b; margin-bottom: 8px; }
+        .record-notes { color: #475569; font-size: 0.9rem; line-height: 1.5; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #64748b; text-decoration: none; }
+        .back-link:hover { color: #065f46; }
+    </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+    <div class="container">
+        <a href="{% url 'accounts:psychologue_dashboard' %}" class="back-link"><i class="fas fa-arrow-left"></i> Retour au tableau de bord</a>
+        <h2><i class="fas fa-file-medical"></i> Dossiers Cliniques</h2>
+        
+        {% if records %}
+            {% for record in records %}
+            <div class="record-card">
+                <div class="record-header">
+                    <h3 class="record-title">{{ record.title }}</h3>
+                    <span class="record-date">{{ record.created_at|date:"d/m/Y H:i" }}</span>
+                </div>
+                <div class="record-patient">
+                    <i class="fas fa-user"></i> {{ record.patient.get_full_name }}
+                </div>
+                <div class="record-notes">
+                    <strong>Notes:</strong> {{ record.notes|truncatewords:30 }}
+                    {% if record.diagnosis %}
+                        <br><strong>Diagnostic:</strong> {{ record.diagnosis }}
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p style="color: #64748b; text-align: center; padding: 40px;">
+                <i class="fas fa-folder-open" style="font-size: 3rem; display: block; margin-bottom: 15px; opacity: 0.3;"></i>
+                Aucun dossier clinique pour le moment.
+            </p>
+        {% endif %}
+    </div>
+</body>
+</html>

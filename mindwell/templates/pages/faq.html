@@ -1,0 +1,48 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "FAQ - MindWell Algérie" %}{% endblock %}
+
+{% block content %}
+<style>
+    .faq-page { max-width: 850px; margin: 0 auto; padding: 1rem 0 2rem; }
+    .faq-page h1 { text-align: center; margin-bottom: 1rem; }
+    .faq-intro { text-align: center; color: #475569; margin-bottom: 2rem; font-size: 1.1rem; }
+    .faq-entry { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+    .faq-entry summary { color: #0f172a; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+    .faq-entry summary::-webkit-details-marker { display: none; }
+    .faq-entry summary::after { content: "+"; color: #3b82f6; font-size: 1.2rem; }
+    .faq-entry[open] summary::after { content: "−"; }
+    .faq-entry p { color: #475569; line-height: 1.7; margin: .9rem 0 0; }
+</style>
+
+<main class="faq-page">
+    <h1>{% trans "Questions fréquemment posées" %}</h1>
+    <p class="faq-intro">{% trans "Trouvez rapidement des réponses à vos questions sur nos services, la réservation et la confidentialité." %}</p>
+
+    <details class="faq-entry">
+        <summary>{% trans "Qu'est-ce que MindWell ?" %}</summary>
+        <p>{% trans "MindWell est une plateforme algérienne dédiée à la santé mentale. Nous vous mettons en relation avec des psychologues cliniciens pour des consultations en ligne ou en cabinet." %}</p>
+    </details>
+    <details class="faq-entry">
+        <summary>{% trans "Les psychologues sont-ils certifiés ?" %}</summary>
+        <p>{% trans "Les professionnels de la plateforme sont vérifiés avant que leur profil soit publié. Vous pouvez consulter leur profil pour en savoir plus sur leur parcours." %}</p>
+    </details>
+    <details class="faq-entry">
+        <summary>{% trans "Comment réserver une consultation ?" %}</summary>
+        <p>{% trans "Consultez la liste des psychologues, choisissez un professionnel, sélectionnez un créneau disponible et envoyez votre demande de rendez-vous." %}</p>
+    </details>
+    <details class="faq-entry">
+        <summary>{% trans "Les séances sont-elles confidentielles ?" %}</summary>
+        <p>{% trans "La confidentialité de vos informations est importante. Les données de votre compte et de vos consultations sont traitées conformément à la politique de confidentialité de MindWell." %}</p>
+    </details>
+    <details class="faq-entry">
+        <summary>{% trans "Quels sont les modes de paiement acceptés ?" %}</summary>
+        <p>{% trans "Les moyens de paiement disponibles sont indiqués pendant le parcours de réservation et peuvent dépendre du type de consultation." %}</p>
+    </details>
+    <details class="faq-entry">
+        <summary>{% trans "Puis-je annuler ou reporter ma séance ?" %}</summary>
+        <p>{% trans "Consultez vos rendez-vous pour voir les options disponibles. Les possibilités d'annulation ou de modification dépendent du statut et de l'horaire de la séance." %}</p>
+    </details>
+</main>
+{% endblock %}

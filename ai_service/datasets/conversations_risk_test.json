@@ -1,0 +1,162 @@
+[
+  {
+    "id": "test_high_01",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Explicit suicidal ideation - HIGH expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je veux me tuer. J'en ai marre de tout."},
+      {"speaker": "psychologue", "content": "Je vous écoute. C'est très grave ce que vous dites."},
+      {"speaker": "patient", "content": "Oui, je veux mourir. Je ne vois plus d'issue."}
+    ]
+  },
+  {
+    "id": "test_high_02",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Explicit self-harm intent - HIGH expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je vais me faire du mal ce soir. J'ai un couteau."},
+      {"speaker": "psychologue", "content": "Écoutez-moi, c'est urgent. Appelez le 3114."},
+      {"speaker": "patient", "content": "Je ne peux pas m'en empêcher. Je veux me blesser."}
+    ]
+  },
+  {
+    "id": "test_high_03_negated",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Negated suicidal statement - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "Parfois j'ai des pensées sombres mais je ne veux pas me tuer."},
+      {"speaker": "psychologue", "content": "C'est important de le dire. Vous n'avez pas l'intention d'agir ?"},
+      {"speaker": "patient", "content": "Non, je ne veux pas mourir. Ce sont juste des pensées qui passent."}
+    ]
+  },
+  {
+    "id": "test_high_04_negated",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Negated self-harm - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "J'ai pensé à me faire du mal mais je ne le ferais jamais."},
+      {"speaker": "psychologue", "content": "C'est bien de faire la distinction."},
+      {"speaker": "patient", "content": "Je n'ai jamais eu l'intention de passer à l'acte."}
+    ]
+  },
+  {
+    "id": "test_medium_01",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Explicit hopelessness - MEDIUM expected",
+    "messages": [
+      {"speaker": "patient", "content": "Plus rien n'a de sens. J'abandonne complètement."},
+      {"speaker": "psychologue", "content": "Vous avez l'impression qu'il n'y a plus d'espoir ?"},
+      {"speaker": "patient", "content": "Rien ne s'améliorera jamais. C'est fini pour moi."}
+    ]
+  },
+  {
+    "id": "test_medium_02",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Explicit substance misuse for coping - MEDIUM expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je bois jusqu'à m'évanouir chaque soir pour ne plus rien sentir."},
+      {"speaker": "psychologue", "content": "C'est une façon de gérer la douleur ?"},
+      {"speaker": "patient", "content": "Oui, c'est le seul truc qui marche. Je prends aussi des pilules pour dormir."}
+    ]
+  },
+  {
+    "id": "test_medium_03",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Explicit loss of safety control - MEDIUM expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je ne me fais plus confiance. J'ai été proche de passer à l'acte."},
+      {"speaker": "psychologue", "content": "C'est très inquiétant. Vous sentez que vous pourriez agir sur ces pensées ?"},
+      {"speaker": "patient", "content": "Oui, je ne me contrôle plus. J'ai peur de ce que je pourrais faire."}
+    ]
+  },
+  {
+    "id": "test_low_01",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Anxiety with functional impairment - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je suis anxieux tout le temps, je dors mal et le travail est devenu impossible."},
+      {"speaker": "psychologue", "content": "Depuis combien de temps cela dure-t-il ?"},
+      {"speaker": "patient", "content": "Plusieurs mois. Mon cœur s'accélère, j'ai du mal à respirer."},
+      {"speaker": "psychologue", "content": "Avez-vous pensé à des exercices de relaxation ?"},
+      {"speaker": "patient", "content": "Je vais essayer, mais je ne suis pas sûr que ça marche."}
+    ]
+  },
+  {
+    "id": "test_low_02",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Grief - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "Ma mère est morte il y a trois mois et je pleure tous les jours."},
+      {"speaker": "psychologue", "content": "C'est une perte immense. Comment vivez-vous ce deuil ?"},
+      {"speaker": "patient", "content": "C'est très dur. Je me sens vide. Mais je n'ai pas envie de me faire du mal."},
+      {"speaker": "psychologue", "content": "C'est important de le dire. Le deuil prend du temps."},
+      {"speaker": "patient", "content": "Oui, j'essaie d'avancer un jour à la fois."}
+    ]
+  },
+  {
+    "id": "test_low_03",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Burnout with explicit safety statement - LOW expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je suis épuisé par mon travail. Je n'arrive plus à déconnecter."},
+      {"speaker": "psychologue", "content": "Avez-vous des pensées de vous faire du mal ?"},
+      {"speaker": "patient", "content": "Non, jamais. Je suis juste fatigué. Je vais en parler à mon responsable."},
+      {"speaker": "psychologue", "content": "C'est une bonne démarche."},
+      {"speaker": "patient", "content": "Oui, je vais préparer une liste de mes tâches."}
+    ]
+  },
+  {
+    "id": "test_insufficient_01",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Vague distress without specifics - INSUFFICIENT EVIDENCE expected",
+    "messages": [
+      {"speaker": "patient", "content": "Je ne vais pas bien. Je me sens mal."},
+      {"speaker": "psychologue", "content": "Pouvez-vous m'en dire plus ?"},
+      {"speaker": "patient", "content": "C'est difficile à expliquer. Juste... mal."}
+    ]
+  },
+  {
+    "id": "test_insufficient_02",
+    "scenario_id": 99,
+    "language": "fr",
+    "theme": "Minimal patient speech - INSUFFICIENT EVIDENCE expected",
+    "messages": [
+      {"speaker": "patient", "content": "Ça va pas."},
+      {"speaker": "psychologue", "content": "Qu'est-ce qui ne va pas ?"},
+      {"speaker": "patient", "content": "Je sais pas."}
+    ]
+  },
+  {
+    "id": "test_ar_high_01",
+    "scenario_id": 99,
+    "language": "ar",
+    "theme": "Arabic explicit suicidal ideation - HIGH expected",
+    "messages": [
+      {"speaker": "patient", "content": "أريد أن أقتل نفسي. تعبت من كل شيء."},
+      {"speaker": "psychologue", "content": "أنا أسمعك. هذا خطير جداً ما تقوله."},
+      {"speaker": "patient", "content": "نعم، أريد أن أموت. لا أرى مخرجاً."}
+    ]
+  },
+  {
+    "id": "test_en_high_01",
+    "scenario_id": 99,
+    "language": "en",
+    "theme": "English explicit self-harm - HIGH expected",
+    "messages": [
+      {"speaker": "patient", "content": "I want to kill myself. I'm done with everything."},
+      {"speaker": "psychologue", "content": "I'm listening. This is very serious."},
+      {"speaker": "patient", "content": "Yes, I want to die. I don't see a way out."}
+    ]
+  }
+]

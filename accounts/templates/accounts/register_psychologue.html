@@ -1,0 +1,1146 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MindWell — {% trans "Créer un compte Professionnel" %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --navy: #111844;
+            --navy-light: #202a62;
+            --blue: #4B5694;
+            --blue-soft: #7288AE;
+            --cream: #F7F5F0;
+            --cream-dark: #EAE0CF;
+            --white: #ffffff;
+            --text: #202236;
+            --muted: #73778b;
+            --border: #e5e4e8;
+            --danger-bg: #fff4f4;
+            --danger: #b42318;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'DM Sans', sans-serif;
+            background:
+                radial-gradient(circle at 10% 15%, rgba(114,136,174,.13), transparent 30%),
+                radial-gradient(circle at 90% 85%, rgba(234,224,207,.6), transparent 35%),
+                var(--cream);
+            color: var(--text);
+            padding: 28px;
+        }
+
+        .page-wrapper {
+            width: 100%;
+            max-width: 1150px;
+            margin: auto;
+            background: var(--white);
+            border-radius: 26px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: .82fr 1.18fr;
+            box-shadow:
+                0 25px 70px rgba(17,24,68,.12),
+                0 4px 15px rgba(17,24,68,.04);
+        }
+
+        /* LEFT */
+
+        .visual-side {
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(145deg,
+                rgba(17,24,68,.98),
+                rgba(60,73,127,.96));
+            color: white;
+            padding: 50px;
+            min-height: 760px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .visual-side::before {
+            content: "";
+            position: absolute;
+            width: 390px;
+            height: 390px;
+            border: 1px solid rgba(255,255,255,.11);
+            border-radius: 50%;
+            top: -190px;
+            right: -150px;
+        }
+
+        .visual-side::after {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 50%;
+            bottom: -160px;
+            left: -150px;
+        }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 43px;
+            height: 43px;
+            border: 1px solid rgba(255,255,255,.3);
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.55rem;
+            font-weight: 600;
+        }
+
+        .visual-content {
+            position: relative;
+            z-index: 2;
+            max-width: 400px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d9dfed;
+            margin-bottom: 20px;
+        }
+
+        .visual-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.75rem;
+            line-height: 1.15;
+            margin-bottom: 22px;
+        }
+
+        .visual-content h2 span {
+            color: #d8cdb9;
+        }
+
+        .visual-content p {
+            color: rgba(255,255,255,.76);
+            line-height: 1.8;
+            font-size: .94rem;
+        }
+
+        .professional-note {
+            position: relative;
+            z-index: 2;
+            margin-top: 35px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,.13);
+            border-radius: 14px;
+            background: rgba(255,255,255,.05);
+        }
+
+        .professional-note strong {
+            display: block;
+            font-size: .84rem;
+            margin-bottom: 7px;
+        }
+
+        .professional-note p {
+            color: rgba(255,255,255,.62);
+            font-size: .76rem;
+            line-height: 1.6;
+        }
+
+        .visual-footer {
+            position: relative;
+            z-index: 2;
+            color: rgba(255,255,255,.52);
+            font-size: .73rem;
+            line-height: 1.6;
+        }
+
+        /* RIGHT */
+
+        .form-side {
+            padding: 55px 65px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 540px;
+        }
+
+        .form-header {
+            margin-bottom: 28px;
+        }
+
+        .form-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--navy);
+            font-size: 2.15rem;
+            margin-bottom: 9px;
+        }
+
+        .form-header p {
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.6;
+        }
+
+        /* FORM */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: .82rem;
+            font-weight: 600;
+        }
+
+        .required {
+            color: var(--blue);
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            height: 49px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fcfcfd;
+            padding: 0 15px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            color: var(--text);
+            outline: none;
+            transition: .22s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            border-color: var(--blue);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(75,86,148,.08);
+        }
+
+        textarea.form-input {
+            height: 95px;
+            padding-top: 13px;
+            resize: vertical;
+        }
+
+        /* CUSTOM MULTI-SELECT DROPDOWN */
+
+        .multi-select-container {
+            position: relative;
+        }
+
+        .multi-select-button {
+            width: 100%;
+            min-height: 49px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fcfcfd;
+            padding: 12px 40px 12px 15px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .88rem;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            transition: .22s ease;
+            position: relative;
+        }
+
+        .multi-select-button::after {
+            content: "";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 6px solid var(--muted);
+            transition: .22s ease;
+        }
+
+        .multi-select-button.active::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .multi-select-button:focus {
+            border-color: var(--blue);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(75,86,148,.08);
+            outline: none;
+        }
+
+        .multi-select-dropdown {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(17,24,68,.12);
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+
+        .multi-select-dropdown.show {
+            display: block;
+        }
+
+        .multi-select-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: .15s ease;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .multi-select-option:last-child {
+            border-bottom: none;
+        }
+
+        .multi-select-option:hover {
+            background: #f8f9fa;
+        }
+
+        .multi-select-option input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--navy);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .multi-select-option label {
+            font-size: .85rem;
+            color: var(--text);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .selected-tag {
+            background: var(--navy);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: .75rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .selected-tag .remove-tag {
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+            opacity: .7;
+            transition: .15s ease;
+        }
+
+        .selected-tag .remove-tag:hover {
+            opacity: 1;
+        }
+
+        .placeholder-text {
+            color: var(--muted);
+        }
+
+        /* DOCUMENTS */
+
+        .documents {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            padding: 17px;
+            border: 1px solid #e8e6e1;
+            border-radius: 12px;
+            background: #faf9f6;
+        }
+
+        .documents-title {
+            color: var(--navy);
+            font-size: .82rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .documents-description {
+            color: var(--muted);
+            font-size: .72rem;
+            line-height: 1.55;
+            margin-bottom: 13px;
+        }
+
+        .file-input {
+            width: 100%;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .75rem;
+            color: var(--muted);
+        }
+
+        /* TERMS */
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 8px 0 22px;
+        }
+
+        .terms input {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            accent-color: var(--navy);
+            flex-shrink: 0;
+        }
+
+        .terms label {
+            color: var(--muted);
+            font-size: .72rem;
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        /* BUTTON */
+
+        .btn-primary {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 10px;
+            background: var(--navy);
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .91rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .22s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--navy-light);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(17,24,68,.18);
+        }
+
+        /* MESSAGES */
+
+        .messages {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid #f4d4d1;
+            padding: 12px 14px;
+            border-radius: 9px;
+            font-size: .82rem;
+            margin-bottom: 8px;
+        }
+
+        /* LOGIN */
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: .8rem;
+        }
+
+        .login-link a {
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            body {
+                padding: 15px;
+            }
+
+            .page-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 650px;
+            }
+
+            .visual-side {
+                min-height: 390px;
+                padding: 35px;
+            }
+
+            .professional-note {
+                display: none;
+            }
+
+            .form-side {
+                padding: 45px 35px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body {
+                padding: 0;
+            }
+
+            .page-wrapper {
+                border-radius: 0;
+                min-height: 100vh;
+            }
+
+            .visual-side {
+                min-height: 300px;
+                padding: 28px;
+            }
+
+            .visual-content {
+                margin-top: 35px;
+            }
+
+            .visual-content h2 {
+                font-size: 2.1rem;
+            }
+
+            .form-side {
+                padding: 38px 24px;
+            }
+
+            .form-header h1 {
+                font-size: 1.9rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+{% include "includes/language_switcher.html" %}
+
+<div class="page-wrapper">
+
+    <!-- =========================
+         PRESENTATION
+    ========================== -->
+
+    <section class="visual-side">
+
+        <div class="brand">
+            <div class="brand-mark">M</div>
+            <div class="brand-name">MindWell</div>
+        </div>
+
+        <div class="visual-content">
+
+            <span class="eyebrow">
+                {% trans "Espace professionnel" %}
+            </span>
+
+            <h2>
+                {% trans "Rejoignez notre" %}
+                <span>{% trans "réseau." %}</span>
+            </h2>
+
+            <p>
+                {% trans "Créez votre espace professionnel et contribuez à offrir un accompagnement de qualité aux utilisateurs de MindWell." %}
+            </p>
+
+            <div class="professional-note">
+
+                <strong>
+                    {% trans "Vérification professionnelle" %}
+                </strong>
+
+                <p>
+                    {% trans "Les informations et documents professionnels fournis peuvent être vérifiés avant l'activation complète du compte." %}
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="visual-footer">
+            {% trans "MindWell — Plateforme de consultation psychologique à distance." %}
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FORMULAIRE
+    ========================== -->
+
+    <section class="form-side">
+
+        <div class="form-container">
+
+            <div class="form-header">
+
+                <h1>
+                    {% trans "Créer un compte professionnel" %}
+                </h1>
+
+                <p>
+                    {% trans "Renseignez vos informations afin de créer votre espace professionnel." %}
+                </p>
+
+            </div>
+
+
+            {% if messages %}
+
+                <div class="messages">
+
+                    {% for message in messages %}
+                        <div class="message">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <form method="POST" enctype="multipart/form-data" id="registrationForm">
+                
+                {% csrf_token %}
+                {% if next_url %}
+                    <input type="hidden" name="next" value="{{ next_url }}">
+                {% endif %}
+
+
+                <!-- NOM / PRÉNOM -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="id_first_name">
+                            {% trans "Prénom" %}
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="first_name"
+                            id="id_first_name"
+                            class="form-input"
+                            placeholder="{% trans 'Votre prénom' %}"
+                            value="{{ request.POST.first_name|default:'' }}"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="id_last_name">
+                            {% trans "Nom" %}
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="last_name"
+                            id="id_last_name"
+                            class="form-input"
+                            placeholder="{% trans 'Votre nom' %}"
+                            value="{{ request.POST.last_name|default:'' }}"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="id_city">{% trans "Localisation" %}</label>
+                    <input
+                        type="text"
+                        name="city"
+                        id="id_city"
+                        class="form-input"
+                        placeholder="{% trans 'Ville' %}"
+                        value="{{ request.POST.city|default:'' }}"
+                    >
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="id_email">
+                        {% trans "Adresse e-mail professionnelle" %}
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        id="id_email"
+                        class="form-input"
+                        placeholder="professionnel@email.com"
+                        value="{{ request.POST.email|default:'' }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- TÉLÉPHONE -->
+
+                <div class="form-group">
+
+                    <label for="id_phone">
+                        {% trans "Numéro de téléphone" %}
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        name="phone"
+                        id="id_phone"
+                        class="form-input"
+                        placeholder="05 XX XX XX XX"
+                        value="{{ request.POST.phone|default:'' }}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SPÉCIALITÉS (CUSTOM DROPDOWN) -->
+
+                <div class="form-group">
+
+                    <label>
+                        {% trans "Spécialités" %}
+                        <span class="required">*</span>
+                    </label>
+
+                    <div class="multi-select-container">
+
+                        <div class="multi-select-button" id="specialitesButton" tabindex="0">
+                            <span class="placeholder-text">{% trans "Sélectionnez vos spécialités" %}</span>
+                        </div>
+
+                        <div class="multi-select-dropdown" id="specialitesDropdown">
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_stress" value="stress">
+                                <label for="spec_stress">{% trans "Stress" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_anxiete" value="anxiete">
+                                <label for="spec_anxiete">{% trans "Anxiété" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_depression" value="depression">
+                                <label for="spec_depression">{% trans "Dépression" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_sommeil" value="sommeil">
+                                <label for="spec_sommeil">{% trans "Troubles du sommeil" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_relations" value="relations">
+                                <label for="spec_relations">{% trans "Relations interpersonnelles" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_deuil" value="deuil">
+                                <label for="spec_deuil">{% trans "Gestion du deuil" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_traumatismes" value="traumatismes">
+                                <label for="spec_traumatismes">{% trans "Traumatismes" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_alimentaires" value="alimentaires">
+                                <label for="spec_alimentaires">{% trans "Troubles alimentaires" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_addictions" value="addictions">
+                                <label for="spec_addictions">{% trans "Addictions" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_phobies" value="phobies">
+                                <label for="spec_phobies">{% trans "Phobies" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_toc" value="toc">
+                                <label for="spec_toc">{% trans "Troubles obsessionnels compulsifs (TOC)" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_colere" value="colere">
+                                <label for="spec_colere">{% trans "Gestion de la colère" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_burnout" value="burnout">
+                                <label for="spec_burnout">{% trans "Burnout professionnel" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_estime" value="estime">
+                                <label for="spec_estime">{% trans "Estime de soi" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_couple" value="couple">
+                                <label for="spec_couple">{% trans "Thérapie de couple" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_bipolaires" value="bipolaires">
+                                <label for="spec_bipolaires">{% trans "Troubles bipolaires" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_schizophrenie" value="schizophrenie">
+                                <label for="spec_schizophrenie">{% trans "Schizophrénie" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_personnalite" value="personnalite">
+                                <label for="spec_personnalite">{% trans "Troubles de la personnalité" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_developpement" value="developpement">
+                                <label for="spec_developpement">{% trans "Développement personnel" %}</label>
+                            </div>
+
+                            <div class="multi-select-option">
+                                <input type="checkbox" name="specialites" id="spec_parental" value="parental">
+                                <label for="spec_parental">{% trans "Accompagnement parental" %}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EXPÉRIENCE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="id_experience">
+                            {% trans "Années d'expérience" %}
+                        </label>
+
+                        <input
+                            type="number"
+                            name="experience"
+                            id="id_experience"
+                            class="form-input"
+                            min="0"
+                            placeholder="Ex. 5"
+                            value="{{ request.POST.experience|default:'' }}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="id_license">
+                            {% trans "Numéro professionnel" %}
+                        </label>
+
+                        <input
+                            type="text"
+                            name="license_number"
+                            id="id_license"
+                            class="form-input"
+                            placeholder="{% trans 'Numéro professionnel' %}"
+                            value="{{ request.POST.license_number|default:'' }}"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- DOCUMENTS -->
+
+                <div class="documents">
+
+                    <div class="documents-title">
+                        {% trans "Documents professionnels" %}
+                    </div>
+
+                    <div class="documents-description">
+                        {% trans "Ajoutez les documents nécessaires à la vérification de votre profil professionnel." %}
+                    </div>
+
+                    <label for="diploma_file">{% trans "Diplôme" %}</label>
+                    <input type="file" name="diploma_file" id="diploma_file" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+
+                    <label for="id_document_file">{% trans "Pièce d'identité" %}</label>
+                    <input type="file" name="id_document_file" id="id_document_file" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+
+                    <label for="registration_file">{% trans "Inscription professionnelle" %}</label>
+                    <input type="file" name="registration_file" id="registration_file" class="file-input" accept=".pdf,.jpg,.jpeg,.png">
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="id_password">
+                            {% trans "Mot de passe" %}
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            id="id_password"
+                            class="form-input"
+                            placeholder="{% trans 'Votre mot de passe' %}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="id_password_confirm">
+                            {% trans "Confirmation" %}
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="password"
+                            name="password_confirm"
+                            id="id_password_confirm"
+                            class="form-input"
+                            placeholder="{% trans 'Confirmez le mot de passe' %}"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- TERMS -->
+
+                <div class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        required
+                    >
+
+                    <label for="terms">
+
+                        {% trans "J'accepte les" %}
+
+                        <a href="{% url 'terms' %}">
+                            {% trans "conditions générales d'utilisation" %}
+                        </a>
+
+                        {% trans "et la" %}
+
+                        <a href="{% url 'privacy' %}">
+                            {% trans "politique de confidentialité" %}
+                        </a>.
+
+                    </label>
+
+                </div>
+
+
+                <button type="submit" class="btn-primary">
+                    {% trans "Créer mon espace professionnel" %}
+                </button>
+
+            </form>
+
+
+            <div class="login-link">
+
+                {% trans "Vous avez déjà un compte ?" %}
+
+                <a href="{% url 'accounts:login' %}">
+                    {% trans "Se connecter" %}
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+    // Multi-select dropdown functionality
+    const button = document.getElementById('specialitesButton');
+    const dropdown = document.getElementById('specialitesDropdown');
+    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+
+    // Toggle dropdown
+    button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+        button.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+            button.classList.remove('active');
+        }
+    });
+
+    // Update button when checkbox changes
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            updateButton();
+        });
+    });
+
+    function updateButton() {
+        const selected = Array.from(checkboxes).filter(cb => cb.checked);
+        
+        if (selected.length === 0) {
+            button.innerHTML = '<span class="placeholder-text">{% trans "Sélectionnez vos spécialités" %}</span>';
+        } else {
+            button.innerHTML = selected.map(cb => {
+                const label = cb.nextElementSibling.textContent;
+                return `<span class="selected-tag">${label}<span class="remove-tag" data-value="${cb.value}">×</span></span>`;
+            }).join('');
+            
+            // Add remove functionality
+            button.querySelectorAll('.remove-tag').forEach(tag => {
+                tag.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const value = this.getAttribute('data-value');
+                    const checkbox = dropdown.querySelector(`input[value="${value}"]`);
+                    if (checkbox) {
+                        checkbox.checked = false;
+                        updateButton();
+                    }
+                });
+            });
+        }
+    }
+
+    // Prevent dropdown from closing when clicking inside
+    dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // Form submission - ensure at least one specialty is selected
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        const selected = Array.from(checkboxes).filter(cb => cb.checked);
+        if (selected.length === 0) {
+            e.preventDefault();
+            alert('{% trans "Veuillez sélectionner au moins une spécialité." %}');
+            button.focus();
+        }
+    });
+</script>
+
+</body>
+</html>

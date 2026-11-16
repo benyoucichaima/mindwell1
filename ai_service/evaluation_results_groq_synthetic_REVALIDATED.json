@@ -1,0 +1,752 @@
+[
+  {
+    "conversation_id": "test_high_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": [
+          "لغة التحليل قد لا تتطابق مع لغة المحادثة (fr)"
+        ]
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_high_02",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_high_03_negated",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient a indiqué qu'il a parfois des pensées sombres et qu'il pense à se tuer, mais il a clairement affirmé ne pas v...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_high_04_negated",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient a déclaré avoir pensé à se faire du mal mais affirme ne jamais le faire. Le psychologue a noté la distinction...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_medium_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_medium_02",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient décrit une consommation d'alcool quotidienne jusqu'à s'évanouir pour ne plus ressentir quoi que ce soit, et i...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_medium_03",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient a déclaré ne plus se faire confiance et avoir été proche de passer à l'acte. Il a exprimé un sentiment de per...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_en_high_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_low_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_low_02",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_low_03",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_insufficient_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_insufficient_02",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_high_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_anxiety_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_hopelessness_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_suicidal_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_negated_suicidal_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'المريض أشار إلى ظهور أفكار سوداء تتعلق بالانتحار لكنه أكد عدم رغبته في القتل أو الموت، ووصف هذه الأفكار بأنها عابرة. أكد...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_insufficient_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_anxiety_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_hopelessness_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with explicit hopelessness/substance/loss-of-control indicators present. Summary should explain why medium was not assigned. Output: 'المريض عبّر عن شعور بعدم وجود معنى في حياته وقال إنه لم يعد يملك القدرة على الاستمرار. أشار إلى أنه يعتقد أن لا شيء سيتح...'"
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_suicidal_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_negated_suicidal_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'المريض يذكر أنه أحيانًا يمرّ بأفكار سودانية (أفكار انتحارية) لكنه يؤكد أنه لا يرغب في الموت ولا يخطط للقتل. يوضح أن هذه ...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_insufficient_01",
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  }
+]

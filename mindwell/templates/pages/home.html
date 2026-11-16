@@ -1,0 +1,2714 @@
+{% load static i18n %}
+<!doctype html>
+
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}" id="htmlRoot">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindWell — Téléconsultation & Santé Mentale</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --navy: #0b1d3a;
+        --navy-light: #1a2d4a;
+        --navy-dark: #060f1f;
+        --cream: #faf8f5;
+        --cream-dark: #f0ede7;
+        --white: #ffffff;
+        --text-dark: #1a1a2e;
+        --text-medium: #4a4a5a;
+        --text-light: #7a7a8a;
+        --success: #2d8a4e;
+        --warning: #c47f17;
+        --danger: #c0392b;
+        --border: #e0ddd8;
+        --shadow-sm: 0 1px 3px rgba(11, 29, 58, 0.06);
+        --shadow-md: 0 4px 12px rgba(11, 29, 58, 0.08);
+        --shadow-lg: 0 8px 30px rgba(11, 29, 58, 0.12);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 20px;
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        background: var(--cream);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--navy);
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      .container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 15px;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        outline: none;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .btn-sm {
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 8px;
+      }
+      .btn-primary {
+        background: var(--navy);
+        color: var(--white);
+      }
+      .btn-primary:hover {
+        background: var(--navy-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--navy);
+        border: 2px solid var(--navy);
+      }
+      .btn-outline:hover {
+        background: var(--navy);
+        color: var(--white);
+      }
+      .btn-light {
+        background: var(--white);
+        color: var(--navy);
+      }
+      .btn-light:hover {
+        background: var(--cream);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .btn-lg {
+        padding: 16px 32px;
+        font-size: 16px;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .navbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        gap: 24px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+      }
+      .logo-name {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+      }
+      .logo-sub {
+        font-size: 11px;
+        color: var(--text-light);
+        font-weight: 400;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+      .nav-link,
+      .nav-link-text {
+        font-weight: 500;
+        color: var(--text-medium);
+        font-size: 15px;
+      }
+      .nav-link:hover,
+      .nav-link-text:hover,
+      .nav-link.active {
+        color: var(--navy);
+      }
+      .nav-link.active {
+        position: relative;
+      }
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--navy);
+      }
+
+      /* NAV ACTIONS & LANGUAGE SWITCHER */
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .lang-switcher {
+        display: flex;
+        align-items: center;
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 100px;
+        overflow: hidden;
+      }
+      .lang-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text-medium);
+        background: transparent;
+        border: none;
+        border-right: 1px solid var(--border);
+        cursor: pointer;
+        transition: var(--transition);
+        white-space: nowrap;
+      }
+      [dir="rtl"] .lang-btn {
+        border-right: none;
+        border-left: 1px solid var(--border);
+      }
+      .lang-btn:last-child {
+        border-right: none;
+      }
+      [dir="rtl"] .lang-btn:last-child {
+        border-left: none;
+      }
+      .lang-btn:hover {
+        background: var(--cream);
+        color: var(--navy);
+      }
+      .lang-btn.active {
+        background: var(--navy);
+        color: var(--white);
+      }
+      .lang-btn .flag {
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .nav-divider {
+        width: 1px;
+        height: 24px;
+        background: var(--border);
+        margin: 0 4px;
+      }
+      .auth-group {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .user-name {
+        font-size: 14px;
+        color: var(--navy);
+        font-weight: 600;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        width: 44px;
+        min-height: 44px;
+        flex: 0 0 44px;
+        cursor: pointer;
+        color: var(--navy);
+      }
+      .mobile-menu-tools {
+        display: none;
+      }
+
+      /* TRUST BAR */
+      .trust-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0;
+      }
+      .trust-bar-inner {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .trust-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text-medium);
+        font-weight: 500;
+      }
+      .trust-badge i {
+        color: var(--success);
+        font-size: 14px;
+      }
+
+      /* HERO */
+      .hero {
+        background: var(--cream);
+        padding: 80px 0 100px;
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: var(--white);
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-medium);
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-sm);
+        letter-spacing: 0.5px;
+      }
+      .hero-badge i {
+        color: var(--navy);
+        font-size: 12px;
+      }
+      .hero-title {
+        font-size: 56px;
+        color: var(--navy);
+        margin-bottom: 24px;
+        line-height: 1.15;
+      }
+      .hero-description {
+        font-size: 17px;
+        color: var(--text-medium);
+        margin-bottom: 32px;
+        line-height: 1.7;
+        max-width: 540px;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 48px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+      .stat-value {
+        font-family: var(--font-serif);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+      }
+      .stat-label {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-top: 4px;
+      }
+      .hero-image-wrapper {
+        position: relative;
+      }
+      .hero-image {
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+      }
+      .hero-floating-card {
+        position: absolute;
+        bottom: 30px;
+        left: -30px;
+        background: var(--white);
+        padding: 20px 24px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        max-width: 320px;
+      }
+      [dir="rtl"] .hero-floating-card {
+        left: auto;
+        right: -30px;
+      }
+      .floating-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        flex-shrink: 0;
+      }
+      .floating-text {
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        color: var(--text-medium);
+      }
+      .floating-text strong {
+        color: var(--navy);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      /* SECTIONS */
+      .section {
+        padding: 100px 0;
+      }
+      .section-light {
+        background: var(--white);
+      }
+      .section-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 60px;
+      }
+      .section-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-light);
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-size: 44px;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+      .section-subtitle {
+        font-size: 17px;
+        color: var(--text-medium);
+        line-height: 1.7;
+      }
+
+      /* WHY GRID */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .why-card {
+        background: var(--white);
+        padding: 32px 28px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .section-light .why-card {
+        background: var(--cream);
+      }
+      .why-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+      .why-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--navy);
+        font-size: 20px;
+      }
+      .section-light .why-icon {
+        background: var(--white);
+      }
+      .why-card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+      .why-card p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+      .why-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--navy);
+        margin-top: auto;
+      }
+      .why-link:hover {
+        gap: 12px;
+      }
+
+      .featured-doctors-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .featured-doctor-card {
+        min-width: 0;
+        padding: 24px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+      }
+      .featured-doctor-card h3 {
+        margin: 0 0 8px;
+        color: var(--navy);
+      }
+      .featured-doctor-rating {
+        color: #8a6400;
+        font-weight: 700;
+        margin: 0 0 16px;
+      }
+      .featured-doctor-card a {
+        color: var(--navy);
+        font-weight: 700;
+      }
+      @media (max-width: 768px) {
+        .featured-doctors-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* JOURNEY */
+      .journey-steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+      }
+      .journey-step {
+        background: var(--white);
+        padding: 32px 24px;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+      }
+      .journey-step:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .step-number {
+        width: 52px;
+        height: 52px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 auto 20px;
+      }
+      .journey-step h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+      .journey-step p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+      }
+
+      /* MODES */
+      .modes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .mode-card {
+        background: var(--white);
+        padding: 40px 32px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+      .mode-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+      }
+      .mode-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        font-size: 28px;
+        color: var(--navy);
+      }
+      .mode-category {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-light);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .mode-card h3 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        color: var(--navy);
+      }
+      .mode-card p {
+        font-size: 15px;
+        color: var(--text-medium);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        flex-grow: 1;
+      }
+      .mode-features {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      .mode-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--text-medium);
+      }
+      .mode-feature i {
+        color: var(--success);
+        font-size: 14px;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+
+      /* AI SECTION */
+      .ai-content {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 60px;
+        align-items: start;
+        margin-bottom: 40px;
+      }
+      .ai-features {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      .ai-feature {
+        display: flex;
+        gap: 20px;
+      }
+      .ai-feature-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--white);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--navy);
+        box-shadow: var(--shadow-sm);
+      }
+      .ai-feature-content h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+        color: var(--navy);
+      }
+      .ai-feature-content p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+      }
+      .ai-demo-card {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: 32px;
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border);
+      }
+      .chat-preview {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .chat-preview-bubble {
+        width: fit-content;
+        max-width: 90%;
+        padding: 14px 16px;
+        border-radius: var(--radius-md);
+        font-size: 14px;
+      }
+      .chat-preview-bubble.user {
+        align-self: flex-start;
+        background: var(--navy);
+        color: var(--white);
+      }
+      .chat-preview-bubble.assistant {
+        align-self: flex-end;
+        background: var(--cream);
+        color: var(--text-dark);
+      }
+      .chat-preview-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .ai-workflow {
+        display: grid;
+        gap: 12px;
+      }
+      .ai-workflow-step {
+        margin: 0;
+        padding: 14px 16px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: var(--cream);
+        color: var(--text-dark);
+        font-size: 14px;
+        margin-top: 20px;
+      }
+      .trust-grid .why-card {
+        min-width: 0;
+      }
+      .ai-demo-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+      }
+      .ai-demo-title {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .ai-demo-icon {
+        width: 44px;
+        height: 44px;
+        background: var(--navy);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 18px;
+      }
+      .ai-demo-name {
+        font-weight: 600;
+        color: var(--navy);
+        font-size: 15px;
+      }
+      .ai-demo-sub {
+        font-size: 12px;
+        color: var(--text-light);
+        margin-top: 2px;
+      }
+      .ai-demo-session {
+        background: var(--cream);
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 13px;
+        color: var(--text-medium);
+        font-weight: 500;
+      }
+      .ai-chart {
+        background: var(--cream);
+        padding: 24px;
+        border-radius: var(--radius-md);
+        margin-bottom: 24px;
+      }
+      .ai-chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      .ai-chart-title {
+        font-size: 14px;
+        color: var(--text-medium);
+        font-weight: 500;
+      }
+      .ai-chart-value {
+        font-size: 13px;
+        color: var(--success);
+        font-weight: 600;
+      }
+      .ai-chart-svg {
+        width: 100%;
+        height: 80px;
+      }
+      .ai-chart-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--text-light);
+      }
+      .ai-tags-section {
+        margin-top: 20px;
+      }
+      .ai-tags-label {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-bottom: 12px;
+      }
+      .ai-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .ai-tag {
+        background: var(--cream);
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-size: 13px;
+        color: var(--text-medium);
+        font-weight: 500;
+      }
+      .ai-tag.highlight {
+        background: var(--navy);
+        color: var(--white);
+      }
+      .ai-warning-box {
+        background: var(--white);
+        padding: 28px 32px;
+        border-radius: var(--radius-lg);
+        display: flex;
+        gap: 20px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border);
+      }
+      .ai-warning-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--navy);
+        font-size: 20px;
+      }
+      .ai-warning-content h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        color: var(--navy);
+      }
+      .ai-warning-content p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+      }
+
+      /* TESTIMONIALS */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .testimonial-card {
+        background: var(--white);
+        padding: 32px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+      }
+      .testimonial-stars {
+        color: #f1c40f;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+      .testimonial-stars i {
+        margin-right: 2px;
+      }
+      [dir="rtl"] .testimonial-stars i {
+        margin-right: 0;
+        margin-left: 2px;
+      }
+      .testimonial-text {
+        font-size: 15px;
+        color: var(--text-medium);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        flex-grow: 1;
+        font-style: italic;
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      .author-avatar {
+        width: 44px;
+        height: 44px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .author-name {
+        font-weight: 600;
+        color: var(--navy);
+        font-size: 15px;
+      }
+      .author-info {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-top: 2px;
+      }
+
+      /* CTA */
+      .cta-section {
+        background: var(--navy);
+        color: var(--white);
+        padding: 100px 0 80px;
+        text-align: center;
+      }
+      .cta-section .section-title {
+        color: var(--white);
+      }
+      .cta-center {
+        margin: 40px 0;
+      }
+      .cta-note {
+        max-width: 640px;
+        margin: 40px auto 0;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+      }
+      .cta-note strong {
+        color: var(--white);
+      }
+      .cta-note p {
+        margin-bottom: 8px;
+      }
+      .cta-note p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* FOOTER */
+      .footer {
+        background: var(--navy-dark);
+        color: var(--white);
+        padding: 60px 0 30px;
+      }
+      .emergency-bar {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+        padding: 20px 24px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
+        margin-bottom: 50px;
+        align-items: center;
+      }
+      .emergency-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .emergency-item i {
+        color: var(--white);
+      }
+      .emergency-item strong {
+        color: var(--white);
+      }
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 50px;
+      }
+      .footer-brand p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+        margin: 20px 0;
+        max-width: 320px;
+      }
+      .footer-cert {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .footer-column h4 {
+        font-size: 15px;
+        margin-bottom: 20px;
+        color: var(--white);
+        font-family: var(--font-sans);
+        font-weight: 600;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-links a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+      }
+      .footer-links a:hover {
+        color: var(--white);
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .hero-title {
+          font-size: 44px;
+        }
+        .hero-image {
+          height: 450px;
+        }
+        .hero-floating-card {
+          left: 20px;
+          bottom: 20px;
+        }
+        [dir="rtl"] .hero-floating-card {
+          right: 20px;
+          left: auto;
+        }
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .trust-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .journey-steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .modes-grid {
+          grid-template-columns: 1fr;
+        }
+        .ai-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+        .section-title {
+          font-size: 36px;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-actions {
+          display: none;
+        }
+        .auth-group .btn,
+        .user-name {
+          display: none;
+        }
+        .nav-divider {
+          display: none;
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+        .hero {
+          padding: 50px 0 70px;
+        }
+        .hero-title {
+          font-size: 34px;
+        }
+        .hero-description {
+          font-size: 16px;
+        }
+        .hero-stats {
+          gap: 24px;
+        }
+        .stat-value {
+          font-size: 28px;
+        }
+        .section {
+          padding: 60px 0;
+        }
+        .section-title {
+          font-size: 30px;
+        }
+        .section-subtitle {
+          font-size: 15px;
+        }
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+        .journey-steps {
+          grid-template-columns: 1fr;
+        }
+        .trust-bar-inner {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .emergency-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-floating-card {
+          position: relative;
+          left: 0;
+          bottom: 0;
+          margin-top: 20px;
+          max-width: 100%;
+        }
+        [dir="rtl"] .hero-floating-card {
+          right: 0;
+        }
+        .ai-warning-box {
+          flex-direction: column;
+        }
+        .cta-section {
+          padding: 60px 0 50px;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 28px;
+        }
+        .hero-buttons {
+          flex-direction: column;
+        }
+        .hero-buttons .btn {
+          width: 100%;
+        }
+        .section-title {
+          font-size: 26px;
+        }
+        .container {
+          padding: 0 16px;
+        }
+      }
+
+      .nav-links.mobile-open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 20px 24px;
+        box-shadow: 0 4px 20px rgba(11, 29, 58, 0.1);
+        border-top: 1px solid #e0ddd8;
+        z-index: 999;
+      }
+      .nav-links.mobile-open .mobile-menu-tools {
+        display: grid;
+        gap: 14px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .mobile-menu-tools .auth-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .mobile-menu-tools .auth-group .btn {
+        display: inline-flex;
+        flex: 1 1 140px;
+        min-height: 44px;
+      }
+      [dir="rtl"] .nav-links.mobile-open {
+        left: auto;
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="{% url 'home' %}" class="logo">
+          <div class="logo-icon"><i class="fas fa-brain"></i></div>
+          <div class="logo-text">
+            <span class="logo-name">MindWell</span>
+            <span class="logo-sub" data-i18n="logo_sub"
+              >Téléconsultation & Santé Mentale</span
+            >
+          </div>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a
+            href="{% url 'home' %}"
+            class="nav-link active"
+            data-i18n="nav_home"
+            >Accueil</a
+          >
+          {% if user.is_authenticated and user.user_type == 'patient' %}
+          <a
+            href="{% url 'accounts:patient_dashboard' %}"
+            class="nav-link"
+            data-i18n="nav_patient_dashboard"
+            >Escape patient</a
+          >
+          {% endif %}
+          <a
+            href="{% url 'specialties' %}"
+            class="nav-link"
+            data-i18n="nav_specialties"
+            >Spécialités</a
+          >
+          <a
+            href="{% url 'psychologists' %}"
+            class="nav-link"
+            data-i18n="nav_specialists"
+            >Nos spécialistes</a
+          >
+          <a
+            href="{% url 'comment_ca_marche' %}"
+            class="nav-link"
+            data-i18n="nav_how"
+            >Comment ça marche ?</a
+          >
+          <a href="{% url 'about' %}" class="nav-link" data-i18n="nav_about"
+            >À propos</a
+          >
+          <a href="{% url 'faq' %}" class="nav-link">FAQ</a>
+          <div class="mobile-menu-tools">
+            <div class="lang-switcher" role="group" aria-label="اختيار اللغة">
+              <button
+                class="lang-btn"
+                type="button"
+                onclick="setLanguage('fr')"
+                data-lang="fr"
+              >
+                FR
+              </button>
+              <button
+                class="lang-btn"
+                type="button"
+                onclick="setLanguage('ar')"
+                data-lang="ar"
+              >
+                AR
+              </button>
+              <button
+                class="lang-btn"
+                type="button"
+                onclick="setLanguage('en')"
+                data-lang="en"
+              >
+                EN
+              </button>
+            </div>
+            <div class="auth-group">
+              {% if user.is_authenticated %}
+              <a
+                href="{% url 'accounts:logout' %}"
+                class="btn btn-outline btn-sm"
+                data-i18n="nav_logout"
+                >Déconnexion</a
+              >
+              {% else %}
+              <a
+                href="{% url 'accounts:login' %}"
+                class="btn btn-outline btn-sm"
+                data-i18n="nav_login"
+                >Se connecter</a
+              >
+              <a
+                href="{% url 'accounts:choose_account_type' %}"
+                class="btn btn-primary btn-sm"
+                data-i18n="nav_signup"
+                >Créer un compte</a
+              >
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- مبدل اللغة وحالة المستخدم -->
+        <div class="nav-actions">
+          <div class="lang-switcher">
+            <button class="lang-btn" onclick="setLanguage('fr')" data-lang="fr">
+              <span class="flag">🇫🇷</span> FR
+            </button>
+            <button class="lang-btn" onclick="setLanguage('ar')" data-lang="ar">
+              <span class="flag">🇩🇿</span> AR
+            </button>
+            <button class="lang-btn" onclick="setLanguage('en')" data-lang="en">
+              <span class="flag">🇬🇧</span> EN
+            </button>
+          </div>
+
+          <div class="nav-divider"></div>
+
+          <div class="auth-group">
+            {% if user.is_authenticated %}
+            <span class="user-name"
+              ><i class="fas fa-user-circle"></i> 
+            <!--   {% firstof request.user.first_name request.user.username %}</span> -->
+            
+            <a
+              href="{% url 'accounts:logout' %}"
+              class="btn btn-outline btn-sm"
+              data-i18n="nav_logout"
+              >Déconnexion</a
+            >
+            {% else %}
+            <a
+              href="{% url 'accounts:login' %}"
+              class="btn btn-outline btn-sm"
+              data-i18n="nav_login"
+              >Se connecter</a
+            >
+            <a
+              href="{% url 'accounts:choose_account_type' %}"
+              class="btn btn-primary btn-sm"
+              data-i18n="nav_signup"
+              >Créer un compte</a
+            >
+            {% endif %}
+          </div>
+        </div>
+
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          type="button"
+          data-i18n-aria-label="menu_open"
+          aria-label="Ouvrir le menu"
+          aria-controls="navLinks"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div class="trust-bar">
+      <div class="container trust-bar-inner">
+        <div class="trust-badge">
+          <i class="fas fa-shield-alt"></i
+          ><span data-i18n="trust_verified"
+            >Profils psychologues selon leur statut de vérification</span
+          >
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-lock"></i
+          ><span data-i18n="trust_hds"
+            >Confidentialité et données personnelles</span
+          >
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-check-circle"></i
+          ><span data-i18n="trust_insurance"
+            >Modes de consultation disponibles</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-lock"></i
+            ><span data-i18n="hero_badge"
+              >ESCAPE CLINIQUE NUMÉRIQUE SÉCURISÉ</span
+            >
+          </div>
+          <h1 class="hero-title" data-i18n="hero_title">
+            Prenez soin de votre santé mentale, à votre rythme.
+          </h1>
+          <p class="hero-description" data-i18n="hero_desc">
+            MindWell facilite la mise en relation entre des patients et des
+            psychologues pour des consultations à distance.
+          </p>
+          <div class="hero-buttons">
+            <a
+              href="{% url 'accounts:choose_account_type' %}"
+              class="btn btn-primary btn-lg"
+              data-i18n="hero_cta1"
+              >Commencer mon parcours <i class="fas fa-arrow-right"></i
+            ></a>
+            <a
+              href="{% url 'psychologists' %}"
+              class="btn btn-outline btn-lg"
+              data-i18n="hero_cta2"
+              >Découvrir nos spécialistes</a
+            >
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=900&fit=crop"
+            alt="Consultation en ligne"
+            class="hero-image"
+          />
+          <div class="hero-floating-card">
+            <div class="floating-icon"><i class="fas fa-lock"></i></div>
+            <div class="floating-text">
+              <strong data-i18n="floating_title">Consultation en ligne</strong>
+              <span data-i18n="floating_desc"
+                >Secret médical & déontologie préservés</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="specialties">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="spec_tag"
+            >CHAMPS D'INTERVENTION</span
+          >
+          <h2 class="section-title" data-i18n="spec_title">Nos spécialités</h2>
+          <p class="section-subtitle" data-i18n="spec_desc">
+            Chaque parcours de vie comporte des moments de doute, d'épreuve ou
+            de transition.
+          </p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-brain"></i></div>
+            <h3 data-i18n="card1_title">Anxiété & Angoisse</h3>
+            <p data-i18n="card1_desc">
+              Ruminations incessantes, sensations d'oppression thoracique,
+              crises de panique.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='anxiete' %}"
+              class="why-link"
+              data-i18n="card_link"
+              >Comprendre l'accompagnement <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-cloud-rain"></i></div>
+            <h3 data-i18n="card2_title">Dépression & Baisse de moral</h3>
+            <p data-i18n="card2_desc">
+              Perte durable de motivation, émoussement émotionnel, découragement
+              profond.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='depression-humeur' %}"
+              class="why-link"
+              data-i18n="card_link"
+              >Comprendre l'accompagnement <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-bolt"></i></div>
+            <h3 data-i18n="card3_title">Stress & Surcharge mentale</h3>
+            <p data-i18n="card3_desc">
+              Tension permanente, perfectionnisme paralysant, difficultés à
+              déconnecter.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='stress' %}"
+              class="why-link"
+              data-i18n="card_link"
+              >Comprendre l'accompagnement <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-infinity"></i></div>
+            <h3 data-i18n="card4_title">Dépendances & Habitudes</h3>
+            <p data-i18n="card4_desc">
+              Relations compulsives avec l'alcool, les écrans, le travail ou
+              substances.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='addiction' %}"
+              class="why-link"
+              data-i18n="card_link"
+              >Comprendre l'accompagnement <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 
+    <section class="section section-light" id="featured-specialists">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">ÉQUIPE CLINIQUE</span>
+          <h2 class="section-title">Nos spécialistes</h2>
+          <p class="section-subtitle">Découvrez les profils vérifiés et les évaluations authentiques des patients.</p>
+        </div>
+        <div class="featured-doctors-grid">
+          {% for doctor in featured_psychologists %}
+          <article class="featured-doctor-card">
+            <h3>Dr. {{ doctor.user.get_full_name|default:doctor.user.username }}</h3>
+            <p>{{ doctor.get_specialty_display }}</p>
+            {% if doctor.rating_count %}
+            <p class="featured-doctor-rating" aria-label="Note moyenne {{ doctor.rating_average|floatformat:1 }} sur 5">
+              ★ {{ doctor.rating_average|floatformat:1 }}/5 · {{ doctor.rating_count }} تقييم
+            </p>
+            {% else %}
+            <p class="featured-doctor-rating">جديد</p>
+            {% endif %}
+            <a href="{% url 'psychologists' %}">عرض الملف وحجز موعد</a>
+          </article>
+          {% empty %}
+          <p>سيتم عرض الأخصائيين الموثقين هنا قريباً.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  -->
+
+    <section class="section section-light" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="journey_tag"
+            >PARCOURS PATIENT</span
+          >
+          <h2 class="section-title" data-i18n="journey_title">
+            Comment commencer votre parcours ?
+          </h2>
+          <p class="section-subtitle" data-i18n="journey_desc">
+            Un cheminement fluide et dématérialisé en cinq étapes claires.
+          </p>
+        </div>
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="step-number">01</div>
+            <h3 data-i18n="step1_title">Créer votre compte</h3>
+            <p data-i18n="step1_desc">
+              Inscription anonymisable en 2 minutes. Vos informations restent
+              confidentielles.
+            </p>
+          </div>
+          <div class="journey-step">
+            <div class="step-number">02</div>
+            <h3 data-i18n="step2_title">Choisir un praticien</h3>
+            <p data-i18n="step2_desc">
+              Filtrez selon l'approche (TCC, humaniste), les motifs et les
+              disponibilités.
+            </p>
+          </div>
+          <div class="journey-step">
+            <div class="step-number">03</div>
+            <h3 data-i18n="step3_title">Prendre rendez-vous</h3>
+            <p data-i18n="step3_desc">
+              Accédez à des créneaux adaptables du lundi au samedi de 8h à 21h.
+            </p>
+          </div>
+          <div class="journey-step">
+            <div class="step-number">04</div>
+            <h3 data-i18n="step4_title">Échanger librement</h3>
+            <p data-i18n="step4_desc">
+              Consultez en visioconférence, en appel audio ou par messagerie.
+            </p>
+          </div>
+          <div class="journey-step">
+            <div class="step-number">05</div>
+            <h3 data-i18n="step5_title">Suivre l'évolution</h3>
+            <p data-i18n="step5_desc">
+              Retrouvez l'historique, les notes récapitulatives et réservez vos
+              prochaines étapes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="modes_tag">ADAPTABILITÉ</span>
+          <h2 class="section-title" data-i18n="modes_title">
+            Trois modes de consultation selon vos besoins
+          </h2>
+          <p class="section-subtitle" data-i18n="modes_desc">
+            Différents canaux de contact thérapeutique selon vos préférences.
+          </p>
+        </div>
+        <div class="modes-grid">
+          <div class="mode-card">
+            <div class="mode-icon"><i class="fas fa-video"></i></div>
+            <div class="mode-category" data-i18n="mode1_cat">
+              IMMERSION CLINIQUE COMPLÈTE
+            </div>
+            <h3 data-i18n="mode1_title">Consultation vidéo</h3>
+            <p data-i18n="mode1_desc">
+              Interaction directe en tête-à-tête depuis votre navigateur web ou
+              mobile.
+            </p>
+            <div class="mode-features">
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i
+                ><span data-i18n="mode1_f1"
+                  >Consultation vidéo dans le navigateur</span
+                >
+              </div>
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i
+                ><span data-i18n="mode1_f2"
+                  >Durée recommandée : 45 à 50 minutes</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mode-card">
+            <div class="mode-icon"><i class="fas fa-microphone"></i></div>
+            <div class="mode-category" data-i18n="mode2_cat">
+              INTIMITÉ ACOUSTIQUE
+            </div>
+            <h3 data-i18n="mode2_title">Consultation audio</h3>
+            <p data-i18n="mode2_desc">
+              Idéal pour les personnes incommodées par l'exposition à la caméra.
+            </p>
+            <div class="mode-features">
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i
+                ><span data-i18n="mode2_f1"
+                  >Suppression du sentiment de jugement visuel</span
+                >
+              </div>
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i
+                ><span data-i18n="mode2_f2"
+                  >Connexion légère, idéale en déplacement</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="mode-card">
+            <div class="mode-icon"><i class="fas fa-comment-alt"></i></div>
+            <div class="mode-category" data-i18n="mode3_cat">
+              ÉCRITURE RÉFLEXIVE
+            </div>
+            <h3 data-i18n="mode3_title">Consultation textuelle</h3>
+            <p data-i18n="mode3_desc">
+              Un espace de messagerie asynchrone pour verbaliser par écrit ses
+              ressentis.
+            </p>
+            <div class="mode-features">
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i
+                ><span data-i18n="mode3_f1"
+                  >Pas de contrainte d'horaire fixe</span
+                >
+              </div>
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i
+                ><span data-i18n="mode3_f2">Idéal en amorce de thérapie</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="ai_tag"
+            >INNOVATION CLINIQUE ASSISTÉE</span
+          >
+          <h2 class="section-title" data-i18n="ai_title">
+            L’IA au service du psychologue
+          </h2>
+          <p class="section-subtitle" data-i18n="ai_desc">
+            La consultation se déroule entre le patient et son psychologue. L’IA aide le professionnel à analyser les échanges et à préparer un résumé de séance.
+          </p>
+        </div>
+        <div class="ai-content">
+          <div class="ai-features">
+            <div class="ai-feature">
+              <div class="ai-feature-icon"><i class="fas fa-brain"></i></div>
+              <div class="ai-feature-content">
+                <h3 data-i18n="ai_f1_title">Une consultation avec votre psychologue</h3>
+                <p data-i18n="ai_f1_desc">
+                  Échangez avec le professionnel qui vous accompagne par vidéo, audio ou messagerie.
+                </p>
+              </div>
+            </div>
+            <div class="ai-feature">
+              <div class="ai-feature-icon">
+                <i class="fas fa-project-diagram"></i>
+              </div>
+              <div class="ai-feature-content">
+                <h3 data-i18n="ai_f2_title">
+                  Analyse réservée au psychologue
+                </h3>
+                <p data-i18n="ai_f2_desc">
+                  Avec les messages de la consultation, l’IA peut repérer les émotions et les thèmes abordés.
+                </p>
+              </div>
+            </div>
+            <div class="ai-feature">
+              <div class="ai-feature-icon"><i class="fas fa-file-alt"></i></div>
+              <div class="ai-feature-content">
+                <h3 data-i18n="ai_f3_title">
+                  Résumé de séance relu par le professionnel
+                </h3>
+                <p data-i18n="ai_f3_desc">
+                  Le résumé proposé aide le psychologue à assurer le suivi ; il ne constitue pas un diagnostic.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="ai-demo-card">
+            <div class="ai-demo-header">
+              <div class="ai-demo-title">
+                <div class="ai-demo-icon"><i class="fas fa-user-md"></i></div>
+                <div>
+                  <div class="ai-demo-name" data-i18n="ai_demo_name">
+                    Le déroulement d’une consultation
+                  </div>
+                  <div class="ai-demo-sub" data-i18n="ai_demo_sub">
+                    L’IA assiste le psychologue, sans répondre au patient
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ai-workflow" data-i18n-aria-label="consultation_steps_label" aria-label="Étapes de la consultation">
+              <p class="ai-workflow-step" data-i18n="consultation_step_1">
+                1. Le patient échange avec son psychologue.
+              </p>
+              <p class="ai-workflow-step" data-i18n="consultation_step_2">
+                2. L’IA analyse les messages réels de cette consultation.
+              </p>
+              <p class="ai-workflow-step" data-i18n="consultation_step_3">
+                3. Le psychologue consulte les résultats et le résumé proposé.
+              </p>
+            </div>
+            <div class="chat-preview-actions">
+              <a
+                href="{% url 'nos_specialistes' %}"
+                class="btn btn-primary"
+                data-i18n="find_psychologist"
+              >
+                Trouver un psychologue
+              </a>
+              <a
+                href="{% url 'ai_service:stress_assessment' %}"
+                class="btn btn-outline"
+                data-i18n="stress_open"
+              >
+                Faire le bilan de stress
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="ai-warning-box">
+          <div class="ai-warning-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="ai-warning-content">
+            <h4 data-i18n="ai_warn_title">
+              Avertissement déontologique & responsabilité médicale
+            </h4>
+            <p data-i18n="ai_warn_desc">
+              L’analyse est une aide à la décision réservée au psychologue. Elle s’appuie sur les messages de la consultation, ne pose aucun diagnostic et ne remplace pas l’expertise du professionnel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="sec_tag"
+            >SÉCURITÉ & CONFIDENTIALITÉ</span
+          >
+          <h2 class="section-title" data-i18n="sec_title">
+            Pourquoi confier votre santé mentale à MindWell ?
+          </h2>
+        </div>
+        <div class="trust-grid">
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-lock"></i></div>
+            <h3 data-i18n="sec1_title">Confidentialité et informations</h3>
+            <p data-i18n="sec1_desc">
+              Consultez les règles et informations sur le traitement des données
+              avant d'utiliser la plateforme.
+            </p>
+            <a href="{% url 'about' %}" class="why-link" data-i18n="sec_link"
+              >En savoir plus <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-user-md"></i></div>
+            <h3 data-i18n="sec2_title">Profils des psychologues</h3>
+            <p data-i18n="sec2_desc">
+              Le statut de vérification est indiqué sur les profils concernés.
+            </p>
+            <a
+              href="{% url 'nos_specialistes' %}"
+              class="why-link"
+              data-i18n="sec_link"
+              >En savoir plus <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-server"></i></div>
+            <h3 data-i18n="sec3_title">Contrôle de vos données</h3>
+            <p data-i18n="sec3_desc">
+              Consultez les informations disponibles sur le traitement de vos
+              données.
+            </p>
+            <a href="{% url 'about' %}" class="why-link" data-i18n="sec_link"
+              >En savoir plus <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-user-secret"></i></div>
+            <h3 data-i18n="sec4_title">Confidentialité professionnelle</h3>
+            <p data-i18n="sec4_desc">
+              Les professionnels sont soumis aux règles de confidentialité qui
+              leur sont applicables.
+            </p>
+            <a href="{% url 'about' %}" class="why-link" data-i18n="sec_link"
+              >En savoir plus <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-language"></i></div>
+            <h3 data-i18n="sec5_title">Plusieurs langues</h3>
+            <p data-i18n="sec5_desc">
+              Parcourez la plateforme en arabe, français ou anglais.
+            </p>
+            <a href="{% url 'about' %}" class="why-link" data-i18n="sec_link"
+              >En savoir plus <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-chart-line"></i></div>
+            <h3 data-i18n="sec6_title">Suivi de votre auto-évaluation</h3>
+            <p data-i18n="sec6_desc">
+              Les utilisateurs connectés peuvent retrouver leurs résultats de
+              bilan de stress.
+            </p>
+            <a
+              href="{% url 'ai_service:stress_assessment' %}"
+              class="why-link"
+              data-i18n="stress_open"
+              >Faire le bilan de stress <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="section-header">
+          <span
+            class="section-tag"
+            style="color: rgba(255, 255, 255, 0.6)"
+            data-i18n="cta_tag"
+            >UN PREMIER PAS EN TOUTE QUIÉTUDE</span
+          >
+          <h2 class="section-title" style="color: white" data-i18n="cta_title">
+            Votre bien-être mérite toute votre attention.
+          </h2>
+        </div>
+        <div class="cta-center">
+          <a
+            href="{% url 'accounts:choose_account_type' %}"
+            class="btn btn-light btn-lg"
+            data-i18n="cta_btn"
+            >Commencer mon parcours <i class="fas fa-arrow-right"></i
+          ></a>
+        </div>
+        <div class="cta-note">
+          <p>
+            <strong data-i18n="cta_note_strong"
+              >Besoin d'aide urgente ou de soutien immédiat ?</strong
+            >
+          </p>
+          <p data-i18n="cta_note_desc">
+            MindWell est une plateforme dédiée à faciliter l’accès aux
+            consultations psychologiques à distance dans un environnement fondé
+            sur le respect, la confidentialité et le bien-être.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="emergency-bar">
+          <div class="emergency-item">
+            <i class="fas fa-phone-alt"></i
+            ><span data-i18n="foot_emergency"
+              >Besoin d’une écoute ou d’un soutien psychologique ?</span
+            >
+          </div>
+          <div class="emergency-item">
+            <span data-i18n="foot_civil">Protection Civile</span> :
+            <strong>14</strong>
+          </div>
+          <div class="emergency-item">
+            <span data-i18n="foot_police">Police</span> : <strong>1548</strong>
+          </div>
+        </div>
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="logo-icon"><i class="fas fa-brain"></i></div>
+              <div class="logo-text">
+                <span class="logo-name">MindWell</span>
+                <span
+                  class="logo-sub"
+                  style="color: rgba(255, 255, 255, 0.7)"
+                  data-i18n="logo_sub"
+                  >Téléconsultation & Santé Mentale</span
+                >
+              </div>
+            </div>
+            <p data-i18n="foot_desc">
+              Votre espace de téléconsultation psychologique et d'accompagnement
+              bienveillant.
+            </p>
+            <div class="footer-cert">
+              <i class="fas fa-shield-alt"></i
+              ><span data-i18n="foot_hds"
+                >Informations sur les données et la confidentialité</span
+              >
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="foot_platform">Plateforme</h4>
+            <div class="footer-links">
+              <a href="{% url 'home' %}" data-i18n="nav_home">Accueil</a>
+              <a href="{% url 'specialties' %}" data-i18n="nav_specialties"
+                >Spécialités</a
+              >
+              <a href="{% url 'nos_specialistes' %}" data-i18n="nav_specialists"
+                >Nos spécialistes</a
+              >
+              <a href="{% url 'comment_ca_marche' %}" data-i18n="nav_how"
+                >Comment ça marche ?</a
+              >
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="foot_info">Informations</h4>
+            <div class="footer-links">
+              <a href="{% url 'about' %}" data-i18n="nav_about">À propos</a>
+              <a href="{% url 'faq' %}">FAQ</a>
+              <a href="{% url 'ethics' %}" data-i18n="foot_ethics">Éthique & Déontologie</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4 data-i18n="foot_legal">Légal & Sécurité</h4>
+            <div class="footer-links">
+              <a href="{% url 'confidentialite' %}" data-i18n="foot_privacy"
+                >Politique de confidentialité</a
+              >
+              <a href="{% url 'cgv' %}" data-i18n="foot_terms">Conditions d'utilisation</a>
+              <a href="{% url 'confidentialite' %}" data-i18n="foot_data"
+                >Protection des données</a
+              >
+              <a href="{% url 'mentions_legales' %}" data-i18n="foot_mentions">Mentions légales</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p data-i18n="foot_copy">
+            Projet universitaire de fin d'études - MindWell 2026. Tous droits
+            réservés.
+          </p>
+          <p data-i18n="foot_secret">Confidentialité et secret professionnel</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // ==========================================
+      // 1. DICTIONNAIRE DE TRADUCTION (FR / AR / EN)
+      // ==========================================
+      const translations = {
+        fr: {
+          logo_sub: "Téléconsultation & Santé Mentale",
+          menu_open: "Ouvrir le menu",
+          menu_close: "Fermer le menu",
+          nav_home: "Accueil",
+          nav_patient_dashboard: "Espace patient",
+          nav_specialties: "Spécialités",
+          nav_specialists: "Nos spécialistes",
+          nav_how: "Comment ça marche ?",
+          nav_about: "À propos",
+          nav_login: "Se connecter",
+          nav_signup: "Créer un compte",
+          nav_logout: "Déconnexion",
+          trust_verified:
+            "Profils psychologues selon leur statut de vérification",
+          trust_hds: "Confidentialité et données personnelles",
+          trust_insurance: "Modes de consultation disponibles",
+          hero_badge: "ESPACE CLINIQUE NUMÉRIQUE",
+          hero_title: "Prenez soin de votre santé mentale, à votre rythme.",
+          hero_desc:
+            "MindWell facilite la mise en relation entre des patients et des psychologues pour des consultations à distance.",
+          hero_cta1: "Commencer mon parcours",
+          hero_cta2: "Découvrir nos spécialistes",
+          stat_satisfaction: "Satisfaction patient",
+          stat_consultations: "Consultations réalisées",
+          stat_delay: "Délai moyen de RDV",
+          floating_title: "Consultation en ligne",
+          floating_desc: "Un parcours de consultation à distance",
+          spec_tag: "CHAMPS D'INTERVENTION",
+          spec_title: "Nos spécialités",
+          spec_desc:
+            "Chaque parcours de vie comporte des moments de doute, d'épreuve ou de transition.",
+          card1_title: "Anxiété & Angoisse",
+          card1_desc:
+            "Ruminations incessantes, sensations d'oppression thoracique, crises de panique.",
+          card2_title: "Dépression & Baisse de moral",
+          card2_desc:
+            "Perte durable de motivation, émoussement émotionnel, découragement profond.",
+          card3_title: "Stress & Surcharge mentale",
+          card3_desc:
+            "Tension permanente, perfectionnisme paralysant, difficultés à déconnecter.",
+          card4_title: "Dépendances & Habitudes",
+          card4_desc:
+            "Relations compulsives avec l'alcool, les écrans, le travail ou substances.",
+          card_link: "Comprendre l'accompagnement",
+          journey_tag: "PARCOURS PATIENT",
+          journey_title: "Comment commencer votre parcours ?",
+          journey_desc:
+            "Un cheminement fluide et dématérialisé en cinq étapes claires.",
+          step1_title: "Créer votre compte",
+          step1_desc:
+            "Inscription anonymisable en 2 minutes. Vos informations restent confidentielles.",
+          step2_title: "Choisir un praticien",
+          step2_desc:
+            "Filtrez selon l'approche (TCC, humaniste), les motifs et les disponibilités.",
+          step3_title: "Prendre rendez-vous",
+          step3_desc:
+            "Accédez à des créneaux adaptables du lundi au samedi de 8h à 21h.",
+          step4_title: "Échanger librement",
+          step4_desc:
+            "Consultez en visioconférence, en appel audio ou par messagerie.",
+          step5_title: "Suivre l'évolution",
+          step5_desc:
+            "Retrouvez l'historique, les notes récapitulatives et réservez vos prochaines étapes.",
+          modes_tag: "ADAPTABILITÉ",
+          modes_title: "Trois modes de consultation selon vos besoins",
+          modes_desc:
+            "Différents canaux de contact thérapeutique selon vos préférences.",
+          mode1_cat: "IMMERSION CLINIQUE COMPLÈTE",
+          mode1_title: "Consultation vidéo",
+          mode1_desc:
+            "Interaction directe en tête-à-tête depuis votre navigateur web ou mobile.",
+          mode1_f1: "Consultation vidéo dans le navigateur",
+          mode1_f2: "Durée recommandée : 45 à 50 minutes",
+          mode2_cat: "INTIMITÉ ACOUSTIQUE",
+          mode2_title: "Consultation audio",
+          mode2_desc:
+            "Idéal pour les personnes incommodées par l'exposition à la caméra.",
+          mode2_f1: "Suppression du sentiment de jugement visuel",
+          mode2_f2: "Connexion légère, idéale en déplacement",
+          mode3_cat: "ÉCRITURE RÉFLEXIVE",
+          mode3_title: "Consultation textuelle",
+          mode3_desc:
+            "Un espace de messagerie asynchrone pour verbaliser par écrit ses ressentis.",
+          mode3_f1: "Pas de contrainte d'horaire fixe",
+          mode3_f2: "Idéal en amorce de thérapie",
+          ai_tag: "SOUTIEN À LA CONSULTATION",
+          ai_title: "L’IA au service du psychologue",
+          ai_desc:
+            "La consultation se déroule entre le patient et son psychologue. L’IA aide le professionnel à analyser les échanges et à préparer un résumé de séance.",
+          ai_f1_title: "Une consultation avec votre psychologue",
+          ai_f1_desc:
+            "Échangez avec le professionnel qui vous accompagne par vidéo, audio ou messagerie.",
+          ai_f2_title: "Analyse réservée au psychologue",
+          ai_f2_desc:
+            "Avec les messages de la consultation, l’IA peut repérer les émotions et les thèmes abordés.",
+          ai_f3_title: "Résumé de séance relu par le professionnel",
+          ai_f3_desc:
+            "Le résumé proposé aide le psychologue à assurer le suivi ; il ne constitue pas un diagnostic.",
+          ai_demo_name: "Le déroulement d’une consultation",
+          ai_demo_sub: "L’IA assiste le psychologue, sans répondre au patient",
+          consultation_steps_label: "Étapes de la consultation",
+          consultation_step_1: "1. Le patient échange avec son psychologue.",
+          consultation_step_2: "2. L’IA analyse les messages réels de cette consultation.",
+          consultation_step_3: "3. Le psychologue consulte les résultats et le résumé proposé.",
+          find_psychologist: "Trouver un psychologue",
+          stress_open: "Faire le bilan de stress",
+          ai_warn_title:
+            "Avertissement déontologique & responsabilité médicale",
+          ai_warn_desc:
+            "L’analyse est une aide à la décision réservée au psychologue. Elle s’appuie sur les messages de la consultation, ne pose aucun diagnostic et ne remplace pas l’expertise du professionnel.",
+          sec_tag: "SÉCURITÉ & CONFIDENTIALITÉ",
+          sec_title: "Pourquoi confier votre santé mentale à MindWell ?",
+          sec1_title: "Confidentialité des échanges",
+          sec1_desc:
+            "Retrouvez les informations relatives à la confidentialité dans les pages dédiées.",
+          sec2_title: "Statut des profils psychologues",
+          sec2_desc:
+            "Le statut de vérification est indiqué sur les profils concernés.",
+          sec3_title: "Données personnelles",
+          sec3_desc:
+            "Consultez les informations disponibles sur le traitement de vos données.",
+          sec4_title: "Confidentialité",
+          sec4_desc:
+            "Les professionnels sont soumis aux règles de confidentialité qui leur sont applicables.",
+          sec5_title: "Plusieurs langues",
+          sec5_desc: "Parcourez la plateforme en arabe, français ou anglais.",
+          sec6_title: "Suivi de votre auto-évaluation",
+          sec6_desc:
+            "Les utilisateurs connectés peuvent retrouver leurs résultats de bilan de stress.",
+          sec_link: "En savoir plus",
+          cta_tag: "UN PREMIER PAS EN TOUTE QUIÉTUDE",
+          cta_title: "Votre bien-être mérite toute votre attention.",
+          cta_btn: "Commencer mon parcours",
+          cta_note_strong: "Besoin d'aide urgente ou de soutien immédiat ?",
+          cta_note_desc:
+            "MindWell est une plateforme dédiée à faciliter l’accès aux consultations psychologiques à distance dans un environnement fondé sur le respect, la confidentialité et le bien-être.",
+          foot_emergency: "Besoin d’une écoute ou d’un soutien psychologique ?",
+          foot_civil: "Protection Civile",
+          foot_police: "Police",
+          foot_desc:
+            "Votre espace de téléconsultation psychologique et d'accompagnement bienveillant.",
+          foot_hds: "Informations sur les données et la confidentialité",
+          foot_platform: "Plateforme",
+          foot_info: "Informations",
+          foot_legal: "Légal & Sécurité",
+          foot_ethics: "Éthique & Déontologie",
+          foot_privacy: "Politique de confidentialité",
+          foot_terms: "Conditions d'utilisation",
+          foot_data: "Protection des données",
+          foot_mentions: "Mentions légales",
+          foot_copy:
+            "Projet universitaire de fin d'études - MindWell 2026. Tous droits réservés.",
+          foot_secret: "Confidentialité et secret professionnel",
+        },
+        en: {
+          logo_sub: "Teleconsultation & Mental Health",
+          menu_open: "Open menu",
+          menu_close: "Close menu",
+          nav_home: "Home",
+          nav_patient_dashboard: "Patient dashboard",
+          nav_specialties: "Specialties",
+          nav_specialists: "Our Specialists",
+          nav_how: "How it works",
+          nav_about: "About",
+          nav_login: "Log in",
+          nav_signup: "Sign up",
+          nav_logout: "Log out",
+          trust_verified:
+            "Psychologist profiles show their verification status",
+          trust_hds: "Privacy and personal data",
+          trust_insurance: "Available consultation formats",
+          hero_badge: "DIGITAL CLINICAL SPACE",
+          hero_title: "Take care of your mental health, at your own pace.",
+          hero_desc:
+            "MindWell helps connect patients with psychologists for remote consultations.",
+          hero_cta1: "Start my journey",
+          hero_cta2: "Discover our specialists",
+          stat_satisfaction: "Patient satisfaction",
+          stat_consultations: "Consultations completed",
+          stat_delay: "Average appointment delay",
+          floating_title: "Online consultation",
+          floating_desc: "A remote consultation pathway",
+          spec_tag: "AREAS OF INTERVENTION",
+          spec_title: "Our specialties",
+          spec_desc:
+            "Every life journey has moments of doubt, trial, or transition.",
+          card1_title: "Anxiety & Panic",
+          card1_desc: "Constant rumination, chest tightness, panic attacks.",
+          card2_title: "Depression & Low Mood",
+          card2_desc:
+            "Lasting loss of motivation, emotional blunting, deep discouragement.",
+          card3_title: "Stress & Mental Overload",
+          card3_desc:
+            "Permanent tension, paralyzing perfectionism, difficulty disconnecting.",
+          card4_title: "Addictions & Habits",
+          card4_desc:
+            "Compulsive relationships with alcohol, screens, work, or substances.",
+          card_link: "Understand the support",
+          journey_tag: "PATIENT JOURNEY",
+          journey_title: "How to start your journey?",
+          journey_desc: "A smooth, dematerialized pathway in five clear steps.",
+          step1_title: "Create your account",
+          step1_desc:
+            "Anonymous registration in 2 minutes. Your information remains confidential.",
+          step2_title: "Choose a practitioner",
+          step2_desc:
+            "Filter by approach (CBT, humanistic), reasons, and availability.",
+          step3_title: "Book an appointment",
+          step3_desc:
+            "Access adaptable slots from Monday to Saturday, 8 AM to 9 PM.",
+          step4_title: "Exchange freely",
+          step4_desc: "Consult by video, audio call, or messaging.",
+          step5_title: "Track your progress",
+          step5_desc:
+            "Access history, summary notes, and book your next steps.",
+          modes_tag: "ADAPTABILITY",
+          modes_title: "Three consultation modes for your needs",
+          modes_desc:
+            "Different therapeutic contact formats to suit your preferences.",
+          mode1_cat: "COMPLETE CLINICAL IMMERSION",
+          mode1_title: "Video consultation",
+          mode1_desc:
+            "Direct head-to-head interaction from your web or mobile browser.",
+          mode1_f1: "Video consultation in your browser",
+          mode1_f2: "Recommended duration: 45 to 50 minutes",
+          mode2_cat: "ACOUSTIC INTIMACY",
+          mode2_title: "Audio consultation",
+          mode2_desc: "Ideal for those uncomfortable with camera exposure.",
+          mode2_f1: "Eliminates the feeling of visual judgment",
+          mode2_f2: "Lightweight connection, ideal on the go",
+          mode3_cat: "REFLECTIVE WRITING",
+          mode3_title: "Text consultation",
+          mode3_desc:
+            "An asynchronous messaging space to verbalize feelings in writing.",
+          mode3_f1: "No fixed schedule constraints",
+          mode3_f2: "Ideal as a prelude to therapy",
+          ai_tag: "SUPPORT FOR YOUR CONSULTATION",
+          ai_title: "AI support for the psychologist",
+          ai_desc:
+            "Your consultation is between you and your psychologist. AI helps the professional analyze the exchange and prepare a session summary.",
+          ai_f1_title: "A consultation with your psychologist",
+          ai_f1_desc:
+            "Talk with the professional supporting you by video, audio, or messaging.",
+          ai_f2_title: "Analysis for the psychologist",
+          ai_f2_desc:
+            "Using messages from the consultation, AI can identify emotions and topics discussed.",
+          ai_f3_title: "A session summary reviewed by the professional",
+          ai_f3_desc:
+            "The draft summary supports follow-up; it is not a diagnosis.",
+          ai_demo_name: "How a consultation works",
+          ai_demo_sub: "AI supports the psychologist and does not reply to the patient",
+          consultation_steps_label: "Consultation steps",
+          consultation_step_1: "1. The patient talks with their psychologist.",
+          consultation_step_2: "2. AI analyzes the real messages from that consultation.",
+          consultation_step_3: "3. The psychologist reviews the analysis and proposed summary.",
+          find_psychologist: "Find a psychologist",
+          stress_open: "Take the stress check-in",
+          ai_warn_title: "Ethical warning & medical responsibility",
+          ai_warn_desc:
+            "The analysis is decision support for the psychologist. It uses consultation messages, does not diagnose, and does not replace the professional’s judgment.",
+          sec_tag: "SECURITY & CONFIDENTIALITY",
+          sec_title: "Why entrust your mental health to MindWell?",
+          sec1_title: "Confidentiality of communications",
+          sec1_desc:
+            "See the dedicated pages for information about confidentiality.",
+          sec2_title: "Psychologist profile status",
+          sec2_desc: "Verification status is shown on applicable profiles.",
+          sec3_title: "Personal data",
+          sec3_desc:
+            "See the available information about how your data is handled.",
+          sec4_title: "Confidentiality",
+          sec4_desc:
+            "Professionals follow the confidentiality rules that apply to them.",
+          sec5_title: "Multiple languages",
+          sec5_desc: "Use the platform in Arabic, French, or English.",
+          sec6_title: "Self-assessment history",
+          sec6_desc:
+            "Signed-in users can revisit their stress check-in results.",
+          sec_link: "Learn more",
+          cta_tag: "A FIRST STEP IN COMPLETE TRANQUILITY",
+          cta_title: "Your well-being deserves your full attention.",
+          cta_btn: "Start my journey",
+          cta_note_strong: "Need urgent help or immediate support?",
+          cta_note_desc:
+            "MindWell is a platform dedicated to facilitating access to remote psychological consultations in an environment based on respect, confidentiality, and well-being.",
+          foot_emergency: "Need someone to listen or psychological support?",
+          foot_civil: "Civil Protection",
+          foot_police: "Police",
+          foot_desc:
+            "Your space for psychological teleconsultation and compassionate support.",
+          foot_hds: "Information about data and privacy",
+          foot_platform: "Platform",
+          foot_info: "Information",
+          foot_legal: "Legal & Security",
+          foot_ethics: "Ethics & Deontology",
+          foot_privacy: "Privacy policy",
+          foot_terms: "Terms of use",
+          foot_data: "Data protection",
+          foot_mentions: "Legal notices",
+          foot_copy:
+            "University end-of-study project - MindWell 2026. All rights reserved.",
+          foot_secret: "Confidentiality and professional secrecy",
+        },
+        ar: {
+          logo_sub: "الاستشارة عن بُعد والصحة النفسية",
+          menu_open: "فتح القائمة",
+          menu_close: "إغلاق القائمة",
+          nav_home: "الرئيسية",
+          nav_patient_dashboard: "فضاء المريض",
+          nav_specialties: "التخصصات",
+          nav_specialists: "أخصائيونا",
+          nav_how: "كيف يعمل؟",
+          nav_about: "من نحن",
+          nav_login: "تسجيل الدخول",
+          nav_signup: "إنشاء حساب",
+          nav_logout: "تسجيل الخروج",
+          trust_verified: "توضح الملفات الشخصية حالة التحقق",
+          trust_hds: "الخصوصية والبيانات الشخصية",
+          trust_insurance: "أنماط الاستشارة المتاحة",
+          hero_badge: "فضاء سريري رقمي",
+          hero_title: "اعتنِ بصحتك النفسية، على وتيرتك الخاصة.",
+          hero_desc:
+            "يساعد MindWell على ربط المرضى بالأخصائيين النفسيين للاستشارات عن بُعد.",
+          hero_cta1: "ابدأ رحلتك الآن",
+          hero_cta2: "اكتشف أخصائيينا",
+          stat_satisfaction: "نسبة رضا المرضى",
+          stat_consultations: "استشارة مكتملة",
+          stat_delay: "متوسط وقت انتظار الموعد",
+          floating_title: "استشارة عبر الإنترنت",
+          floating_desc: "مسار للاستشارة عن بُعد",
+          spec_tag: "مجالات التدخل",
+          spec_title: "تخصصاتنا",
+          spec_desc:
+            "كل مسار في الحياة يمر بلحظات من الشك، التحدي، أو الانتقال.",
+          card1_title: "القلق ونوبات الهلع",
+          card1_desc: "اجترار الأفكار المستمر، ضيق الصدر، ونوبات الهلع.",
+          card2_title: "الاكتئاب وانخفاض المزاج",
+          card2_desc: "فقدان الدافع المستمر، الخدر العاطفي، والإحباط العميق.",
+          card3_title: "التوتر والإرهاق الذهني",
+          card3_desc:
+            "توتر دائم، كمال شديد يعيق الحركة، وصعوبة في فصل العمل عن الحياة.",
+          card4_title: "الإدمان والعادات",
+          card4_desc:
+            "علاقات قهرية مع الكحول، الشاشات، العمل، أو المواد الأخرى.",
+          card_link: "افهم كيفية الدعم",
+          journey_tag: "مسار المريض",
+          journey_title: "كيف تبدأ رحلتك؟",
+          journey_desc: "مسار سلس ورقمي بالكامل في خمس خطوات واضحة.",
+          step1_title: "إنشاء حسابك",
+          step1_desc:
+            "تسجيل يمكن أن يكون مجهولاً في دقيقتين. معلوماتك تبقى سرية.",
+          step2_title: "اختر أخصائياً",
+          step2_desc:
+            "قم بالتصفية حسب النهج (سلوكي معرفي، إنساني)، الأسباب، والتوافر.",
+          step3_title: "احجز موعداً",
+          step3_desc:
+            "احصل على مواعيد مرنة من الاثنين إلى السبت، من 8 صباحاً إلى 9 مساءً.",
+          step4_title: "تواصل بحرية",
+          step4_desc: "استشر عبر الفيديو أو المكالمة الصوتية أو المراسلة.",
+          step5_title: "تابع تقدمك",
+          step5_desc:
+            "الوصول إلى السجل، الملاحظات الملخصة، وحجز خطواتك القادمة.",
+          modes_tag: "المرونة",
+          modes_title: "ثلاثة أوضاع للاستشارة حسب احتياجاتك",
+          modes_desc: "قنوات اتصال علاجية مختلفة مع ضمان السرية التامة.",
+          mode1_cat: "انغماس سريري كامل",
+          mode1_title: "استشارة عبر الفيديو",
+          mode1_desc:
+            "تفاعل مباشر وجهاً لوجه من متصفح الويب أو الهاتف المحمول.",
+          mode1_f1: "بث WebRTC مشفر وعالي الدقة",
+          mode1_f2: "المدة الموصى بها: 45 إلى 50 دقيقة",
+          mode2_cat: "خصوصية صوتية",
+          mode2_title: "استشارة صوتية",
+          mode2_desc: "مثالية للأشخاص الذين يشعرون بعدم الراحة أمام الكاميرا.",
+          mode2_f1: "إزالة شعور الحكم البصري",
+          mode2_f2: "اتصال خفيف، مثالي أثناء التنقل",
+          mode3_cat: "كتابة تأملية",
+          mode3_title: "استشارة نصية",
+          mode3_desc: "مساحة مراسلة غير متزامنة للتعبير عن المشاعر كتابياً.",
+          mode3_f1: "بدون قيود جدول زمني ثابت",
+          mode3_f2: "مثالية كتمهيد للعلاج",
+          ai_tag: "مساندة الاستشارة",
+          ai_title: "الذكاء الاصطناعي لدعم الأخصائي النفسي",
+          ai_desc:
+            "تتم الاستشارة بين المريض والأخصائي النفسي. يساعد الذكاء الاصطناعي الأخصائي على تحليل الحوار وإعداد ملخص للجلسة.",
+          ai_f1_title: "استشارة مع أخصائيك النفسي",
+          ai_f1_desc:
+            "تواصل مع الأخصائي الذي يتابعك عبر الفيديو أو الصوت أو المراسلة.",
+          ai_f2_title: "تحليل مخصص للأخصائي",
+          ai_f2_desc:
+            "استناداً إلى رسائل الاستشارة، يمكن للذكاء الاصطناعي رصد المشاعر والمواضيع المطروحة.",
+          ai_f3_title: "ملخص جلسة يراجعه الأخصائي",
+          ai_f3_desc:
+            "يساعد الملخص المقترح في متابعة الحالة، لكنه لا يُعد تشخيصاً.",
+          ai_demo_name: "كيف تسير الاستشارة؟",
+          ai_demo_sub: "الذكاء الاصطناعي يساعد الأخصائي ولا يجيب المريض",
+          consultation_steps_label: "مراحل الاستشارة",
+          consultation_step_1: "١. يتواصل المريض مع أخصائيه النفسي.",
+          consultation_step_2: "٢. يحلل الذكاء الاصطناعي الرسائل الفعلية للاستشارة.",
+          consultation_step_3: "٣. يراجع الأخصائي التحليل والملخص المقترح.",
+          find_psychologist: "ابحث عن أخصائي نفسي",
+          stress_open: "ابدأ تقييم الضغط",
+          ai_warn_title: "تحذير أخلاقي ومسؤولية طبية",
+          ai_warn_desc:
+            "التحليل أداة مساعدة للأخصائي النفسي في اتخاذ القرار. يعتمد على رسائل الاستشارة، ولا يقدم تشخيصاً أو يحل محل التقدير المهني.",
+          sec_tag: "الأمان والسرية",
+          sec_title: "لماذا تثق بصحتك النفسية لـ MindWell؟",
+          sec1_title: "الخصوصية والمعلومات",
+          sec1_desc:
+            "راجع قواعد الخصوصية ومعلومات معالجة البيانات قبل استخدام المنصة.",
+          sec2_title: "ملفات الأخصائيين",
+          sec2_desc: "تظهر حالة التحقق في الملفات الشخصية المعنية.",
+          sec3_title: "التحكم في بياناتك",
+          sec3_desc: "اطلع على المعلومات المتاحة حول كيفية معالجة بياناتك.",
+          sec4_title: "السرية المهنية",
+          sec4_desc: "يلتزم المختصون بقواعد الخصوصية المطبقة عليهم.",
+          sec5_title: "لغات متعددة",
+          sec5_desc: "تصفح المنصة بالعربية أو الفرنسية أو الإنجليزية.",
+          sec6_title: "متابعة التقييم الذاتي",
+          sec6_desc:
+            "يمكن للمستخدمين المسجلين مراجعة نتائج تقييم الضغط السابقة.",
+          sec_link: "اعرف المزيد",
+          cta_tag: "خطوة أولى في طمأنينة تامة",
+          cta_title: "رفاهيتك تستحق كامل انتباهك.",
+          cta_btn: "ابدأ رحلتك الآن",
+          cta_note_strong: "هل تحتاج إلى مساعدة عاجلة أو دعم فوري؟",
+          cta_note_desc:
+            "MindWell هي منصة مخصصة لتسهيل الوصول إلى الاستشارات النفسية عن بُعد في بيئة قائمة على الاحترام، السرية، والرفاهية.",
+          foot_emergency: "هل تحتاج إلى من يستمع إليك أو دعم نفسي؟",
+          foot_civil: "الحماية المدنية",
+          foot_police: "الشرطة",
+          foot_desc: "فضاؤك للاستشارة النفسية عن بُعد والدعم الرحيم.",
+          foot_hds: "معلومات حول البيانات والخصوصية",
+          foot_platform: "المنصة",
+          foot_info: "معلومات",
+          foot_legal: "القانون والأمان",
+          foot_ethics: "الأخلاقيات والمهنية",
+          foot_privacy: "سياسة الخصوصية",
+          foot_terms: "شروط الاستخدام",
+          foot_data: "حماية البيانات",
+          foot_mentions: "الإشعارات القانونية",
+          foot_copy:
+            "مشروع جامعي لنهاية الدراسة - MindWell 2026. جميع الحقوق محفوظة.",
+          foot_secret: "السرية مضمونة • السر المهني محفوظ",
+        },
+      };
+
+      // ==========================================
+      // 2. دالة تغيير اللغة (بدون تحديث الصفحة)
+      // ==========================================
+      function setLanguage(lang) {
+        const t = translations[lang];
+        if (!t) return;
+
+        // 1. تحديث اتجاه الصفحة واللغة
+        const html = document.getElementById("htmlRoot");
+        html.setAttribute("lang", lang);
+        html.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+        // 2. تحديث كل النصوص التي تحمل data-i18n
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (t[key]) {
+            // إذا كان العنصر يحتوي على أيقونة (مثل <i>)، نحافظ عليها
+            const icon = el.querySelector("i");
+            if (icon && lang !== "ar") {
+              el.innerHTML = t[key] + " " + icon.outerHTML;
+            } else if (icon && lang === "ar") {
+              el.innerHTML = icon.outerHTML + " " + t[key];
+            } else {
+              el.textContent = t[key];
+            }
+          }
+        });
+        document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+          const key = el.getAttribute("data-i18n-aria-label");
+          if (t[key]) el.setAttribute("aria-label", t[key]);
+        });
+
+        // 3. تحديث حالة الأزرار النشطة
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle(
+            "active",
+            btn.getAttribute("data-lang") === lang,
+          );
+        });
+
+        // 4. حفظ الاختيار في localStorage
+        localStorage.setItem("mindwell_lang", lang);
+        localStorage.setItem("preferredLanguage", lang);
+        document.cookie = `django_language=${lang}; path=/; max-age=31536000; SameSite=Lax${location.protocol === "https:" ? "; Secure" : ""}`;
+      }
+
+      // ==========================================
+      // 3. التهيئة عند تحميل الصفحة
+      // ==========================================
+      document.addEventListener("DOMContentLoaded", () => {
+        // تحميل اللغة المحفوظة أو الافتراضية (الفرنسية)
+        setLanguage("{{ LANGUAGE_CODE }}");
+
+        // ==========================================
+        // 4. منطق القائمة في الهاتف المحمول
+        // ==========================================
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("mobile-open");
+            mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+            const menuLabel = isOpen ? "menu_close" : "menu_open";
+            mobileMenuBtn.setAttribute(
+              "aria-label",
+              translations[document.documentElement.lang][menuLabel],
+            );
+            const icon = mobileMenuBtn.querySelector("i");
+            if (isOpen) {
+              icon.classList.remove("fa-bars");
+              icon.classList.add("fa-times");
+            } else {
+              icon.classList.remove("fa-times");
+              icon.classList.add("fa-bars");
+            }
+          });
+        }
+
+        // إغلاق القائمة عند النقر على رابط
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("mobile-open");
+            const icon = mobileMenuBtn.querySelector("i");
+            mobileMenuBtn.setAttribute("aria-expanded", "false");
+            mobileMenuBtn.setAttribute(
+              "aria-label",
+              translations[document.documentElement.lang].menu_open,
+            );
+            if (icon) {
+              icon.classList.remove("fa-times");
+              icon.classList.add("fa-bars");
+            }
+          });
+        });
+        window.addEventListener("resize", () => {
+          if (
+            window.innerWidth > 768 &&
+            navLinks.classList.contains("mobile-open")
+          ) {
+            navLinks.classList.remove("mobile-open");
+            mobileMenuBtn.setAttribute("aria-expanded", "false");
+            mobileMenuBtn.setAttribute(
+              "aria-label",
+              translations[document.documentElement.lang].menu_open,
+            );
+            const icon = mobileMenuBtn.querySelector("i");
+            if (icon) {
+              icon.classList.remove("fa-times");
+              icon.classList.add("fa-bars");
+            }
+          }
+        });
+
+        // ==========================================
+        // 5. التمرير السلس (Smooth Scroll)
+        // ==========================================
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              const navbarHeight =
+                document.querySelector(".navbar").offsetHeight;
+              const targetPosition =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                navbarHeight -
+                20;
+              window.scrollTo({ top: targetPosition, behavior: "smooth" });
+            }
+          });
+        });
+
+        // ==========================================
+        // 6. تأثير الظل في شريط التنقل عند التمرير
+        // ==========================================
+        const navbar = document.querySelector(".navbar");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 10) {
+            navbar.style.boxShadow = "0 2px 20px rgba(11, 29, 58, 0.08)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+
+        // ==========================================
+        // 7. تأثير الظهور عند التمرير (Intersection Observer)
+        // ==========================================
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document
+          .querySelectorAll(
+            ".why-card, .journey-step, .mode-card, .testimonial-card, .ai-feature",
+          )
+          .forEach((el, index) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
+            observer.observe(el);
+          });
+
+        const style = document.createElement("style");
+        style.textContent = `.animate-in { opacity: 1 !important; transform: translateY(0) !important; }`;
+        document.head.appendChild(style);
+      });
+    </script>
+  </body>
+</html>

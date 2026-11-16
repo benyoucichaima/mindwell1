@@ -1,0 +1,510 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Paramètres — MindWell</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root {
+        --navy: #111844;
+        --navy-light: #1b2559;
+        --blue: #4B5694;
+        --blue-soft: #eef1f8;
+        --text: #252b45;
+        --muted: #727991;
+        --border: #e5e8f0;
+        --background: #f6f7fb;
+        --white: #ffffff;
+        --success: #2f7d68;
+        --shadow: 0 15px 45px rgba(17, 24, 68, 0.08);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--background);
+        color: var(--text);
+        min-height: 100vh;
+    }
+
+    /* Header */
+    .topbar {
+        height: 76px;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6%;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        text-decoration: none;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: var(--navy);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+    .brand-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 23px;
+        font-weight: 700;
+        color: var(--navy);
+    }
+
+    .profile-mini {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--muted);
+        font-size: 14px;
+    }
+
+    .profile-mini i {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: var(--blue-soft);
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Main */
+    .page {
+        max-width: 1050px;
+        margin: 45px auto;
+        padding: 0 25px;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 25px;
+        transition: 0.2s;
+    }
+
+    .back-link:hover {
+        color: var(--navy);
+        transform: translateX(-3px);
+    }
+
+    .page-heading {
+        margin-bottom: 30px;
+    }
+
+    .page-heading h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 34px;
+        color: var(--navy);
+        margin-bottom: 8px;
+    }
+
+    .page-heading p {
+        color: var(--muted);
+        font-size: 15px;
+    }
+
+    /* Layout */
+    .settings-layout {
+        display: grid;
+        grid-template-columns: 235px 1fr;
+        gap: 25px;
+        align-items: start;
+    }
+
+    /* Sidebar */
+    .settings-menu {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 10px;
+        box-shadow: var(--shadow);
+    }
+
+    .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 14px 15px;
+        border-radius: 12px;
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 4px;
+    }
+
+    .menu-item.active {
+        background: var(--blue-soft);
+        color: var(--navy);
+        font-weight: 600;
+    }
+
+    .menu-item i {
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Card */
+    .settings-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 28px 32px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .header-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+    }
+
+    .card-header h2 {
+        color: var(--navy);
+        font-size: 19px;
+        margin-bottom: 4px;
+    }
+
+    .card-header p {
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+    .form-content {
+        padding: 30px 32px;
+    }
+
+    .section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 8px 0 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .section-title i {
+        color: var(--blue);
+        font-size: 15px;
+    }
+
+    .section-title h3 {
+        color: var(--navy);
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    /* Django forms */
+    form p {
+        margin-bottom: 18px;
+    }
+
+    form label {
+        display: block;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    form input,
+    form textarea,
+    form select {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #fbfcfe;
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: 0.2s;
+    }
+
+    form textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    form input:focus,
+    form textarea:focus,
+    form select:focus {
+        border-color: var(--blue);
+        background: white;
+        box-shadow: 0 0 0 3px rgba(75, 86, 148, 0.10);
+    }
+
+    .helptext {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 11px;
+    }
+
+    .errorlist {
+        list-style: none;
+        color: #b42318;
+        font-size: 12px;
+        margin-bottom: 7px;
+    }
+
+    /* Save area */
+    .form-footer {
+        margin-top: 30px;
+        padding-top: 22px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .save-btn {
+        border: none;
+        border-radius: 11px;
+        background: var(--navy);
+        color: white;
+        padding: 13px 23px;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        transition: 0.2s;
+    }
+
+    .save-btn:hover {
+        background: var(--navy-light);
+        transform: translateY(-1px);
+        box-shadow: 0 7px 18px rgba(17, 24, 68, 0.18);
+    }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+        .topbar {
+            padding: 0 20px;
+        }
+
+        .profile-mini span {
+            display: none;
+        }
+
+        .page {
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .page-heading h1 {
+            font-size: 28px;
+        }
+
+        .settings-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .settings-menu {
+            display: flex;
+            overflow-x: auto;
+            gap: 5px;
+        }
+
+        .menu-item {
+            min-width: max-content;
+            margin: 0;
+        }
+
+        .form-content,
+        .card-header {
+            padding: 23px 20px;
+        }
+    }
+</style>
+
+
+</head>
+
+<body>
+{% include "includes/language_switcher.html" %}
+
+<header class="topbar">
+
+
+<a href="{% if request.user.user_type == 'psychologue' %}{% url 'accounts:psychologue_dashboard' %}{% else %}{% url 'accounts:patient_dashboard' %}{% endif %}" class="brand">
+        <div class="brand-icon">
+        <i class="fa-solid fa-leaf"></i>
+    </div>
+    <span class="brand-name">MindWell</span>
+</a>
+
+<div class="profile-mini">
+    <span>{{ request.user.first_name }} {{ request.user.last_name }}</span>
+    <i class="fa-solid fa-user"></i>
+</div>
+
+
+</header>
+
+<main class="page">
+
+
+<a href="{% if request.user.user_type == 'psychologue' %}{% url 'accounts:psychologue_dashboard' %}{% else %}{% url 'accounts:patient_dashboard' %}{% endif %}" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i>
+    Retour au tableau de bord
+</a>
+
+<div class="page-heading">
+    <h1>Paramètres</h1>
+<p>
+    {% if request.user.user_type == 'psychologue' %}
+        Gérez vos informations personnelles et professionnelles.
+    {% else %}
+        Gérez vos informations personnelles et vos informations de profil.
+    {% endif %}
+</p>
+</div>
+
+
+<div class="settings-layout">
+
+    <!-- Menu -->
+    <aside class="settings-menu">
+
+        <div class="menu-item active">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Paramètres du compte</span>
+        </div>
+
+        <div class="menu-item">
+            <i class="fa-solid fa-user-doctor"></i>
+            <span>Profil professionnel</span>
+        </div>
+
+        <div class="menu-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>Sécurité</span>
+        </div>
+
+    </aside>
+
+
+    <!-- Form -->
+    <section class="settings-card">
+
+        <div class="card-header">
+
+            <div class="header-icon">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+
+            <div>
+                <h2>Paramètres du compte</h2>
+                <p>Modifiez les informations associées à votre compte.</p>
+            </div>
+
+        </div>
+
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="form-content">
+
+                <div class="section-title">
+                    <i class="fa-solid fa-user"></i>
+                    <h3>Informations personnelles</h3>
+                </div>
+
+                {{ user_form.as_p }}
+
+
+               <div class="section-title" style="margin-top: 35px;">
+    <i class="fa-solid {% if request.user.user_type == 'psychologue' %}fa-user-doctor{% else %}fa-id-card{% endif %}"></i>
+
+    <h3>
+        {% if request.user.user_type == 'psychologue' %}
+            Informations professionnelles
+        {% else %}
+            Informations complémentaires
+        {% endif %}
+    </h3>
+</div>
+
+{{ profile_form.as_p }}
+
+                {{ profile_form.as_p }}
+
+
+                <div class="form-footer">
+
+                    <button type="submit" class="save-btn">
+                        <i class="fa-solid fa-check"></i>
+                        Enregistrer les modifications
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+{% load navigation_tags %}
+<!doctype html>
+<html lang="{{ language }}" dir="{{ direction }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ copy.title }} | MindWell</title>
+    <style>
+      :root { --navy:#0b1d3a; --cream:#faf8f5; --white:#fff; --text:#1a1a2e; --muted:#596173; --border:#e0ddd8; --blue:#536fb2; --accent:#2f9e8f; font-family:"Inter","Segoe UI",sans-serif; }
+      * { box-sizing:border-box; }
+      body { margin:0; color:var(--text); background:var(--cream); line-height:1.65; }
+      html[lang="ar"] body { font-family:"Cairo","Segoe UI",sans-serif; }
+      .page { width:min(1000px,100%); margin:0 auto; padding:24px; }
+      .card { background:var(--white); border:1px solid var(--border); border-radius:18px; padding:clamp(18px,4vw,36px); box-shadow:0 8px 26px #0b1d3a0d; margin-bottom:18px; }
+      .language-switcher { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-bottom:18px; color:var(--muted); font-size:.9rem; }
+      .language-switcher select { min-height:40px; padding:6px 32px 6px 10px; border:1px solid var(--border); border-radius:8px; background:var(--white); color:var(--text); font:inherit; }
+      h1,h2 { color:var(--navy); line-height:1.35; }
+      h1 { margin-top:0; font-size:clamp(1.5rem,4vw,2rem); }
+      .intro,.disclaimer { color:var(--muted); }
+      .disclaimer { padding:12px 14px; background:#fff5e5; border-inline-start:4px solid #c47f17; border-radius:8px; }
+      .assessment-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:24px; }
+      .assessment-card { position:relative; display:flex; flex-direction:column; gap:14px; background:var(--white); border:1px solid var(--border); border-radius:20px; padding:clamp(20px,3vw,30px); box-shadow:0 10px 30px #0b1d3a14; transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+      .assessment-card:hover, .assessment-card:focus-within { transform:translateY(-4px); box-shadow:0 18px 40px #0b1d3a26; border-color:var(--blue); }
+      .assessment-card .icon { width:56px; height:56px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:#eef1f8; color:var(--navy); }
+      .assessment-card.pss10 .icon { background:#e7f0ff; color:#2b4a86; }
+      .assessment-card.dass21 .icon { background:#e7f6f3; color:var(--accent); }
+      .assessment-card .icon svg { width:30px; height:30px; }
+      .assessment-card h2 { margin:0; font-size:clamp(1.2rem,2.6vw,1.45rem); }
+      .assessment-card .desc { margin:0; color:var(--muted); flex:1; }
+      .badge { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; background:#eef1f8; color:var(--navy); font-size:.85rem; font-weight:700; }
+      .assessment-card .button { margin-top:6px; }
+      .button { min-height:48px; padding:12px 18px; border:1px solid var(--navy); border-radius:12px; display:inline-flex; align-items:center; justify-content:center; text-align:center; text-decoration:none; background:var(--navy); color:#fff; font:inherit; font-weight:600; cursor:pointer; transition:background .2s ease, color .2s ease; }
+      .button:hover { background:#122a52; }
+      .button.secondary { background:white; color:var(--navy); }
+      .button.secondary:hover { background:#f2f4f9; }
+      .history { margin-top:8px; }
+      .history ul { list-style:none; padding:0; margin:0; }
+      .history li { margin:8px 0; }
+      .history .tag { display:inline-block; margin-inline-start:8px; padding:2px 10px; border-radius:999px; background:#eef1f8; color:var(--navy); font-size:.8rem; font-weight:700; }
+      a:focus-visible,button:focus-visible,select:focus-visible { outline:3px solid var(--blue); outline-offset:2px; }
+      @media(max-width:760px) {
+        .page { padding:14px; }
+        .assessment-grid { grid-template-columns:1fr; gap:16px; }
+      }
+      @media(prefers-reduced-motion:reduce) { *,*::before,*::after { transition-duration:.01ms !important; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      {% back_button 'accounts:patient_dashboard' %}
+      <section class="card">
+        <div class="language-switcher">
+          <label for="pageLanguage">{{ copy.language_label }}</label>
+          <select id="pageLanguage" aria-label="{{ copy.language_label }}">
+            <option value="fr" {% if language == "fr" %}selected{% endif %}>Français</option>
+            <option value="ar" {% if language == "ar" %}selected{% endif %}>العربية</option>
+            <option value="en" {% if language == "en" %}selected{% endif %}>English</option>
+          </select>
+        </div>
+        <h1>{{ copy.title }}</h1>
+        <p class="intro">{{ copy.intro }}</p>
+        <p class="disclaimer"><strong>{{ copy.disclaimer_title }}</strong> {{ copy.disclaimer }}</p>
+
+        <div class="assessment-grid">
+          <article class="assessment-card pss10">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 6 4-14 2 8h6"/></svg>
+            </div>
+            <h2>{{ copy.pss10_card_title }}</h2>
+            <p class="desc">{{ copy.pss10_card_desc }}</p>
+            <span class="badge">{{ pss10_card_badge }}</span>
+            <a class="button" href="{% url 'ai_service:stress_assessment_take' 'pss10' %}">{{ copy.start }}</a>
+          </article>
+
+          <article class="assessment-card dass21">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6c0 2.2 1.2 3.6 2.2 4.8.8 1 1.3 1.7 1.3 2.7V18h5v-1.5c0-1 .5-1.7 1.3-2.7C17.8 12.6 19 11.2 19 9a6 6 0 0 0-6-6Z"/><path d="M9.5 21h5"/></svg>
+            </div>
+            <h2>{{ copy.dass21_card_title }}</h2>
+            <p class="desc">{{ copy.dass21_card_desc }}</p>
+            <span class="badge">{{ dass21_card_badge }}</span>
+            <a class="button" href="{% url 'ai_service:stress_assessment_take' 'dass21' %}">{{ copy.start }}</a>
+          </article>
+        </div>
+      </section>
+
+      {% if history %}
+        <section class="card history" aria-labelledby="history-title">
+          <h2 id="history-title">{{ copy.history }}</h2>
+          <ul>
+            {% for item in history %}
+              <li><a href="{% url 'ai_service:stress_assessment_result' item.pk %}">{{ item.created_at|date:"d/m/Y H:i" }}</a>{% if item.label %} <span class="tag">{{ item.label }}</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% elif not request.user.is_authenticated %}
+        <p class="intro">{{ copy.visitor_note }}</p>
+      {% endif %}
+    </main>
+    <script>
+      document.getElementById("pageLanguage").addEventListener("change", (event) => {
+        const secure = location.protocol === "https:" ? "; Secure" : "";
+        document.cookie = `stress_assessment_language=${event.target.value}; path=/; max-age=31536000; SameSite=Lax${secure}`;
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

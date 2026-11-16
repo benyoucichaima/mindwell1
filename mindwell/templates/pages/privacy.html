@@ -1,0 +1,152 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Politique de confidentialité - MindWell Algérie{% endblock %}
+
+{% block content %}
+
+<section style="max-width: 900px; margin: 60px auto; padding: 0 20px;">
+
+    <div style="text-align: center; margin-bottom: 45px;">
+        <p style="color: #7288AE; font-weight: 600; letter-spacing: 1px;">
+            MINDWELL ALGÉRIE
+        </p>
+
+        <h1 style="color: #111844; font-size: 38px; margin-bottom: 15px;">
+            Politique de confidentialité
+        </h1>
+
+        <p style="color: #666; font-size: 17px;">
+            Votre confidentialité et la protection de vos données sont importantes pour nous.
+        </p>
+    </div>
+
+    <div style="
+        background: white;
+        padding: 35px;
+        border-radius: 16px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+        line-height: 1.8;
+        color: #444;
+    ">
+
+        <h2 style="color: #111844;">1. Introduction</h2>
+        <p>
+            MindWell est une plateforme web de consultation psychologique à distance
+            destinée à faciliter la mise en relation entre les patients et les psychologues.
+            Nous accordons une attention particulière à la confidentialité des informations
+            échangées sur notre plateforme.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            2. Données collectées
+        </h2>
+        <p>
+            Selon les fonctionnalités utilisées, MindWell peut collecter certaines
+            informations nécessaires au fonctionnement de la plateforme, notamment :
+        </p>
+
+        <ul>
+            <li>Nom et prénom</li>
+            <li>Adresse e-mail</li>
+            <li>Numéro de téléphone</li>
+            <li>Date de naissance</li>
+            <li>Informations liées au compte utilisateur</li>
+            <li>Informations nécessaires à la prise de rendez-vous</li>
+            <li>Documents professionnels fournis par les psychologues pour leur vérification</li>
+        </ul>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            3. Utilisation des données
+        </h2>
+        <p>
+            Les informations collectées sont utilisées uniquement dans le cadre
+            des fonctionnalités proposées par MindWell, notamment pour :
+        </p>
+
+        <ul>
+            <li>Créer et gérer les comptes utilisateurs</li>
+            <li>Permettre la prise de rendez-vous</li>
+            <li>Faciliter les consultations à distance</li>
+            <li>Permettre la communication entre patient et psychologue</li>
+            <li>Assurer la sécurité et le bon fonctionnement de la plateforme</li>
+        </ul>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            4. Confidentialité des consultations
+        </h2>
+        <p>
+            Les informations échangées dans le cadre des consultations psychologiques
+            doivent être traitées comme des informations confidentielles. L'accès à ces
+            informations est limité aux utilisateurs autorisés selon leur rôle sur la plateforme.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            5. Assistant intelligent
+        </h2>
+        <p>
+            MindWell peut utiliser un assistant intelligent afin d'aider le psychologue
+            à analyser certains éléments textuels d'une consultation, tels que les émotions,
+            les mots-clés, les thèmes et le résumé de la séance.
+        </p>
+
+        <p>
+            Les résultats produits par l'assistant intelligent constituent une aide à
+            l'analyse et ne remplacent pas l'évaluation professionnelle du psychologue.
+            Le psychologue reste responsable de la validation et de l'interprétation
+            des résultats.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            6. Sécurité
+        </h2>
+        <p>
+            MindWell met en œuvre des mesures techniques et organisationnelles visant
+            à protéger les données des utilisateurs contre les accès non autorisés,
+            la modification ou la divulgation non autorisée.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            7. Vos droits
+        </h2>
+        <p>
+            Les utilisateurs peuvent demander des informations concernant leurs données
+            personnelles et, lorsque cela est applicable, demander leur modification
+            ou leur suppression conformément aux règles applicables.
+        </p>
+
+        <h2 style="color: #111844; margin-top: 35px;">
+            8. Contact
+        </h2>
+        <p>
+            Pour toute question concernant la confidentialité ou la protection des données,
+            vous pouvez nous contacter depuis la page de contact de MindWell.
+        </p>
+
+        <div style="
+            margin-top: 40px;
+            padding: 20px;
+            background: #F5F3EF;
+            border-radius: 12px;
+        ">
+            <strong style="color: #111844;">
+                Dernière mise à jour :
+            </strong>
+            Octobre 2026
+        </div>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{% url 'home' %}"
+           style="
+               color: #111844;
+               text-decoration: none;
+               font-weight: 600;
+           ">
+            ← Retour à l'accueil
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}

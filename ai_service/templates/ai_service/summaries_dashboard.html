@@ -1,0 +1,148 @@
+{% extends "pages/base.html" %}
+{% load navigation_tags %}
+
+{% block title %}ملخصات المرضى - MindWell{% endblock %}
+
+{% block content %}
+<style>
+  .summaries-page {
+    --list-bg: #f1f5f9;
+    --list-surface: #fff;
+    --list-text: #0f172a;
+    --list-muted: #475569;
+    --list-border: #cbd5e1;
+    --list-accent: #1e3a8a;
+    color: var(--list-text);
+    padding-block: 1.5rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .summaries-page {
+      --list-bg: #111827;
+      --list-surface: #1f2937;
+      --list-text: #f8fafc;
+      --list-muted: #cbd5e1;
+      --list-border: #64748b;
+      --list-accent: #1d4ed8;
+    }
+  }
+  .summaries-page h1, .summaries-page h2, .summaries-page h3 { color: var(--list-text); }
+  .summaries-head { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-block-end:1.25rem; }
+  .summaries-head h1 { margin:0; font-size:clamp(1.5rem, 3vw, 2rem); }
+  .summaries-head p { color:var(--list-muted); margin:.35rem 0 0; }
+  .total-card { min-width:150px; padding:1rem 1.25rem; border:1px solid var(--list-border); border-radius:1rem; background:var(--list-surface); text-align:center; }
+  .total-card strong { display:block; font-size:1.8rem; color:var(--list-accent); }
+  .filters { display:grid; grid-template-columns:minmax(0, 1fr) minmax(180px, 240px) auto; gap:.75rem; align-items:end; margin-block:1.25rem 1.5rem; }
+  .filters label { display:block; margin-block-end:.35rem; font-weight:700; }
+  .filters input, .filters select { min-height:46px; width:100%; padding:.55rem .75rem; border:1px solid var(--list-border); border-radius:.6rem; background:var(--list-surface); color:var(--list-text); }
+  .list-button { display:inline-flex; min-height:44px; align-items:center; justify-content:center; gap:.5rem; padding:.55rem .9rem; border:1px solid var(--list-accent); border-radius:.6rem; background:var(--list-accent); color:#fff; font-weight:700; text-decoration:none; cursor:pointer; }
+  .list-button:hover { filter:brightness(1.12); color:#fff; }
+  .patient-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap:1rem; }
+  .patient-card { display:flex; flex-direction:column; min-width:0; padding:1.1rem; border:1px solid var(--list-border); border-radius:1rem; background:var(--list-surface); box-shadow:0 4px 14px rgb(15 23 42 / 7%); }
+  .patient-identity { display:flex; align-items:center; gap:.85rem; min-width:0; margin-block-end:1rem; }
+  .patient-avatar { display:grid; flex:0 0 48px; width:48px; height:48px; place-items:center; border-radius:50%; background:#dbeafe; color:#1e3a8a; font-size:1.1rem; font-weight:800; }
+  .patient-name { overflow-wrap:anywhere; margin:0; font-size:1.05rem; }
+  .patient-subtitle { margin:.2rem 0 0; color:var(--list-muted); font-size:.9rem; }
+  .patient-details { display:grid; gap:.6rem; margin-block-end:1rem; }
+  .patient-detail { display:flex; justify-content:space-between; gap:.75rem; border-block-end:1px solid var(--list-border); padding-block-end:.45rem; }
+  .patient-detail span:first-child { color:var(--list-muted); }
+  .patient-detail span:last-child { text-align:end; font-weight:700; }
+  .patient-card .list-button { margin-block-start:auto; }
+  .empty-state { padding:2.5rem 1rem; border:1px dashed var(--list-border); border-radius:1rem; background:var(--list-surface); color:var(--list-muted); text-align:center; }
+  .pagination { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:.45rem; margin-block-start:1.5rem; }
+  .pagination a, .pagination span { min-width:42px; min-height:42px; display:inline-flex; align-items:center; justify-content:center; padding:.45rem .7rem; border:1px solid var(--list-border); border-radius:.55rem; background:var(--list-surface); color:var(--list-text); text-decoration:none; }
+  .pagination [aria-current="page"] { background:var(--list-accent); color:#fff; border-color:var(--list-accent); }
+  .summaries-page a:focus-visible, .summaries-page button:focus-visible, .summaries-page input:focus-visible, .summaries-page select:focus-visible { outline:3px solid #2563eb; outline-offset:3px; }
+  @media (max-width:640px) {
+    .summaries-head { flex-direction:column; }
+    .total-card { width:100%; }
+    .filters { grid-template-columns:1fr; }
+    .filters .list-button { width:100%; }
+  }
+</style>
+
+<section class="summaries-page" aria-labelledby="summaries-title">
+  {% back_button 'accounts:psychologue_dashboard' %}
+  <div class="summaries-head">
+    <div>
+      <h1 id="summaries-title">ملخصات المرضى</h1>
+      <p>ابحث عن المريض، وراجع عدد الجلسات وآخر موعد قبل فتح الملف.</p>
+    </div>
+    <div class="total-card" aria-label="إجمالي المرضى">
+      <strong>{{ total_patients }}</strong>
+      <span>إجمالي المرضى</span>
+    </div>
+  </div>
+
+  <form class="filters" method="get" role="search">
+    <div>
+      <label for="patient-search">البحث عن مريض</label>
+      <input id="patient-search" type="search" name="q" value="{{ query }}"
+             placeholder="الاسم أو اسم المستخدم" aria-label="البحث بالاسم أو اسم المستخدم">
+    </div>
+    <div>
+      <label for="patient-sort">ترتيب النتائج</label>
+      <select id="patient-sort" name="sort">
+        <option value="recent" {% if sort_by == "recent" %}selected{% endif %}>الأحدث جلسة</option>
+        <option value="sessions" {% if sort_by == "sessions" %}selected{% endif %}>الأكثر جلسات</option>
+        <option value="alphabetical" {% if sort_by == "alphabetical" %}selected{% endif %}>أبجدياً</option>
+      </select>
+    </div>
+    <button class="list-button" type="submit">بحث وترتيب</button>
+  </form>
+
+  {% if patients %}
+    <div class="patient-grid">
+      {% for patient in patients %}
+        <article class="patient-card">
+          <div class="patient-identity">
+            <div class="patient-avatar" aria-hidden="true">
+              {{ patient.first_name|default:patient.username|first|upper }}
+            </div>
+            <div>
+              <h2 class="patient-name">{{ patient.get_full_name|default:patient.username }}</h2>
+              <p class="patient-subtitle">ملف المريض</p>
+            </div>
+          </div>
+          <div class="patient-details">
+            <div class="patient-detail">
+              <span>عدد الجلسات</span>
+              <span>{{ patient.consultation_count }}</span>
+            </div>
+            <div class="patient-detail">
+              <span>آخر جلسة</span>
+              <span>{% if patient.last_consultation %}{{ patient.last_consultation|date:"d/m/Y" }}{% else %}لا توجد جلسات{% endif %}</span>
+            </div>
+          </div>
+          <a class="list-button"
+             href="{% url 'ai_service:patient_file' patient.id %}?return_q={{ query|urlencode }}&return_sort={{ sort_by|urlencode }}&return_page={{ page_obj.number }}">
+            عرض الملف الكامل
+            <span aria-hidden="true">←</span>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+    {% if page_obj.paginator.num_pages > 1 %}
+      <nav class="pagination" aria-label="صفحات قائمة المرضى">
+        {% if page_obj.has_previous %}
+          <a href="?q={{ query|urlencode }}&sort={{ sort_by|urlencode }}&page={{ page_obj.previous_page_number }}" aria-label="الصفحة السابقة">السابق</a>
+        {% endif %}
+        {% for page_number in page_obj.paginator.page_range %}
+          {% if page_number == page_obj.number %}
+            <span aria-current="page">{{ page_number }}</span>
+          {% else %}
+            <a href="?q={{ query|urlencode }}&sort={{ sort_by|urlencode }}&page={{ page_number }}" aria-label="الصفحة {{ page_number }}">{{ page_number }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+          <a href="?q={{ query|urlencode }}&sort={{ sort_by|urlencode }}&page={{ page_obj.next_page_number }}" aria-label="الصفحة التالية">التالي</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% else %}
+    <div class="empty-state">
+      <h2>{% if query %}لا توجد نتائج مطابقة{% else %}لا يوجد مرضى بعد{% endif %}</h2>
+      <p>{% if query %}جرّب تغيير عبارة البحث.{% else %}سيظهر المرضى هنا بعد تسجيل استشارة مرتبطة بحسابك.{% endif %}</p>
+    </div>
+  {% endif %}
+</section>
+{% endblock %}

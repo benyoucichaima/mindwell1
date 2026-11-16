@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil Professionnel - MindWell</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; padding: 40px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h2 { color: #1e293b; margin-bottom: 20px; border-bottom: 2px solid #065f46; padding-bottom: 10px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: #1e293b; }
+        .form-group input, .form-group select, .form-group textarea { 
+            width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; 
+            font-family: inherit; box-sizing: border-box; 
+        }
+        .btn { padding: 12px 24px; background: #065f46; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        .btn:hover { background: #047857; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #64748b; text-decoration: none; }
+        .back-link:hover { color: #065f46; }
+        .success-message { background: #d1fae5; color: #065f46; padding: 12px; border-radius: 6px; margin-bottom: 20px; }
+        .error-message { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 6px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+    <div class="container">
+        <a href="{% url 'accounts:psychologue_dashboard' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i> Retour au tableau de bord
+        </a>
+        
+        <h2><i class="fas fa-user-md"></i> Profil Professionnel</h2>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="{% if message.tags == 'success' %}success-message{% else %}error-message{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>Spécialité</label>
+                <select name="specialty" required>
+                    {% for value, label in form.fields.specialty.choices %}
+                        <option value="{{ value }}" {% if form.instance.specialty == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Titre</label>
+                <input type="text" name="title" value="{{ form.instance.title }}" placeholder="Psychologue clinicien">
+            </div>
+            
+            <div class="form-group">
+                <label>Années d'expérience</label>
+                <input type="number" name="experience_years" value="{{ form.instance.experience_years }}" min="0">
+            </div>
+            
+            <div class="form-group">
+                <label>Langues</label>
+                <input type="text" name="languages" value="{{ form.instance.languages }}" placeholder="Français, Arabe, Anglais">
+            </div>
+            
+            <div class="form-group">
+                <label>Taux horaire (DZD)</label>
+                <input type="number" name="hourly_rate" value="{{ form.instance.hourly_rate }}" step="0.01">
+            </div>
+            
+            <div class="form-group">
+                <label>Biographie</label>
+                <textarea name="biography" rows="5" placeholder="Parlez-nous de votre parcours...">{{ form.instance.biography }}</textarea>
+            </div>
+            
+            <button type="submit" class="btn">
+                <i class="fas fa-save"></i> Enregistrer les modifications
+            </button>
+        </form>
+    </div>
+</body>
+</html>

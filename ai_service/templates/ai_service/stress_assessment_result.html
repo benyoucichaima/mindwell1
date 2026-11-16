@@ -1,0 +1,129 @@
+{% load navigation_tags %}
+<!doctype html>
+<html lang="{{ language }}" dir="{{ direction }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ copy.title }} | MindWell</title>
+    <style>
+      :root { --navy:#0b1d3a; --cream:#faf8f5; --white:#fff; --text:#1a1a2e; --muted:#596173; --border:#e0ddd8; --blue:#536fb2; font-family:"Inter","Segoe UI",sans-serif; }
+      * { box-sizing:border-box; }
+      body { margin:0; background:var(--cream); color:var(--text); line-height:1.65; }
+      html[lang="ar"] body { font-family:"Cairo","Segoe UI",sans-serif; }
+      main { width:min(900px,100%); margin:0 auto; padding:24px; }
+      section { margin-bottom:18px; padding:clamp(18px,4vw,32px); background:var(--white); border:1px solid var(--border); border-radius:18px; box-shadow:0 8px 26px #0b1d3a0d; }
+      .language-switcher { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-bottom:18px; color:var(--muted); font-size:.9rem; }
+      .language-switcher select { min-height:40px; padding:6px 32px 6px 10px; border:1px solid var(--border); border-radius:8px; background:var(--white); color:var(--text); font:inherit; }
+      h1,h2,h3 { color:var(--navy); line-height:1.35; }
+      .score-box { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+      .score-pill { padding:8px 16px; border-radius:999px; background:#eef1f8; color:var(--navy); font-weight:700; }
+      .dimension { margin:16px 0; padding:16px; border:1px solid var(--border); border-radius:12px; background:#fbfbfd; }
+      .dimension-header { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; }
+      .severity { padding:4px 12px; border-radius:999px; background:#f0f4ff; color:var(--navy); font-weight:600; }
+      .note { color:var(--muted); }
+      .button { min-height:48px; padding:10px 18px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; text-decoration:none; border:1px solid var(--navy); background:var(--navy); color:#fff; }
+      .button.secondary { background:white; color:var(--navy); }
+      .actions { display:flex; gap:12px; flex-wrap:wrap; }
+      a:focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
+      @media(max-width:600px) { main { padding:12px; } .actions .button { width:100%; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      {% back_button 'ai_service:stress_assessment' %}
+      <div class="language-switcher">
+        <label for="pageLanguage">{{ page_copy.language_label|default:copy.language_label|default:"Language" }}</label>
+        <select id="pageLanguage" aria-label="{{ page_copy.language_label|default:copy.language_label|default:"Language" }}">
+          <option value="fr" {% if language == "fr" %}selected{% endif %}>Français</option>
+          <option value="ar" {% if language == "ar" %}selected{% endif %}>العربية</option>
+          <option value="en" {% if language == "en" %}selected{% endif %}>English</option>
+        </select>
+      </div>
+      {% if is_new %}
+        <section>
+          <h1>{{ copy.title }}</h1>
+          {% if saved %}<p class="note">{{ page_copy.saved|default:"" }}</p>{% else %}<p class="note">{{ page_copy.not_saved|default:"" }}</p>{% endif %}
+        </section>
+        {% if pss10_result %}
+          <section aria-labelledby="pss10-result-title">
+            <h2 id="pss10-result-title">{{ copy.pss10_title }}</h2>
+            <div class="score-box">
+              <div class="score-pill">{{ copy.pss10_title }} : {{ pss10_result.total }}/{{ pss10_result.max }}</div>
+            </div>
+            <p class="note">{{ copy.pss10_explanation }}</p>
+          </section>
+        {% endif %}
+        {% if dass21_result %}
+          <section aria-labelledby="dass21-result-title">
+            <h2 id="dass21-result-title">{{ copy.dass21_title }}</h2>
+            <div class="dimension">
+              <div class="dimension-header">
+                <h3>{{ copy.dimensions.depression }}</h3>
+                <span class="severity">{{ copy.dimensions.depression }}: {{ dass21_result.depression.score }}/42 — {{ dass21_result.depression.severity }}</span>
+              </div>
+            </div>
+            <div class="dimension">
+              <div class="dimension-header">
+                <h3>{{ copy.dimensions.anxiety }}</h3>
+                <span class="severity">{{ copy.dimensions.anxiety }}: {{ dass21_result.anxiety.score }}/42 — {{ dass21_result.anxiety.severity }}</span>
+              </div>
+            </div>
+            <div class="dimension">
+              <div class="dimension-header">
+                <h3>{{ copy.dimensions.stress }}</h3>
+                <span class="severity">{{ copy.dimensions.stress }}: {{ dass21_result.stress.score }}/42 — {{ dass21_result.stress.severity }}</span>
+              </div>
+            </div>
+          </section>
+        {% endif %}
+        <section>
+          <p><strong>{{ copy.disclaimer }}</strong></p>
+          <p>{{ copy.recommendation }}</p>
+        </section>
+      {% else %}
+        <section aria-labelledby="result-title">
+          <h1 id="result-title">{{ copy.result_title }}</h1>
+          <p class="score">{{ copy.average }} <strong>{{ score }}/5</strong> — <span class="level">{{ level_label }}</span></p>
+          <p>{{ summary }}</p>
+          {% if saved %}<p class="note">{{ copy.saved }}</p>{% else %}<p class="note">{{ copy.not_saved }}</p>{% endif %}
+        </section>
+        <section aria-labelledby="chart-title">
+          <h2 id="chart-title">{{ copy.categories_title }}</h2>
+          <div role="group" aria-labelledby="chart-title">
+            {% for area in category_results %}
+              <div class="category">
+                <div class="category-heading"><strong>{{ area.label }}</strong><span>{{ area.score }}/5</span></div>
+                <div class="bar" role="progressbar" aria-label="{{ area.label }}" aria-valuemin="1" aria-valuemax="5" aria-valuenow="{{ area.score }}"><span style="width:{{ area.percentage }}%"></span></div>
+              </div>
+            {% endfor %}
+          </div>
+        </section>
+        <section aria-labelledby="recommendations-title">
+          <h2 id="recommendations-title">{{ copy.recommendations_title }}</h2>
+          <ul class="recommendations">
+            {% for recommendation in recommendations %}<li>{{ recommendation }}</li>{% endfor %}
+          </ul>
+          {% if is_elevated %}
+            <p>{{ copy.elevated }}</p>
+            <div class="actions">
+              <a class="button" href="{% url 'psychologists' %}">{{ copy.find_specialist }}</a>
+              <a class="button" href="{% url 'urgence' %}">{{ copy.urgent_help }}</a>
+            </div>
+          {% endif %}
+          <p class="note">{{ copy.result_note }}</p>
+        </section>
+      {% endif %}
+      <div class="actions">
+        <a class="button" href="{{ retake_url|default:page_copy.home|default:'#' }}">{{ copy.retake|default:page_copy.submit|default:"Refaire" }}</a>
+        <a class="button secondary" href="{% url 'ai_service:stress_assessment' %}">{{ page_copy.back_assessments|default:"Accueil" }}</a>
+      </div>
+    </main>
+    <script>
+      document.getElementById("pageLanguage").addEventListener("change", (event) => {
+        const secure = location.protocol === "https:" ? "; Secure" : "";
+        document.cookie = `stress_assessment_language=${event.target.value}; path=/; max-age=31536000; SameSite=Lax${secure}`;
+        location.reload();
+      });
+    </script>
+  </body>
+</html>

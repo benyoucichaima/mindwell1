@@ -1,0 +1,63 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<style>
+    .mw-language-switcher {
+        position: fixed;
+        inset-block-start: 12px;
+        inset-inline-end: 12px;
+        z-index: 3000;
+        display: flex;
+        overflow: hidden;
+        padding: 0;
+        border: 1.5px solid #e5e4e8;
+        border-radius: 100px;
+        background: #fff;
+        box-shadow: 0 3px 12px rgba(17, 24, 68, 0.12);
+    }
+    .mw-language-switcher form { margin: 0; }
+    .mw-language-button {
+        min-width: 42px;
+        min-height: 36px;
+        padding: 7px 12px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #4a4a5a;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+    .mw-language-switcher form:not(:last-child) .mw-language-button {
+        border-inline-end: 1px solid #e5e4e8;
+    }
+    .mw-language-button.active {
+        background: #111844;
+        color: #fff;
+    }
+    .mw-language-button:hover:not(.active) {
+        background: #f7f5f0;
+        color: #111844;
+    }
+</style>
+<div class="mw-language-switcher" role="group" aria-label="{% trans 'Choisir la langue' %}">
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ language_switch_urls.fr }}">
+        <input type="hidden" name="language" value="fr">
+        <button type="submit" class="mw-language-button{% if LANGUAGE_CODE == 'fr' %} active{% endif %}" lang="fr">FR</button>
+    </form>
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ language_switch_urls.ar }}">
+        <input type="hidden" name="language" value="ar">
+        <button type="submit" class="mw-language-button{% if LANGUAGE_CODE == 'ar' %} active{% endif %}" lang="ar">AR</button>
+    </form>
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ language_switch_urls.en }}">
+        <input type="hidden" name="language" value="en">
+        <button type="submit" class="mw-language-button{% if LANGUAGE_CODE == 'en' %} active{% endif %}" lang="en">EN</button>
+    </form>
+</div>

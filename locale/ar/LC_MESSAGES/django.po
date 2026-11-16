@@ -1,0 +1,4427 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-05 20:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\accounts\forms.py:171
+msgid "Mot de passe actuel"
+msgstr ""
+
+#: .\accounts\forms.py:175
+msgid "Je comprends que cette action est définitive."
+msgstr ""
+
+#: .\accounts\forms.py:176
+msgid "Vous devez confirmer la suppression du compte."
+msgstr ""
+
+#: .\accounts\forms.py:186
+msgid "Le mot de passe est incorrect."
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:7
+#: .\accounts\templates_backup\accounts\choose_account_type.html:7
+msgid "Choisir le type de compte"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:37
+#: .\accounts\templates_backup\accounts\choose_account_type.html:36
+msgid "Choisissez le type de compte qui correspond à vos besoins"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:42
+#: .\accounts\templates_backup\accounts\choose_account_type.html:41
+msgid "Je suis Patient"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:43
+#: .\accounts\templates_backup\accounts\choose_account_type.html:42
+msgid ""
+"Je souhaite consulter un psychologue pour mon bien-être mental dans un cadre "
+"sécurisé et confidentiel."
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:45
+#: .\accounts\templates_backup\accounts\choose_account_type.html:44
+msgid "Réserver des consultations en ligne"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:46
+#: .\accounts\templates_backup\accounts\choose_account_type.html:45
+msgid "Messagerie sécurisée avec votre thérapeute"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:47
+#: .\accounts\templates_backup\accounts\choose_account_type.html:46
+msgid "Suivi de votre progression"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:53
+#: .\accounts\templates_backup\accounts\choose_account_type.html:52
+msgid "Je suis Psychologue"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:54
+#: .\accounts\templates_backup\accounts\choose_account_type.html:53
+msgid ""
+"Je souhaite proposer mes services de consultation en ligne et rejoindre un "
+"réseau de professionnels vérifiés."
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:56
+#: .\accounts\templates_backup\accounts\choose_account_type.html:55
+msgid "Gérer votre agenda et vos disponibilités"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:57
+#: .\accounts\templates_backup\accounts\choose_account_type.html:56
+msgid "Outils d'analyse et dossiers patients"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:58
+#: .\accounts\templates_backup\accounts\choose_account_type.html:57
+msgid "Vérification professionnelle par un administrateur"
+msgstr ""
+
+#: .\accounts\templates\accounts\choose_account_type.html:63
+#: .\accounts\templates_backup\accounts\choose_account_type.html:62
+msgid "Déjà un compte ? Se connecter"
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:8
+msgid "Supprimer mon compte - MindWell"
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:29
+msgid "Votre compte a été désactivé."
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:30
+msgid ""
+"Les informations d'identification de votre compte ont été supprimées et "
+"celui-ci est désormais désactivé. Les dossiers médicaux et financiers "
+"associés sont conservés."
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:31
+#: .\accounts\templates\accounts\login.html:557
+#: .\mindwell\templates\pages\urgence.html:28
+#: .\mindwell\templates_backup\pages\urgence.html:27
+msgid "Retour à l'accueil"
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:33
+#: .\accounts\templates\accounts\delete_account.html:49
+#: .\mindwell\templates\pages\aide.html:101
+msgid "Supprimer mon compte"
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:34
+msgid ""
+"Après confirmation, votre compte sera désactivé et les informations "
+"d'identification de votre profil seront supprimées. Les dossiers médicaux et "
+"les données financières associées seront conservés. Vous ne pourrez plus "
+"vous connecter."
+msgstr ""
+
+#: .\accounts\templates\accounts\delete_account.html:50
+msgid "Annuler et revenir au centre d'aide"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:8
+#: .\accounts\templates_backup\accounts\login.html:8
+#: .\mindwell\templates\pages\aide.html:109
+#: .\mindwell\templates\pages\login.html:8
+#: .\mindwell\templates_backup\pages\login.html:8
+msgid "Connexion"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:567
+#: .\accounts\templates_backup\accounts\login.html:504
+#: .\mindwell\templates\pages\login.html:505
+#: .\mindwell\templates_backup\pages\login.html:504
+msgid "Votre espace de bien-être"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:568
+#: .\accounts\templates_backup\accounts\login.html:508
+#: .\mindwell\templates\pages\login.html:509
+#: .\mindwell\templates_backup\pages\login.html:508
+msgid "Prenez soin de votre"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:568
+#: .\accounts\templates_backup\accounts\login.html:509
+#: .\mindwell\templates\pages\login.html:510
+#: .\mindwell\templates_backup\pages\login.html:509
+msgid "équilibre."
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:569
+#: .\accounts\templates_backup\accounts\login.html:513
+#: .\mindwell\templates\pages\login.html:514
+#: .\mindwell\templates_backup\pages\login.html:513
+msgid ""
+"Retrouvez votre espace personnel et poursuivez votre parcours avec des "
+"professionnels de la santé psychologique."
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:573
+#: .\accounts\templates_backup\accounts\login.html:521
+#: .\mindwell\templates\pages\login.html:522
+#: .\mindwell\templates_backup\pages\login.html:521
+msgid "Un espace pensé pour votre sérénité"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:580
+#: .\accounts\templates_backup\accounts\login.html:536
+#: .\mindwell\templates\pages\login.html:537
+#: .\mindwell\templates_backup\pages\login.html:536
+msgid "Bon retour"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:581
+#: .\accounts\templates_backup\accounts\login.html:539
+#: .\mindwell\templates\pages\login.html:540
+#: .\mindwell\templates_backup\pages\login.html:539
+msgid "Connectez-vous à votre espace MindWell pour continuer."
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:598
+msgid "Email ou nom d'utilisateur"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:604
+#: .\accounts\templates\accounts\register_patient.html:736
+#: .\accounts\templates\accounts\register_psychologue.html:985
+#: .\accounts\templates_backup\accounts\login.html:583
+#: .\accounts\templates_backup\accounts\register_patient.html:732
+#: .\accounts\templates_backup\accounts\register_psychologue.html:969
+#: .\mindwell\templates\pages\login.html:584
+#: .\mindwell\templates_backup\pages\login.html:583
+msgid "Mot de passe"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:606
+#: .\accounts\templates\accounts\register_patient.html:745
+#: .\accounts\templates\accounts\register_psychologue.html:994
+#: .\accounts\templates_backup\accounts\login.html:592
+#: .\accounts\templates_backup\accounts\register_patient.html:741
+#: .\accounts\templates_backup\accounts\register_psychologue.html:978
+#: .\mindwell\templates\pages\login.html:593
+#: .\mindwell\templates_backup\pages\login.html:592
+msgid "Votre mot de passe"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:609
+#: .\accounts\templates\accounts\register_patient.html:815
+#: .\accounts\templates\accounts\register_psychologue.html:1064
+#: .\accounts\templates\registration\password_reset_complete.html:10
+#: .\accounts\templates_backup\accounts\login.html:602
+#: .\accounts\templates_backup\accounts\register_patient.html:811
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1048
+#: .\mindwell\templates\pages\aide.html:111
+#: .\mindwell\templates\pages\login.html:603
+#: .\mindwell\templates_backup\pages\login.html:602
+msgid "Se connecter"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:611
+#: .\accounts\templates\registration\password_reset_form.html:8
+#: .\accounts\templates_backup\accounts\login.html:608
+#: .\mindwell\templates\pages\login.html:609
+#: .\mindwell\templates_backup\pages\login.html:608
+msgid "Mot de passe oublié ?"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:612
+#: .\accounts\templates\accounts\register_patient.html:580
+#: .\accounts\templates_backup\accounts\login.html:612
+#: .\accounts\templates_backup\accounts\register_patient.html:579
+#: .\mindwell\templates\pages\aide.html:99
+#: .\mindwell\templates\pages\login.html:613
+#: .\mindwell\templates\pages\tarifs.html:46
+#: .\mindwell\templates_backup\pages\login.html:612
+#: .\mindwell\templates_backup\pages\tarifs.html:45
+msgid "Créer un compte"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:616
+#: .\accounts\templates_backup\accounts\login.html:622
+#: .\mindwell\templates\pages\login.html:623
+#: .\mindwell\templates_backup\pages\login.html:622
+msgid "Vous n'avez pas encore de compte ?"
+msgstr ""
+
+#: .\accounts\templates\accounts\login.html:617
+#: .\accounts\templates_backup\accounts\login.html:626
+#: .\mindwell\templates\pages\login.html:627
+#: .\mindwell\templates_backup\pages\login.html:626
+msgid "Créer votre espace MindWell"
+msgstr ""
+
+#: .\accounts\templates\accounts\notifications.html:4
+#: .\accounts\templates\accounts\notifications.html:8
+msgid "Mes notifications"
+msgstr ""
+
+#: .\accounts\templates\accounts\notifications.html:9
+msgid "Retrouvez ici les notifications liées à votre compte MindWell."
+msgstr ""
+
+#: .\accounts\templates\accounts\notifications.html:18
+msgid "Non lue"
+msgstr ""
+
+#: .\accounts\templates\accounts\notifications.html:24
+msgid "Vous n'avez aucune notification pour le moment."
+msgstr ""
+
+#: .\accounts\templates\accounts\notifications.html:27
+#: .\consultations\templates\consultations\manage_availability.html:31
+msgid "Retour au tableau de bord"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:4
+msgid "Paiement sécurisé"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:95
+msgid "Simulation uniquement"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:96
+msgid "Finaliser votre paiement"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:103
+msgid ""
+"Aucun paiement bancaire réel n’est effectué. Utilisez uniquement de fausses "
+"coordonnées de test. Aucune donnée de carte n’est enregistrée."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:114
+msgid "Votre consultation"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:118
+#: .\admin_panel\templates\admin_panel\section.html:102
+#: .\admin_panel\templates\admin_panel\section.html:104
+msgid "Psychologue"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:125
+msgid "Date & heure"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:126
+msgid "à"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:132
+msgid "Type"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:139
+msgid "Montant"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:146
+#: .\admin_panel\templates\admin_panel\dashboard.html:1326
+#: .\admin_panel\views.py:33 .\admin_panel\views.py:204
+#: .\mindwell\templates\pages\psychologue_dashboard.html:244
+msgid "Rendez-vous"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:153
+#: .\admin_panel\templates\admin_panel\section.html:104
+msgid "Paiement"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:158
+msgid "Dernière tentative : échec simulé. Vous pouvez réessayer."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:164
+msgid "Choisir une méthode de paiement"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:171
+msgid "simulation"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:172
+msgid "Cartes bancaires algériennes"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:172
+msgid "e-Dhahabia"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:179
+#: .\accounts\templates\accounts\payment.html:181
+msgid "Les fausses cartes sont acceptées pour la simulation. Test d’échec :"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:185
+msgid "Informations de la carte"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:188
+msgid "Nom du titulaire"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:189
+msgid "MOHAMMED AMINE"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:190
+msgid "Veuillez indiquer le nom du titulaire."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:193
+msgid "Numéro de carte"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:194
+msgid "1234 5678 9012 3456"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:195
+msgid "Le numéro de carte doit contenir 16 chiffres."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:198
+msgid "Expiration"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:199
+msgid "MM/AA"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:200
+msgid "Date d’expiration invalide ou expirée."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:203
+msgid "CVV"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:204
+msgid "123"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:205
+msgid "Le CVV doit contenir 3 ou 4 chiffres."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:208
+msgid ""
+"Utilisez une expiration future et un CVV fictif de 3 ou 4 chiffres. Ces "
+"données sont vérifiées pour la simulation, mais ne sont jamais enregistrées "
+"ni envoyées à un prestataire."
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:211
+#, python-format
+msgid "Paiement 100%% sécurisé"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:212
+msgid "Aucune donnée bancaire n'est enregistrée"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:215
+msgid "Cartes acceptées (simulation):"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:220
+msgid "Simuler le paiement"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:221
+#: .\mindwell\templates\patient\patient_dashboard.html:1573
+msgid "Annuler"
+msgstr ""
+
+#: .\accounts\templates\accounts\payment.html:310
+msgid "Traitement en cours..."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:9
+#: .\accounts\templates_backup\accounts\register_patient.html:9
+msgid "Créer un compte Patient"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:511
+#: .\accounts\templates_backup\accounts\register_patient.html:510
+msgid "Bienvenue sur MindWell"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:515
+#: .\accounts\templates_backup\accounts\register_patient.html:514
+msgid "Un espace pour"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:516
+#: .\accounts\templates_backup\accounts\register_patient.html:515
+msgid "vous."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:520
+#: .\accounts\templates_backup\accounts\register_patient.html:519
+msgid ""
+"Créez votre espace personnel et accédez à un accompagnement psychologique "
+"adapté à vos besoins, dans un environnement simple et confidentiel."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:529
+#: .\accounts\templates_backup\accounts\register_patient.html:528
+msgid "Trouvez le bon professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:531
+#: .\accounts\templates_backup\accounts\register_patient.html:530
+msgid "Découvrez des psychologues selon vos besoins."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:540
+#: .\accounts\templates_backup\accounts\register_patient.html:539
+msgid "Organisez vos consultations"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:542
+#: .\accounts\templates_backup\accounts\register_patient.html:541
+msgid "Gérez vos rendez-vous depuis votre espace."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:551
+#: .\accounts\templates_backup\accounts\register_patient.html:550
+msgid "Un espace confidentiel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:553
+#: .\accounts\templates_backup\accounts\register_patient.html:552
+msgid "Votre espace est conçu pour préserver votre confidentialité."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:563
+#: .\accounts\templates\accounts\register_psychologue.html:636
+#: .\accounts\templates_backup\accounts\register_patient.html:562
+#: .\accounts\templates_backup\accounts\register_psychologue.html:635
+msgid "MindWell — Plateforme de consultation psychologique à distance."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:584
+#: .\accounts\templates_backup\accounts\register_patient.html:583
+msgid "Commencez votre parcours en créant votre espace patient."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:620
+#: .\accounts\templates\accounts\register_psychologue.html:693
+#: .\accounts\templates_backup\accounts\register_patient.html:616
+#: .\accounts\templates_backup\accounts\register_psychologue.html:689
+msgid "Prénom"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:629
+#: .\accounts\templates\accounts\register_psychologue.html:702
+#: .\accounts\templates_backup\accounts\register_patient.html:625
+#: .\accounts\templates_backup\accounts\register_psychologue.html:698
+msgid "Votre prénom"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:641
+#: .\accounts\templates\accounts\register_psychologue.html:712
+#: .\accounts\templates_backup\accounts\register_patient.html:637
+#: .\accounts\templates_backup\accounts\register_psychologue.html:709
+#: .\admin_panel\templates\admin_panel\section.html:108
+#: .\admin_panel\templates\admin_panel\section.html:110
+msgid "Nom"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:650
+#: .\accounts\templates\accounts\register_psychologue.html:721
+#: .\accounts\templates_backup\accounts\register_patient.html:646
+#: .\accounts\templates_backup\accounts\register_psychologue.html:718
+msgid "Votre nom"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:666
+#: .\accounts\templates\registration\password_reset_form.html:12
+#: .\accounts\templates_backup\accounts\login.html:561
+#: .\accounts\templates_backup\accounts\register_patient.html:662
+#: .\mindwell\models.py:62 .\mindwell\templates\pages\login.html:562
+#: .\mindwell\templates_backup\pages\login.html:561
+msgid "Adresse e-mail"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:689
+#: .\accounts\templates\accounts\register_psychologue.html:770
+#: .\accounts\templates_backup\accounts\register_patient.html:685
+#: .\accounts\templates_backup\accounts\register_psychologue.html:755
+msgid "Numéro de téléphone"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:712
+#: .\accounts\templates_backup\accounts\register_patient.html:708
+msgid "Date de naissance"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:756
+#: .\accounts\templates_backup\accounts\register_patient.html:752
+msgid "Confirmer le mot de passe"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:765
+#: .\accounts\templates\accounts\register_psychologue.html:1013
+#: .\accounts\templates_backup\accounts\register_patient.html:761
+#: .\accounts\templates_backup\accounts\register_psychologue.html:997
+msgid "Confirmez le mot de passe"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:787
+#: .\accounts\templates\accounts\register_psychologue.html:1035
+#: .\accounts\templates_backup\accounts\register_patient.html:783
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1019
+msgid "J'accepte les"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:789
+#: .\accounts\templates\accounts\register_psychologue.html:1038
+#: .\accounts\templates_backup\accounts\register_patient.html:785
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1022
+msgid "conditions générales d'utilisation"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:791
+#: .\accounts\templates\accounts\register_psychologue.html:1041
+#: .\accounts\templates_backup\accounts\register_patient.html:787
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1025
+msgid "et la"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:793
+#: .\accounts\templates\accounts\register_psychologue.html:1044
+#: .\accounts\templates_backup\accounts\register_patient.html:789
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1028
+msgid "politique de confidentialité"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:803
+#: .\accounts\templates_backup\accounts\register_patient.html:799
+msgid "Créer mon compte"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_patient.html:812
+#: .\accounts\templates\accounts\register_psychologue.html:1061
+#: .\accounts\templates_backup\accounts\register_patient.html:808
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1045
+msgid "Vous avez déjà un compte ?"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:9
+#: .\accounts\templates_backup\accounts\register_psychologue.html:9
+msgid "Créer un compte Professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:609
+#: .\accounts\templates_backup\accounts\register_psychologue.html:608
+#: .\consultations\templates\consultations\manage_availability.html:26
+msgid "Espace professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:613
+#: .\accounts\templates_backup\accounts\register_psychologue.html:612
+msgid "Rejoignez notre"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:614
+#: .\accounts\templates_backup\accounts\register_psychologue.html:613
+msgid "réseau."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:618
+#: .\accounts\templates_backup\accounts\register_psychologue.html:617
+msgid ""
+"Créez votre espace professionnel et contribuez à offrir un accompagnement de "
+"qualité aux utilisateurs de MindWell."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:624
+#: .\accounts\templates_backup\accounts\register_psychologue.html:623
+msgid "Vérification professionnelle"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:628
+#: .\accounts\templates_backup\accounts\register_psychologue.html:627
+msgid ""
+"Les informations et documents professionnels fournis peuvent être vérifiés "
+"avant l'activation complète du compte."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:653
+#: .\accounts\templates_backup\accounts\register_psychologue.html:652
+msgid "Créer un compte professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:657
+#: .\accounts\templates_backup\accounts\register_psychologue.html:656
+msgid "Renseignez vos informations afin de créer votre espace professionnel."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:731
+#: .\admin_panel\templates\admin_panel\section.html:102
+msgid "Localisation"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:737
+msgid "Ville"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:748
+#: .\accounts\templates_backup\accounts\register_psychologue.html:733
+msgid "Adresse e-mail professionnelle"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:792
+#: .\accounts\templates_backup\accounts\register_psychologue.html:777
+msgid "Spécialités"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:799
+#: .\accounts\templates\accounts\register_psychologue.html:1107
+#: .\accounts\templates_backup\accounts\register_psychologue.html:784
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1091
+msgid "Sélectionnez vos spécialités"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:806
+#: .\accounts\templates_backup\accounts\register_psychologue.html:791
+msgid "Stress"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:811
+#: .\accounts\templates_backup\accounts\register_psychologue.html:796
+msgid "Anxiété"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:816
+#: .\accounts\templates_backup\accounts\register_psychologue.html:801
+msgid "Dépression"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:821
+#: .\accounts\templates_backup\accounts\register_psychologue.html:806
+msgid "Troubles du sommeil"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:826
+#: .\accounts\templates_backup\accounts\register_psychologue.html:811
+msgid "Relations interpersonnelles"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:831
+#: .\accounts\templates_backup\accounts\register_psychologue.html:816
+msgid "Gestion du deuil"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:836
+#: .\accounts\templates_backup\accounts\register_psychologue.html:821
+msgid "Traumatismes"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:841
+#: .\accounts\templates_backup\accounts\register_psychologue.html:826
+msgid "Troubles alimentaires"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:846
+#: .\accounts\templates_backup\accounts\register_psychologue.html:831
+msgid "Addictions"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:851
+#: .\accounts\templates_backup\accounts\register_psychologue.html:836
+msgid "Phobies"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:856
+#: .\accounts\templates_backup\accounts\register_psychologue.html:841
+msgid "Troubles obsessionnels compulsifs (TOC)"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:861
+#: .\accounts\templates_backup\accounts\register_psychologue.html:846
+msgid "Gestion de la colère"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:866
+#: .\accounts\templates_backup\accounts\register_psychologue.html:851
+msgid "Burnout professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:871
+#: .\accounts\templates_backup\accounts\register_psychologue.html:856
+msgid "Estime de soi"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:876
+#: .\accounts\templates_backup\accounts\register_psychologue.html:861
+msgid "Thérapie de couple"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:881
+#: .\accounts\templates_backup\accounts\register_psychologue.html:866
+msgid "Troubles bipolaires"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:886
+#: .\accounts\templates_backup\accounts\register_psychologue.html:871
+msgid "Schizophrénie"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:891
+#: .\accounts\templates_backup\accounts\register_psychologue.html:876
+msgid "Troubles de la personnalité"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:896
+#: .\accounts\templates_backup\accounts\register_psychologue.html:881
+msgid "Développement personnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:901
+#: .\accounts\templates_backup\accounts\register_psychologue.html:886
+msgid "Accompagnement parental"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:918
+#: .\accounts\templates_backup\accounts\register_psychologue.html:903
+msgid "Années d'expérience"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:937
+#: .\accounts\templates\accounts\register_psychologue.html:945
+#: .\accounts\templates_backup\accounts\register_psychologue.html:922
+#: .\accounts\templates_backup\accounts\register_psychologue.html:930
+msgid "Numéro professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:959
+#: .\accounts\templates_backup\accounts\register_psychologue.html:944
+msgid "Documents professionnels"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:963
+#: .\accounts\templates_backup\accounts\register_psychologue.html:948
+msgid ""
+"Ajoutez les documents nécessaires à la vérification de votre profil "
+"professionnel."
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:966
+msgid "Diplôme"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:969
+msgid "Pièce d'identité"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:972
+msgid "Inscription professionnelle"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:1004
+#: .\accounts\templates_backup\accounts\register_psychologue.html:988
+msgid "Confirmation"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:1053
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1037
+msgid "Créer mon espace professionnel"
+msgstr ""
+
+#: .\accounts\templates\accounts\register_psychologue.html:1139
+#: .\accounts\templates_backup\accounts\register_psychologue.html:1123
+msgid "Veuillez sélectionner au moins une spécialité."
+msgstr ""
+
+#: .\accounts\templates\chat\_ai_panel.html:9
+msgid "Générer le résumé IA"
+msgstr ""
+
+#: .\accounts\templates\chat\_ai_panel.html:12
+msgid ""
+"Aucune séance terminée ne permet de générer un résumé pour cette "
+"conversation."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_complete.html:4
+#: .\accounts\templates\registration\password_reset_complete.html:8
+msgid "Mot de passe mis à jour"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_complete.html:9
+msgid ""
+"Votre mot de passe a été modifié. Vous pouvez maintenant vous connecter."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:4
+#: .\accounts\templates\registration\password_reset_confirm.html:9
+msgid "Choisir un nouveau mot de passe"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:13
+msgid "Enregistrer le mot de passe"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:16
+msgid "Lien de réinitialisation invalide"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:17
+msgid "Ce lien a déjà été utilisé ou a expiré. Demandez-en un nouveau."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_confirm.html:18
+msgid "Demander un nouveau lien"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_done.html:4
+#: .\accounts\templates\registration\password_reset_done.html:8
+msgid "Vérifiez votre messagerie"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_done.html:9
+msgid ""
+"Si un compte actif correspond à l'adresse fournie, un lien de "
+"réinitialisation vient d'être envoyé. Vérifiez également vos courriers "
+"indésirables."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_email.html:2
+msgid "Bonjour,"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_email.html:4
+msgid ""
+"Vous avez demandé la réinitialisation du mot de passe de votre compte "
+"MindWell. Suivez ce lien pour en choisir un nouveau :"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_email.html:9
+msgid "Si vous n'êtes pas à l'origine de cette demande, ignorez ce message."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_form.html:4
+msgid "Réinitialiser le mot de passe"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_form.html:9
+msgid ""
+"Saisissez l'adresse e-mail associée à votre compte. Si un compte "
+"correspondant existe, nous vous enverrons un lien de réinitialisation."
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_form.html:15
+msgid "Envoyer le lien"
+msgstr ""
+
+#: .\accounts\templates\registration\password_reset_subject.txt:1
+msgid "Réinitialisation de votre mot de passe MindWell"
+msgstr ""
+
+#: .\accounts\views.py:86
+msgid "Vous n'êtes pas autorisé à effectuer cette action."
+msgstr ""
+
+#: .\accounts\views.py:95
+msgid "Ce rendez-vous est déjà terminé ou annulé et ne peut pas être annulé."
+msgstr ""
+
+#: .\accounts\views.py:102
+msgid "Un rendez-vous ne peut pas être annulé après le début de la séance."
+msgstr ""
+
+#: .\accounts\views.py:121
+msgid "Le rendez-vous a été annulé. Nous vous souhaitons une bonne journée."
+msgstr ""
+
+#: .\accounts\views.py:485
+msgid "Vos notifications ont été marquées comme lues."
+msgstr ""
+
+#: .\accounts\views.py:1490
+#, python-format
+msgid "Rendez-vous %(reference)s confirmé."
+msgstr ""
+
+#: .\accounts\views.py:1529
+#, python-format
+msgid "Rendez-vous %(reference)s refusé."
+msgstr ""
+
+#: .\admin_panel\signals.py:30
+msgid "New psychologist verification request"
+msgstr ""
+
+#: .\admin_panel\signals.py:31
+#, python-format
+msgid "%(name)s submitted a profile for verification."
+msgstr ""
+
+#: .\admin_panel\signals.py:41
+msgid "New report submitted"
+msgstr ""
+
+#: .\admin_panel\signals.py:42
+#, python-format
+msgid "A new report was submitted about %(name)s."
+msgstr ""
+
+#: .\admin_panel\signals.py:53
+msgid "New contact message"
+msgstr ""
+
+#: .\admin_panel\signals.py:54
+#, python-format
+msgid "%(name)s sent a contact message."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:8
+#: .\admin_panel\templates\admin_panel\dashboard.html:1384
+msgid "Tableau de bord administrateur"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1294
+msgid "SUPER-ADMIN"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1297
+#: .\admin_panel\templates\admin_panel\section.html:62
+msgid "Administration"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1304
+#: .\admin_panel\views.py:192
+#: .\mindwell\templates\pages\psychologue_dashboard.html:7
+#: .\mindwell\templates\pages\psychologue_dashboard.html:230
+#: .\mindwell\templates\patient\patient_dashboard.html:8
+#: .\mindwell\templates\patient\patient_dashboard.html:1291
+msgid "Tableau de bord"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1308
+#: .\admin_panel\views.py:29 .\admin_panel\views.py:193
+msgid "Utilisateurs"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1312
+#: .\admin_panel\templates\admin_panel\section.html:85
+#: .\admin_panel\views.py:30 .\admin_panel\views.py:194
+msgid "Patients"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1316
+#: .\admin_panel\views.py:31 .\admin_panel\views.py:195
+msgid "Psychologues"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1321
+#: .\admin_panel\views.py:32 .\admin_panel\views.py:198
+msgid "Vérifications"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1322
+msgid "en attente"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1330
+#: .\admin_panel\views.py:35 .\admin_panel\views.py:208
+msgid "Statistiques"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1334
+#: .\admin_panel\views.py:38 .\admin_panel\views.py:211
+msgid "Signalements"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1339
+#: .\admin_panel\templates\admin_panel\dashboard.html:1392
+#: .\admin_panel\views.py:43 .\admin_panel\views.py:221
+#: .\mindwell\templates\pages\psychologue_dashboard.html:262
+msgid "Paramètres"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1346
+#: .\admin_panel\templates\admin_panel\section.html:71
+#: .\mindwell\templates\pages\psychologue_dashboard.html:280
+#: .\mindwell\templates\patient\patient_dashboard.html:1328
+msgid "Déconnexion"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1367
+msgid "Administrateur plateforme"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1379
+msgid "ADMINISTRATION"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1379
+msgid "VUE D'ENSEMBLE DE LA PLATEFORME"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1386
+msgid ""
+"Indicateurs et dossiers calculés à partir des données enregistrées dans "
+"MindWell."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1404
+#: .\admin_panel\templates\admin_panel\section.html:87
+msgid "Vérifications en attente"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1407
+msgid "dossier(s) de psychologues nécessitent une vérification."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1412
+msgid "Accéder aux vérifications"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1420
+msgid "PATIENTS"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1426
+#: .\admin_panel\views.py:30
+msgid "Comptes patients enregistrés"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1427
+msgid "Total des patients"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1431
+msgid "PSYCHOLOGUES"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1438
+#: .\admin_panel\templates\admin_panel\section.html:86
+msgid "Psychologues vérifiés et actifs"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1440
+msgid "Profils validés"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1444
+msgid "EN ATTENTE"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1451
+msgid "Psychologues à valider"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1453
+#: .\mindwell\templates\pages\psychologue_dashboard.html:325
+#: .\mindwell\templates\pages\psychologue_dashboard.html:396
+#: .\mindwell\templates\patient\patient_dashboard.html:1503
+msgid "Demandes en attente"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1457
+msgid "RENDEZ-VOUS ACTIFS"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1463
+msgid "Confirmés ou en cours"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1464
+msgid "Consultations actuellement actives"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1468
+msgid "SESSIONS RÉALISÉES"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1474
+#: .\mindwell\templates\pages\psychologue_dashboard.html:438
+#: .\mindwell\templates\patient\patient_dashboard.html:1491
+#: .\mindwell\templates\patient\patient_dashboard.html:1604
+msgid "Consultations terminées"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1475
+#: .\admin_panel\templates\admin_panel\section.html:89
+msgid "Sessions réalisées"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1486
+msgid "Dernières demandes de vérification praticiens"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1489
+msgid "Dossiers d'agrément réglementaire en cours d'étude déontologique"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1493
+msgid "dossier(s) en attente"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1500
+msgid "PRATICIEN & SPÉCIALITÉ"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1501
+#: .\admin_panel\templates\admin_panel\section.html:102
+msgid "N° ADELI / RPPS"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1502
+msgid "LOCALISATION"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1503
+msgid "INSCRIPTION"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1504
+msgid "STATUT"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1529
+#: .\admin_panel\templates\admin_panel\dashboard.html:1581
+#: .\admin_panel\templates\admin_panel\section.html:125
+#: .\mindwell\templates\pages\psychologue_dashboard.html:370
+msgid "En attente"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1531
+#: .\admin_panel\templates\admin_panel\section.html:128
+msgid "Voir le dossier"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1537
+msgid "Aucune demande de vérification en attente."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1548
+msgid ""
+"Les profils apparaissant dans cette liste ne sont pas encore validés par un "
+"administrateur."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1557
+msgid "Signalements récents"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1559
+msgid "Modération et support technique"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1571
+msgid "non résolu(s)"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1579
+msgid "Signalement de"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1585
+msgid "Personne signalée"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1588
+#: .\admin_panel\templates\admin_panel\section.html:150
+msgid "Marquer comme résolu"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1591
+msgid "Aucun signalement en attente."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1603
+#: .\admin_panel\templates\admin_panel\section.html:176
+msgid "Jeton CSRF introuvable. Actualisez la page."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1604
+#: .\admin_panel\templates\admin_panel\section.html:177
+msgid "La requête a échoué."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1605
+#: .\admin_panel\templates\admin_panel\section.html:178
+msgid "Le dossier a été traité."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1606
+#: .\admin_panel\templates\admin_panel\section.html:179
+msgid "Erreur réseau. Réessayez."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1607
+#: .\admin_panel\templates\admin_panel\section.html:148
+#: .\admin_panel\templates\admin_panel\section.html:181
+msgid "Résolu"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\dashboard.html:1608
+#: .\admin_panel\templates\admin_panel\section.html:180
+msgid "Signalement résolu."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\includes\notification_menu.html:26
+#: .\admin_panel\templates\admin_panel\includes\notification_menu.html:32
+#: .\admin_panel\templates\admin_panel\notifications.html:7
+#: .\admin_panel\templates\admin_panel\notifications.html:20
+#: .\mindwell\templates\patient\patient_dashboard.html:1386
+#: .\mindwell\templates\patient\patient_dashboard.html:1397
+msgid "Notifications"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\includes\notification_menu.html:33
+msgid "Mark all as read"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\includes\notification_menu.html:46
+#: .\admin_panel\templates\admin_panel\notifications.html:28
+msgid "No notifications yet."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\includes\notification_menu.html:49
+msgid "Could not update notifications. Please try again."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\includes\notification_menu.html:50
+msgid "View all notifications"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\notifications.html:17
+msgid "← Dashboard"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:10
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:190
+msgid "Psychologist verification file"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:179
+msgid "← Back to verifications"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:192
+msgid "Professional profile"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:195
+msgid "Full name"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:201
+msgid "Email"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:205
+msgid "Phone"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:209
+msgid "Specialty"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:213
+msgid "ADELI / RPPS number"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:217
+msgid "Location"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:221
+msgid "Registration date"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:225
+msgid "Experience"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:226
+msgid "years"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:229
+msgid "Biography"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:235
+msgid "Previous rejection reason"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:240
+msgid "Submitted documents"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:256
+msgid "Preview unavailable for this file type."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:262
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:293
+msgid "Open in new tab"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:265
+msgid "Download"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:271
+msgid ""
+"Are you sure you want to delete this document? This action cannot be undone."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:276
+#: .\venv\Lib\site-packages\django\forms\formsets.py:499
+msgid "Delete"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:281
+msgid "No document provided"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:286
+msgid "Profile photo"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:290
+msgid "Psychologist profile photo"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:301
+msgid "Review this application"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:305
+msgid "I confirm this decision."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:306
+msgid "Reject application"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:318
+msgid "Confirm approval of this psychologist?"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\psychologist_verification_detail.html:319
+msgid "Confirm refusal of this application?"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:76
+msgid "Super-administrateur"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:88
+msgid "Rendez-vous actifs"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:90
+msgid "Signalements non résolus"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:94
+msgid ""
+"Les paramètres de la plateforme sont gérés par la configuration du serveur. "
+"Aucun réglage administrateur modifiable n’est disponible ici."
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:102
+msgid "Spécialité"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:102
+#: .\admin_panel\templates\admin_panel\section.html:104
+#: .\admin_panel\templates\admin_panel\section.html:106
+msgid "Statut"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:104
+#: .\mindwell\templates\patient\patient_dashboard.html:1440
+msgid "Patient"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:104
+#: .\admin_panel\templates\admin_panel\section.html:106
+#: .\admin_panel\templates\admin_panel\section.html:108
+#: .\consultations\templates\consultations\manage_availability.html:94
+#: .\consultations\templates\consultations\manage_availability.html:104
+msgid "Date"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:106
+msgid "Signalement"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:106
+msgid "Signalé par"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:106
+msgid "Personne concernée"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:108
+#: .\admin_panel\templates\admin_panel\section.html:110
+msgid "E-mail"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:108 .\mindwell\models.py:63
+msgid "Sujet"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:108 .\mindwell\models.py:64
+msgid "Message"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:110
+msgid "Rôle"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:110
+msgid "Compte"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:123
+msgid "Vérifié"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:124
+msgid "Refusé"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:163
+#: .\consultations\templates\consultations\manage_availability.html:45
+#: .\consultations\templates\consultations\manage_availability.html:55
+msgid "Actif"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:163
+msgid "Inactif"
+msgstr ""
+
+#: .\admin_panel\templates\admin_panel\section.html:167
+msgid "No data to display."
+msgstr ""
+
+#: .\admin_panel\views.py:29
+msgid "Tous les comptes de la plateforme"
+msgstr ""
+
+#: .\admin_panel\views.py:31
+msgid "Profils psychologues enregistrés"
+msgstr ""
+
+#: .\admin_panel\views.py:32
+msgid "Demandes de validation en attente"
+msgstr ""
+
+#: .\admin_panel\views.py:33
+msgid "Consultations enregistrées"
+msgstr ""
+
+#: .\admin_panel\views.py:36
+msgid "Indicateurs calculés à partir des données disponibles"
+msgstr ""
+
+#: .\admin_panel\views.py:38
+msgid "Signalements reçus par la plateforme"
+msgstr ""
+
+#: .\admin_panel\views.py:40 .\admin_panel\views.py:217 .\mindwell\models.py:70
+msgid "Messages de contact"
+msgstr ""
+
+#: .\admin_panel\views.py:41
+msgid "Messages envoyés à la plateforme"
+msgstr ""
+
+#: .\admin_panel\views.py:43
+msgid "Paramètres de la console d’administration"
+msgstr ""
+
+#: .\admin_panel\views.py:247
+msgid "Diploma"
+msgstr ""
+
+#: .\admin_panel\views.py:248
+msgid "Professional registration"
+msgstr ""
+
+#: .\admin_panel\views.py:249
+msgid "Identity document"
+msgstr ""
+
+#: .\admin_panel\views.py:284
+msgid "Please confirm this decision."
+msgstr ""
+
+#: .\admin_panel\views.py:289
+msgid "Invalid decision."
+msgstr ""
+
+#: .\admin_panel\views.py:294 .\admin_panel\views.py:570
+msgid "A rejection reason is required."
+msgstr ""
+
+#: .\admin_panel\views.py:298
+msgid "This application has already been processed."
+msgstr ""
+
+#: .\admin_panel\views.py:323 .\admin_panel\views.py:643
+msgid "Psychologist profile approved"
+msgstr ""
+
+#: .\admin_panel\views.py:325 .\admin_panel\views.py:648
+msgid "Psychologist profile needs changes"
+msgstr ""
+
+#: .\admin_panel\views.py:328 .\admin_panel\views.py:645
+msgid "Your MindWell professional profile has been approved."
+msgstr ""
+
+#: .\admin_panel\views.py:330 .\admin_panel\views.py:650
+#, python-format
+msgid "Your profile was not approved. Reason: %(reason)s"
+msgstr ""
+
+#: .\admin_panel\views.py:355 .\admin_panel\views.py:358
+msgid " The email notification could not be sent."
+msgstr ""
+
+#: .\admin_panel\views.py:360
+msgid " No email address available."
+msgstr ""
+
+#: .\admin_panel\views.py:365 .\admin_panel\views.py:686
+msgid "The psychologist was approved."
+msgstr ""
+
+#: .\admin_panel\views.py:367 .\admin_panel\views.py:688
+msgid "The psychologist application was rejected."
+msgstr ""
+
+#: .\admin_panel\views.py:430
+msgid "Invalid document."
+msgstr ""
+
+#: .\admin_panel\views.py:436
+msgid "Cannot delete documents for processed applications."
+msgstr ""
+
+#: .\admin_panel\views.py:445
+msgid "Document deleted successfully."
+msgstr ""
+
+#: .\admin_panel\views.py:483
+msgid "Invalid notification link."
+msgstr ""
+
+#: .\admin_panel\views.py:672 .\admin_panel\views.py:678
+msgid " L'e-mail de bienvenue n'a pas pu être envoyé."
+msgstr ""
+
+#: .\admin_panel\views.py:680
+msgid " No email address is available for this psychologist."
+msgstr ""
+
+#: .\ai_service\templates\ai_service\patient_file.html:4
+msgid "Patient file"
+msgstr "ملف المريض"
+
+#: .\ai_service\templates\ai_service\patient_file.html:77
+msgid "Therapeutic file — data dedicated to professional follow-up"
+msgstr "الملف العلاجي — بيانات مخصصة للمتابعة المهنية"
+
+#: .\ai_service\templates\ai_service\patient_file.html:81
+msgid "Patient follow-up data summary"
+msgstr "ملخص بيانات متابعة المريض"
+
+#: .\ai_service\templates\ai_service\patient_file.html:83
+msgid "Total sessions"
+msgstr "إجمالي الجلسات"
+
+#: .\ai_service\templates\ai_service\patient_file.html:87
+msgid "Last session"
+msgstr "آخر جلسة"
+
+#: .\ai_service\templates\ai_service\patient_file.html:88
+msgid "No sessions"
+msgstr "لا توجد جلسات"
+
+#: .\ai_service\templates\ai_service\patient_file.html:91
+msgid "Progress reports"
+msgstr "تقارير التطور"
+
+#: .\ai_service\templates\ai_service\patient_file.html:97
+msgid "Latest AI summary"
+msgstr "أحدث ملخص ذكي"
+
+#: .\ai_service\templates\ai_service\patient_file.html:100
+msgid "Draft for professional review, not a diagnosis."
+msgstr "مسودة للمراجعة المهنية، وليست تشخيصاً."
+
+#: .\ai_service\templates\ai_service\patient_file.html:102
+msgid "No session summary available yet."
+msgstr "لا يوجد ملخص جلسة متاح حتى الآن."
+
+#: .\ai_service\templates\ai_service\patient_file.html:105
+msgid "Latest progress report:"
+msgstr "آخر تقرير تطور:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:105
+#: .\ai_service\templates\ai_service\patient_file.html:169
+msgid "Improving"
+msgstr "يتحسن"
+
+#: .\ai_service\templates\ai_service\patient_file.html:105
+#: .\ai_service\templates\ai_service\patient_file.html:169
+msgid "Stable"
+msgstr "مستقر"
+
+#: .\ai_service\templates\ai_service\patient_file.html:105
+#: .\ai_service\templates\ai_service\patient_file.html:169
+msgid "Declining"
+msgstr "يتدهور"
+
+#: .\ai_service\templates\ai_service\patient_file.html:110
+msgid "Session and report timeline"
+msgstr "التسلسل الزمني للجلسات والتقارير"
+
+#: .\ai_service\templates\ai_service\patient_file.html:112
+msgid "Creating report…"
+msgstr "جارٍ إنشاء التقرير…"
+
+#: .\ai_service\templates\ai_service\patient_file.html:112
+#: .\ai_service\templates\ai_service\patient_file.html:114
+msgid "Create progress report"
+msgstr "إنشاء تقرير تطور"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "Therapeutic session"
+msgstr "جلسة علاجية"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "Pending"
+msgstr "في الانتظار"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "Confirmed"
+msgstr "مؤكدة"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "In progress"
+msgstr "جارٍ"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "Completed"
+msgstr "مكتملة"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "Cancelled"
+msgstr "ملغاة"
+
+#: .\ai_service\templates\ai_service\patient_file.html:126
+msgid "No show"
+msgstr "لم يحضر"
+
+#: .\ai_service\templates\ai_service\patient_file.html:129
+msgid "Session summary:"
+msgstr "ملخص الجلسة:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:130
+msgid "Review:"
+msgstr "المراجعة:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:130
+msgid "AI-generated draft, requires specialist review."
+msgstr "مسودة مولّدة بالذكاء الاصطناعي، وتستلزم مراجعة الأخصائي."
+
+#: .\ai_service\templates\ai_service\patient_file.html:132
+msgid "Indicators requiring attention:"
+msgstr "مؤشرات تستدعي الانتباه:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:135
+msgid "No summary for this session."
+msgstr "لا يوجد ملخص لهذه الجلسة."
+
+#: .\ai_service\templates\ai_service\patient_file.html:138
+msgid "Session type"
+msgstr "نوع الجلسة"
+
+#: .\ai_service\templates\ai_service\patient_file.html:138
+msgid "Video"
+msgstr "فيديو"
+
+#: .\ai_service\templates\ai_service\patient_file.html:138
+msgid "Audio"
+msgstr "صوتي"
+
+#: .\ai_service\templates\ai_service\patient_file.html:138
+msgid "Chat"
+msgstr "دردشة"
+
+#: .\ai_service\templates\ai_service\patient_file.html:140
+msgid "Emotions"
+msgstr "المشاعر"
+
+#: .\ai_service\templates\ai_service\patient_file.html:145
+msgid "Sentiment analysis:"
+msgstr "تحليل المشاعر:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:147
+msgid "Sentiment not analyzed yet."
+msgstr "لم يتم تحليل المشاعر بعد."
+
+#: .\ai_service\templates\ai_service\patient_file.html:152
+#: .\ai_service\templates\ai_service\patient_file.html:201
+msgid "Creating summary…"
+msgstr "جارٍ إنشاء الملخص…"
+
+#: .\ai_service\templates\ai_service\patient_file.html:154
+msgid "Update summary"
+msgstr "تحديث الملخص"
+
+#: .\ai_service\templates\ai_service\patient_file.html:154
+msgid "Create summary"
+msgstr "إنشاء ملخص"
+
+#: .\ai_service\templates\ai_service\patient_file.html:159
+msgid "Analyze sentiment"
+msgstr "تحليل المشاعر"
+
+#: .\ai_service\templates\ai_service\patient_file.html:169
+msgid "Progress report"
+msgstr "تقرير تطور"
+
+#: .\ai_service\templates\ai_service\patient_file.html:171
+msgid "Summary:"
+msgstr "الملخص:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:171
+msgid "No summary available."
+msgstr ""
+
+#: .\ai_service\templates\ai_service\patient_file.html:172
+msgid "Improvements:"
+msgstr "التحسنات:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:173
+msgid "Current concerns:"
+msgstr "مخاوف حالية:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:174
+msgid "Recommendations:"
+msgstr "توصيات:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:181
+msgid "Timeline pages"
+msgstr "صفحات التسلسل الزمني"
+
+#: .\ai_service\templates\ai_service\patient_file.html:183
+msgid "Latest"
+msgstr "الأحدث"
+
+#: .\ai_service\templates\ai_service\patient_file.html:185
+#, python-format
+msgid "Page %(timeline_page.number)s of %(timeline_page.paginator.num_pages)s"
+msgstr "صفحة %(timeline_page.number)s من %(timeline_page.paginator.num_pages)s"
+
+#: .\ai_service\templates\ai_service\patient_file.html:187
+msgid "Oldest"
+msgstr "الأقدم"
+
+#: .\ai_service\templates\ai_service\patient_file.html:193
+msgid "No sessions or reports yet"
+msgstr "لا توجد جلسات أو تقارير بعد"
+
+#: .\ai_service\templates\ai_service\patient_file.html:194
+msgid "Follow-up records for this patient will appear here."
+msgstr "ستظهر هنا سجلات المتابعة المرتبطة بهذا المريض."
+
+#: .\ai_service\templates\ai_service\patient_file.html:202
+msgid "Analyzing…"
+msgstr "جارٍ التحليل…"
+
+#: .\ai_service\templates\ai_service\patient_file.html:203
+msgid "Analyzing sentiment…"
+msgstr "جارٍ تحليل المشاعر…"
+
+#: .\ai_service\templates\ai_service\patient_file.html:204
+msgid "Unable to analyze sentiment."
+msgstr "تعذر تحليل المشاعر."
+
+#: .\ai_service\templates\ai_service\patient_file.html:205
+msgid "Sentiment:"
+msgstr "المشاعر:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:206
+msgid "Risk level:"
+msgstr "مستوى الخطورة:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:207
+msgid "Unable to complete analysis:"
+msgstr "تعذر إكمال التحليل:"
+
+#: .\ai_service\templates\ai_service\patient_file.html:209
+msgid "Positive"
+msgstr "إيجابي"
+
+#: .\ai_service\templates\ai_service\patient_file.html:210
+msgid "Neutral"
+msgstr "محايد"
+
+#: .\ai_service\templates\ai_service\patient_file.html:211
+msgid "Negative"
+msgstr "سلبي"
+
+#: .\ai_service\templates\ai_service\patient_file.html:214
+msgid "Low"
+msgstr "منخفض"
+
+#: .\ai_service\templates\ai_service\patient_file.html:215
+msgid "Medium"
+msgstr "متوسط"
+
+#: .\ai_service\templates\ai_service\patient_file.html:216
+msgid "High"
+msgstr "مرتفع"
+
+#: .\ai_service\views.py:1085 .\ai_service\views.py:1184
+msgid "Unauthorized access."
+msgstr "غير مصرح لك بالوصول."
+
+#: .\ai_service\views.py:1137 .\ai_service\views.py:1159
+msgid "Unauthorized."
+msgstr "غير مصرح"
+
+#: .\ai_service\views.py:1145
+msgid ""
+"AI summary draft created. It must be professionally reviewed and is not a "
+"diagnosis."
+msgstr "تم إنشاء مسودة ملخص بالذكاء الاصطناعي. يجب مراجعتها مهنياً، وهي ليست تشخيصاً."
+
+#: .\ai_service\views.py:1150
+#, python-brace-format
+msgid "Unable to create summary draft: {error}"
+msgstr "تعذر إنشاء مسودة الملخص: {error}"
+
+#: .\ai_service\views.py:1171
+msgid "Progress report generated successfully."
+msgstr "تم توليد تقرير التطور بنجاح."
+
+#: .\ai_service\views.py:1175
+#, python-brace-format
+msgid "Generation failed: {error}"
+msgstr "فشل التوليد: {error}"
+
+#: .\ai_service\views.py:1273
+msgid "Analysis unavailable."
+msgstr "التحليل غير متاح."
+
+#: .\ai_service\views.py:1302
+msgid "Summary unavailable."
+msgstr "الملخص غير متاح."
+
+#: .\consultations\templates\consultations\manage_availability.html:7
+#: .\consultations\templates\consultations\manage_availability.html:27
+#: .\mindwell\templates\pages\psychologue_dashboard.html:240
+msgid "Mes disponibilités"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:19
+msgid "Langue"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:28
+msgid ""
+"L’horizon de génération comprend aujourd’hui et les 27 prochains jours. Les "
+"créneaux générés existants ne sont pas supprimés."
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:30
+msgid "Calendrier"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:37
+msgid "Planning hebdomadaire"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:38
+msgid ""
+"Les périodes actives d’un même jour ne peuvent pas se chevaucher. Les "
+"séances sont générées à la suite, sans pause, avec la durée choisie."
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:45
+#: .\consultations\templates\consultations\manage_availability.html:55
+#: .\consultations\templates\consultations\manage_availability.html:104
+msgid "État"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:46
+#: .\mindwell\templates\consultations\availability_calendar.html:138
+msgid "Ajouter la période"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:51
+msgid "Jour"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:52
+#: .\mindwell\templates\consultations\availability_calendar.html:127
+#: .\mindwell\templates\consultations\availability_calendar.html:136
+msgid "Début"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:53
+#: .\mindwell\templates\consultations\availability_calendar.html:128
+#: .\mindwell\templates\consultations\availability_calendar.html:137
+msgid "Fin"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:54
+msgid "Durée des séances"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:56
+msgid "Enregistrer"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:58
+msgid "Êtes-vous sûr de vouloir supprimer cette règle définitivement ?"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:58
+#: .\consultations\templates\consultations\manage_availability.html:78
+msgid "Supprimer définitivement"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:58
+#: .\consultations\templates\consultations\manage_availability.html:78
+msgid "Supprimer"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:59
+msgid "Aucune période hebdomadaire configurée."
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:63
+msgid "Exceptions pour une date"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:64
+msgid ""
+"Une fermeture prime sur toutes les périodes de cette date. Un ou plusieurs "
+"remplacements remplacent le planning hebdomadaire ; les périodes "
+"supplémentaires s’y ajoutent. Plusieurs périodes le même jour sont permises "
+"uniquement si elles ne se chevauchent pas. Les autres exceptions restent "
+"enregistrées, mais ne produisent aucun créneau pendant une fermeture."
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:71
+msgid "Ajouter une exception"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:77
+msgid "Désactiver"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:78
+msgid "Êtes-vous sûr de vouloir supprimer cette exception définitivement ?"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:81
+msgid "Aucune exception active."
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:85
+msgid "Génération des quatre semaines"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:86
+msgid ""
+"Le générateur est idempotent. Les créneaux manuels et les rendez-vous "
+"existants sont préservés."
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:87
+msgid "Générer / actualiser les créneaux"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:91
+msgid "Ajouter une disponibilité manuelle"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:95
+msgid "Heure de début"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:96
+msgid "Heure de fin"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:97
+msgid "Ajouter la période manuelle"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:102
+msgid "Créneaux à venir"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:104
+msgid "Horaire"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:104
+msgid "Origine"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:106
+msgid "Généré"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:106
+msgid "Manuel"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:106
+msgid "Retiré du planning"
+msgstr ""
+
+#: .\consultations\templates\consultations\manage_availability.html:109
+msgid "Aucun créneau à venir."
+msgstr ""
+
+#: .\mindwell\models.py:54
+msgid "Question générale"
+msgstr ""
+
+#: .\mindwell\models.py:55
+#: .\mindwell\templates\pages\psychologue_dashboard.html:364
+msgid "Consultation"
+msgstr ""
+
+#: .\mindwell\models.py:56
+msgid "Problème technique"
+msgstr ""
+
+#: .\mindwell\models.py:57
+msgid "Devenir psychologue partenaire"
+msgstr ""
+
+#: .\mindwell\models.py:58
+msgid "Autre demande"
+msgstr ""
+
+#: .\mindwell\models.py:61
+msgid "Nom complet"
+msgstr ""
+
+#: .\mindwell\models.py:65
+msgid "Date d'envoi"
+msgstr ""
+
+#: .\mindwell\models.py:69
+msgid "Message de contact"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:4
+#: .\mindwell\templates\consultations\availability_calendar.html:40
+msgid "Calendrier des disponibilités"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:44
+msgid "Retour à la gestion"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:45
+msgid "Aujourd’hui"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:54
+msgid "Précédent"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:56
+msgid "Suivant"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:65
+#: .\mindwell\templates\consultations\availability_calendar.html:71
+#: .\mindwell\templates\consultations\availability_calendar.html:75
+#: .\mindwell\templates\consultations\availability_calendar.html:86
+msgid "Fermé"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:66
+#: .\mindwell\templates\consultations\availability_calendar.html:72
+#: .\mindwell\templates\consultations\availability_calendar.html:87
+msgid "Exception"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:67
+#: .\mindwell\templates\consultations\availability_calendar.html:73
+#: .\mindwell\templates\consultations\availability_calendar.html:88
+msgid "Complet"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:68
+#: .\mindwell\templates\consultations\availability_calendar.html:74
+#: .\mindwell\templates\consultations\availability_calendar.html:89
+msgid "Ouvert"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:69
+#: .\mindwell\templates\consultations\availability_calendar.html:90
+msgid "Terminé"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:70
+#: .\mindwell\templates\consultations\availability_calendar.html:91
+msgid "Plus de créneaux aujourd'hui"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:93
+msgid "Passé — lecture seule"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:109
+msgid "généré"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:109
+msgid "manuel"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:112
+msgid "Libre"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:113
+msgid "Réservé"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:114
+msgid "Désactivé"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:115
+msgid "Passé"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:119
+msgid "Aucun créneau ce jour."
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:126
+msgid "Ajouter un horaire de remplacement"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:129
+msgid "Ajouter le remplacement"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:135
+msgid "Ajouter une période supplémentaire"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:141
+msgid "Fermer toute la journée ?"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:144
+msgid "Fermer la journée"
+msgstr ""
+
+#: .\mindwell\templates\consultations\availability_calendar.html:148
+msgid "Pour aujourd’hui, seuls les horaires futurs sont acceptés."
+msgstr ""
+
+#: .\mindwell\templates\includes\language_switcher.html:44
+msgid "Choisir la langue"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:8
+msgid "MindWell Algérie - Centre d'aide"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:76
+#: .\mindwell\templates\pages\base.html:143
+msgid "Accueil"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:77
+#: .\mindwell\templates\pages\base.html:145
+msgid "FAQ"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:78
+msgid "Spécialistes"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:79
+#: .\mindwell\templates\pages\aide.html:85
+#: .\mindwell\templates\pages\base.html:146
+msgid "Centre d'aide"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:84
+msgid "MindWell Algérie"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:86
+msgid ""
+"Besoin d'assistance ? Retrouvez ici les informations essentielles pour "
+"utiliser MindWell et accéder facilement à nos services."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:90
+msgid "Rubriques d’aide"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:92
+msgid "Réservations"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:93
+msgid "Comment réserver"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:94
+msgid "Annuler une session"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:95
+msgid "Reprogrammer"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:98
+msgid "Compte et profil"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:100
+msgid "Modifier mon profil"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:104
+msgid "Prendre rendez-vous"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:105
+msgid ""
+"Choisissez un psychologue, consultez son profil et demandez un rendez-vous "
+"selon vos disponibilités."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:106
+msgid "Voir les spécialistes"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:110
+msgid ""
+"Vous avez déjà un compte ? Connectez-vous pour accéder à votre espace "
+"personnel."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:114
+#: .\mindwell\templates\pages\aide.html:126
+msgid "Questions fréquentes"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:115
+msgid ""
+"Consultez les réponses aux questions les plus fréquentes concernant "
+"l'utilisation de la plateforme."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:116
+msgid "Consulter la FAQ"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:119
+msgid "Nous contacter"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:120
+msgid ""
+"Vous n'avez pas trouvé la réponse à votre question ? Notre équipe reste à "
+"votre disposition."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:121
+#: .\mindwell\templates\pages\aide.html:148
+#: .\mindwell\templates\pages\contact.html:29
+msgid "Contactez-nous"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:128
+msgid "Comment prendre rendez-vous avec un psychologue ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:129
+msgid ""
+"Accédez à la liste des spécialistes, choisissez le psychologue qui vous "
+"convient puis envoyez une demande de rendez-vous."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:132
+msgid "Est-ce que mes informations sont confidentielles ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:133
+msgid ""
+"MindWell accorde une grande importance à la confidentialité et à la "
+"protection des informations personnelles des utilisateurs."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:136
+msgid "Comment contacter MindWell ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:137
+msgid ""
+"Vous pouvez utiliser la page Contactez-nous pour envoyer votre demande ou "
+"obtenir les informations de contact."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:140
+msgid "Je rencontre un problème avec mon compte, que faire ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:141
+msgid ""
+"Vérifiez vos informations de connexion. Si le problème persiste, contactez "
+"l'équipe MindWell pour obtenir de l'aide."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:146
+msgid "Vous avez encore besoin d'aide ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:147
+msgid ""
+"Notre équipe est disponible pour répondre à vos questions et vous "
+"accompagner dans l'utilisation de MindWell."
+msgstr ""
+
+#: .\mindwell\templates\pages\aide.html:151
+#: .\mindwell\templates\pages\base.html:172
+msgid "Tous droits réservés."
+msgstr ""
+
+#: .\mindwell\templates\pages\base.html:144
+msgid "Nos psychologues"
+msgstr ""
+
+#: .\mindwell\templates\pages\base.html:147
+msgid "Contact"
+msgstr ""
+
+#: .\mindwell\templates\pages\contact.html:4
+msgid "Contactez-nous - MindWell Algérie"
+msgstr ""
+
+#: .\mindwell\templates\pages\contact.html:30
+msgid ""
+"Une question concernant MindWell, une consultation ou le fonctionnement de "
+"la plateforme ? Notre équipe est à votre écoute."
+msgstr ""
+
+#: .\mindwell\templates\pages\contact.html:60
+msgid "Envoyer le message"
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:4
+#: .\mindwell\templates\pages\ethics.html:8
+msgid "Éthique et déontologie"
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:9
+msgid ""
+"Les principes qui guident les échanges et les services proposés sur MindWell "
+"en Algérie."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:14
+msgid "Une plateforme de mise en relation"
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:15
+msgid ""
+"MindWell facilite la prise de contact entre les personnes qui recherchent un "
+"accompagnement psychologique et les psychologues qui proposent leurs "
+"services. La plateforme ne remplace ni le jugement clinique du professionnel "
+"ni une prise en charge médicale."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:19
+msgid "Engagements des psychologues"
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:21
+msgid ""
+"Présenter des informations professionnelles exactes et tenir à jour les "
+"éléments demandés pour la vérification du profil."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:22
+msgid ""
+"Exercer dans le respect de la dignité, de l'autonomie et de la vie privée de "
+"chaque personne, sans discrimination."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:23
+msgid ""
+"Expliquer le cadre, les modalités et les limites de l'accompagnement avant "
+"toute consultation."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:24
+msgid ""
+"Protéger la confidentialité des échanges et respecter les obligations "
+"professionnelles et légales applicables en Algérie."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:25
+msgid ""
+"Garder la responsabilité de toute décision clinique et vérifier les "
+"informations avant de les utiliser."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:30
+msgid "Engagements de MindWell"
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:32
+msgid ""
+"Limiter l'accès aux informations du compte aux personnes autorisées et "
+"appliquer des mesures de protection adaptées."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:33
+msgid ""
+"Présenter clairement les fonctionnalités disponibles et signaler leurs "
+"limites."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:34
+msgid ""
+"Ne pas présenter les outils automatisés comme un diagnostic ou comme un "
+"substitut à l'avis d'un psychologue."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:35
+msgid ""
+"Permettre aux utilisateurs de signaler un problème via la page de contact."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:40
+msgid "Limites et cadre applicable"
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:41
+msgid ""
+"MindWell n'est pas un service d'urgence. En cas de danger immédiat ou de "
+"crise, contactez les services d'urgence locaux ou rendez-vous dans un "
+"établissement de santé."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:42
+msgid ""
+"Cette page décrit les principes de la plateforme et ne constitue pas un avis "
+"juridique. Les règles professionnelles et les textes applicables en Algérie "
+"peuvent évoluer ; les documents juridiques de MindWell doivent être vérifiés "
+"par un conseil local."
+msgstr ""
+
+#: .\mindwell\templates\pages\ethics.html:43
+msgid "Contacter MindWell"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:4
+msgid "FAQ - MindWell Algérie"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:20
+msgid "Questions fréquemment posées"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:21
+msgid ""
+"Trouvez rapidement des réponses à vos questions sur nos services, la "
+"réservation et la confidentialité."
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:24
+msgid "Qu'est-ce que MindWell ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:25
+msgid ""
+"MindWell est une plateforme algérienne dédiée à la santé mentale. Nous vous "
+"mettons en relation avec des psychologues cliniciens pour des consultations "
+"en ligne ou en cabinet."
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:28
+msgid "Les psychologues sont-ils certifiés ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:29
+msgid ""
+"Les professionnels de la plateforme sont vérifiés avant que leur profil soit "
+"publié. Vous pouvez consulter leur profil pour en savoir plus sur leur "
+"parcours."
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:32
+msgid "Comment réserver une consultation ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:33
+msgid ""
+"Consultez la liste des psychologues, choisissez un professionnel, "
+"sélectionnez un créneau disponible et envoyez votre demande de rendez-vous."
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:36
+msgid "Les séances sont-elles confidentielles ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:37
+msgid ""
+"La confidentialité de vos informations est importante. Les données de votre "
+"compte et de vos consultations sont traitées conformément à la politique de "
+"confidentialité de MindWell."
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:40
+msgid "Quels sont les modes de paiement acceptés ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:41
+msgid ""
+"Les moyens de paiement disponibles sont indiqués pendant le parcours de "
+"réservation et peuvent dépendre du type de consultation."
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:44
+msgid "Puis-je annuler ou reporter ma séance ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\faq.html:45
+msgid ""
+"Consultez vos rendez-vous pour voir les options disponibles. Les "
+"possibilités d'annulation ou de modification dépendent du statut et de "
+"l'horaire de la séance."
+msgstr ""
+
+#: .\mindwell\templates\pages\find_psychologist.html:4
+msgid "Trouver un psychologue — MindWell"
+msgstr ""
+
+#: .\mindwell\templates\pages\find_psychologist.html:570
+msgid "Recherche de psychologues"
+msgstr ""
+
+#: .\mindwell\templates\pages\find_psychologist.html:632
+#: .\mindwell\templates\patient\trouver_psychologue.html:696
+#, python-format
+msgid "Photo of %(name)s"
+msgstr ""
+
+#: .\mindwell\templates\pages\find_psychologist.html:658
+msgid "Note moyenne"
+msgstr ""
+
+#: .\mindwell\templates\pages\find_psychologist.html:754
+msgid "Fermer"
+msgstr ""
+
+#: .\mindwell\templates\pages\find_psychologist.html:781
+msgid "Votre note de 1 à 5 étoiles"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:7
+#: .\mindwell\templates_backup\pages\patient_file.html:7
+msgid "Dossier patient"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:30
+#: .\mindwell\templates_backup\pages\patient_file.html:29
+msgid "Espace Clinique"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:33
+#: .\mindwell\templates\pages\psychologue_dashboard.html:235
+#: .\mindwell\templates_backup\pages\patient_file.html:32
+msgid "Mes patients"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:52
+#: .\mindwell\templates_backup\pages\patient_file.html:51
+msgid "Suivi actif"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:67
+#: .\mindwell\templates_backup\pages\patient_file.html:92
+msgid "Séance #6 — Restructuration cognitive"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:72
+#: .\mindwell\templates\pages\patient_file.html:87
+#: .\mindwell\templates_backup\pages\patient_file.html:97
+#: .\mindwell\templates_backup\pages\patient_file.html:112
+msgid "Réalisée"
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:75
+#: .\mindwell\templates_backup\pages\patient_file.html:100
+msgid ""
+"Bonne réceptivité de la technique de distorsion cognitive. La patiente "
+"verbalise un allègement notable de la charge mentale liée aux schemas de "
+"cadrage..."
+msgstr ""
+
+#: .\mindwell\templates\pages\patient_file.html:82
+#: .\mindwell\templates_backup\pages\patient_file.html:107
+msgid "Séance #5 — Pensées automatiques"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:222
+msgid "Espace clinique"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:252
+msgid "Dossiers cliniques"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:257
+msgid "Analyses IA & Évolution"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:273
+msgid "Psychologue clinicien"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:296
+msgid "Bonjour Dr"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:297
+msgid "Voici un résumé de votre activité clinique aujourd'hui"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:305
+msgid "Patients suivis"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:315
+msgid "Consultations à venir"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:335
+msgid "Rapports IA générés"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:348
+msgid "Consultations d'aujourd'hui"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:349
+msgid "Voir tout"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:377
+msgid "Annulation urgente"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:387
+msgid "Aucune consultation prévue pour le moment."
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:415
+msgid "Confirmer"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:419
+msgid "Refuser"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:429
+msgid "Aucune demande en attente"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:465
+msgid "Patients récents et analyses IA"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:466
+msgid "Voir tous"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:481
+msgid "Dernière consultation :"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:485
+msgid "Jamais"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:490
+msgid "Dossier & IA"
+msgstr ""
+
+#: .\mindwell\templates\pages\psychologue_dashboard.html:497
+msgid "Aucun patient pour le moment"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:7
+#: .\mindwell\templates_backup\pages\tarifs.html:7
+msgid "Tarifs"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:52
+#: .\mindwell\templates_backup\pages\tarifs.html:51
+msgid "Tarifs transparents"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:53
+#: .\mindwell\templates_backup\pages\tarifs.html:52
+msgid "Pas de frais cachés. Choisissez la formule qui vous convient."
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:60
+#: .\mindwell\templates_backup\pages\tarifs.html:59
+msgid "Consultation unique"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:62
+#: .\mindwell\templates_backup\pages\tarifs.html:61
+msgid "par séance 45-50 min"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:64
+#: .\mindwell\templates_backup\pages\tarifs.html:63
+msgid "Vidéo, audio ou texte"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:65
+#: .\mindwell\templates_backup\pages\tarifs.html:64
+msgid "Psychologue diplômé"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:66
+#: .\mindwell\templates_backup\pages\tarifs.html:65
+msgid "Sans engagement"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:68
+#: .\mindwell\templates_backup\pages\tarifs.html:67
+msgid "Réserver"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:72
+#: .\mindwell\templates_backup\pages\tarifs.html:71
+msgid "Le plus choisi"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:73
+#: .\mindwell\templates_backup\pages\tarifs.html:72
+msgid "Pack 4 séances"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:75
+#: .\mindwell\templates_backup\pages\tarifs.html:74
+msgid "soit 2 250 DA / séance"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:77
+#: .\mindwell\templates_backup\pages\tarifs.html:76
+#, python-format
+msgid "Économie de 10%%"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:78
+#: .\mindwell\templates_backup\pages\tarifs.html:77
+msgid "Suivi régulier"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:79
+#: .\mindwell\templates_backup\pages\tarifs.html:78
+msgid "Valable 3 mois"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:80
+#: .\mindwell\templates_backup\pages\tarifs.html:79
+msgid "Priorité réservation"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:82
+#: .\mindwell\templates\pages\tarifs.html:95
+#: .\mindwell\templates_backup\pages\tarifs.html:81
+#: .\mindwell\templates_backup\pages\tarifs.html:94
+msgid "Choisir"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:86
+#: .\mindwell\templates_backup\pages\tarifs.html:85
+msgid "Pack 8 séances"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:88
+#: .\mindwell\templates_backup\pages\tarifs.html:87
+msgid "soit 2 000 DA / séance"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:90
+#: .\mindwell\templates_backup\pages\tarifs.html:89
+#, python-format
+msgid "Économie de 20%%"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:91
+#: .\mindwell\templates_backup\pages\tarifs.html:90
+msgid "Accompagnement approfondi"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:92
+#: .\mindwell\templates_backup\pages\tarifs.html:91
+msgid "Valable 6 mois"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:93
+#: .\mindwell\templates_backup\pages\tarifs.html:92
+msgid "Support prioritaire"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:100
+#: .\mindwell\templates_backup\pages\tarifs.html:99
+msgid "Note :"
+msgstr ""
+
+#: .\mindwell\templates\pages\tarifs.html:100
+#: .\mindwell\templates_backup\pages\tarifs.html:99
+msgid ""
+"Les tarifs sont indicatifs. Certaines mutuelles peuvent prendre en charge "
+"une partie des consultations."
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:7
+#: .\mindwell\templates_backup\pages\urgence.html:7
+msgid "Urgences"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:31
+#: .\mindwell\templates_backup\pages\urgence.html:30
+msgid "Urgence ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:32
+#: .\mindwell\templates_backup\pages\urgence.html:31
+msgid ""
+"MindWell n’est pas un service d’urgence. En cas de danger immédiat, "
+"contactez les numéros ci-dessous."
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:38
+#: .\mindwell\templates_backup\pages\urgence.html:37
+msgid "Protection Civile"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:40
+#: .\mindwell\templates_backup\pages\urgence.html:39
+msgid "Urgences médicales"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:47
+#: .\mindwell\templates_backup\pages\urgence.html:46
+msgid "Police"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:49
+#: .\mindwell\templates_backup\pages\urgence.html:48
+msgid "Sécurité"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:54
+#: .\mindwell\templates_backup\pages\urgence.html:53
+msgid "Quand utiliser MindWell ?"
+msgstr ""
+
+#: .\mindwell\templates\pages\urgence.html:56
+#: .\mindwell\templates_backup\pages\urgence.html:55
+msgid ""
+"MindWell est pour un accompagnement planifié (anxiété, stress, dépression…). "
+"Pour une crise aiguë ou un risque suicidaire, appelez toujours les services "
+"d’urgence."
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1278
+msgid "YOUR WELLBEING MATTERS"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1284
+msgid "Menu"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1296
+#: .\mindwell\templates\patient\patient_dashboard.html:1645
+msgid "Trouver un psychologue"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1301
+msgid "Mes rendez-vous"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1306
+msgid "Mon profil"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1337
+msgid "Fermer le menu"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1354
+msgid "Ouvrir le menu"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1373
+msgid "Espace patient"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1401
+msgid "Tout marquer comme lu"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1419
+msgid "Vous n'avez aucune notification."
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1424
+msgid "Voir toutes les notifications"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1452
+msgid "Votre espace personnel"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1455
+msgid "Bonjour"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1459
+msgid ""
+"Prenez soin de votre bien-être. Retrouvez ici vos rendez-vous, vos "
+"consultations et votre activité récente."
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1479
+msgid "Prochains rendez-vous"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1520
+msgid "Mes prochains rendez-vous"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1539
+#: .\mindwell\templates\patient\patient_dashboard.html:1614
+msgid "Dr."
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1564
+msgid "Payer"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1586
+msgid "Vous n'avez aucun rendez-vous à venir."
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1594
+msgid "Réserver maintenant"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1635
+msgid "Besoin d'aide ?"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1638
+msgid "Trouvez le psychologue qui correspond le mieux à vos besoins."
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1654
+msgid "Activité récente"
+msgstr ""
+
+#: .\mindwell\templates\patient\patient_dashboard.html:1663
+msgid "Votre compte a été créé avec succès."
+msgstr ""
+
+#: .\mindwell\templates_backup\pages\patient_file.html:62
+msgid "Nouvelle note clinique"
+msgstr ""
+
+#: .\mindwell\templates_backup\pages\patient_file.html:65
+msgid "Programmer séance"
+msgstr ""
+
+#: .\mindwell\templates_backup\pages\patient_file.html:74
+msgid "Consultations"
+msgstr ""
+
+#: .\mindwell\templates_backup\pages\patient_file.html:79
+msgid "Notes confidentielles"
+msgstr ""
+
+#: .\mindwell\templates_backup\pages\patient_file.html:84
+msgid "Échelles & Objectifs"
+msgstr ""
+
+#: .\mindwell\views.py:323
+msgid "Deuil et séparation"
+msgstr ""
+
+#: .\mindwell\views.py:325
+msgid ""
+"Un accompagnement pour traverser la perte d'un proche, une séparation ou une "
+"transition de vie, à votre rythme."
+msgstr ""
+
+#: .\mindwell\views.py:328
+msgid "Accompagnement psychologique centré sur le deuil"
+msgstr ""
+
+#: .\mindwell\views.py:330
+msgid "Tristesse persistante après une perte"
+msgstr ""
+
+#: .\mindwell\views.py:331
+msgid "Difficulté à accepter un décès ou une séparation"
+msgstr ""
+
+#: .\mindwell\views.py:332
+msgid "Sentiment d'isolement"
+msgstr ""
+
+#: .\mindwell\views.py:333
+msgid "Difficulté à reprendre les activités quotidiennes"
+msgstr ""
+
+#: .\mindwell\views.py:339
+msgid "Difficultés relationnelles"
+msgstr ""
+
+#: .\mindwell\views.py:341
+msgid ""
+"Un accompagnement pour mieux comprendre les conflits, les difficultés de "
+"communication et les schémas relationnels répétitifs."
+msgstr ""
+
+#: .\mindwell\views.py:344
+msgid "Approches relationnelle et systémique"
+msgstr ""
+
+#: .\mindwell\views.py:346
+msgid "Conflits récurrents"
+msgstr ""
+
+#: .\mindwell\views.py:347
+msgid "Difficultés à communiquer ou à poser des limites"
+msgstr ""
+
+#: .\mindwell\views.py:348
+msgid "Sentiment de distance ou d'incompréhension"
+msgstr ""
+
+#: .\mindwell\views.py:349
+msgid "Répétition de relations difficiles"
+msgstr ""
+
+#: .\mindwell\views.py:355
+msgid "Difficultés familiales"
+msgstr ""
+
+#: .\mindwell\views.py:357
+msgid ""
+"Un accompagnement pour faire face aux tensions familiales, aux conflits "
+"entre générations ou aux difficultés liées à la parentalité."
+msgstr ""
+
+#: .\mindwell\views.py:360
+msgid "Approche systémique et familiale"
+msgstr ""
+
+#: .\mindwell\views.py:362
+msgid "Conflits répétés au sein de la famille"
+msgstr ""
+
+#: .\mindwell\views.py:363
+msgid "Difficultés de communication entre générations"
+msgstr ""
+
+#: .\mindwell\views.py:364
+msgid "Tensions liées à la parentalité"
+msgstr ""
+
+#: .\mindwell\views.py:365
+msgid "Sentiment de ne pas trouver sa place dans la famille"
+msgstr ""
+
+#: .\mindwell\views.py:538
+msgid "Votre message a été envoyé."
+msgstr ""
+
+#: .\mindwell\views.py:540
+msgid "Veuillez corriger les erreurs du formulaire."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
+msgid "Messages"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: .\venv\Lib\site-packages\django\core\paginator.py:30
+msgid "…"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\paginator.py:32
+msgid "That page number is not an integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\paginator.py:33
+msgid "That page number is less than 1"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\paginator.py:34
+msgid "That page contains no results"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:70
+msgid "Enter a valid domain name."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:153
+#: .\venv\Lib\site-packages\django\forms\fields.py:774
+msgid "Enter a valid URL."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:200
+msgid "Enter a valid integer."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:211
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: .\venv\Lib\site-packages\django\core\validators.py:289
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:297
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:309
+#: .\venv\Lib\site-packages\django\core\validators.py:318
+#: .\venv\Lib\site-packages\django\core\validators.py:332
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2220
+#, python-format
+msgid "Enter a valid %(protocol)s address."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:311
+msgid "IPv4"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:320
+#: .\venv\Lib\site-packages\django\utils\ipv6.py:43
+msgid "IPv6"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:334
+msgid "IPv4 or IPv6"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:375
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:381
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:416
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:425
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:434
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:441
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:473
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:491
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:514
+#: .\venv\Lib\site-packages\django\forms\fields.py:365
+#: .\venv\Lib\site-packages\django\forms\fields.py:404
+msgid "Enter a number."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:516
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:521
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:526
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:597
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\core\validators.py:659
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\base.py:1600
+#: .\venv\Lib\site-packages\django\forms\models.py:908
+msgid "and"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\base.py:1602
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\constraints.py:22
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:134
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:135
+msgid "This field cannot be null."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:136
+msgid "This field cannot be blank."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:137
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:141
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:180
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1162
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1163
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1165
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1215
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1217
+msgid "String (unlimited)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1326
+msgid "Comma-separated integers"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1427
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1431
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1566
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1435
+msgid "Date (without time)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1562
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1570
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1575
+msgid "Date (with time)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1702
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1704
+msgid "Decimal number"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1864
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1868
+msgid "Duration"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1920
+msgid "Email address"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1945
+msgid "File path"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2023
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2025
+msgid "Floating point number"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2065
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2067
+msgid "Integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2163
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2180
+msgid "Small integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2188
+msgid "IPv4 address"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2219
+msgid "IP address"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2310
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2311
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2313
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2364
+msgid "Positive big integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2379
+msgid "Positive integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2394
+msgid "Positive small integer"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2410
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2446
+msgid "Text"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2526
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2530
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2534
+msgid "Time"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2642
+msgid "URL"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2666
+msgid "Raw binary data"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2731
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2733
+msgid "Universally unique identifier"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:244
+msgid "File"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:420
+msgid "Image"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\json.py:24
+msgid "A JSON object"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\json.py:26
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:979
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:982
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1276
+msgid "One-to-one relationship"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1333
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1335
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1383
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: .\venv\Lib\site-packages\django\forms\boundfield.py:185
+msgid ":?.!"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:94
+msgid "This field is required."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:314
+msgid "Enter a whole number."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:485
+#: .\venv\Lib\site-packages\django\forms\fields.py:1257
+msgid "Enter a valid date."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:508
+#: .\venv\Lib\site-packages\django\forms\fields.py:1258
+msgid "Enter a valid time."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:535
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:569
+msgid "Enter a valid duration."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:570
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:639
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:640
+msgid "No file was submitted."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:641
+msgid "The submitted file is empty."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:643
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:648
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:716
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:879
+#: .\venv\Lib\site-packages\django\forms\fields.py:965
+#: .\venv\Lib\site-packages\django\forms\models.py:1592
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:967
+#: .\venv\Lib\site-packages\django\forms\fields.py:1086
+#: .\venv\Lib\site-packages\django\forms\models.py:1590
+msgid "Enter a list of values."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:1087
+msgid "Enter a complete value."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:1329
+msgid "Enter a valid UUID."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\fields.py:1359
+msgid "Enter a valid JSON."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: .\venv\Lib\site-packages\django\forms\forms.py:97
+msgid ":"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\forms.py:239
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\formsets.py:61
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\formsets.py:65
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\forms\formsets.py:70
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\forms\formsets.py:484
+#: .\venv\Lib\site-packages\django\forms\formsets.py:491
+msgid "Order"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:901
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:906
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:913
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:922
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:1359
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:1450
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\models.py:1594
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\utils.py:229
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\widgets.py:527
+msgid "Clear"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\widgets.py:528
+msgid "Currently"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\widgets.py:529
+msgid "Change"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\widgets.py:866
+msgid "Unknown"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\widgets.py:867
+msgid "Yes"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\forms\widgets.py:868
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:873
+msgid "yes,no,maybe"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:903
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:920
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:922
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:924
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:926
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:928
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:930
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:74
+msgid "p.m."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:75
+msgid "a.m."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:80
+msgid "PM"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:81
+msgid "AM"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:153
+msgid "midnight"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:155
+msgid "noon"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:7
+msgid "Monday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:8
+msgid "Tuesday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:9
+msgid "Wednesday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:10
+msgid "Thursday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:11
+msgid "Friday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:12
+msgid "Saturday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:13
+msgid "Sunday"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:16
+msgid "Mon"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:17
+msgid "Tue"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:18
+msgid "Wed"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:19
+msgid "Thu"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:20
+msgid "Fri"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:21
+msgid "Sat"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:22
+msgid "Sun"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:25
+msgid "January"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:26
+msgid "February"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:27
+msgid "March"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:28
+msgid "April"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:29
+msgid "May"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:30
+msgid "June"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:31
+msgid "July"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:32
+msgid "August"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:33
+msgid "September"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:34
+msgid "October"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:35
+msgid "November"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:36
+msgid "December"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:39
+msgid "jan"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:40
+msgid "feb"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:41
+msgid "mar"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:42
+msgid "apr"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:43
+msgid "may"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:44
+msgid "jun"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:45
+msgid "jul"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:46
+msgid "aug"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:47
+msgid "sep"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:48
+msgid "oct"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:49
+msgid "nov"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:50
+msgid "dec"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:53
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:54
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:55
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:56
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:57
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:58
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:59
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:60
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:61
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:62
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:63
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:64
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:67
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:68
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:69
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:70
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:71
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:72
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:73
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:74
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:75
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:76
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:77
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\dates.py:78
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\ipv6.py:20
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\text.py:76
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\text.py:282
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: .\venv\Lib\site-packages\django\utils\text.py:301
+#: .\venv\Lib\site-packages\django\utils\timesince.py:135
+msgid ", "
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\utils\timesince.py:8
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\utils\timesince.py:9
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\utils\timesince.py:10
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\utils\timesince.py:11
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\utils\timesince.py:12
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\utils\timesince.py:13
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:29
+msgid "Forbidden"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:30
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:34
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:40
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:45
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:54
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:60
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\csrf.py:66
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:44
+msgid "No year specified"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:64
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:115
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:214
+msgid "Date out of range"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:94
+msgid "No month specified"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:147
+msgid "No day specified"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:194
+msgid "No week specified"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:353
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:384
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:680
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because "
+"%(class_name)s.allow_future is False."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:720
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\detail.py:56
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\list.py:70
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\list.py:77
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\generic\list.py:173
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\static.py:49
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\static.py:51
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\static.py:68
+#: .\venv\Lib\site-packages\django\views\templates\directory_index.html:8
+#: .\venv\Lib\site-packages\django\views\templates\directory_index.html:11
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:204
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:208
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:217
+msgid "Django Documentation"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:218
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:226
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:227
+msgid "Get started with Django"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:235
+msgid "Django Community"
+msgstr ""
+
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:236
+msgid "Connect, get help, or contribute"
+msgstr ""

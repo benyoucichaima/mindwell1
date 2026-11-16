@@ -1,0 +1,964 @@
+{% extends "pages/base.html" %} {% load static i18n %} {% block content %}
+<style>
+  :root {
+    --mw-navy: #070b2b;
+    --mw-blue: #4b5694;
+    --mw-light-blue: #e9ecf6;
+    --mw-muted: #71809b;
+    --mw-cream: #faf8f5;
+    --mw-success: #31745c;
+    --mw-white: #ffffff;
+  }
+
+  .psy-page {
+    color: var(--mw-navy);
+    padding-bottom: 80px;
+    background: var(--mw-cream);
+    min-height: 85vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* Hero Section - تم إصلاح الألوان هنا */
+  .psy-hero {
+    background-color: var(--mw-navy);
+    color: var(--mw-white);
+    padding: 60px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    border-radius: 0 0 24px 24px;
+  }
+
+  .psy-eyebrow {
+    color: #a5b4fc; /* لون فاتح قليلاً للعنوان الفرعي */
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .psy-hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    margin: 0 0 16px;
+    color: var(--mw-white); /* النص أبيض */
+    line-height: 1.3;
+  }
+
+  .psy-hero p {
+    color: #cbd5e1; /* رمادي فاتح جداً للوصف */
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  .psy-container {
+    width: min(1200px, 92%);
+    margin: auto;
+  }
+
+  /* Header Controls */
+  .psy-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+
+  .psy-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--mw-blue);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1.5px solid var(--mw-blue);
+    background: white;
+  }
+
+  .psy-back-btn:hover {
+    background: var(--mw-blue);
+    color: white;
+  }
+
+  .language-switcher {
+    display: flex;
+    gap: 8px;
+    background: white;
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid #dfe3eb;
+  }
+
+  .lang-btn {
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: var(--mw-muted);
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+  }
+
+  .lang-btn.active {
+    background: var(--mw-navy);
+    color: white;
+  }
+
+  /* Search Section */
+  .psy-search-container {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(7, 11, 43, 0.05);
+  }
+
+  .psy-search {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 16px;
+    align-items: end;
+  }
+
+  .psy-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--mw-navy);
+  }
+
+  .psy-field input,
+  .psy-field select {
+    width: 100%;
+    height: 48px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 0 16px;
+    background: #f8fafc;
+    color: var(--mw-navy);
+    outline: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .psy-field input:focus,
+  .psy-field select:focus {
+    border-color: var(--mw-blue);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(75, 86, 148, 0.1);
+  }
+
+  .psy-submit button {
+    height: 48px;
+    padding: 0 28px;
+    background: var(--mw-navy);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .psy-submit button:hover {
+    background: var(--mw-blue);
+    transform: translateY(-2px);
+  }
+
+  /* Filters */
+  .specialty-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .specialty-tag {
+    padding: 8px 18px;
+    border: 1.5px solid #e2e8f0;
+    background: white;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--mw-muted);
+    transition: all 0.2s ease;
+  }
+
+  .specialty-tag:hover {
+    border-color: var(--mw-blue);
+    color: var(--mw-blue);
+  }
+
+  .specialty-tag.active {
+    background: var(--mw-navy);
+    border-color: var(--mw-navy);
+    color: white;
+  }
+
+  /* Results Header */
+  .psy-results-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .psy-results-head h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0;
+    color: var(--mw-navy);
+  }
+
+  .psy-count {
+    color: var(--mw-muted);
+    font-size: 0.95rem;
+  }
+
+  /* Grid & Cards */
+  .psy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .psy-card {
+    background: white;
+    border: 1px solid #f1f5f9;
+    border-radius: 20px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .psy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(7, 11, 43, 0.08);
+    border-color: var(--mw-light-blue);
+  }
+
+  .psy-card-top {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .psy-avatar {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: var(--mw-light-blue);
+    color: var(--mw-blue);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .psy-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .psy-avatar [hidden] {
+    display: none !important;
+  }
+
+  .psy-avatar-fallback {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+  }
+
+  .psy-name {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--mw-navy);
+    margin-bottom: 4px;
+  }
+
+  .psy-verified {
+    color: var(--mw-success);
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .psy-specialty-badge {
+    display: inline-block;
+    background: var(--mw-light-blue);
+    color: var(--mw-navy);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    align-self: flex-start;
+  }
+
+  .psy-rating-text {
+    color: #b48a2e;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .psy-description {
+    color: var(--mw-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .psy-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .psy-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 14px;
+    background: var(--mw-navy);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+
+  .psy-btn:hover {
+    background: var(--mw-blue);
+    transform: translateY(-1px);
+  }
+
+  .psy-btn-secondary {
+    background: transparent;
+    color: var(--mw-navy);
+    border: 1.5px solid var(--mw-navy);
+  }
+
+  .psy-btn-secondary:hover {
+    background: var(--mw-light-blue);
+    border-color: var(--mw-blue);
+    color: var(--mw-blue);
+  }
+
+  /* Modal Styles */
+  .psy-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(7, 11, 43, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .psy-modal-content {
+    background: white;
+    padding: 32px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: modalSlideUp 0.3s ease-out;
+  }
+
+  @keyframes modalSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mw-muted);
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover {
+    background: #e2e8f0;
+    color: var(--mw-navy);
+  }
+
+  .modal-form-group {
+    margin-bottom: 16px;
+  }
+
+  .modal-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--mw-navy);
+    font-size: 0.9rem;
+  }
+
+  .modal-form-group select,
+  .modal-form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+  }
+
+  .modal-form-group select:focus,
+  .modal-form-group textarea:focus {
+    border-color: var(--mw-blue);
+    outline: none;
+  }
+
+  .modal-form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .psy-search {
+      grid-template-columns: 1fr;
+    }
+    .psy-header-controls {
+      flex-direction: column-reverse;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .language-switcher {
+      justify-content: center;
+    }
+    .psy-back-btn {
+      justify-content: center;
+    }
+  }
+</style>
+
+<div class="psy-page">
+  <!-- Hero Section (Dark Background + White Text) -->
+  <div class="psy-hero">
+    <div
+      class="psy-eyebrow"
+      data-fr="MindWell · Votre bien-être compte"
+      data-ar="MindWell · صحتك النفسية تهمنا"
+      data-en="MindWell · Your well-being matters"
+    >
+      MindWell · Votre bien-être compte
+    </div>
+    <h1
+      data-fr="Trouvez le psychologue qui vous correspond"
+      data-ar="اعثر على الأخصائي النفسي المناسب لك"
+      data-en="Find the psychologist that suits you"
+    >
+      Trouvez le psychologue qui vous correspond
+    </h1>
+    <p
+      data-fr="Découvrez nos psychologues vérifiés et choisissez le professionnel qui correspond à vos besoins."
+      data-ar="اكتشف الأخصائيين النفسيين المعتمدين لدينا واختر المحترف الذي يناسب احتياجاتك."
+      data-en="Discover our verified psychologists and choose the professional that matches your needs."
+    >
+      Découvrez nos psychologues vérifiés et choisissez le professionnel qui
+      correspond à vos besoins.
+    </p>
+  </div>
+
+  <div class="psy-container">
+    <!-- Controls Header -->
+    <div class="psy-header-controls">
+      <a href="{% url 'accounts:patient_dashboard' %}" class="psy-back-btn">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span data-fr="Retour" data-ar="عودة" data-en="Back">Retour</span>
+      </a>
+
+      <div class="language-switcher">
+        <button
+          class="lang-btn active"
+          data-lang="fr"
+          onclick="switchLanguage('fr')"
+        >
+          FR
+        </button>
+        <button class="lang-btn" data-lang="ar" onclick="switchLanguage('ar')">
+          AR
+        </button>
+        <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')">
+          EN
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="psy-search-container">
+      <form method="get" class="psy-search" id="searchForm">
+        <div class="psy-field">
+          <label
+            for="psy-search"
+            data-fr="Nom ou spécialité"
+            data-ar="الاسم أو التخصص"
+            data-en="Name or specialty"
+            >Nom ou spécialité</label
+          >
+          <input
+            id="psy-search"
+            type="search"
+            name="search"
+            value="{{ search_query|default:'' }}"
+            placeholder="Ex. : Amel, thérapie..."
+          />
+        </div>
+
+        <div class="psy-field">
+          <label
+            for="psy-specialty"
+            data-fr="Spécialité"
+            data-ar="التخصص"
+            data-en="Specialty"
+            >Spécialité</label
+          >
+          <select
+            id="psy-specialty"
+            name="specialty"
+            onchange="filterBySpecialty(this.value)"
+          >
+            <option
+              value=""
+              data-fr="Toutes les spécialités"
+              data-ar="جميع التخصصات"
+              data-en="All specialties"
+            >
+              Toutes les spécialités
+            </option>
+            {% for value, label in specialty_choices %}
+            <option
+              value="{{ value }}"
+              {%
+              if
+              selected_specialty=""
+              ="value"
+              %}selected{%
+              endif
+              %}
+            >
+              {{ label }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="psy-submit">
+          <button type="submit">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span data-fr="Rechercher" data-ar="بحث" data-en="Search"
+              >Rechercher</span
+            >
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Quick Filters -->
+    <div class="specialty-filters">
+      <div
+        class="specialty-tag all active"
+        onclick="filterBySpecialty('')"
+        data-fr="Tous"
+        data-ar="الكل"
+        data-en="All"
+      >
+        Tous
+      </div>
+      {% for value, label in specialty_choices %}
+      <div
+        class="specialty-tag {% if selected_specialty == value %}active{% endif %}"
+        onclick="filterBySpecialty('{{ value }}')"
+        data-value="{{ value }}"
+      >
+        {{ label }}
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Results Header -->
+    <div class="psy-results-head">
+      <h2
+        data-fr="Nos psychologues"
+        data-ar="أخصائيونا النفسيون"
+        data-en="Our Psychologists"
+      >
+        Nos psychologues
+      </h2>
+      <span class="psy-count">
+        <span id="doctorCount">{{ psychologists|length }}</span>
+        <span
+          data-fr="professionnel(s)"
+          data-ar="أخصائي(ون)"
+          data-en="professional(s)"
+          >professionnel(s)</span
+        >
+      </span>
+    </div>
+
+    <!-- Doctors Grid -->
+    <div class="psy-grid" id="doctorsGrid">
+      {% for psy in psychologists %}
+      <article
+        class="psy-card"
+        data-specialty="{{ psy.psychologue_profile.specialty }}"
+      >
+        <div class="psy-card-top">
+          <div class="psy-avatar">
+            {% if psy.psychologue_profile.photo %}
+            <img
+              src="{{ psy.psychologue_profile.photo.url }}"
+              alt="{% blocktrans with name=psy.get_full_name|default:psy.username %}Photo of {{ name }}{% endblocktrans %}"
+              loading="lazy"
+              onerror="this.hidden = true; this.nextElementSibling.hidden = false;"
+            />
+            <span class="psy-avatar-fallback" data-avatar-fallback hidden aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            {% else %}
+            <span class="psy-avatar-fallback" data-avatar-fallback aria-hidden="true">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </span>
+            {% endif %}
+          </div>
+
+          <div>
+            <div class="psy-name">
+              Dr. {{ psy.get_full_name|default:psy.username }}
+            </div>
+            <div class="psy-verified">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span
+                data-fr="Profil vérifié"
+                data-ar="ملف موثق"
+                data-en="Verified profile"
+                >Profil vérifié</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="psy-specialty-badge">
+          {% for value, label in specialty_choices %} {% if value ==
+          psy.psychologue_profile.specialty %}{{ label }}{% endif %} {% endfor
+          %}
+        </div>
+
+        <div class="psy-rating-text">
+          {% if psy.rating_count %}
+          <span>★ {{ psy.rating_average|floatformat:1 }}/5</span>
+          <span style="color: var(--mw-muted); font-weight: 400"
+            >({{ psy.rating_count }}
+            <span data-fr="avis" data-ar="تقييم" data-en="reviews">avis</span
+            >)</span
+          >
+          {% else %}
+          <span
+            style="color: var(--mw-muted)"
+            data-fr="Nouveau profil"
+            data-ar="ملف جديد"
+            data-en="New profile"
+            >Nouveau profil</span
+          >
+          {% endif %}
+        </div>
+
+        <p class="psy-description">
+          {% if psy.psychologue_profile.bio %} {{
+          psy.psychologue_profile.bio|truncatewords:25 }} {% else %}
+          <span
+            data-fr="Découvrez ce professionnel et prenez rendez-vous."
+            data-ar="اكتشف هذا المحترف واحجز موعدًا."
+            data-en="Discover this professional and book an appointment."
+            >Découvrez ce professionnel et prenez rendez-vous.</span
+          >
+          {% endif %}
+        </p>
+
+        <div class="psy-actions">
+          <a
+            class="psy-btn"
+            href="{% url 'accounts:book_consultation' psy.id %}"
+            data-fr="Prendre rendez-vous"
+            data-ar="حجز موعد"
+            data-en="Book appointment"
+          >
+            Prendre rendez-vous
+          </a>
+
+          <!-- زر التقييم المنفصل (يظهر فقط إذا كان هناك استشارات) -->
+          {% if psy.rating_consultations %} {% for consultation in
+          psy.rating_consultations %}
+          <button
+            class="psy-btn psy-btn-secondary"
+            onclick="openRatingModal('{{ consultation.id }}', 'Dr. {{ psy.get_full_name|default:psy.username }}')"
+          >
+            <span
+              data-fr="Évaluer la consultation"
+              data-ar="تقييم الاستشارة"
+              data-en="Rate consultation"
+              >Évaluer la consultation</span
+            >
+          </button>
+          {% endfor %} {% endif %}
+        </div>
+      </article>
+      {% empty %}
+      <div
+        class="psy-empty"
+        style="
+          grid-column: 1/-1;
+          text-align: center;
+          padding: 40px;
+          background: white;
+          border-radius: 16px;
+        "
+      >
+        <h3
+          data-fr="Aucun résultat"
+          data-ar="لا توجد نتائج"
+          data-en="No results"
+        >
+          Aucun résultat
+        </h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Rating Modal (Hidden by default) -->
+  <div id="ratingModal" class="psy-modal">
+    <div class="psy-modal-content">
+      <button class="modal-close" onclick="closeRatingModal()">&times;</button>
+      <h3
+        id="modalDoctorName"
+        style="margin-bottom: 20px; color: var(--mw-navy); font-size: 1.2rem"
+      ></h3>
+
+      <form id="modalRatingForm" method="post" action="">
+        {% csrf_token %}
+        <div class="modal-form-group">
+          <label data-fr="Votre note" data-ar="تقييمك" data-en="Your rating"
+            >Votre note</label
+          >
+          <select name="rating" required>
+            <option
+              value=""
+              data-fr="Choisir..."
+              data-ar="اختر..."
+              data-en="Choose..."
+            >
+              Choisir...
+            </option>
+            <option value="5">★★★★★ (5/5)</option>
+            <option value="4">★★★★☆ (4/5)</option>
+            <option value="3">★★★☆☆ (3/5)</option>
+            <option value="2">★★☆☆☆ (2/5)</option>
+            <option value="1">★☆☆☆☆ (1/5)</option>
+          </select>
+        </div>
+
+        <div class="modal-form-group">
+          <label
+            data-fr="Commentaire (optionnel)"
+            data-ar="تعليق (اختياري)"
+            data-en="Comment (optional)"
+            >Commentaire (optionnel)</label
+          >
+          <textarea
+            name="comment"
+            maxlength="1000"
+            placeholder="Partagez votre expérience..."
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="psy-btn"
+          data-fr="Envoyer l'avis"
+          data-ar="إرسال التقييم"
+          data-en="Submit review"
+        >
+          Envoyer l'avis
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Language Switcher Logic
+  function switchLanguage(lang) {
+    document
+      .querySelectorAll(".lang-btn")
+      .forEach((btn) => btn.classList.remove("active"));
+    document.querySelector(`[data-lang="${lang}"]`).classList.add("active");
+
+    document.body.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+
+    document.querySelectorAll("[data-fr][data-ar][data-en]").forEach((el) => {
+      if (el.hasAttribute("data-" + lang))
+        el.textContent = el.getAttribute("data-" + lang);
+    });
+
+    localStorage.setItem("preferredLanguage", lang);
+  }
+
+  // Specialty Filter Logic
+  function filterBySpecialty(specialty) {
+    const url = new URL(window.location);
+    if (specialty) url.searchParams.set("specialty", specialty);
+    else url.searchParams.delete("specialty");
+    window.location.href = url.toString();
+  }
+
+  // Modal Logic
+  function openRatingModal(consultationId, doctorName) {
+    const modal = document.getElementById("ratingModal");
+    const form = document.getElementById("modalRatingForm");
+    const nameEl = document.getElementById("modalDoctorName");
+
+    // Set dynamic action URL (adjust 'rate_consultation' to your actual URL name)
+    // Example: /accounts/rate-consultation/123/
+    form.action = `/accounts/rate-consultation/${consultationId}/`;
+
+    nameEl.textContent = doctorName;
+    modal.style.display = "flex";
+  }
+
+  function closeRatingModal() {
+    document.getElementById("ratingModal").style.display = "none";
+  }
+
+  // Close modal on outside click
+  window.onclick = function (event) {
+    const modal = document.getElementById("ratingModal");
+    if (event.target == modal) closeRatingModal();
+  };
+
+  // Init
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedLang =
+      localStorage.getItem("preferredLanguage") || "{{ LANGUAGE_CODE }}";
+    switchLanguage(savedLang);
+  });
+</script>
+{% endblock %}

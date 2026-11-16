@@ -1,0 +1,149 @@
+[
+  {
+    "conversation_id": "conv_001",
+    "scenario_id": 1,
+    "language": "fr",
+    "theme": "Anxiété généralisée",
+    "provider": "cohere",
+    "model": "command-r-08-2024",
+    "success": true,
+    "error": null,
+    "latency_ms": 10661,
+    "output": {
+      "summary": "Le patient exprime une anxiété généralisée, avec une sensation constante d'être sur le qui-vive et une peur diffuse d'un événement négatif. Il mentionne des difficultés de sommeil et une inquiétude excessive pour des situations quotidiennes. Le patient est réticent à essayer des techniques de relaxation, mais accepte de les tester à la maison. Le risque est évalué comme moyen en raison de l'anxiété généralisée et de la difficulté à gérer le stress.",
+      "themes": [
+        "Anxiété généralisée",
+        "Inquiétude excessive",
+        "Difficultés de sommeil",
+        "Résistance aux techniques de relaxation"
+      ],
+      "emotions": [
+        "Anxiété",
+        "Inquiétude",
+        "Réserve"
+      ],
+      "keywords": [
+        "Anxiété",
+        "Inquiétude",
+        "Stress",
+        "Qui-vive",
+        "Relaxation"
+      ],
+      "risk_level": "medium",
+      "emotional_evolution": "Le patient exprime une anxiété constante et une résistance initiale aux techniques de relaxation, mais accepte finalement de les essayer."
+    },
+    "timestamp": 1794338069.581591,
+    "structural_validation": {
+      "valid": true,
+      "errors": []
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      }
+    },
+    "quality_passed": true,
+    "requires_human_review": false
+  },
+  {
+    "conversation_id": "conv_004",
+    "scenario_id": 2,
+    "language": "fr",
+    "theme": "Dépression légère",
+    "provider": "cohere",
+    "model": "command-r-08-2024",
+    "success": false,
+    "error": "The read operation timed out",
+    "latency_ms": 60391,
+    "output": null,
+    "timestamp": 1794338129.9791014,
+    "structural_validation": {
+      "valid": false,
+      "errors": [
+        "The read operation timed out"
+      ]
+    },
+    "quality_checks": {},
+    "quality_passed": false,
+    "requires_human_review": false
+  },
+  {
+    "conversation_id": "conv_007",
+    "scenario_id": 3,
+    "language": "fr",
+    "theme": "Stress professionnel / burn-out",
+    "provider": "cohere",
+    "model": "command-r-08-2024",
+    "success": true,
+    "error": null,
+    "latency_ms": 8511,
+    "output": {
+      "summary": "Le patient exprime un épuisement professionnel lié à une charge de travail excessive. Il a peur d'être perçu comme faible s'il en parle à son responsable. Il envisage de préparer une liste de tâches pour aborder la situation.",
+      "themes": [
+        "Épuisement professionnel",
+        "Charge de travail excessive",
+        "Communication avec le responsable"
+      ],
+      "emotions": [
+        "Épuisement",
+        "Anxiété"
+      ],
+      "keywords": [
+        "Épuisement",
+        "Charge de travail",
+        "Responsable",
+        "Communication"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient passe d'un état d'épuisement à une certaine anxiété face à la perspective de communiquer avec son responsable."
+    },
+    "timestamp": 1794338138.4953961,
+    "structural_validation": {
+      "valid": true,
+      "errors": []
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      }
+    },
+    "quality_passed": true,
+    "requires_human_review": true
+  }
+]

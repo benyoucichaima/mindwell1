@@ -1,0 +1,5762 @@
+[
+  {
+    "id": "conv_001",
+    "scenario_id": 1,
+    "language": "fr",
+    "theme": "Anxiété généralisée",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je me sens tout le temps sur le qui-vive, comme si quelque chose de terrible allait arriver."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cette tension ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Cela fait plusieurs mois. Je dors mal et je m'inquiète pour tout, même les petites choses."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. Cette inquiétude peut prendre beaucoup de place. Quelles situations la déclenchent le plus chez vous ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Principalement le travail et les relations sociales. J'ai peur d'être jugé ou de faire une erreur."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La peur du jugement est très courante. Avez-vous remarqué ce qui se passe dans votre corps quand cette anxiété monte ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mon cœur s'accélère, et j'ai parfois du mal à respirer normalement."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une réaction physique fréquente. Nous pouvons essayer ensemble un exercice simple pour calmer cette tension."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer. Cela me semble un peu étrange mais je suis prêt à tester."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est normal d'hésiter au début. L'important est d'avancer pas à pas, sans se juger."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela va marcher pour moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Vous pouvez essayer une fois, et nous verrons ensemble ce que vous en pensez."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer ce soir. Merci pour votre patience."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Nous reprendrons cela à notre prochaine séance."
+      }
+    ]
+  },
+  {
+    "id": "conv_002",
+    "scenario_id": 1,
+    "language": "ar",
+    "theme": "القلق العام",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش على الحافة كل الوقت، كأن في شي مفزع جاي يحدث."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى هاد التوتر عندك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ عدة أشهر. ناقص نوم ومشغول البال من كل شيء، حتى الصغائر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. هاد القلق يمكن يأخذ حيز كبير من حياتك. شنو المواقف اللي تثيره أكثر عندك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خصوصاً العمل والعلاقات الاجتماعية. خائف أُحكم علي أو أخطئ."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الخوف من الحكم أمر شائع جداً. لاحظت شو يحصل في جسمك لما يرتفع القلق؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "قلبي يتسارع، وأحياناً ما نقدرش نتنفس بشكل طبيعي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا رد فعل جسدي شائع. يمكن نجرب تمرين بسيط مع بعض لتهدئة التوتر."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، جرب. يبدو غريب قليلا لكن مستعد أختبر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "طبيعي تتردد في البداية. الأهم نمشي خطوة خطوة، بدون ما نحكم على نفسنا."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد الشي رح ينفع معي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. يمكنك تجرب مرة واحدة، ونشوف مع بعض شو رايك بعدها."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب الليلة. شكراً على صبرك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. نرجع لهاد في الجلسة الجاية."
+      }
+    ]
+  },
+  {
+    "id": "conv_003",
+    "scenario_id": 1,
+    "language": "en",
+    "theme": "Generalized Anxiety",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I feel constantly on edge, as if something terrible is going to happen."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How long have you been feeling this tension?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several months. I sleep poorly and worry about everything, even small things."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. This worry can take up a lot of space. Which situations trigger it most for you?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mainly work and social relationships. I'm afraid of being judged or making a mistake."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Fear of judgment is very common. Have you noticed what happens in your body when this anxiety rises?"
+      },
+      {
+        "speaker": "patient",
+        "content": "My heart races, and sometimes I have trouble breathing normally."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a frequent physical reaction. We can try a simple exercise together to calm this tension."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try. It seems a bit strange but I'm willing to test it."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's normal to hesitate at first. The important thing is to move forward step by step, without judging yourself."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will work for me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. You can try once, and we'll see together what you think of it."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'll try tonight. Thank you for your patience."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. We'll resume this at our next session."
+      }
+    ]
+  },
+  {
+    "id": "conv_004",
+    "scenario_id": 2,
+    "language": "fr",
+    "theme": "Dépression légère",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je ressens une tristesse persistante depuis plusieurs semaines, sans raison précise."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Comment décririez-vous cette tristesse ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, je n'ai plus envie de rien. Même les choses que j'aimais avant ne me procurent plus de plaisir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un sentiment que beaucoup de gens décrivent dans des moments difficiles. Avez-vous un proche avec qui vous en parlez ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Ma sœur est au courant, mais je ne veux pas l'inquiéter davantage."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est compréhensible. Peut-être pourriez-vous simplement lui demander de passer du temps avec vous, sans entrer dans les détails."
+      },
+      {
+        "speaker": "patient",
+        "content": "C'est une bonne idée. Je vais essayer de l'appeler ce week-end."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Excellent. Les petits pas comptent beaucoup. Nous reviendrons sur cela prochainement."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne sais pas si j'en serai capable."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Prenez votre temps. Il n'y a pas d'urgence. L'important est que vous ayez identifié une première étape."
+      },
+      {
+        "speaker": "patient",
+        "content": "Peut-être. Je vais y réfléchir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est déjà beaucoup. Prenez soin de vous d'ici notre prochain échange."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Je suis là si vous avez besoin d'en reparler."
+      }
+    ]
+  },
+  {
+    "id": "conv_005",
+    "scenario_id": 2,
+    "language": "ar",
+    "theme": "الاكتئاب الخفيف",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش حزن مستمر منذ عدة أسابيع، من غير سبب واضح."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. كيف تصف هاد الحزن؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، ما عايش رغبة في أي شيء. حتى الأشياء اللي كنت أحبها ما تعطي متعة بعد الآن."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا شعور يمكن يمر على كثيرين في أوقات صعبة. عندك قريب تتكلم معاه؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أختي عارفة، لكن ما بغيش أحملها أكثر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. ممكن تطلب منها تمشي وقت معاك، من غير ما تدخل في التفاصيل."
+      },
+      {
+        "speaker": "patient",
+        "content": "فكرة حلوة. نجرب نعملها هذا الأسبوع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ممتاز. الخطوات الصغيرة تهم. نرجع لهذا بعد."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما أعرف إن نقدر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "خذ وقتك. ما في استعجال. الأهم إنك حددت خطوة أولى."
+      },
+      {
+        "speaker": "patient",
+        "content": "ربما. نفكر فيها."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا كثير بالفعل. اعتني بنفسك حتى لقائنا الجاي."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. أنا هنا لو تحتاج ترجع تتكلم فيها."
+      }
+    ]
+  },
+  {
+    "id": "conv_006",
+    "scenario_id": 2,
+    "language": "en",
+    "theme": "Mild Depression",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I feel a persistent sadness for several weeks, without a specific reason."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How would you describe this sadness?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, I don't feel like doing anything. Even things I used to enjoy no longer bring me pleasure."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a feeling many people describe during difficult times. Do you have someone close you talk to?"
+      },
+      {
+        "speaker": "patient",
+        "content": "My sister knows, but I don't want to worry her further."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's understandable. Maybe you could simply ask her to spend time with you, without going into details."
+      },
+      {
+        "speaker": "patient",
+        "content": "That's a good idea. I'll try to call her this weekend."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Excellent. Small steps count a lot. We will come back to this soon."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll be able to."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Take your time. There's no rush. What matters is that you've identified a first step."
+      },
+      {
+        "speaker": "patient",
+        "content": "Maybe. I'll think about it."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's already a lot. Take care of yourself until our next exchange."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. I'm here if you need to talk about it again."
+      }
+    ]
+  },
+  {
+    "id": "conv_007",
+    "scenario_id": 3,
+    "language": "fr",
+    "theme": "Stress professionnel / burn-out",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je suis épuisé par mon travail. Les journées s'enchaînent et je n'ai plus de temps pour moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Merci de votre confiance. Depuis quand cet épuisement s'est-il installé ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis environ un an, depuis ma promotion. Les responsabilités ont doublé sans augmentation d'équipe."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Une promotion sans ressources supplémentaires est une situation lourde. Comment se passent vos nuits ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je me réveille souvent la nuit en pensant aux dossiers en retard. Je n'arrive plus à déconnecter."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Le manque de déconnexion est un signal que le corps envoie quand la charge devient trop lourde. Avez-vous déjà envisagé d'en parler avec votre responsable ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur que cela soit perçu comme un manque d'engagement ou de compétence."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une crainte légitime. Pourtant, préserver votre santé est indispensable pour rester efficace sur le long terme."
+      },
+      {
+        "speaker": "patient",
+        "content": "Vous avez raison. Je vais préparer une liste de mes tâches pour en parler avec lui."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une démarche constructive. N'oubliez pas d'inclure vos limites et vos besoins de récupération."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne sais pas comment lui dire sans passer pour quelqu'un de faible."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous pourriez présenter cela comme une manière d'améliorer votre efficacité, plutôt qu'une difficulté personnelle."
+      },
+      {
+        "speaker": "patient",
+        "content": "C'est une autre façon de voir les choses. Merci."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Nous ferons le point ensemble lors de notre prochaine séance."
+      }
+    ]
+  },
+  {
+    "id": "conv_008",
+    "scenario_id": 3,
+    "language": "ar",
+    "theme": "الإجهاد المهني / الاحتراق",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش منهكين من الشغل. الأيام تتوالى وما عندناش وقت لنفسنا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. شكراً على الثقة. منذ متى استقر الإرهاق هذا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ حوالي سنة، منذ الترقية. المسؤوليات تضاعفت من غير ما زاد الفريق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ترقية من غير موارد إضافية هي حالة ثقيلة. كيف الليالي عندك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نست ليالي كثيرة نفكر في الملفات المتأخرة. ما نقدرش نفصل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "نقص الفصل هو إشارة الجسم عندما يزيد العبء. فكرت تناقش حجم الشغل مع المسؤول؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف يفهم على أنه نقص في الالتزام أو الكفاءة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "خوف مشروع. لكن الحفاظ على الصحة ضروري نكون فعالين على المدى الطويل."
+      },
+      {
+        "speaker": "patient",
+        "content": "فكرة حلوة. نجرب نعمل قائمة المهام ونناقشها معاه."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "خطوة بنّاءة. ما تنساش تشمل حدودك واحتياجاتك للتعافي."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما أعرفش كيف نقول له بدون ما نفهم ضعيف."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن تقدم هاد كوسيلة لتحسين فعاليتك،بدلاً من كونها صعوبة شخصية."
+      },
+      {
+        "speaker": "patient",
+        "content": "هذا طريقة أخرى للنظر للشي. شكراً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. نرجع نقيّم في الجلسة الجاية."
+      }
+    ]
+  },
+  {
+    "id": "conv_009",
+    "scenario_id": 3,
+    "language": "en",
+    "theme": "Professional Stress / Burn-out",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I am exhausted by my work. Days follow one another and I no longer have time for myself."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. Thank you for your trust. Since when has this exhaustion set in?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For about a year, since my promotion. Responsibilities doubled without team increase."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "A promotion without additional resources is a heavy situation. How are your nights?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I often wake up at night thinking about overdue files. I can no longer disconnect."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Lack of disconnection is a signal the body sends when the load becomes too heavy. Have you considered discussing your workload with your manager?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid it will be perceived as a lack of commitment or competence."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate fear. However, preserving your health is essential to remain effective in the long term."
+      },
+      {
+        "speaker": "patient",
+        "content": "You are right. I will prepare a list of my tasks to discuss with him."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a constructive approach. Don't forget to include your limits and recovery needs."
+      },
+      {
+        "speaker": "patient",
+        "content": "I don't know how to tell him without appearing weak."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You could present it as a way to improve your effectiveness, rather than a personal difficulty."
+      },
+      {
+        "speaker": "patient",
+        "content": "That's another way of seeing things. Thank you."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. We will review together at our next session."
+      }
+    ]
+  },
+  {
+    "id": "conv_010",
+    "scenario_id": 4,
+    "language": "fr",
+    "theme": "Insomnie",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je n'arrive pas à dormir depuis des semaines. Je tourne dans mon lit pendant des heures."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Avez-vous des pensées qui tournent en boucle lorsque vous essayez de vous endormir ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, je repasse toute ma journée et je m'inquiète pour demain."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un cercle qui peut s'installer. Avez-vous des rituels avant le coucher ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je vais me coucher quand je suis épuisé, souvent très tard."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Établir une heure de coucher régulière peut aider votre corps à se préparer au sommeil. Voulez-vous essayer de vous coucher à la même heure chaque soir ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je peux essayer, mais j'ai peur de ne pas pouvoir m'endormir et de tourner encore plus longtemps."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est compréhensible. Si vous ne vous endormez pas après 20 minutes, levez-vous et faites une activité calme jusqu'à ce que le sommeil vienne."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer cette approche cette nuit."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Évitez aussi les écrans au moins une heure avant le coucher."
+      },
+      {
+        "speaker": "patient",
+        "content": "C'est difficile car je travaille sur ordinateur jusque tard."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Essayez de vous déconnecter 30 minutes plus tôt chaque soir, progressivement."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer, mais je ne suis pas convaincu."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est votre choix. Nous ferons le point sur votre sommeil la prochaine fois."
+      }
+    ]
+  },
+  {
+    "id": "conv_011",
+    "scenario_id": 4,
+    "language": "ar",
+    "theme": "الأرق",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "ما نقدرش ننوم منذ أسابيع. نقلب في الفراش ساعات."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. عندك أفكار تدور لما تحاول تنعس؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نرجع اليوم كامل ونقلق على بكرة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا النمط يمكن يستقر. عندك طقوس قبل النوم؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، نمشي ننوم لما نكون منهكين، غالباً متاخر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "تحديد وقت نوم منتظم يمكن يساعد الجسم يستعد للنوم. تبي تجرب تنام في نفس الوقت كل ليلة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "يمكن نجرب، لكن خائف ما نقدرش نعس وندرش أكثر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. لو ما نعسش بعد 20 دقيقة، قم واعمل نشاط هادئ حتى يجي النوم."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب هاد الطريقة الليلة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. تتجنب الشاشات قبل ساعة على الأقل من النوم."
+      },
+      {
+        "speaker": "patient",
+        "content": "صعب لأن نعمل على الحاسوب حتى متأخر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "حاول تفصل 30 دقيقة قبل كل ليلة، تدريجياً."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب، لكن ما مقتنع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا خيارك. نقيم نومك في المرة الجاية."
+      }
+    ]
+  },
+  {
+    "id": "conv_012",
+    "scenario_id": 4,
+    "language": "en",
+    "theme": "Insomnia",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I can't sleep for weeks. I toss in bed for hours."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Do you have thoughts that loop when you try to fall asleep?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, I go over my whole day and worry about tomorrow."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's a cycle that can settle in. Do you have rituals before bedtime?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I go to bed when I'm exhausted, often very late."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Establishing a regular bedtime can help your body prepare for sleep. Would you like to try going to bed at the same time every night?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I can try, but I'm afraid I won't be able to fall asleep and toss even longer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's understandable. If you don't fall asleep after 20 minutes, get up and do a calm activity until sleep comes."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try this approach tonight."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. Also avoid screens at least one hour before bedtime."
+      },
+      {
+        "speaker": "patient",
+        "content": "It's difficult because I work on computer until late."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Try to disconnect 30 minutes earlier each evening, gradually."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'll try, but I'm not convinced."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's your choice. We'll review your sleep next time."
+      }
+    ]
+  },
+  {
+    "id": "conv_013",
+    "scenario_id": 5,
+    "language": "fr",
+    "theme": "Deuil d'un proche",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai perdu ma mère il y a trois mois et je n'arrive toujours pas à accepter son absence."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je suis de tout cœur avec vous dans cette épreuve. Parlez-moi d'elle, si vous le souhaitez."
+      },
+      {
+        "speaker": "patient",
+        "content": "Elle était tout pour moi. Sa présence me manquait à chaque instant."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Le lien avec une mère est unique. Quel souvenir vous revient le plus souvent à l'esprit ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Ses rires quand nous cuisinions ensemble le dimanche. C'était nos moments à nous."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "De beaux souvenirs. Il est normal de ressentir un vide immense. Acceptez-vous d'accueillir cette tristesse sans la combattre ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "J'essaie, mais certains jours c'est très dur. Je fonds en larmes sans prévenir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Les émotions viennent par vagues. Laissez-les passer sans vous juger. Cela fait partie du cheminement."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci de me dire cela. Je me sens moins coupable d'être triste."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Il n'y a pas de bonne ou mauvaise façon de faire son deuil. Chacun avance à son rythme."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne sais pas si je vais y arriver un jour."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Le deuil prend le temps qu'il faut. Il n'y a pas de calendrier imposé."
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, merci. Votre présence m'aide beaucoup."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je suis là pour vous. Prenez soin de vous d'ici notre prochaine rencontre."
+      }
+    ]
+  },
+  {
+    "id": "conv_014",
+    "scenario_id": 5,
+    "language": "ar",
+    "theme": "حزن على قريب",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "فقدت والدتي قبل ثلاث شهور وما نقدرش نتقبل غيابها."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا معاك في كل قلب في هذه المحة. حدثني عنها لو تبي."
+      },
+      {
+        "speaker": "patient",
+        "content": "كانت كل شيء لي. وجودها كان ينقصني في كل لحظة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الرباط مع الأم فريد. شنو الذكريات اللي ترجع لبالك أكثر؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "ضحكةاتها لما كنا نطهى مع بعض الأحد. كانت لحظاتنا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ذكريات جميلة. من الطبيعي نشعر بفقدان هائل. تقبل الحزن من غير ما تحاربه؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب، لكن بعض الأيام صعبة جداً. نبكي من غير ما نحذر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "المشاعر تجي على موجات. دعها تمر من غير ما تحكم على نفسك. هذا جزء من الطريق."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على هاد الكلام. عايش أقل ذنب لأني حزين."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ما فيش طريقة صحيحة أو خاطئة للحزن. كل واحد يمشي في وتيرته."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما أعرف إن رح نصل يوم من الأيام."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الحزن يأخذ وقته. ما في جدول محدد."
+      },
+      {
+        "speaker": "patient",
+        "content": "نعم، شكراً. وجودك يساعدني كثيراً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أنا هنا ليك. اعتني بنفسك حتى لقائنا الجاي."
+      }
+    ]
+  },
+  {
+    "id": "conv_015",
+    "scenario_id": 5,
+    "language": "en",
+    "theme": "Grief of a Loved One",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I lost my mother three months ago and I still can't accept her absence."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I am with all my heart with you in this ordeal. Tell me about her, if you wish."
+      },
+      {
+        "speaker": "patient",
+        "content": "She was everything to me. I missed her presence at every moment."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "The bond with a mother is unique. Which memory comes back to your mind most often?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Her laughs when we cooked together on Sunday. Those were our moments."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Beautiful memories. It is normal to feel an immense void. Are you willing to welcome this sadness without fighting it?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I try, but some days it's very hard. I break into tears without warning."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Emotions come in waves. Let them pass without judging yourself. This is part of the journey."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for telling me that. I feel less guilty about being sad."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "There is no right or wrong way to grieve. Each person moves at their own pace."
+      },
+      {
+        "speaker": "patient",
+        "content": "I don't know if I'll ever get there."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Grief takes the time it takes. There's no imposed schedule."
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, thank you. Your presence helps me a lot."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I am here for you. Take care of yourself until our next meeting."
+      }
+    ]
+  },
+  {
+    "id": "conv_016",
+    "scenario_id": 6,
+    "language": "fr",
+    "theme": "Problèmes de couple / relation",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je traverse une période difficile avec mon conjoint. Nous nous disputons souvent pour des détails."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Quels sont les sujets qui reviennent le plus souvent dans vos disputes ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Principalement les tâches ménagères et le manque de temps passé ensemble."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Le quotidien peut éroder la relation si l'on n'y prend pas garde. Comment communiquez-vous lorsque la tension monte ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mal, nous crions souvent et nous ne nous écoutons pas vraiment."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La colère empêche l'écoute. Avez-vous essayé de faire une pause lorsque vous sentez la tension monter, avant de reprendre la conversation ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, on continue jusqu'à ce que l'un de nous parte en claquant la porte."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Cette pause pourrait vous aider à calmer le jeu et à exprimer vos besoins sans agressivité."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne sais pas si mon conjoint acceptera d'essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous pourriez lui proposer cela pendant un moment calme, sans lien avec une dispute."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer de lui en parler demain."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Excellente initiative. Vous pourriez aussi convenir d'un mot-clé pour signaler le besoin de pause."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela suffira."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un début. Nous ferons le point sur vos progrès relationnels bientôt."
+      }
+    ]
+  },
+  {
+    "id": "conv_017",
+    "scenario_id": 6,
+    "language": "ar",
+    "theme": "مشاكل الزوجية / العلاقة",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش فترة صعبة مع شريكنا. نتشاجر كثيرًا على تفاهات."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. شنو المواضيع اللي ترجع أكثر في المشاجرات؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خصوصاً الأعمال المنزلية ونقص الوقت اللي نقضيه مع بعض."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الحياة اليومية يمكن تأكل العلاقة إذا ما ننتبه. كيف تتواصلون لما يرتفع التوتر؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "سيئ، نصرخ كثيرًا وما نسمعش بعض حقاً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الغضب يمنع الاستماع. جربت تأخذ استراحة لما تشعر التوتر يرتفع، قبل ما ترجع تتكلمون؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، نستمر لحد ما أحد منا يخرج وهو يطبط الباب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه الاستراحة يمكن تساعد تهدئ وتعبّر عن احتياجاتك من غير عدوانية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما أعرفش إن شريكي رح يقبل يجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن تقترح له هاد في هادئة، من غير علاقة مع مشاجرة."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب نتكلم معه بكرة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "مبادرة ممتازة. يمكن تتفقوا على كلمة مفتاحية للإشارة للحاجة للاستراحة."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يكفي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا بداية. نقيم تقدمك في العلاقات قريباً."
+      }
+    ]
+  },
+  {
+    "id": "conv_018",
+    "scenario_id": 6,
+    "language": "en",
+    "theme": "Couple Problems / Relationship",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I am going through a difficult period with my partner. We often argue about details."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Which topics come up most often in your arguments?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mainly household chores and lack of time spent together."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Daily life can erode the relationship if one is not careful. How do you communicate when tension rises?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Bad, we often shout and we don't really listen to each other."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Anger prevents listening. Have you tried taking a break when you feel tension rising, before resuming the conversation?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, we continue until one of us leaves slamming the door."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "This break could help you calm things down and express your needs without aggression."
+      },
+      {
+        "speaker": "patient",
+        "content": "I don't know if my partner will agree to try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You could propose it during a calm moment, not linked to an argument."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'll try to talk to him tomorrow."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Excellent initiative. You could also agree on a keyword to signal the need for a break."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be enough."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a start. We'll review your relational progress soon."
+      }
+    ]
+  },
+  {
+    "id": "conv_019",
+    "scenario_id": 7,
+    "language": "fr",
+    "theme": "Crise de panique",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je fais des crises de panique depuis quelques semaines. Mon cœur s'emballe et j'étouffe."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Ces crises surviennent-elles dans des situations précises ou de façon imprévisible ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Principalement dans les lieux publics bondés, comme le métro ou les centres commerciaux."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "L'agoraphobie est parfois associée à ces crises. Avez-vous déjà perdu connaissance durant une crise ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, mais j'ai l'impression de mourir à chaque fois."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une sensation très intense, mais ce n'est pas dangereux pour votre vie. Concentrez-vous sur votre respiration lorsque cela arrive."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer de me concentrer sur ma respiration la prochaine fois."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La technique du carré (4-4-4-4) peut être utile : inspirez 4 secondes, retenez 4, expirez 4, retenez 4."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer cet exercice quand je sens une crise arriver."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Évitez aussi de fuir systématiquement les lieux qui déclenchent l'angoisse, cela l'entretiendrait."
+      },
+      {
+        "speaker": "patient",
+        "content": "C'est difficile mais je comprends pourquoi c'est important."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Petit à petit, vous reprendrez confiance dans ces espaces."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr d'y arriver seul."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous reviendrons sur vos progrès la prochaine fois, et nous verrons ensemble comment avancer."
+      }
+    ]
+  },
+  {
+    "id": "conv_020",
+    "scenario_id": 7,
+    "language": "ar",
+    "theme": "نوبة ذعر",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش نوبات ذعر منذ أسابيع. قلبي يتسارع وأختنق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. هاد النوبات تجي في مواقف محددة أو بشكل غير متوقع؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خصوصاً في الأماكن العامة المزدحمة، مثل المترو أو مراكز التسوق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الرهاب المرافق لنوبات الذعر شائع. أغمي عليك خلال نوبة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، لكن عايش أنا أموت في كل مرة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا شعور شديد، لكنه ليس خطير على حياتك. ركز على تنفسك لما يحدث."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب نركز على تنفسي المرة الجاية."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "تقنية المربع (4-4-4-4) يمكن تفيد: نفس 4 ثوانٍ، احبس 4، ازفر 4، احبس 4."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب التمرين لما أحس أن نوبة جاية."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. تتجنب الهروب من الأماكن اللي تثير القلق، لأنه يزيده."
+      },
+      {
+        "speaker": "patient",
+        "content": "صعب لكن أفهم لماذا مهم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "تدريجياً، تستعيد ثقتك في هاد المساحات."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نقدر وحدي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "نرجع لتقدمك في المرة الجاية، ونشوف مع بعض كيف نمشي."
+      }
+    ]
+  },
+  {
+    "id": "conv_021",
+    "scenario_id": 7,
+    "language": "en",
+    "theme": "Panic Attack",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I have been having panic attacks for a few weeks. My heart races and I choke."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Do these crises occur in specific situations or unpredictably?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mainly in crowded public places, like the subway or shopping malls."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Agoraphobia is sometimes associated with these crises. Have you ever lost consciousness during an attack?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, but I feel like dying every time."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a very intense sensation, but it is not dangerous for your life. Focus on your breathing when it happens."
+      },
+      {
+        "speaker": "patient",
+        "content": "I will try to focus on my breathing next time."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "The square technique (4-4-4-4) can be useful: inhale 4 seconds, hold 4, exhale 4, hold 4."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try this exercise when I feel a crisis coming."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. Also avoid systematically fleeing places that trigger anxiety, that would maintain it."
+      },
+      {
+        "speaker": "patient",
+        "content": "It's difficult but I understand why it's important."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Little by little, you will regain confidence in these spaces."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll manage alone."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We'll review your progress next time, and we'll see together how to move forward."
+      }
+    ]
+  },
+  {
+    "id": "conv_022",
+    "scenario_id": 8,
+    "language": "fr",
+    "theme": "Estime de soi faible",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai du mal à m'apprécier. Je me critique constamment et je ne me sens jamais à la hauteur."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Merci de vous confier. Depuis quand ressentez-vous ce manque de confiance en vous ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis longtemps, peut-être depuis l'adolescence. Mes parents avaient des attentes très élevées."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Les attentes parentales élevées peuvent marquer durablement. Que vous dites-vous lorsque vous faites une erreur ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je me dis que je suis nul, que je vais échouer, que tout le monde va s'en rendre compte."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Ce dialogue intérieur est très dur. Avez-vous remarqué si ces pensées sont basées sur des faits réels ou sur vos peurs ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je pense que ce sont surtout mes peurs, mais elles semblent si réelles."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons travailler à remettre en question ces pensées automatiques. Souhaitez-vous essayer ensemble ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, je veux apprendre à me parler avec plus de bienveillance."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Excellente décision. Commencez par identifier une pensée négative récurrente et remplacez-la par une phrase plus douce."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de noter ces pensées dans un carnet."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une bonne méthode. Nous examinerons ces notes ensemble à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que ça changera quelque chose."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Nous irons à votre rythme, sans pression."
+      }
+    ]
+  },
+  {
+    "id": "conv_023",
+    "scenario_id": 8,
+    "language": "ar",
+    "theme": "انخفاض تقدير الذات",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أعاني في تقدير نفسي. أنتقد نفسي باستمرار وما أشعر أنني على قدر الكافي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. شكراً على الثقة. منذ متى شعرت بنقص في ثقتك بنفسك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ زمن طويل، ربما منذ المراهقة. والدي كانت عندهم توقعات عالية."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "التوقعات العالية من الوالدين يمكن أن تؤثر على تقدير الذات. ماذا تقول لنفسك لما تخطئ؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أقول لنفسي إني فاشل، وأنني سأفشل، والجميع سيلاحظ."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا الحوار الداخلي شديد القساوة. لاحظت إذا هذه الأفكار مبنية على حقائق أو مخاوفك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أعتقد أنها في الغالب مخاوفي، لكنها تبدو حقيقية جداً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نعمل على التشكيك في هذه الأفكار التلقائية. تبي نجرب مع بعض؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نعم، أريد أتعلم أتكلم مع نفسي بلطف أكثر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "قرارة ممتازة. ابدأ تحدد فكرة سلبية متكررة واستبدلها بعبارة ألطف."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب ندون هاد الأفكار في دفتر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "طريقة جيدة. سندون الملاحظات مع بعض في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يغير شي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. نمشي في وتيرتك، من غير ضغط."
+      }
+    ]
+  },
+  {
+    "id": "conv_024",
+    "scenario_id": 8,
+    "language": "en",
+    "theme": "Low Self-esteem",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I have trouble appreciating myself. I constantly criticize myself and never feel up to it."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. Thank you for confiding in me. Since when do you feel this lack of self-confidence?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For a long time, maybe since adolescence. My parents had very high expectations."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "High parental expectations can mark you for a long time. What do you tell yourself when you make a mistake?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I tell myself I'm useless, that I will fail, that everyone will notice."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "This inner dialogue is very harsh. Have you noticed whether these thoughts are based on real facts or your fears?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I think they are mostly my fears, but they seem so real."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can work on questioning these automatic thoughts. Would you like to try together?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, I want to learn to speak to myself with more kindness."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Excellent decision. Start by identifying a recurring negative thought and replace it with a softer phrase."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to note these thoughts in a notebook."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good method. We will review these notes together at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will change anything."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. We'll go at your pace, without pressure."
+      }
+    ]
+  },
+  {
+    "id": "conv_025",
+    "scenario_id": 9,
+    "language": "fr",
+    "theme": "TOC léger",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je vérifie plusieurs fois si j'ai bien fermé la porte et éteint le gaz avant de sortir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis combien de temps faites-vous ces vérifications répétées ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis environ six mois. Cela me prend du temps et je suis souvent en retard."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Ces vérifications peuvent s'installer progressivement. Ressentez-vous de l'anxiété si vous ne les faites pas ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, j'ai peur qu'il arrive quelque chose de grave si je ne vérifie pas."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un mécanisme qui peut s'auto-entretenir. Nous pouvons travailler ensemble sur l'exposition progressive : vérifier une fois, puis sortir sans revérifier."
+      },
+      {
+        "speaker": "patient",
+        "content": "Ça me fait peur, mais je suis prêt à essayer avec votre accompagnement."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est courageux. Commencez par une vérification unique pour une porte peu importante, puis observez votre anxiété."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer ce week-end chez moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Notez ce que vous ressentez avant et après, nous en parlerons la prochaine fois."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que je vais y arriver."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est normal d'avoir peur. Vous pouvez commencer très petit, et nous ajusterons ensemble."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre aide et votre patience."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Vous avancez dans la bonne direction."
+      }
+    ]
+  },
+  {
+    "id": "conv_026",
+    "scenario_id": 9,
+    "language": "ar",
+    "theme": "وسواس قهري خفيف",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أتحقق عدة مرات من الباب والغاز قبل ما أخرج."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تفعل الفحوصات المتكررة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ حوالي ستة أشهر. يأخذ وقت وأتأخر كثيرًا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الفحوصات هذه يمكن تستقر تدريجياً. تشعر بالقلق إذا ما تحققش؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، خائف يحدث شيء خطير إذا ما تحققت."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا الآلية يمكن تستمر لوحدها. يمكن نعمل مع بعض على التعرض التدريجي: تحقق مرة، ثم أخرج من غير ما أعيد التحقق."
+      },
+      {
+        "speaker": "patient",
+        "content": "هذا يخيفني، لكن مستعد أجرب بمرافقتك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا شجاع. ابدأ بالتحقق مرة لباب غير مهم، ثم راقب قلقك."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب هذا الأسبوع في البيت."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. دوّن ما تشعر به قبل وبعد، وسنتحدث في المرة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نقدر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "طبيعي تخاف. يمكنك تبدأ صغير جداً، ونعدل مع بعض."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على مساعدتك وصبرك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. أنت تتقدم في الاتجاه الصحيح."
+      }
+    ]
+  },
+  {
+    "id": "conv_027",
+    "scenario_id": 9,
+    "language": "en",
+    "theme": "Mild OCD",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I check several times if I properly closed the door and turned off the gas before leaving."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when do you do these repeated checks?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For about six months. This takes time and I am often late."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "These checks can set in gradually. Do you feel anxiety if you don't do them?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, I'm afraid something serious will happen if I don't check."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's a mechanism that can self-maintain. We can work together on gradual exposure: check once, then leave without re-checking."
+      },
+      {
+        "speaker": "patient",
+        "content": "It scares me, but I'm ready to try with your accompaniment."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's courageous. Start with a single check for a low-importance door, then observe your anxiety."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try this weekend at home."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. Note what you feel before and after, we will talk about it next time."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll manage."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's normal to be afraid. You can start very small, and we'll adjust together."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your help and patience."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. You are moving in the right direction."
+      }
+    ]
+  },
+  {
+    "id": "conv_028",
+    "scenario_id": 10,
+    "language": "fr",
+    "theme": "Phobie sociale",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'évite les réunions sociales parce que j'ai peur d'être jugé ou de dire quelque chose de maladroit."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand évitez-vous ces situations ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis plusieurs années, mais cela a empiré depuis mon changement de travail."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Un changement d'environnement peut déclencher ou amplifier cette peur. Que redoutez-vous le plus dans ces moments-là ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Que les autres remarquent que je suis nerveux, que je rougis ou que je bafouille."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La peur du regard des autres est centrale dans ce type de difficulté. Avez-vous déjà essayé de vous exposer progressivement à ces situations ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je les évite complètement pour ne pas ressentir cette angoisse."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "L'évitement apporte un soulagement immédiat mais renforce la peur à long terme. Nous pourrions commencer par une toute petite exposition, comme saluer un voisin."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je peux essayer de faire cela cette semaine."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Notez votre niveau d'anxiété avant et après, nous analyserons cela ensemble."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr d'oser le faire."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous n'êtes pas obligé. Nous pouvons en parler davantage et voir ce qui vous conviendrait."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre encouragement et vos conseils."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Chaque petit pas compte vers plus de liberté sociale."
+      }
+    ]
+  },
+  {
+    "id": "conv_029",
+    "scenario_id": 10,
+    "language": "ar",
+    "theme": "الرهاب الاجتماعي",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أتجنب المناسبات الاجتماعية لأنني أخشى أن أُحاكم أو أقول شي غير لائق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تتجنب هاد المواقف؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ عدة سنوات، لكن تفاقم منذ تغيير عملي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "تغيير البيئة يمكن أن يثير أو يزيد هذا الخوف. ماذا تخشى أكثر في هاد اللحظات؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أن الآخرين يلاحظوا أنني متوتر، أو أحمر، أو أتعثر في الكلام."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الخوف من نظرات الآخرين مركزي في هذا النوع من الصعوبات. جربت تتعرض تدريجياً لهاد المواقف؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، أتجنبها تمامًا حتى لا أشعر بالقلق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "التجنب يوفر ارتياح فوري لكنه يعزز الخوف على المدى الطويل. يمكن نبدأ بتعرض صغير، مثل تحية جار."
+      },
+      {
+        "speaker": "patient",
+        "content": "يمكن أجرب هاد هذا الأسبوع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. دوّن مستوى قلقك قبل وبعد، وسندون مع بعض."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن أجرؤ أفعله."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ما ملزم. يمكن نتكلم أكثر ونشوف شو يناسبك."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على تشجيعك ونصائحك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. كل خطوة صغيرة تهم نحو حرية اجتماعية أكبر."
+      }
+    ]
+  },
+  {
+    "id": "conv_030",
+    "scenario_id": 10,
+    "language": "en",
+    "theme": "Social Phobia",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I avoid social gatherings because I'm afraid of being judged or saying something awkward."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when do you avoid these situations?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several years, but it has worsened since my job change."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "A change of environment can trigger or amplify this fear. What do you fear most in those moments?"
+      },
+      {
+        "speaker": "patient",
+        "content": "That others notice that I am nervous, that I blush or that I stutter."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Fear of others' gaze is central in this type of difficulty. Have you tried gradually exposing yourself to these situations?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I avoid them completely to not feel this anxiety."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Avoidance brings immediate relief but reinforces fear long-term. We could start with a very small exposure, like greeting a neighbor."
+      },
+      {
+        "speaker": "patient",
+        "content": "I can try to do that this week."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. Note your anxiety level before and after, we will analyze that together."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I dare do it."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're not obliged. We can talk more and see what would suit you."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your encouragement and advice."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Every small step counts towards more social freedom."
+      }
+    ]
+  },
+  {
+    "id": "conv_031",
+    "scenario_id": 11,
+    "language": "fr",
+    "theme": "Stress financier",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je m'inquiète tout le temps pour l'argent. Je n'arrive plus à joindre les deux bouts."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ces difficultés financières vous pèsent-elles ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis que j'ai perdu mon travail il y a six mois. Les factures s'accumulent et je ne dors plus."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une situation très stressante. Avez-vous déjà contacté des services d'aide sociale ou un conseiller financier ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, j'ai honte. Je ne veux pas que les autres sachent que je suis dans cette situation."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La honte est une émotion fréquente face aux difficultés d'argent. Ces services sont là précisément pour aider sans juger."
+      },
+      {
+        "speaker": "patient",
+        "content": "Peut-être. Mais je ne sais pas par où commencer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons commencer par lister vos dépenses prioritaires ensemble, juste pour voir plus clair."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je peux essayer de faire cette liste."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un premier pas concret. Nous reviendrons dessus à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela va résoudre mes dettes."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est vrai, cela ne réglera pas tout d'un coup, mais cela peut réduire l'anxiété au quotidien."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer de faire la liste ce week-end."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Nous en parlerons à notre prochaine rencontre."
+      }
+    ]
+  },
+  {
+    "id": "conv_032",
+    "scenario_id": 11,
+    "language": "ar",
+    "theme": "ضغوط مالية",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "مشغول البال دائماً على المال. ما نقدرش نجمع بين المداخيل والمصاريف."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى صعوباتك المالية تثقل عليك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ فقدت شغلي منذ ستة أشهر. الفواتير تتراكم وما نقدرش أنوم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه حالة مرهقة جداً. اتصلت بخدمات المساعدة الاجتماعية أو مستشار مالي؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، خايب. ما بغيش يعرف الناس أني في هاد الحالة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الخايب هو شعور شائع في مواجهة صعوبات المال. هاد الخدمات موجودة لمساعدة من غير ما يحكموا."
+      },
+      {
+        "speaker": "patient",
+        "content": "ربما. لكن ما أعرفش منين نبدا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نبدا نعد المصاريف الأولية مع بعض، عشان نشوف أوضح."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، يمكن نجرب نعمل القائمة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة ملموسة أولى. نرجع لهاد في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يحل ديوني."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "صحيح، هذا ما رح يحل كل شي مرة واحدة، لكن يمكن يخفف القلق في اليوم اليوم."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب نعمل القائمة الأسبوع الجاي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. نتحدث عن هاد في لقائنا الجاي."
+      }
+    ]
+  },
+  {
+    "id": "conv_033",
+    "scenario_id": 11,
+    "language": "en",
+    "theme": "Financial Stress",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I worry all the time about money. I can no longer make ends meet."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How long have these financial difficulties been weighing on you?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Since I lost my job six months ago. Bills are piling up and I can't sleep anymore."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a very stressful situation. Have you contacted social services or a financial advisor?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I'm ashamed. I don't want others to know I'm in this situation."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Shame is a frequent emotion when facing money difficulties. These services are there precisely to help without judging."
+      },
+      {
+        "speaker": "patient",
+        "content": "Maybe. But I don't know where to start."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can start by listing your priority expenses together, just to see more clearly."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I can try to make this list."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a concrete first step. We'll come back to it at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will solve my debts."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "True, it won't fix everything at once, but it can reduce daily anxiety."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try to make the list this weekend."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. We'll talk about it at our next meeting."
+      }
+    ]
+  },
+  {
+    "id": "conv_034",
+    "scenario_id": 12,
+    "language": "fr",
+    "theme": "Pression scolaire et examens",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai des examens dans trois semaines et je panique complètement. Je n'arrive plus à me concentrer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cette pression ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis le début de l'année. Je révise sans arrêt mais j'ai l'impression de ne rien retenir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est épuisant de réviser sans pause. Comment se passe votre sommeil en ce moment ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Très mal. Je me réveille la nuit en pensant aux sujets qui peuvent tomber."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Le manque de sommeil réduit la capacité de mémorisation. Avez-vous essayé de faire des pauses régulières pendant vos révisions ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je me sens coupable si je ne travaille pas tout le temps."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La culpabilité de s'arrêter est courante chez les étudiants. Pourtant, le cerveau a besoin de repos pour assimiler."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer de faire des pauses de dix minutes toutes les heures."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une bonne approche. Nous ferons le point sur votre organisation la prochaine fois."
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur que cela ne suffise pas pour réussir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Réussir ne dépend pas seulement de la quantité d'heures, mais aussi de la qualité du repos. Nous en reparlerons."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer cette méthode."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Bon courage pour vos révisions."
+      }
+    ]
+  },
+  {
+    "id": "conv_035",
+    "scenario_id": 12,
+    "language": "ar",
+    "theme": "الضغط المدرسي والامتحانات",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "عندني امتحانات بعد ثلاثة أسابيع وأنصّيت. ما نقدرش أركز."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بهذا الضغط؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ بداية السنة. نذاكر بلا توقف لكن حاسس إن ما نتحفظش شي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا مرهق إذا نذاكر من غير راحة. كيف نومك هذه الفترة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "سيئ جداً. نستيقظ الليل نفكر في المواضيع اللي ممكن تسقط."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "نقص النوم يقلل قدرة الحفظ. جربت تأخذ فترات راحة منتظمة خلال المراجعة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، أحس بالذنب إذا ما اشتغلت كل الوقت."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الذنب من التوقف أمر شائع عند الطلبة. مع ذلك، الدماغ يحتاج راحة يستوعب."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب نعمل فترات راحة عشرة دقايق كل ساعة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه مقاربة جيدة. نقيّم تنظمك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف إن هاد رح ما يكفي للنجاح."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "النجاح ما يعتمد فقط على عدد الساعات، ولكن على نوعية الراحة كمان. نتحدث عن هاد بعد."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب هاد الطريقة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. بالتوفيق في مراجعاتك."
+      }
+    ]
+  },
+  {
+    "id": "conv_036",
+    "scenario_id": 12,
+    "language": "en",
+    "theme": "Academic Pressure and Exam Anxiety",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I have exams in three weeks and I'm panicking completely. I can no longer concentrate."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How long have you been feeling this pressure?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Since the beginning of the year. I revise non-stop but I feel like I'm not retaining anything."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's exhausting to revise without a break. How is your sleep right now?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Very poorly. I wake up at night thinking about topics that might come up."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Lack of sleep reduces memorization capacity. Have you tried taking regular breaks during your revision?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I feel guilty if I don't work all the time."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Guilt about stopping is common among students. However, the brain needs rest to assimilate."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'll try to take ten-minute breaks every hour."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good approach. We'll review your organization next time."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid it won't be enough to succeed."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Succeeding depends not only on the number of hours, but also on the quality of rest. We'll talk about it again."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try this method."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Good luck with your revision."
+      }
+    ]
+  },
+  {
+    "id": "conv_037",
+    "scenario_id": 13,
+    "language": "fr",
+    "theme": "Adaptation après déménagement",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai déménagé dans une nouvelle ville il y a deux mois et je me sens très seul. Je ne connais personne ici."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Comment se passe votre adaptation depuis votre arrivée ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Difficilement. Je sors rarement et je ne sais pas comment rencontrer des gens."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Changer de ville est une transition importante. Qu'est-ce qui vous manque le plus de votre ancien environnement ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mes amis et ma famille. Là-bas, j'avais mes repères, mes habitudes."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est normal de ressentir ce manque. Avez-vous repéré des lieux ou des activités qui pourraient vous plaire ici ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Il y a une bibliothèque près de chez moi, mais je n'ose pas y aller seul."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous pourriez commencer par y aller une fois, juste pour voir l'endroit, sans pression de rencontrer quelqu'un."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer ce samedi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un premier pas. Nous en reparlerons à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur de ne jamais me faire des amis ici."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Cela prend du temps. Soyez patient avec vous-même."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Je suis là pour vous accompagner."
+      }
+    ]
+  },
+  {
+    "id": "conv_038",
+    "scenario_id": 13,
+    "language": "ar",
+    "theme": "التكيف بعد الانتقال إلى مدينة جديدة",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "انتقلت لمدينة جديدة قبل شهرين وأشعر بالوحدة كثيراً. ما عارفش أحد هنا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. كيف التكيف منذ وصولك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "صعب. نادراً ما أخرج وما أعرفش كيف المقابل الناس."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "تغيير المدينة هو تحول مهم. شنو ينقصك أكثر من بيئتك القديمة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أصدقائي وعائلتي. هناك كان عندي مرجعات، عاداتي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "من الطبيعي تشهد هاد النقص. لاحظت أماكن أو أنشطة ممكن تعجبك هنا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "عندني مكتبة قرب بيتي، لكن ما أجرؤ أمشي لوحدي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن تبدأ تمشي فيها مرة واحدة، فقط تشوف المكان، من غير ضغط تقابل أحد."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب هاد السبت."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة أولى. نتحدث عنها في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف ما نرجع نكون لي أصدقاء هنا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا يحتاج وقت. كن صبور مع نفسك."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. أنا هنا لمرافقتك."
+      }
+    ]
+  },
+  {
+    "id": "conv_039",
+    "scenario_id": 13,
+    "language": "en",
+    "theme": "Adjustment After Relocating",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I moved to a new city two months ago and I feel very lonely. I don't know anyone here."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How is your adaptation going since your arrival?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Difficultly. I rarely go out and I don't know how to meet people."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Changing cities is an important transition. What do you miss most from your previous environment?"
+      },
+      {
+        "speaker": "patient",
+        "content": "My friends and family. There, I had my bearings, my habits."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's normal to feel this lack. Have you identified places or activities that might appeal to you here?"
+      },
+      {
+        "speaker": "patient",
+        "content": "There's a library near my home, but I don't dare go alone."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You could start by going there once, just to see the place, without pressure to meet someone."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try this Saturday."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a first step. We'll talk about it at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid I'll never make friends here."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It takes time. Be patient with yourself."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. I'm here to accompany you."
+      }
+    ]
+  },
+  {
+    "id": "conv_040",
+    "scenario_id": 14,
+    "language": "fr",
+    "theme": "Stress d'aidant familial",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je m'occupe de mon père malade depuis un an et je n'en peux plus. Je n'ai plus de temps pour moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cet épuisement ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis quelques mois. Je fais tout pour lui et je n'ai aucun répit."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Être aidant est un rôle éprouvant. Avez-vous déjà pensé à solliciter une aide à domicile ou un relais ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je me sens coupable si je le laisse à quelqu'un d'autre."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La culpabilité est fréquente chez les aidants. Pourtant, prendre soin de soi est nécessaire pour continuer à accompagner l'autre."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer de me renseigner sur les services d'aide à domicile."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une démarche importante. Nous ferons le point sur vos besoins lors de notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne sais pas si je vais oser laisser quelqu'un d'autre s'occuper de lui."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous pouvez commencer par une heure par semaine, juste pour vous reposer un peu."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Prenez soin de vous d'ici notre prochain échange."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre écoute."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Vous faites un travail difficile et important."
+      }
+    ]
+  },
+  {
+    "id": "conv_041",
+    "scenario_id": 14,
+    "language": "ar",
+    "theme": "ضغوط الرعاية الأسرية",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش أبي المريض منذ سنة وما نقدرش أكثر. ما عندناش وقت لنفسنا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بالإرهاق هذا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ بضعة أشهر. أعمل كل شي له وما عندناش راحة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الرعاية مرهقة. فكرت تطلب مساعدة منزلية أو تعويض؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، أحس بالذنب إذا تتركه لشخص آخر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الذنب شائع عند مقدمي الرعاية. مع ذلك، العناية بنفسك ضرورية لتواصل مرافقة الآخر."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب نستفسر عن خدمات المساعدة المنزلية."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة مهمة. نقيم احتياجاتك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما أعرفش إن أجرؤ تترك شخص آخر يعتني فيه."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن تبدأ بساعة في الأسبوع، فقط ترتاح قليلا."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. اعتني بنفسك حتى لقائنا الجاي."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على إنصاتك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. تعمل شغل صعب ومهم."
+      }
+    ]
+  },
+  {
+    "id": "conv_042",
+    "scenario_id": 14,
+    "language": "en",
+    "theme": "Caregiver Stress",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I've been caring for my sick father for a year and I can't take it anymore. I have no time for myself."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How long have you been feeling this exhaustion?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For a few months. I do everything for him and I have no respite at all."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Being a caregiver is a demanding role. Have you considered requesting home help or respite care?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I feel guilty if I leave him with someone else."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Guilt is common among caregivers. However, taking care of yourself is necessary to continue supporting the other person."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'll try to find out about home help services."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's an important step. We'll review your needs at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I don't know if I'll dare leave someone else to care for him."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You can start with one hour a week, just to rest a little."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. Take care of yourself until our next exchange."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your listening."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. You're doing difficult and important work."
+      }
+    ]
+  },
+  {
+    "id": "conv_043",
+    "scenario_id": 15,
+    "language": "fr",
+    "theme": "Comparaison sur les réseaux sociaux",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je passe beaucoup de temps sur les réseaux sociaux et je me compare constamment aux autres. Je me sens nulle."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous ce besoin de comparaison ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis plusieurs mois. Je vois des vies parfaites et je trouve la mienne fade."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Les réseaux sociaux montrent souvent une image idéalisée. Comment vous sentez-vous après avoir scrolled ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mal. Je me dis que je ne suis pas assez bien, pas assez jolie, pas assez réussie."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une réaction fréquente. Avez-vous essayé de limiter votre temps d'écran ou de suivre des comptes qui vous font du bien ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je ne peux pas m'en empêcher. C'est plus fort que moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons essayer ensemble de fixer une limite quotidienne, par exemple trente minutes par jour."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un premier pas. Nous verrons ensemble ce que cela change pour vous."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûre que cela suffira à me sentir mieux."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Peut-être que non, mais c'est un début pour reprendre le contrôle sur votre temps."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer de réduire."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Nous en reparlerons à notre prochaine séance."
+      }
+    ]
+  },
+  {
+    "id": "conv_044",
+    "scenario_id": 15,
+    "language": "ar",
+    "theme": "المقارنة على وسائل التواصل الاجتماعي",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نقضي وقت كثير على وسائل التواصل الاجتماعي ونقارن أنفسنا بالآخرين باستمرار. أحس إني فاشلة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بحاجة للمقارنة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ عدة أشهر. أشوف صفحات مثالية وألقي حياتي باهتة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "وسائل التواصل تظهر في كثير من الحالات صورة مثالية. كيف تشعر بعد التصفح؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "سيئ. أقول لنفسي إن ما كافياش، ما جميلاش، ما ناجحاش."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا رد فعل شائع. جربت تحد وقت الشاشة أو تتبع حسابات تجعلك مرتاحة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، ما نقدرش أتوقف. أقوى مني."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نجرب مع بعض نحدد حد يومي، مثلاً ثلاثين دقيقة في اليوم."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة أولى. نشوف مع هاد شي ضروري يغير لكم."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما متأكدة إن هاد رح يكفي أحس بأفضل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ربما لا، لكن هاد بداية تتحكم في وقتك."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب نقلل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. نتحدث عن هاد في الجلسة الجاية."
+      }
+    ]
+  },
+  {
+    "id": "conv_045",
+    "scenario_id": 15,
+    "language": "en",
+    "theme": "Social Media Comparison and Self-Image",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I spend a lot of time on social media and I constantly compare myself to others. I feel worthless."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How long have you been feeling this need to compare?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several months. I see perfect lives and I find mine dull."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Social media often shows an idealized image. How do you feel after scrolling?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Bad. I tell myself I'm not good enough, not pretty enough, not successful enough."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a frequent reaction. Have you tried limiting your screen time or following accounts that make you feel good?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I can't stop myself. It's stronger than me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can try together to set a daily limit, for example thirty minutes per day."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a first step. We'll see together what that changes for you."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be enough to make me feel better."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Maybe not, but it's a start to regain control over your time."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try to reduce."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. We'll talk about it again at our next session."
+      }
+    ]
+  },
+  {
+    "id": "conv_046",
+    "scenario_id": 16,
+    "language": "fr",
+    "theme": "Difficulté à poser ses limites",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je n'arrive pas à dire non aux autres. Je dis toujours oui même quand je ne veux pas."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cette difficulté ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis toujours, je crois. J'ai peur de décevoir ou de fâcher les gens."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une peur compréhensible. Que se passe-t-il en vous quand vous dites oui alors que vous voulez dire non ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je me sens en colère contre moi-même, mais je ne sais pas comment faire autrement."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons essayer d'identifier une situation où vous aimeriez dire non, et vous entraîner à le formuler."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je peux essayer avec mon collègue qui me demande toujours de faire son travail."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un bon exercice. Comment pourrait-vous lui dire non, de manière calme et claire ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je pourrais lui dire : « Je ne peux pas, j'ai déjà trop de travail. »"
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est clair et respectueux. Nous ferons le point sur votre expérience la prochaine fois."
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur qu'il soit en colère contre moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est possible, mais vous avez le droit de protéger votre temps et votre énergie."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Avancez à votre rythme."
+      }
+    ]
+  },
+  {
+    "id": "conv_047",
+    "scenario_id": 16,
+    "language": "ar",
+    "theme": "صعوبة وضع الحدود الشخصية",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "ما نقدرش نقول لا للآخرين. نقول نعم دايماً حتى إذا ما نبي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بهذه الصعوبة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ زمن طويل، أعتقد. خائف أوزع الناس أو أغضبهم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا خوف مفهوم. شو يحصل فيك لما تقول نعم وتبغى تقول لا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أشعر بالغضب على نفسي، لكن ما أعرفش كيف أفعل غير."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نجرب نحدد موقف تبي تقول لا فيه، ونتدرب على كيف تقوله."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، يمكن أجرب مع زميلي في الشغل اللي دايماً يطلب مني أشغل مكانه."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا تمرين جيد. كيف يمكن تقول له لا، بطريقة هادئة وواضحة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "يمكن أقول له: « ما نقدر، عندي شغل كثير. »"
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا واضح ومحترم. نقيم تجربتك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف يغضب علي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ممكن، لكن عندك حق تحمي وقتك وطاقتك."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. تمشي في وتيرتك."
+      }
+    ]
+  },
+  {
+    "id": "conv_048",
+    "scenario_id": 16,
+    "language": "en",
+    "theme": "Difficulty Setting Personal Boundaries",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I can't say no to others. I always say yes even when I don't want to."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How long have you been feeling this difficulty?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Since always, I believe. I'm afraid of disappointing or upsetting people."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's an understandable fear. What happens in you when you say yes when you want to say no?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I feel angry at myself, but I don't know how to do otherwise."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can try to identify a situation where you'd like to say no, and practice formulating it."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I can try with my colleague who always asks me to do his work."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good exercise. How could you say no to him, calmly and clearly?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I could tell him: \"I can't, I already have too much work.\""
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's clear and respectful. We'll review your experience next time."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid he'll be angry at me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's possible, but you have the right to protect your time and energy."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Move at your own pace."
+      }
+    ]
+  },
+  {
+    "id": "conv_049",
+    "scenario_id": 17,
+    "language": "fr",
+    "theme": "Adaptation au premier emploi",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai commencé mon premier travail il y a un mois et je me sens dépassée. Je ne connais pas encore toutes les procédures."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Comment se passent vos premières semaines ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Difficilement. J'ai peur de faire des erreurs et que mes collègues me jugent."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est normal de se sentir dépassé au début. Avez-vous un tuteur ou une personne ressource dans l'entreprise ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, mais je n'ose pas lui poser trop de questions."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Poser des questions fait partie de l'apprentissage. Votre tuteur est là pour vous guider."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je vais essayer de lui poser une question par jour."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une bonne approche. Nous ferons le point sur votre intégration la prochaine fois."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûre de réussir à m'intégrer dans l'équipe."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "L'intégration prend du temps. Soyez indulgente avec vous-même."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Nous en reparlerons à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela suffira pour me sentir à l'aise."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Chaque jour est une nouvelle occasion d'apprendre. Soyez patient avec vous-même."
+      }
+    ]
+  },
+  {
+    "id": "conv_050",
+    "scenario_id": 17,
+    "language": "ar",
+    "theme": "التكيف مع العمل الأول",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "بدأت شغلي الأول منذ شهر وأشعر أنني منهكة. ما عارفش كل الإجراءات بعد."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. كيف الأسابيع الأولى؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "صعب. خائف أخطئ وأن الزملاء يحكموا علي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "من الطبيعي تشعر بأنك منهكة في البداية. عندك مرجع أو شخص مرجع في الشركة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نعم، لكن ما أجرؤ أسأله أسئلة كثيرة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "السؤال جزء من التعلم. مرجعك هنا يرشدك."
+      },
+      {
+        "speaker": "patient",
+        "content": "نجرب أسأله سؤال واحد كل يوم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه مقاربة جيدة. نقيم اندماجك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما متأكدة إن ننجح نندمج مع الفريق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الاندماج يحتاج وقت. كن متسامح مع نفسك."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. نتحدث عن هاد في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نقدر نندمج بسرعة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا طبيعي. الوقت يأخذ وقته، وما فيش مشكل."
+      }
+    ]
+  },
+  {
+    "id": "conv_051",
+    "scenario_id": 17,
+    "language": "en",
+    "theme": "Adapting to a First Job",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I started my first job a month ago and I feel overwhelmed. I don't know all the procedures yet."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. How are your first weeks going?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Difficultly. I'm afraid of making mistakes and that my colleagues will judge me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's normal to feel overwhelmed at the beginning. Do you have a mentor or a resource person at the company?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, but I don't dare ask too many questions."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Asking questions is part of learning. Your mentor is there to guide you."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'll try to ask one question per day."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good approach. We'll review your integration next time."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll manage to integrate into the team."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Integration takes time. Be indulgent with yourself."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. We'll talk about it again at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll fit in quickly."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's natural. It takes time, and there's no rush."
+      }
+    ]
+  },
+  {
+    "id": "conv_052",
+    "scenario_id": 18,
+    "language": "fr",
+    "theme": "Conflit d'amitié / exclusion sociale",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Mes amis m'ont exclue de leurs sorties depuis quelques semaines. Je ne comprends pas pourquoi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Avez-vous essayé d'en parler avec l'un d'eux ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, j'ai peur que cela aggrave les choses."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une crainte légitime. Que ressentez-vous quand vous voyez qu'ils sortent sans vous ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je me blessée et je me demande ce que j'ai fait de mal."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une émotion difficile. Nous pouvons essayer de clarifier la situation ensemble, pas à pas."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je peux essayer d'envoyer un message à l'un d'eux."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un premier pas. Que aimeriez-vous lui dire ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je pourrais lui demander s'il y a un problème entre nous."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est direct et honnête. Nous en reparlerons à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur qu'il me réponde que tout va bien alors que ce n'est pas le cas."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est possible. Mais vous méritez des réponses claires pour avancer."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je vais essayer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Prenez soin de vous."
+      }
+    ]
+  },
+  {
+    "id": "conv_053",
+    "scenario_id": 18,
+    "language": "ar",
+    "theme": "نزاع في الصداقة / استبعاد اجتماعي",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أصدقائي استبعدوني من النزهات منذ أسابيع. ما أفهمش لماذا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. جربت تتكلم مع أحد منهم؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، خائف من أن تسوء الأمور."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا خوف منطقي.شنو تشعر لما تشوفهم يخرجون من غيرك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أشعر بالأذى وأسأل نفسي شو عملت غلط."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا عاطفة صعبة. يمكن نجرب نوضح الوضع مع بعض، خطوة خطوة."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، يمكن أجرب أرسال رسالة لأحدهم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة أولى. شنو تحب تقول له؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "يمكن أسأله إذا في مشكلة بيننا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا مباشر وصريح. نتحدث عن هاد في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف يقولي إن كل شي تمام في حين ما يكونش."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ممكن. لكن تستحق إجابات واضحة تمشي قدام."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. نجرب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. اعتني بنفسك."
+      }
+    ]
+  },
+  {
+    "id": "conv_054",
+    "scenario_id": 18,
+    "language": "en",
+    "theme": "Friendship Conflict and Social Exclusion",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "My friends have excluded me from their outings for a few weeks. I don't understand why."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Have you tried talking to one of them?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I'm afraid it might make things worse."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate fear. What do you feel when you see them going out without you?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I feel hurt and I wonder what I did wrong."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a difficult emotion. We can try to clarify the situation together, step by step."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I can try sending a message to one of them."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a first step. What would you like to tell them?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I could ask if there's a problem between us."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's direct and honest. We'll talk about it again at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid they'll tell me everything is fine when it's not."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's possible. But you deserve clear answers to move forward."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I'll try."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Take care of yourself."
+      }
+    ]
+  },
+  {
+    "id": "conv_055",
+    "scenario_id": 19,
+    "language": "fr",
+    "theme": "Stress post-traumatique",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je revis encore l'événement traumatique. J'ai des flashbacks et des cauchemars."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand revivez-vous cet événement ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis plusieurs mois. Ça arrive sans prévenir, souvent la nuit."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. Ces flashbacks peuvent être très perturbants. Avez-vous des déclencheurs précis ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, certains bruits ou odeurs me ramènent immédiatement là-bas."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une réaction normale face à un événement anormal. Nous pouvons travailler sur des techniques d'ancrage."
+      },
+      {
+        "speaker": "patient",
+        "content": "Qu'est-ce que c'est, l'ancrage ?"
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est des exercices simples pour vous ramener au moment présent, comme nommer cinq choses que vous voyez autour de vous."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je peux essayer. Cela me semble utile."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Commencez par pratiquer quand vous vous sentez bien, pour que ce soit plus facile quand l'anxiété monte."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela suffira."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une étape. Nous ferons le point sur vos progrès à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre écoute et votre aide."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Prenez soin de vous d'ici là."
+      }
+    ]
+  },
+  {
+    "id": "conv_056",
+    "scenario_id": 19,
+    "language": "ar",
+    "theme": "صدمة ما بعد الصدمة",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش الحدث الصادم مراراً. عندي ذكريات ترجع لي وكوابيس."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تعيش الحدث هذا من جديد؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ عدة أشهر. يجيني من غير ما يحذر، غالباً الليل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. هاد الذكريات يمكن تكون مزعجة جداً. عندك أشياء محددة تثيرها؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، أصوات أو روائح معينة تعيدني مباشرة لهناك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا رد فعل طبيعي أمام حدث غير طبيعي. يمكن نعمل على تقنيات التثبيت."
+      },
+      {
+        "speaker": "patient",
+        "content": "شنو يعني التثبيت؟"
+      },
+      {
+        "speaker": "psychologue",
+        "content": "تمارين بسيطة لتعيدك للحظة الحالية، كأن تعدّي خمسة أشياء تشوفها حولك."
+      },
+      {
+        "speaker": "patient",
+        "content": "يمكن نجرب. يبدو مفيد."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ابدأ تتدرب لما تكون بخير، عشان يكون أسهل لما يرتفع القلق."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يكفي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة. نقيم تقدمك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على إنصاتك ومساعدتك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. اعتني بنفسك حتى ذاك الوقت."
+      }
+    ]
+  },
+  {
+    "id": "conv_057",
+    "scenario_id": 19,
+    "language": "en",
+    "theme": "Post-traumatic Stress",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I keep reliving the traumatic event. I have flashbacks and nightmares."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you been reliving this event?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several months. It happens without warning, often at night."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. These flashbacks can be very disturbing. Do you have specific triggers?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, certain noises or smells immediately take me back there."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "It's a normal reaction to an abnormal event. We can work on grounding techniques."
+      },
+      {
+        "speaker": "patient",
+        "content": "What is grounding?"
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Simple exercises to bring you back to the present moment, like naming five things you see around you."
+      },
+      {
+        "speaker": "patient",
+        "content": "I can try. It seems useful."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Start practicing when you feel well, so it's easier when anxiety rises."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be enough."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a step. We'll review your progress at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your listening and your help."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Take care of yourself until then."
+      }
+    ]
+  },
+  {
+    "id": "conv_058",
+    "scenario_id": 20,
+    "language": "fr",
+    "theme": "Troubles alimentaires",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai du mal avec ma relation à la nourriture. Je mange beaucoup quand je suis stressé."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cette difficulté avec la nourriture ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis environ un an. Je mange même quand je n'ai pas faim, surtout le soir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. La nourriture peut devenir une façon de gérer les émotions. Comment vous sentez-vous après avoir mangé ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Coupable. Je me dis que je devrais pouvoir mieux contrôler cela."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "La culpabilité ne vous aide pas. Nous pouvons explorer ensemble ce qui se passe avant ces envies de manger."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne sais pas vraiment. C'est comme si quelque chose prend le dessus."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Essayons de noter ce que vous ressentez juste avant, sans vous juger."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je peux essayer de tenir un petit carnet."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une bonne première étape. L'important est d'avancer avec douceur."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela va changer grand-chose."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Nous irons à votre rythme, sans pression."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre bienveillance."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Vous n'êtes pas seul dans cela."
+      }
+    ]
+  },
+  {
+    "id": "conv_059",
+    "scenario_id": 20,
+    "language": "ar",
+    "theme": "اضطرابات الأكل",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "عندني مشكلة في علاقتي مع الأكل. ناكل بكثرة لما أكون متوتر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى صعوباتك مع الأكل؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ حوالي سنة. ناكل حتى ما جائع، خصوصاً الليل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. الأكل يمكن يكون وسيلة للتعامل مع المشاعر. كيف تشعر بعد ما تأكل؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "ذنب. أضحك على نفسي أني يجب أقدر أضبط هاد الشيء."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "الذنب ما يساعد. يمكن نستكشف مع بعض شنو يحصل قبل هاد الرغبات في الأكل."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما أعرفش حقاً. كأن شي يسيطر علي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "حاول تدون مشاعرك قبل ما تأكل، من غير ما تحكم على نفسك."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، يمكن أدون في كارنيه صغير."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة أولى جيدة. الأهم نمشي بلطف."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يغير شي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. نمشي في وتيرتك، من غير ضغط."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على لطفك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. ما وحيدك في هاد الشيء."
+      }
+    ]
+  },
+  {
+    "id": "conv_060",
+    "scenario_id": 20,
+    "language": "en",
+    "theme": "Eating Disorders",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I struggle with my relationship to food. I eat a lot when I'm stressed."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you been struggling with food?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For about a year. I eat even when I'm not hungry, especially in the evening."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Food can become a way to manage emotions. How do you feel after eating?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Guilty. I tell myself I should be able to control this better."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Guilt doesn't help. We can explore together what happens before these urges to eat."
+      },
+      {
+        "speaker": "patient",
+        "content": "I don't really know. It's like something takes over."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Let's try to note what you feel just before, without judging yourself."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I can try keeping a small notebook."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good first step. The important thing is to move forward gently."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will change much."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. We'll go at your pace, without pressure."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your kindness."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. You are not alone in this."
+      }
+    ]
+  },
+  {
+    "id": "conv_061",
+    "scenario_id": 21,
+    "language": "fr",
+    "theme": "Gestion de la colère",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je m'énerve vite et je regrette après. Je crie sur mes proches."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand remarquez-vous cette colère ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis longtemps. Ça sort vite et je ne peux pas m'arrêter."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. La colère peut protéger d'autres émotions plus douloureuses. Qu'est-ce qui la déclenche généralement ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Surtout quand je ne me sens pas écouté ou respecté."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une réaction compréhensible. Avez-vous essayé de repérer les signes avant-coureurs dans votre corps ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je ne fais pas attention. Je passe directement à la colère."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons travailler sur des pauses respiratoires avant que la colère ne monte trop."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de remarquer quand ça commence."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un bon début. Même quelques secondes peuvent faire une différence."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela changera quelque chose."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Nous irons à votre rythme, sans pression."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je me sens un peu plus espoir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est encourageant. Chaque petit pas compte."
+      }
+    ]
+  },
+  {
+    "id": "conv_062",
+    "scenario_id": 21,
+    "language": "ar",
+    "theme": "إدارة الغضب",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أغضب بسرعة وأندم بعدين. أنصيح على أقرب الناس لي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى لاحظت الغضب هذا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ زمن طويل. يخرج بسرعة وما أقدرش أقف."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. الغضب يمكن يحمي من مشاعر أخرى أكثر ألماً. شنو يثيره عادة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خصوصاً لما ما نحسش إني مسموع أو محترم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا رد فعل مفهوم. جربت تلاحظ علامات في جسمك قبل ما يغضب؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، ما أنتبهش. أمر مباشرة للغضب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نعمل على وقفات تنفس قبل ما يرتفع الغضب كثيراً."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نلاحظ لما يبدا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "بداية جيدة. حتى ثواني معدودة يمكن تصنع فرق."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يغير شي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. نمشي في وتيرتك، من غير ضغط."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. عايش أمل أكثر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا مشجع. كل خطوة صغيرة تهم."
+      }
+    ]
+  },
+  {
+    "id": "conv_063",
+    "scenario_id": 21,
+    "language": "en",
+    "theme": "Anger Management",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I get angry quickly and regret it later. I shout at my loved ones."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you noticed this anger?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For a long time. It comes out fast and I can't stop it."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Anger can protect against more painful emotions. What usually triggers it?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Mainly when I don't feel listened to or respected."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's an understandable reaction. Have you tried noticing warning signs in your body?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I don't pay attention. I go straight to anger."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can work on breathing pauses before the anger rises too much."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to notice when it starts."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good start. Even a few seconds can make a difference."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will change anything."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. We'll go at your pace, without pressure."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I feel a little more hopeful."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's encouraging. Every small step counts."
+      }
+    ]
+  },
+  {
+    "id": "conv_064",
+    "scenario_id": 22,
+    "language": "fr",
+    "theme": "Solitude",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je me sens seul même quand je suis entouré de gens."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cette solitude ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis plusieurs années. Je suis entouré mais je me sens déconnecté."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. La solitude peut exister même en présence des autres. Qu'est-ce qui vous manque le plus ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Des liens profonds. Des personnes avec qui je peux vraiment parler."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un besoin fondamental. Avez-vous des activités où vous pourriez rencontrer des gens ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je travaillais beaucoup et j'ai laissé tomber mes loisirs."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Reprendre une activité qui vous plaît pourrait vous aider à créer de nouveaux liens."
+      },
+      {
+        "speaker": "patient",
+        "content": "Peut-être. Je ne sais pas par où commencer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Commencez par quelque chose de petit, une sortie par semaine, par exemple."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela suffira."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un premier pas. Nous reprendrons ce sujet à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Cela me donne une piste."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Avancez à votre rythme."
+      }
+    ]
+  },
+  {
+    "id": "conv_065",
+    "scenario_id": 22,
+    "language": "ar",
+    "theme": "الوحدة",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعايش وحدة حتى لما نكون محاطين بالناس."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بالوحدة؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ سنوات عديدة. محاط بالناس لكن نحس بقطع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. الوحدة ممكن تكون حتى في وجود الآخرين. شنو ينقصك أكثر؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "روابط عميقة. أشخاص يمكنني الحديث معهم حقاً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا حاجة أساسية. عندك أنشطة حيث يمكنك مقابلة الناس؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "كنشغال كبير بالشغل وخلّيت هواياتي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "رجوع لنشاط تحبه يمكن يساعدك تخلق روابط جديدة."
+      },
+      {
+        "speaker": "patient",
+        "content": "ربما. ما أعرفش منين نبدا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ابدأ بصغير، خروج واحد في الأسبوع، مثال."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يكفي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة أولى. نرجع لهذ الموضوع في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. هذا يعطيني وسيلة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. تمشي في وتيرتك."
+      }
+    ]
+  },
+  {
+    "id": "conv_066",
+    "scenario_id": 22,
+    "language": "en",
+    "theme": "Loneliness",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I feel lonely even when I'm surrounded by people."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you been feeling this loneliness?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several years. I'm surrounded but I feel disconnected."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Loneliness can exist even in the presence of others. What do you miss the most?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Deep connections. People I can really talk to."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a fundamental need. Do you have activities where you could meet people?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I worked a lot and dropped my hobbies."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Resuming an activity you enjoy could help you create new connections."
+      },
+      {
+        "speaker": "patient",
+        "content": "Maybe. I don't know where to start."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Start with something small, one outing per week, for example."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be enough."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a first step. We'll take up this topic at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. That gives me a lead."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Move at your own pace."
+      }
+    ]
+  },
+  {
+    "id": "conv_067",
+    "scenario_id": 23,
+    "language": "fr",
+    "theme": "Conflit familial",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'ai des tensions constantes avec mes parents. On ne se comprend plus."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ces tensions durent-elles ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis quelques années. Chaque discussion tourne au conflit."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. Les relations familiales peuvent être complexes. Que se passe-t-il quand vous discutez ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "On s'interrompt, on crie, et on ne s'écoute plus."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un schéma fréquent. Avez-vous essayé d'écouter sans interrompre, juste pour comprendre ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, je réagis tout de suite quand ils disent quelque chose que je n'aime pas."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons travailler sur une communication plus calme, une chose à la fois."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de les laisser finir avant de répondre."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un changement important. Cela peut apaiser les échanges."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr qu'ils accepteront."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous ne pouvez pas contrôler leur réaction, mais vous pouvez contrôler la vôtre."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour vos conseils."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Continuez à avancer doucement."
+      }
+    ]
+  },
+  {
+    "id": "conv_068",
+    "scenario_id": 23,
+    "language": "ar",
+    "theme": "النزاع الأسري",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "عندني توترات دايماً مع والديين. ما نرجع نفهم بعض."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى التوترات داير؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ بضع سنين. كل نقاش يتحول لصراع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. العلاقات الأسرية يمكن تكون معقدة. شنو يحصل لما تناقشوا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نقطع بعض، نصرخ، وما نرجع نسمع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا نمط متكرر. جربت تسمع من غير ما تقاطع، عشان تفهم؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، أرد فوراً لما يقولوا شي ما يعجبني."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نعمل على تواصل أكثر هدوء، شيء واحد في كل مرة."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نتركهم يمكملوا قبل ما نجيب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا تغيير مهم. يمكن يهدئ النقاشات."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن رح يقبلوا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ما نقدر نتحكم في رد فعلهم، لكن نقدر نتحكم في رد فعلنا."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على نصائحك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. استمر في المشي بلطف."
+      }
+    ]
+  },
+  {
+    "id": "conv_069",
+    "scenario_id": 23,
+    "language": "en",
+    "theme": "Family Conflict",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I have constant tensions with my parents. We don't understand each other anymore."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have these tensions lasted?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For a few years. Every discussion turns into conflict."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Family relationships can be complex. What happens when you discuss?"
+      },
+      {
+        "speaker": "patient",
+        "content": "We interrupt each other, we shout, and we don't listen anymore."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a frequent pattern. Have you tried listening without interrupting, just to understand?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I react immediately when they say something I don't like."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can work on calmer communication, one thing at a time."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to let them finish before answering."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's an important change. It can calm the exchanges."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure they'll accept."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You can't control their reaction, but you can control yours."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your advice."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. Keep moving forward gently."
+      }
+    ]
+  },
+  {
+    "id": "conv_070",
+    "scenario_id": 24,
+    "language": "fr",
+    "theme": "Équilibre vie pro / perso",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je n'arrive pas à équilibrer mon travail et ma vie personnelle."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand cet équilibre est-il rompu ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis environ deux ans. Je travaille même le week-end."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. Le travail peut empiéter sur la vie personnelle. Comment se passent vos soirées ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je réponds aux emails jusqu'à tard. Je n'ai plus de temps pour moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un signe classique de surcharge. Avez-vous essayé de fixer des limites horaires ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, j'ai peur que cela soit mal vu par ma hiérarchie."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une crainte légitime. Pourtant, préserver votre repos est indispensable pour rester efficace."
+      },
+      {
+        "speaker": "patient",
+        "content": "Vous avez raison. Je vais essayer de déconnecter à une heure fixe."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une démarche constructive. Commencez par une petite plage horaire protégée."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela sera accepté."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous pouvez commencer par en discuter avec votre responsable, sans ultimatum."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer ce soir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Nous ferons le point sur vos progrès bientôt."
+      }
+    ]
+  },
+  {
+    "id": "conv_071",
+    "scenario_id": 24,
+    "language": "ar",
+    "theme": "التوازن بين العمل والحياة",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "ما نقدرش نوازن بين الشغل والحياة الشخصية."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى انكسر التوازن هذا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ حوالي سنتين. نعامل حتى الأسبوع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. الشغل يمكن يتعدى على الحياة الشخصية. كيف تصير لياليك؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نعاود على الإيميلات حتى متأخر. ما عندناش وقت لنفوسنا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا علامة كلاسيكية على الإفراط في الشغل. جربت تحدد حدود زمنية؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، خائف يفهم بشكل سيء من المسؤولين."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "خوف مشروع. لكن الحفاظ على الراحة ضروري نكون فعالين."
+      },
+      {
+        "speaker": "patient",
+        "content": "صحتك. نجرب نفصل في وقت ثابت."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة بنّاءة. ابدأ بمدى زمنية صغيرة محمية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن رح يقبل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن تبدأ تناقش مع المسؤول، من غير إنذار."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب الليلة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. نقيم تقدمك قريباً."
+      }
+    ]
+  },
+  {
+    "id": "conv_072",
+    "scenario_id": 24,
+    "language": "en",
+    "theme": "Work-Life Balance",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I can't balance my work and my personal life."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when has this balance been broken?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For about two years. I work even on weekends."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Work can encroach on personal life. How are your evenings?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I answer emails until late. I no longer have time for myself."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a classic sign of overload. Have you tried setting time limits?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, I'm afraid it will be seen badly by my hierarchy."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate fear. However, preserving your rest is essential to remain effective."
+      },
+      {
+        "speaker": "patient",
+        "content": "You are right. I'll try to disconnect at a fixed time."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a constructive approach. Start with a small protected time slot."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be accepted."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You can start by discussing it with your manager, without an ultimatum."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try tonight."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. We'll review your progress soon."
+      }
+    ]
+  },
+  {
+    "id": "conv_073",
+    "scenario_id": 25,
+    "language": "fr",
+    "theme": "Anxiété liée à la santé",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je m'inquiète constamment pour ma santé. Je pense que je suis malade."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ces inquiétudes sont-elles présentes ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis environ un an. Je vérifie souvent mon corps à la recherche de signes."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. L'anxiété liée à la santé peut être épuisante. Qu'est-ce qui vous inquiète le plus ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur d'avoir une maladie grave sans le savoir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une peur compréhensible. Avez-vous consulté un médecin récemment pour faire le point ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Oui, mais je doute toujours des résultats."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons travailler sur la gestion de ces pensées, sans ignorer les soins nécessaires."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de moins vérifier mon corps."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un bon début. Chaque petit pas vers moins de vigilance compte."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela suffira."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une étape. Nous parlerons de vos progrès à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre soutien."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Vous allez y arriver pas à pas."
+      }
+    ]
+  },
+  {
+    "id": "conv_074",
+    "scenario_id": 25,
+    "language": "ar",
+    "theme": "القلق الصحي",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "مشغول البال باستمرار على صحتي. أحسب أنا مريض."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى القلق هاد موجود؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ حوالي سنة. التحقق من جسمي دايماً بحثاً عن علامات."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. القلق الصحي يمكن يكون مرهق. شنو يقلقك أكثر؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف أكون مريض بمرض خطير من غير ما أعرف."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا خوف مفهوم. استشرت طبيب مؤخراً عشان تبدا؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نعم، لكنني ما أثقش في النتائج."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نعمل على إدارة هاد الأفكار، من غير ما نهمل الرعاية الضرورية."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نتحققش من جسمنا كثيراً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه بداية جيدة. كل خطوة صغيرة نحو أقل انتباه تهم."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يكفي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة. نتحدث عن تقدمك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على دعمك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. أنت قادر تمشي خطوة خطوة."
+      }
+    ]
+  },
+  {
+    "id": "conv_075",
+    "scenario_id": 25,
+    "language": "en",
+    "theme": "Health Anxiety",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I constantly worry about my health. I think I'm sick."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have these concerns been present?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For about a year. I often check my body for signs."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Health anxiety can be exhausting. What worries you the most?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid of having a serious illness without knowing it."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's an understandable fear. Have you consulted a doctor recently to check?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Yes, but I always doubt the results."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can work on managing these thoughts, without ignoring necessary care."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to check my body less."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good start. Every small step towards less vigilance counts."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be enough."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a step. We'll talk about your progress at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your support."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. You will get there step by step."
+      }
+    ]
+  },
+  {
+    "id": "conv_076",
+    "scenario_id": 26,
+    "language": "fr",
+    "theme": "Perfectionnisme",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je veux que tout soit parfait et je suis dur avec moi-même quand ce ne l'est pas."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous ce besoin de perfection ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis longtemps, peut-être depuis l'école. J'ai peur de faire des erreurs."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. Le perfectionnisme peut être épuisant. Qu'est-ce qui se passe quand quelque chose n'est pas parfait ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je me sens nul et je pense que les autres vont me juger."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une réaction fréquente. Avez-vous essayé de vous autoriser à faire des erreurs ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Non, c'est difficile. Les erreurs me semblent inacceptables."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons travailler sur l'acceptation de l'imperfection, pas à pas."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer d'être plus indulgent avec moi-même."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une belle intention. Commencez par une petite chose non critique."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela changera quelque chose."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Nous irons à votre rythme, sans pression."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je me sens un peu plus léger."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est encourageant. Continuez avec douceur."
+      }
+    ]
+  },
+  {
+    "id": "conv_077",
+    "scenario_id": 26,
+    "language": "ar",
+    "theme": "الكمالوية",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "بغى كل شي يكون تام ونكون قاسي على نفسي لما ما يكونش تام."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بحاجة للكمال؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ زمن طويل، ربما من المدرسة. خائف أخطئ."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. الكمالوية يمكن تكون مرهقة. شنو يحصل لما شي ما يكونش تام؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "نعايش أنا فاشل وأظن الناس ستحكم علي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا رد فعل متكرر. جربت تسمح لنفسك تخطي؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "لا، صعب. الأخطاء تبدو لي غير مقبولة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نعمل على قبول الناقص، خطوة خطوة."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نكون أكثر تساهل مع نفسي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه نية جميلة. ابدأ بصغير غير ناقد."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يغير شي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. نمشي في وتيرتك، من غير ضغط."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. عايش أخف."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا مشجع. استمر بلطف."
+      }
+    ]
+  },
+  {
+    "id": "conv_078",
+    "scenario_id": 26,
+    "language": "en",
+    "theme": "Perfectionism",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I want everything to be perfect and I'm hard on myself when it's not."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you felt this need for perfection?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For a long time, maybe since school. I'm afraid of making mistakes."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Perfectionism can be exhausting. What happens when something is not perfect?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I feel useless and I think others will judge me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a frequent reaction. Have you tried allowing yourself to make mistakes?"
+      },
+      {
+        "speaker": "patient",
+        "content": "No, it's difficult. Mistakes seem unacceptable to me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can work on accepting imperfection, step by step."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to be more indulgent with myself."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a beautiful intention. Start with a small non-critical thing."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will change anything."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. We'll go at your pace, without pressure."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I feel a little lighter."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's encouraging. Continue gently."
+      }
+    ]
+  },
+  {
+    "id": "conv_079",
+    "scenario_id": 27,
+    "language": "fr",
+    "theme": "Anxiété de séparation",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'angoisse quand mes proches s'éloignent. J'ai peur de les perdre."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand ressentez-vous cette angoisse ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis plusieurs mois. Chaque séparation est difficile."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. L'angoisse de séparation peut être très présente. Que ressentez-vous quand ils partent ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai mal au ventre et je pense qu'il va leur arriver quelque chose."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une réaction compréhensible. Nous pouvons travailler sur des pensées plus apaisantes."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de moins m'inquiéter."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un bon début. Chaque petit pas vers plus de sérénité compte."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr que cela suffira."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une étape. Nous ferons le point sur vos progrès à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre aide."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Vous n'êtes pas seul."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr de pouvoir gérer cette angoisse."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous pouvez apprendre à l'apaiser peu à peu, à votre rythme."
+      }
+    ]
+  },
+  {
+    "id": "conv_080",
+    "scenario_id": 27,
+    "language": "ar",
+    "theme": "قلق الفراق",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أقلق لما أقرب الناس لي يبتعدوا. خائف أخسرهم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشعر بهذا القلق؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ عدة أشهر. كل فراق صعب."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. قلق الفراق يمكن يكون قوي جداً. شنو تشعر لما يبعدون؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "ألم في بطني وأعتقد أن شي سيحصل لهم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا رد فعل مفهوم. يمكن نعمل على أفكار أكثر هدوء."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نقلقش كثيراً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه بداية جيدة. كل خطوة صغيرة نحو أكثر سكينة تهم."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن هاد رح يكفي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة. نقيم تقدمك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على مساعدتك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. ما وحيدك."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نقدر نتعامل مع هاد القلق."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن تتعلم تسكني تدريجياً، في وتيرتك."
+      }
+    ]
+  },
+  {
+    "id": "conv_081",
+    "scenario_id": 27,
+    "language": "en",
+    "theme": "Separation Anxiety",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I get anxious when my loved ones move away. I'm afraid of losing them."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you been feeling this anxiety?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several months. Every separation is difficult."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Separation anxiety can be very present. What do you feel when they leave?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I have a stomach ache and I think something will happen to them."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's an understandable reaction. We can work on more calming thoughts."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to worry less."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good start. Every small step towards more serenity counts."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure it will be enough."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a step. We'll review your progress at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your help."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. You are not alone."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I can manage this anxiety."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You can learn to soothe it little by little, at your own pace."
+      }
+    ]
+  },
+  {
+    "id": "conv_082",
+    "scenario_id": 28,
+    "language": "fr",
+    "theme": "Inquiétude liée aux substances",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'utilise de l'alcool pour me détendre et j'ai peur d'en dépendre."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand buvez-vous de l'alcool pour vous détendre ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis environ un an. C'est devenu une habitude le soir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. L'alcool peut devenir une façon de gérer le stress. Comment vous sentez-vous quand vous n'en buvez pas ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Je suis irritable et j'ai du mal à dormir."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un signe que votre corps s'est habitué. Nous pouvons en parler sans jugement."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de réduire peu à peu."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une démarche constructive. Chaque pas vers moins de consommation compte."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr d'y arriver seul."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Si vous en ressentez le besoin, un professionnel de l'addictologie pourra vous accompagner."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de réduire cette semaine."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bien. Nous parlerons de vos progrès à notre prochaine séance."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr d'y arriver seul."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Vous n'êtes pas obligé d'y arriver seul. Nous sommes là pour vous aider."
+      }
+    ]
+  },
+  {
+    "id": "conv_083",
+    "scenario_id": 28,
+    "language": "ar",
+    "theme": "مخاوف استخدام المواد",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "نعامل الكحول للاسترخاء وخائف نتعلق فيه."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تشرب الكحول للاسترخاء؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ حوالي سنة. صارت عادة كل ليلة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. الكحول يمكن يكون وسيلة للتعامل مع التوتر. كيف تشعر لما ما تشربش؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "أكون متوتر وما نقدرش أنوم."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا علامة أن جسمك عاد. يمكن نتحدث من غير ما نحكم."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نقلل تدريجياً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة بنّاءة. كل خطوة نحو أقل استهلاك تهم."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نقدر وحدي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "إذا شعرت بالحاجة، مختص في الإدمان يمكن يرافقك."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نقلل هذا الأسبوع."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "زين. نتحدث عن تقدمك في الجلسة الجاية."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نقدر وحدي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "ما ملزم نتعب وحدك. نحن هنا لمساعدتك."
+      }
+    ]
+  },
+  {
+    "id": "conv_084",
+    "scenario_id": 28,
+    "language": "en",
+    "theme": "Substance Use Concerns",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I use alcohol to relax and I'm afraid of becoming dependent."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you been drinking alcohol to relax?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For about a year. It's become an evening habit."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Alcohol can become a way to manage stress. How do you feel when you don't drink?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm irritable and I have trouble sleeping."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a sign your body has gotten used to it. We can talk about it without judgment."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to reduce gradually."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a constructive approach. Every step towards less consumption counts."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll manage alone."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "If you feel the need, an addiction professional can accompany you."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to reduce this week."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Good. We'll talk about your progress at our next session."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I can do it alone."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You don't have to do it alone. We're here to help you."
+      }
+    ]
+  },
+  {
+    "id": "conv_085",
+    "scenario_id": 29,
+    "language": "fr",
+    "theme": "Reconversion professionnelle",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "Je pense à changer de carrière mais j'ai peur de l'inconnu."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand songez-vous à ce changement ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis plusieurs mois. Je ne m'épanouis plus dans mon travail actuel."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. Changer de carrière est une décision importante. Qu'est-ce qui vous attire ailleurs ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "J'aimerais faire quelque chose qui a plus de sens pour moi."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une motivation légitime. Avez-vous déjà exploré des pistes ou des formations ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Pas encore, je ne sais pas par où commencer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Nous pouvons commencer par lister vos intérêts et vos compétences."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de faire cette liste."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un bon premier pas. Avancez à votre rythme, sans pression."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr de réussir à trouver quelque chose de mieux."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Nous verrons ensemble quelles options s'offrent à vous."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci. Je me sens un peu plus clair."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est encourageant. Chaque étape compte."
+      }
+    ]
+  },
+  {
+    "id": "conv_086",
+    "scenario_id": 29,
+    "language": "ar",
+    "theme": "التحول المهني",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "فكر غير مساري المهني وخائف من المجهول."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى تفكر في هذا التغيير؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ عدة أشهر. ما بعايش في شغلي الحالي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. تغيير المسار المهني قرار مهم. شنو يجذبك في مكان آخر؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "بغى أعمل شي أكثر معنى لي."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا دافع مشروع. استكشفت مسارات أو تدريب؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "ما بعد، ما أعرفش منين نبدا."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "يمكن نبدا نعد اهتماماتك ومهاراتك."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نعمل القائمة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه خطوة أولى جيدة. تمشي في وتيرتك، من غير ضغط."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن ننجح نلقى شي أفضل."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. نشوف مع هاد الخيارات لحالتك."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً. عايش أوضح أكثر."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا مشجع. كل خطوة تهم."
+      }
+    ]
+  },
+  {
+    "id": "conv_087",
+    "scenario_id": 29,
+    "language": "en",
+    "theme": "Career Transition",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I'm thinking of changing careers but I'm afraid of the unknown."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when have you been considering this change?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For several months. I no longer thrive in my current job."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Changing careers is an important decision. What attracts you elsewhere?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I'd like to do something that has more meaning for me."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate motivation. Have you already explored options or training?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Not yet, I don't know where to start."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "We can start by listing your interests and skills."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to make this list."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good first step. Move at your own pace, without pressure."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll succeed in finding something better."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. We'll see together what options are available to you."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you. I feel a little clearer."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's encouraging. Every step counts."
+      }
+    ]
+  },
+  {
+    "id": "conv_088",
+    "scenario_id": 30,
+    "language": "fr",
+    "theme": "Vieillesse et retraite",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "J'angoisse à l'idée de prendre ma retraite et de perdre mes repères."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Bonjour. Je vous écoute. Depuis quand cette angoisse est-elle présente ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "Depuis quelques mois. La retraite approche et je ne sais pas quoi faire de mes journées."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je comprends. La retraite est une transition importante. Qu'est-ce qui vous inquiète le plus ?"
+      },
+      {
+        "speaker": "patient",
+        "content": "J'ai peur de m'ennuyer et de me sentir inutile."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une crainte fréquente. Nous pouvons explorer ensemble ce qui pourrait vous apporter du sens."
+      },
+      {
+        "speaker": "patient",
+        "content": "D'accord, je vais essayer de réfléchir à des activités."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est un bon début. Chaque petite idée peut ouvrir une porte."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr de trouver quelque chose qui me plaise vraiment."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "C'est une inquiétude légitime. Nous irons à votre rythme, sans pression."
+      },
+      {
+        "speaker": "patient",
+        "content": "Merci pour votre soutien."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Je vous en prie. Vous allez trouver votre nouveau rythme."
+      },
+      {
+        "speaker": "patient",
+        "content": "Je ne suis pas sûr de trouver une activité qui me plaise vraiment."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Il suffit d'en essayer une, et verrons ce qui vous convient."
+      }
+    ]
+  },
+  {
+    "id": "conv_089",
+    "scenario_id": 30,
+    "language": "ar",
+    "theme": "الشيخوخة والتقاعد",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "أقلق من فكرة التقاعد وفقدان المرجعيات."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "أهلاً بك. أنا نسمعك. منذ متى القلق هاد موجود؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "منذ بضعة أشهر. التقاعد يقترب وما أعرفش شنو أعمل في نهاري."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "فهمت. التقاعد تحول مهم. شنو يقلقك أكثر؟"
+      },
+      {
+        "speaker": "patient",
+        "content": "خائف أنمل وأنحس بعدم الفائدة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا خوف متكرر. يمكن نستكشف مع بعض شنو يمكن يعطيك معنى."
+      },
+      {
+        "speaker": "patient",
+        "content": "واش، نجرب نفكر في أنشطة."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذه بداية جيدة. كل فكرة صغيرة يمكن تفتح باب."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن نلقى شي يعجبني حقاً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "هذا قلق منطقي. نمشي في وتيرتك، من غير ضغط."
+      },
+      {
+        "speaker": "patient",
+        "content": "شكراً على دعمك."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "على الرحب والسعة. أنت تلاقي إيقاعك الجديد."
+      },
+      {
+        "speaker": "patient",
+        "content": "ما واثق إن ألاقي نشاط يعجبني حقاً."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "جرب نشاط واحد، وشوف إذا يناسبك."
+      }
+    ]
+  },
+  {
+    "id": "conv_090",
+    "scenario_id": 30,
+    "language": "en",
+    "theme": "Aging and Retirement",
+    "messages": [
+      {
+        "speaker": "patient",
+        "content": "I'm anxious about the idea of retiring and losing my bearings."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Hello. I'm listening. Since when has this anxiety been present?"
+      },
+      {
+        "speaker": "patient",
+        "content": "For a few months. Retirement is approaching and I don't know what to do with my days."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "I understand. Retirement is an important transition. What worries you the most?"
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm afraid of being bored and feeling useless."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a frequent fear. We can explore together what could bring you meaning."
+      },
+      {
+        "speaker": "patient",
+        "content": "Okay, I'll try to think about activities."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a good start. Every small idea can open a door."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll find something I really like."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "That's a legitimate concern. We'll go at your pace, without pressure."
+      },
+      {
+        "speaker": "patient",
+        "content": "Thank you for your support."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "You're welcome. You will find your new rhythm."
+      },
+      {
+        "speaker": "patient",
+        "content": "I'm not sure I'll find an activity I truly enjoy."
+      },
+      {
+        "speaker": "psychologue",
+        "content": "Just try one, and we'll see what suits you."
+      }
+    ]
+  }
+]

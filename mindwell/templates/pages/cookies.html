@@ -1,0 +1,169 @@
+{% extends "pages/base.html" %}
+
+{% block title %}Politique relative aux cookies - MindWell{% endblock %}
+
+{% block content %}
+
+<section class="page-header" style="text-align: center; margin-bottom: 2.5rem;">
+    <h1>Politique relative aux cookies</h1>
+    <p>
+        Informations concernant l'utilisation des cookies sur la plateforme MindWell.
+    </p>
+</section>
+
+<section style="max-width: 900px; margin: 0 auto; line-height: 1.8;">
+
+    <div style="margin-bottom: 2rem;">
+        <h2>1. Introduction</h2>
+        <p>
+            La plateforme <strong>MindWell</strong> peut utiliser des cookies et
+            technologies similaires afin d'assurer son bon fonctionnement,
+            d'améliorer l'expérience utilisateur et de faciliter la navigation.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>2. Qu'est-ce qu'un cookie ?</h2>
+        <p>
+            Un cookie est un petit fichier enregistré sur l'appareil de
+            l'utilisateur lorsqu'il consulte un site web. Il permet notamment
+            au site de reconnaître certaines informations liées à la navigation
+            et de conserver certaines préférences.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>3. Types de cookies utilisés</h2>
+
+        <h3>Cookies nécessaires</h3>
+        <p>
+            Ces cookies peuvent être nécessaires au fonctionnement de certaines
+            fonctionnalités de MindWell, notamment la gestion de la session,
+            l'authentification et la sécurité de la plateforme.
+        </p>
+
+        <h3>Cookies de préférences</h3>
+        <p>
+            Ils peuvent permettre de mémoriser certaines préférences de
+            navigation, telles que les paramètres ou choix effectués par
+            l'utilisateur.
+        </p>
+
+        <h3>Cookies techniques</h3>
+        <p>
+            Certains cookies peuvent être utilisés pour assurer le bon
+            fonctionnement technique des pages et des fonctionnalités du site.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>4. Utilisation des cookies</h2>
+        <p>
+            Les cookies peuvent notamment être utilisés pour :
+        </p>
+
+        <ul>
+            <li>maintenir la session de l'utilisateur ;</li>
+            <li>sécuriser l'accès aux comptes ;</li>
+            <li>mémoriser certaines préférences ;</li>
+            <li>faciliter la navigation sur la plateforme ;</li>
+            <li>améliorer le fonctionnement général de MindWell.</li>
+        </ul>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>5. Cookies et authentification</h2>
+        <p>
+            Lorsqu'un utilisateur se connecte à son compte, des cookies
+            techniques peuvent être nécessaires pour maintenir sa session
+            active et permettre l'accès aux fonctionnalités correspondant
+            à son rôle, notamment patient ou psychologue.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>6. Gestion des cookies</h2>
+        <p>
+            L'utilisateur peut configurer son navigateur afin d'accepter,
+            bloquer ou supprimer certains cookies.
+        </p>
+
+        <p>
+            Toutefois, la désactivation de certains cookies nécessaires peut
+            entraîner le dysfonctionnement de certaines fonctionnalités de
+            la plateforme, notamment celles liées à l'authentification ou
+            à la gestion des sessions.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>7. Données personnelles</h2>
+        <p>
+            Les cookies peuvent être associés à certaines informations
+            techniques nécessaires au fonctionnement de la plateforme.
+            MindWell applique des mesures visant à protéger les informations
+            des utilisateurs.
+        </p>
+
+        <p>
+            Pour plus d'informations concernant la collecte et l'utilisation
+            des données personnelles, consultez notre
+            <a href="{% url 'privacy' %}">
+                politique de confidentialité
+            </a>.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>8. Cookies tiers</h2>
+        <p>
+            Certaines fonctionnalités ou services externes éventuellement
+            intégrés à MindWell peuvent utiliser leurs propres mécanismes
+            techniques ou cookies. Leur utilisation dépend des services
+            concernés et de leur propre politique de confidentialité.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>9. Sécurité</h2>
+        <p>
+            Les cookies utilisés dans le cadre du fonctionnement de MindWell
+            sont destinés à assurer des fonctionnalités techniques et ne
+            doivent pas être considérés comme un moyen de stockage de
+            données sensibles de consultation.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>10. Modification de la politique</h2>
+        <p>
+            Cette politique relative aux cookies peut être modifiée lorsque
+            cela est nécessaire, notamment en cas d'évolution des
+            fonctionnalités de la plateforme ou de ses mécanismes techniques.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 2rem;">
+        <h2>11. Contact</h2>
+        <p>
+            Pour toute question concernant l'utilisation des cookies ou le
+            fonctionnement de la plateforme, l'utilisateur peut consulter
+            la page de contact de MindWell.
+        </p>
+
+        <p>
+            <a href="{% url 'contact' %}">
+                Contacter MindWell
+            </a>
+        </p>
+    </div>
+
+    <div style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ddd;">
+        <p style="font-size: 0.9rem; color: #666;">
+            Dernière mise à jour : octobre 2026
+        </p>
+    </div>
+
+</section>
+
+{% endblock %}

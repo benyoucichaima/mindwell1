@@ -1,0 +1,66 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindWell — {% trans "Choisir le type de compte" %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --navy: #0b1d3a; --cream: #faf8f5; --white: #ffffff; --text-dark: #1a1a2e; --text-medium: #4a4a5a; --border: #e0ddd8; --radius-lg: 16px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--cream); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+        .container { max-width: 900px; width: 100%; text-align: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); font-weight: 700; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+        .subtitle { color: var(--text-medium); font-size: 1.1rem; margin-bottom: 40px; }
+        .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .choice-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 40px 30px; text-align: start; cursor: pointer; transition: all 0.3s ease; text-decoration: none; color: inherit; }
+        .choice-card:hover { border-color: var(--navy); transform: translateY(-4px); box-shadow: 0 10px 30px rgba(11, 29, 58, 0.08); }
+        .choice-icon { width: 60px; height: 60px; background: var(--cream); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--navy); margin-bottom: 20px; }
+        .choice-card h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 12px; }
+        .choice-card p { color: var(--text-medium); font-size: 0.95rem; line-height: 1.6; margin-bottom: 20px; }
+        .features { list-style: none; }
+        .features li { padding: 6px 0; font-size: 0.9rem; color: var(--text-dark); display: flex; align-items: center; gap: 10px; }
+        .features li i { color: #059669; font-size: 0.8rem; }
+        .back-link { display: inline-block; margin-top: 40px; color: var(--text-medium); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+        .back-link:hover { color: var(--navy); }
+        @media (max-width: 768px) { .choices { grid-template-columns: 1fr; } }
+        [dir="rtl"] .choice-card { text-align: right; }
+        [dir="rtl"] .features li i { margin-left: 10px; margin-right: 0; }
+    </style>
+</head>
+<body>
+{% include "includes/language_switcher.html" %}
+    <div class="container">
+        <a href="{% url 'home' %}" class="logo"><i class="fas fa-brain"></i> MindWell</a>
+        <p class="subtitle">{% trans "Choisissez le type de compte qui correspond à vos besoins" %}</p>
+        
+        <div class="choices">
+            <a href="{% url 'accounts:register_patient' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" class="choice-card">
+                <div class="choice-icon"><i class="fas fa-user"></i></div>
+                <h2>{% trans "Je suis Patient" %}</h2>
+                <p>{% trans "Je souhaite consulter un psychologue pour mon bien-être mental dans un cadre sécurisé et confidentiel." %}</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> {% trans "Réserver des consultations en ligne" %}</li>
+                    <li><i class="fas fa-check"></i> {% trans "Messagerie sécurisée avec votre thérapeute" %}</li>
+                    <li><i class="fas fa-check"></i> {% trans "Suivi de votre progression" %}</li>
+                </ul>
+            </a>
+            
+            <a href="{% url 'accounts:register_psychologue' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" class="choice-card">
+                <div class="choice-icon"><i class="fas fa-user-md"></i></div>
+                <h2>{% trans "Je suis Psychologue" %}</h2>
+                <p>{% trans "Je souhaite proposer mes services de consultation en ligne et rejoindre un réseau de professionnels vérifiés." %}</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> {% trans "Gérer votre agenda et vos disponibilités" %}</li>
+                    <li><i class="fas fa-check"></i> {% trans "Outils d'analyse et dossiers patients" %}</li>
+                    <li><i class="fas fa-check"></i> {% trans "Vérification professionnelle par un administrateur" %}</li>
+                </ul>
+            </a>
+        </div>
+        
+        <a href="{% url 'accounts:login' %}" class="back-link">← {% trans "Déjà un compte ? Se connecter" %}</a>
+    </div>
+</body>
+</html>

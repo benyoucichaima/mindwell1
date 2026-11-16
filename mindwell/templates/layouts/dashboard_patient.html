@@ -1,0 +1,236 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Tableau de bord -
+MindWell{% endblock %} {% block content %}
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <a href="{% url 'accounts:patient_dashboard' %}" class="sidebar-logo">
+        <span class="logo-icon"><i class="fas fa-brain"></i></span>
+        <span class="logo-text"
+          >MindWell<small>Votre espace de bien-être</small></span
+        >
+      </a>
+    </div>
+
+    <nav>
+      <div class="nav-title">NAVIGATION</div>
+
+      <a href="{% url 'accounts:patient_dashboard' %}" class="nav-item active">
+        <i class="fas fa-house"></i><span>Tableau de bord</span>
+      </a>
+
+      <a href="{% url 'accounts:trouver_psychologue' %}" class="nav-item">
+        <i class="fas fa-user-md"></i><span>Trouver un psychologue</span>
+      </a>
+
+      <a href="{% url 'accounts:rendez_vous' %}" class="nav-item">
+        <i class="fas fa-calendar-check"></i><span>Rendez-vous</span>
+      </a>
+
+      <a href="{% url 'accounts:messages_list' %}" class="nav-item">
+        <i class="fas fa-comments"></i><span>Messages</span>
+      </a>
+
+      <a href="{% url 'accounts:parametres' %}" class="nav-item">
+        <i class="fas fa-user-circle"></i><span>Mon profil</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <a href="{% url 'accounts:logout' %}" class="nav-item logout">
+        <i class="fas fa-right-from-bracket"></i><span>Déconnexion</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div style="display: flex; align-items: center; gap: 13px">
+        <button
+          class="mobile-menu-btn"
+          onclick="document.getElementById('sidebar').classList.toggle('open')"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div>
+          <div
+            style="font-size: 0.68rem; color: var(--light); margin-bottom: 2px"
+          >
+            MindWell
+          </div>
+          <div style="font-size: 0.82rem; color: var(--muted)">
+            Espace patient
+          </div>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="notification-wrapper">
+          <button
+            type="button"
+            class="notification-btn"
+            id="notifBtn"
+            aria-label="Notifications"
+          >
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">0</span>
+          </button>
+        </div>
+
+        <div class="user-profile">
+          <div class="user-avatar">
+            {{ user.first_name|default:user.username|first|upper }}
+          </div>
+          <div>
+            <div class="user-name">
+              {{ user.get_full_name|default:user.username }}
+            </div>
+            <div class="user-role">Patient</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Welcome Card -->
+    <section class="welcome-card">
+      <div class="welcome-content">
+        <div class="welcome-label">Votre espace personnel</div>
+        <h1>Bonjour, {{ user.first_name|default:user.username }}</h1>
+        <p>
+          Prenez soin de votre bien-être. Retrouvez ici vos rendez-vous et votre
+          activité récente.
+        </p>
+      </div>
+      <div class="welcome-decoration"><i class="fas fa-brain"></i></div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-calendar-days"></i></div>
+        <div class="stat-info">
+          <h4>Total rendez-vous</h4>
+          <p>{{ appointments.count }}</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div
+          class="stat-icon"
+          style="background: var(--green-soft); color: var(--green)"
+        >
+          <i class="fas fa-circle-check"></i>
+        </div>
+        <div class="stat-info">
+          <h4>Rendez-vous acceptés</h4>
+          <p>{{ confirmed_sessions_count }}</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div
+          class="stat-icon"
+          style="background: var(--orange-soft); color: var(--orange)"
+        >
+          <i class="fas fa-hourglass-half"></i>
+        </div>
+        <div class="stat-info">
+          <h4>En attente</h4>
+          <p>{{ pending_requests }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <!-- Appointments -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Mes rendez-vous</h3>
+        </div>
+
+        {% if appointments %} {% for appointment in appointments %}
+        <div class="appointment-item">
+          <div class="appt-info">
+            <div class="appt-date">
+              <span class="day">{{ appointment.date|date:"d" }}</span>
+              <span class="month">{{ appointment.date|date:"M" }}</span>
+            </div>
+            <div class="appt-details">
+              <h4>
+                Dr. {{ appointment.psychologue.first_name }} {{
+                appointment.psychologue.last_name }}
+              </h4>
+              <p>
+                <i class="fas fa-clock"></i> {{ appointment.start_time|time:"H:i"
+                }}
+                <span style="margin: 0 5px">•</span>
+                {{ appointment.notes|default:"Consultation" }}
+              </p>
+            </div>
+          </div>
+          <span
+            class="status-badge {% if appointment.status == 'confirmed' %}status-confirmed{% else %}status-pending{% endif %}"
+          >
+            {{ appointment.get_status_display }}
+          </span>
+          {% if appointment.status == 'confirmed' and appointment.payment_status == 'unpaid' %}
+          <a href="{% url 'accounts:payment_page' appointment.id %}" class="btn btn-primary">Payer</a>
+          {% endif %}
+        </div>
+        {% endfor %} {% else %}
+        <div class="empty-state">
+          <div class="empty-state-icon">
+            <i class="fas fa-calendar-xmark"></i>
+          </div>
+          <p>Vous n'avez aucun rendez-vous.</p>
+          <a
+            href="{% url 'accounts:trouver_psychologue' %}"
+            class="btn btn-primary"
+            style="width: auto; margin-top: 12px"
+          >
+            <i class="fas fa-plus"></i> Réserver un rendez-vous
+          </a>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Help Card -->
+      <div>
+        <div class="card help-card" style="margin-bottom: 22px">
+          <div class="help-icon"><i class="fas fa-user-doctor"></i></div>
+          <h3>Besoin d'aide ?</h3>
+          <p>Trouvez le psychologue qui correspond le mieux à vos besoins.</p>
+          <a href="{% url 'accounts:trouver_psychologue' %}" class="btn btn-primary">
+            Trouver un psychologue <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const notifBtn = document.getElementById("notifBtn");
+    const notifDropdown = document.getElementById("notifDropdown");
+
+    if (notifBtn && notifDropdown) {
+      notifBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        const visible = notifDropdown.style.display === "block";
+        notifDropdown.style.display = visible ? "none" : "block";
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".notification-wrapper")) {
+          notifDropdown.style.display = "none";
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

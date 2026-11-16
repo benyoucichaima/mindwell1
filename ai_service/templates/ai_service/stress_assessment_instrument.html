@@ -1,0 +1,153 @@
+{% load navigation_tags %}
+<!doctype html>
+<html lang="{{ language }}" dir="{{ direction }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ instrument_name }} | MindWell</title>
+    <style>
+      :root { --navy:#0b1d3a; --cream:#faf8f5; --white:#fff; --text:#1a1a2e; --muted:#596173; --border:#e0ddd8; --blue:#536fb2; font-family:"Inter","Segoe UI",sans-serif; }
+      * { box-sizing:border-box; }
+      body { margin:0; color:var(--text); background:var(--cream); line-height:1.65; }
+      html[lang="ar"] body { font-family:"Cairo","Segoe UI",sans-serif; }
+      .page { width:min(900px,100%); margin:0 auto; padding:24px; }
+      .card { background:var(--white); border:1px solid var(--border); border-radius:18px; padding:clamp(18px,4vw,36px); box-shadow:0 8px 26px #0b1d3a0d; margin-bottom:18px; }
+      .language-switcher { display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-bottom:18px; color:var(--muted); font-size:.9rem; }
+      .language-switcher select { min-height:40px; padding:6px 32px 6px 10px; border:1px solid var(--border); border-radius:8px; background:var(--white); color:var(--text); font:inherit; }
+      h1,h2 { color:var(--navy); line-height:1.35; }
+      h1 { margin-top:0; font-size:clamp(1.4rem,3.6vw,1.9rem); }
+      .intro,.disclaimer,.instruction { color:var(--muted); }
+      .disclaimer { padding:12px 14px; background:#fff5e5; border-inline-start:4px solid #c47f17; border-radius:8px; }
+      .instruction { margin:0 0 6px; }
+      .period { display:inline-block; padding:3px 10px; border-radius:999px; background:#eef1f8; color:var(--navy); font-size:.82rem; font-weight:700; margin-bottom:8px; }
+      .progress-wrap { position:sticky; top:0; background:var(--cream); padding:10px 0; z-index:1; }
+      .progress-label { display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:.9rem; }
+      progress { width:100%; height:12px; accent-color:var(--navy); }
+      .question { padding:16px 0; border-bottom:1px solid #eee; }
+      .question:last-child { border-bottom:none; }
+      .question p { margin:0 0 12px; font-weight:600; }
+      .choices { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:8px; }
+      .choice { position:relative; }
+      .choice input { position:absolute; opacity:0; inset:0; }
+      .choice span { min-height:52px; display:flex; align-items:center; justify-content:center; padding:8px 10px; border:1px solid #9aa2b2; border-radius:10px; text-align:center; cursor:pointer; transition:background .2s,border-color .2s,color .2s; font-size:.9rem; }
+      .choice input:checked + span { background:var(--navy); border-color:var(--navy); color:white; }
+      .choice input:focus-visible + span { outline:3px solid var(--blue); outline-offset:2px; }
+      .error { color:#8d2923; font-weight:700; }
+      .button { min-height:48px; padding:10px 18px; border:1px solid var(--navy); border-radius:10px; display:inline-flex; align-items:center; justify-content:center; text-decoration:none; background:var(--navy); color:#fff; font:inherit; cursor:pointer; }
+      .button.secondary { background:white; color:var(--navy); }
+      .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+      a:focus-visible,button:focus-visible { outline:3px solid var(--blue); outline-offset:2px; }
+      @media(max-width:700px) {
+        .page { padding:12px; }
+        .choices { grid-template-columns:1fr 1fr; }
+        .actions .button { width:100%; }
+      }
+      @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition-duration:.01ms !important; } }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      {% back_button 'ai_service:stress_assessment' %}
+      <section class="card">
+        <div class="language-switcher">
+          <label for="pageLanguage">{{ copy.language_label }}</label>
+          <select id="pageLanguage" aria-label="{{ copy.language_label }}">
+            <option value="fr" {% if language == "fr" %}selected{% endif %}>Français</option>
+            <option value="ar" {% if language == "ar" %}selected{% endif %}>العربية</option>
+            <option value="en" {% if language == "en" %}selected{% endif %}>English</option>
+          </select>
+        </div>
+        <h1>{{ instrument_name }}</h1>
+        <p class="instruction">{{ instruction }}</p>
+        <span class="period">{{ period }}</span>
+        <p class="disclaimer"><strong>{{ copy.disclaimer_title }}</strong> {{ copy.disclaimer }}</p>
+        {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+        <div class="progress-wrap">
+          <div class="progress-label"><span>{{ copy.progress }}</span><span id="progressText" data-format="{{ copy.progress_count }}">0</span></div>
+          <progress id="progress" max="{{ total_questions }}" value="0" aria-label="{{ copy.progress_aria }}"></progress>
+        </div>
+        <form method="post" id="assessmentForm" data-validation-message="{{ copy.error_all }}" data-instrument="{{ instrument }}">
+          {% csrf_token %}
+          <input type="hidden" name="answers" id="answersInput">
+          {% for question in questions %}
+            <div class="question">
+              <p>{{ forloop.counter }}. {{ question }}</p>
+              <div class="choices" role="radiogroup" aria-label="{{ forloop.counter }}. {{ question }}">
+                {% for ans in answers %}
+                  <label class="choice">
+                    <input type="radio" name="{{ instrument }}_{{ forloop.parentloop.counter }}" value="{{ ans.value }}" data-section="{{ instrument }}">
+                    <span>{{ ans.value }} – {{ ans.label }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+          <div class="actions">
+            <button class="button" type="submit">{{ copy.submit }}</button>
+            <a class="button secondary" href="{% url 'ai_service:stress_assessment' %}">{{ copy.back_assessments }}</a>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script>
+      (() => {
+        const form = document.getElementById("assessmentForm");
+        const languagePicker = document.getElementById("pageLanguage");
+        const inputs = [...form.querySelectorAll('input[type="radio"]')];
+        const progress = document.getElementById("progress");
+        const progressText = document.getElementById("progressText");
+        const total = {{ total_questions }};
+        const answersInput = document.getElementById("answersInput");
+
+        languagePicker.addEventListener("change", () => {
+          const answers = {};
+          inputs.filter(i => i.checked).forEach(i => { answers[i.name] = i.value; });
+          sessionStorage.setItem("stressAssessmentAnswers_" + form.dataset.instrument, JSON.stringify(answers));
+          const secure = location.protocol === "https:" ? "; Secure" : "";
+          document.cookie = `stress_assessment_language=${languagePicker.value}; path=/; max-age=31536000; SameSite=Lax${secure}`;
+          location.reload();
+        });
+        form.addEventListener("invalid", (event) => {
+          event.target.setCustomValidity(form.dataset.validationMessage);
+        }, true);
+        form.addEventListener("change", (event) => {
+          if (event.target.matches('input[type="radio"]')) {
+            form.querySelectorAll(`input[name="${event.target.name}"]`)
+              .forEach((input) => input.setCustomValidity(""));
+          }
+        });
+
+        const storageKey = "stressAssessmentAnswers_" + form.dataset.instrument;
+        const savedAnswers = sessionStorage.getItem(storageKey);
+        if (savedAnswers) {
+          sessionStorage.removeItem(storageKey);
+          const answers = JSON.parse(savedAnswers);
+          for (const input of inputs) {
+            if (answers[input.name] === input.value) input.checked = true;
+          }
+        }
+
+        function updateProgress() {
+          const answered = new Set(inputs.filter((input) => input.checked).map((input) => input.name)).size;
+          progress.value = answered;
+          progressText.textContent = progressText.dataset.format
+            .replace("{answered}", answered)
+            .replace("{total}", total);
+        }
+        form.addEventListener("change", updateProgress);
+        updateProgress();
+
+        form.addEventListener("submit", (e) => {
+          const answers = {};
+          inputs.filter(i => i.checked).forEach(i => { answers[i.name] = parseInt(i.value); });
+          if (Object.keys(answers).length < total) {
+            e.preventDefault();
+            alert(form.dataset.validationMessage);
+            return;
+          }
+          answersInput.value = JSON.stringify(answers);
+        });
+      })();
+    </script>
+  </body>
+</html>

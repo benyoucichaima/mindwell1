@@ -1,0 +1,1601 @@
+{% load static %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindWell — Téléconsultation & Santé Mentale</title>
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Styles CSS -->
+    <style>
+      :root {
+        --navy: #0b1d3a;
+        --navy-light: #1a2d4a;
+        --navy-dark: #060f1f;
+        --cream: #faf8f5;
+        --cream-dark: #f0ede7;
+        --white: #ffffff;
+        --text-dark: #1a1a2e;
+        --text-medium: #4a4a5a;
+        --text-light: #7a7a8a;
+        --success: #2d8a4e;
+        --warning: #c47f17;
+        --danger: #c0392b;
+        --border: #e0ddd8;
+        --shadow-sm: 0 1px 3px rgba(11, 29, 58, 0.06);
+        --shadow-md: 0 4px 12px rgba(11, 29, 58, 0.08);
+        --shadow-lg: 0 8px 30px rgba(11, 29, 58, 0.12);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 20px;
+        --font-serif: "Playfair Display", Georgia, serif;
+        --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        color: var(--text-dark);
+        background: var(--cream);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        line-height: 1.3;
+        color: var(--navy);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: var(--transition);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .container {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: var(--radius-md);
+        font-family: var(--font-sans);
+        font-weight: 500;
+        font-size: 15px;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        outline: none;
+        white-space: nowrap;
+      }
+
+      .btn-primary {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        background: var(--navy-light);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: var(--navy);
+        border: 2px solid var(--navy);
+      }
+
+      .btn-outline:hover {
+        background: var(--navy);
+        color: var(--white);
+      }
+
+      .btn-light {
+        background: var(--white);
+        color: var(--navy);
+      }
+
+      .btn-light:hover {
+        background: var(--cream);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-lg {
+        padding: 16px 32px;
+        font-size: 16px;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        gap: 24px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--navy);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .logo-name {
+        font-family: var(--font-serif);
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+      }
+
+      .logo-sub {
+        font-size: 11px;
+        color: var(--text-light);
+        font-weight: 400;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .nav-link,
+      .nav-link-text {
+        font-weight: 500;
+        color: var(--text-medium);
+        font-size: 15px;
+      }
+
+      .nav-link:hover,
+      .nav-link-text:hover,
+      .nav-link.active {
+        color: var(--navy);
+      }
+
+      .nav-link.active {
+        position: relative;
+      }
+
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--navy);
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .user-avatar-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--navy);
+        color: var(--white);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        transition: var(--transition);
+      }
+
+      .user-avatar-btn:hover {
+        background: var(--navy-light);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--navy);
+      }
+
+      /* Trust Bar */
+      .trust-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0;
+      }
+
+      .trust-bar-inner {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .trust-badge {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--text-medium);
+        font-weight: 500;
+      }
+
+      .trust-badge i {
+        color: var(--success);
+        font-size: 14px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: var(--cream);
+        padding: 80px 0 100px;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: var(--white);
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-medium);
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-sm);
+        letter-spacing: 0.5px;
+      }
+
+      .hero-badge i {
+        color: var(--navy);
+        font-size: 12px;
+      }
+
+      .hero-title {
+        font-size: 56px;
+        color: var(--navy);
+        margin-bottom: 24px;
+        line-height: 1.15;
+      }
+
+      .hero-description {
+        font-size: 17px;
+        color: var(--text-medium);
+        margin-bottom: 32px;
+        line-height: 1.7;
+        max-width: 540px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 48px;
+        flex-wrap: wrap;
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-value {
+        font-family: var(--font-serif);
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.1;
+      }
+
+      .stat-label {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-top: 4px;
+      }
+
+      .hero-image-wrapper {
+        position: relative;
+      }
+
+      .hero-image {
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        height: 560px;
+        object-fit: cover;
+      }
+
+      .hero-floating-card {
+        position: absolute;
+        bottom: 30px;
+        left: -30px;
+        background: var(--white);
+        padding: 20px 24px;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        max-width: 320px;
+      }
+
+      .floating-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--navy);
+        flex-shrink: 0;
+      }
+
+      .floating-text {
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        color: var(--text-medium);
+      }
+
+      .floating-text strong {
+        color: var(--navy);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      /* Sections */
+      .section {
+        padding: 100px 0;
+      }
+
+      .section-light {
+        background: var(--white);
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 60px;
+      }
+
+      .section-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-light);
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        font-size: 44px;
+        color: var(--navy);
+        margin-bottom: 20px;
+      }
+
+      .section-subtitle {
+        font-size: 17px;
+        color: var(--text-medium);
+        line-height: 1.7;
+      }
+
+      /* Why Grid */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+
+      .why-card {
+        background: var(--white);
+        padding: 32px 28px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .section-light .why-card {
+        background: var(--cream);
+      }
+
+      .why-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .why-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--navy);
+        font-size: 20px;
+      }
+
+      .section-light .why-icon {
+        background: var(--white);
+      }
+
+      .why-card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+
+      .why-card p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+
+      .why-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--navy);
+        margin-top: auto;
+      }
+
+      .why-link:hover {
+        gap: 12px;
+      }
+
+      /* Journey Steps */
+      .journey-steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+      }
+
+      .journey-step {
+        background: var(--white);
+        padding: 32px 24px;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+      }
+
+      .journey-step:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .step-number {
+        width: 52px;
+        height: 52px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-serif);
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 auto 20px;
+      }
+
+      .journey-step h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        color: var(--navy);
+      }
+
+      .journey-step p {
+        font-size: 14px;
+        color: var(--text-medium);
+        line-height: 1.6;
+      }
+
+      /* Modes Grid */
+      .modes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .mode-card {
+        background: var(--white);
+        padding: 40px 32px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mode-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+      }
+
+      .mode-icon {
+        width: 64px;
+        height: 64px;
+        background: var(--cream);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        font-size: 28px;
+        color: var(--navy);
+      }
+
+      .mode-category {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-light);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .mode-card h3 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        color: var(--navy);
+      }
+
+      .mode-card p {
+        font-size: 15px;
+        color: var(--text-medium);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        flex-grow: 1;
+      }
+
+      .mode-features {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .mode-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+        color: var(--text-medium);
+      }
+
+      .mode-feature i {
+        color: var(--success);
+        font-size: 14px;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+
+      /* Testimonials */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .testimonial-card {
+        background: var(--white);
+        padding: 32px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .testimonial-stars {
+        color: #f1c40f;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+
+      .testimonial-stars i {
+        margin-right: 2px;
+      }
+
+      .testimonial-text {
+        font-size: 15px;
+        color: var(--text-medium);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        flex-grow: 1;
+        font-style: italic;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+
+      .author-avatar {
+        width: 44px;
+        height: 44px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .author-name {
+        font-weight: 600;
+        color: var(--navy);
+        font-size: 15px;
+      }
+
+      .author-info {
+        font-size: 13px;
+        color: var(--text-light);
+        margin-top: 2px;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: var(--navy);
+        color: var(--white);
+        padding: 100px 0 80px;
+        text-align: center;
+      }
+
+      .cta-section .section-title {
+        color: var(--white);
+      }
+
+      .cta-center {
+        margin: 40px 0;
+      }
+
+      .cta-note {
+        max-width: 640px;
+        margin: 40px auto 0;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+      }
+
+      .cta-note strong {
+        color: var(--white);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--navy-dark);
+        color: var(--white);
+        padding: 60px 0 30px;
+      }
+
+      .emergency-bar {
+        display: flex;
+        gap: 32px;
+        flex-wrap: wrap;
+        padding: 20px 24px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-md);
+        margin-bottom: 50px;
+        align-items: center;
+      }
+
+      .emergency-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .emergency-item i {
+        color: var(--white);
+      }
+
+      .emergency-item strong {
+        color: var(--white);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 50px;
+      }
+
+      .footer-brand p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.7;
+        margin: 20px 0;
+        max-width: 320px;
+      }
+
+      .footer-cert {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .footer-column h4 {
+        font-size: 15px;
+        margin-bottom: 20px;
+        color: var(--white);
+        font-family: var(--font-sans);
+        font-weight: 600;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-links a {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        cursor: pointer;
+      }
+
+      .footer-links a:hover {
+        color: var(--white);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .hero-title {
+          font-size: 44px;
+        }
+
+        .hero-image {
+          height: 450px;
+        }
+
+        .hero-floating-card {
+          left: 20px;
+          bottom: 20px;
+        }
+
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .journey-steps {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .modes-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+
+        .section-title {
+          font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .nav-actions .btn {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero {
+          padding: 50px 0 70px;
+        }
+
+        .hero-title {
+          font-size: 34px;
+        }
+
+        .hero-description {
+          font-size: 16px;
+        }
+
+        .hero-stats {
+          gap: 24px;
+        }
+
+        .stat-value {
+          font-size: 28px;
+        }
+
+        .section {
+          padding: 60px 0;
+        }
+
+        .section-title {
+          font-size: 30px;
+        }
+
+        .section-subtitle {
+          font-size: 15px;
+        }
+
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .journey-steps {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-bar-inner {
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        .emergency-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .hero-floating-card {
+          position: relative;
+          left: 0;
+          bottom: 0;
+          margin-top: 20px;
+          max-width: 100%;
+        }
+
+        .cta-section {
+          padding: 60px 0 50px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 28px;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+        }
+
+        .hero-buttons .btn {
+          width: 100%;
+        }
+
+        .section-title {
+          font-size: 26px;
+        }
+
+        .container {
+          padding: 0 16px;
+        }
+      }
+
+      .nav-links.mobile-open {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 20px 24px;
+        box-shadow: 0 4px 20px rgba(11, 29, 58, 0.1);
+        border-top: 1px solid #e0ddd8;
+        z-index: 999;
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/language_switcher.html" %}
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <a href="{% url 'home' %}" class="logo">
+          <div class="logo-icon"><i class="fas fa-brain"></i></div>
+          <div class="logo-text">
+            <span class="logo-name">MindWell</span>
+            <span class="logo-sub">Téléconsultation & Santé Mentale</span>
+          </div>
+        </a>
+
+        <div class="nav-links" id="navLinks">
+          <a href="{% url 'home' %}" class="nav-link active">Accueil</a>
+          <a href="{% url 'specialties' %}" class="nav-link">Spécialités</a>
+          <a href="{% url 'psychologists' %}" class="nav-link"
+            >Nos spécialistes</a
+          >
+          <a href="{% url 'comment_ca_marche' %}" class="nav-link"
+            >Comment ça marche ?</a
+          >
+          <a href="{% url 'about' %}" class="nav-link">À propos</a>
+          <a href="{% url 'faq' %}" class="nav-link">FAQ</a>
+          <a href="{% url 'accounts:login' %}" class="nav-link-text"
+            >Se connecter</a
+          >
+        </div>
+
+        <div class="nav-actions">
+          <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary"
+            >Créer un compte</a
+          >
+          <button class="user-avatar-btn"><i class="fas fa-user"></i></button>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+      <div class="container trust-bar-inner">
+        <div class="trust-badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>Profils psychologues selon leur statut de vérification</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-lock"></i>
+          <span>Données Sécurisées & Confidentielles</span>
+        </div>
+        <div class="trust-badge">
+          <i class="fas fa-check-circle"></i>
+          <span>Prise en charge disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <i class="fas fa-lock"></i>
+            <span>ESPACE CLINIQUE NUMÉRIQUE SÉCURISÉ</span>
+          </div>
+
+          <h1 class="hero-title">
+            Prenez soin de votre santé mentale, à votre rythme.
+          </h1>
+
+          <p class="hero-description">
+            MindWell met en relation des patients avec des psychologues
+            cliniciens diplômés d'État à travers des téléconsultations
+            pensées pour faciliter l'accès à un accompagnement psychologique à distance.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary btn-lg">
+              Commencer mon parcours <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="{% url 'psychologists' %}" class="btn btn-outline btn-lg">
+              Découvrir nos spécialistes
+            </a>
+          </div>
+
+        </div>
+
+        <div class="hero-image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=900&fit=crop"
+            alt="Consultation en ligne"
+            class="hero-image"
+          />
+          <div class="hero-floating-card">
+            <div class="floating-icon"><i class="fas fa-lock"></i></div>
+            <div class="floating-text">
+              <strong>Consultation en ligne</strong>
+              <span>Un parcours de consultation à distance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specialties Section -->
+    <section class="section" id="specialties">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">CHAMPS D'INTERVENTION</span>
+          <h2 class="section-title">Pourquoi consulter aujourd'hui ?</h2>
+          <p class="section-subtitle">
+            Chaque parcours de vie comporte des moments de doute, d'épreuve ou
+            de transition. Consulter un professionnel est un acte de prévention
+            et de bienveillance envers soi-même.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-brain"></i></div>
+            <h3>Anxiété & Angoisse</h3>
+            <p>
+              Ruminations incessantes, sensations d'oppression, crises de
+              panique ou phobies du quotidien.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='anxiete-angoisse' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-left"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-cloud-rain"></i></div>
+            <h3>Dépression & Moral</h3>
+            <p>
+              Perte de motivation, émoussement émotionnel, découragement profond
+              ou épreuves de deuil.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='depression-humeur' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-bolt"></i></div>
+            <h3>Stress & Surcharge</h3>
+            <p>
+              Tension permanente, perfectionnisme paralysant, difficultés à
+              déconnecter.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='stress-surcharge-mentale' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-infinity"></i></div>
+            <h3>Dépendances</h3>
+            <p>
+              Relations compulsives avec l'alcool, les écrans, le travail avec
+              perte de contrôle.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='addictions-dependances' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-battery-quarter"></i></div>
+            <h3>Burn-out</h3>
+            <p>
+              Perte totale d'énergie liée au milieu professionnel ou à la charge
+              parentale.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='burn-out-professionnel' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-heart"></i></div>
+            <h3>Relations & Couple</h3>
+            <p>
+              Conflits répétitifs, ruptures douloureuses, isolement affectif ou
+              difficultés familiales.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='relations-couple' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-moon"></i></div>
+            <h3>Sommeil & Insomnies</h3>
+            <p>
+              Réveils nocturnes angoissés, difficultés d'endormissement et
+              dérèglement des cycles.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='sommeil-insomnie' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+
+          <div class="why-card">
+            <div class="why-icon"><i class="fas fa-user-shield"></i></div>
+            <h3>Estime & Confiance</h3>
+            <p>
+              Sentiment d'infériorité, autocritique dénigrante, difficulté à
+              poser des limites.
+            </p>
+            <a
+              href="{% url 'specialite_detail' slug='estime-soi-confiance' %}"
+              class="why-link"
+              >Comprendre <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section section-light" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">PARCOURS PATIENT</span>
+          <h2 class="section-title">Comment commencer votre parcours ?</h2>
+          <p class="section-subtitle">
+            Un cheminement fluide et dématérialisé en cinq étapes claires.
+          </p>
+        </div>
+
+        <div class="journey-steps">
+          <div class="journey-step">
+            <div class="step-number">01</div>
+            <h3>Créer votre compte</h3>
+            <p>
+              Inscription anonymisable en 2 minutes. Vos informations restent
+              confidentielles.
+            </p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-number">02</div>
+            <h3>Choisir un praticien</h3>
+            <p>
+              Filtrez selon l'approche, les motifs spécifiques et les
+              disponibilités.
+            </p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-number">03</div>
+            <h3>Prendre rendez-vous</h3>
+            <p>Créneaux adaptables du lundi au samedi de 8h à 21h.</p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-number">04</div>
+            <h3>Échanger librement</h3>
+            <p>
+              Consultez en visioconférence, appel audio ou messagerie.
+            </p>
+          </div>
+
+          <div class="journey-step">
+            <div class="step-number">05</div>
+            <h3>Suivre l'évolution</h3>
+            <p>Retrouvez l'historique et réservez vos prochaines séances.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultation Modes -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">ADAPTABILITÉ</span>
+          <h2 class="section-title">Trois modes de consultation</h2>
+          <p class="section-subtitle">
+            Différents canaux de contact thérapeutique selon vos préférences.
+          </p>
+        </div>
+
+        <div class="modes-grid">
+          <div class="mode-card">
+            <div class="mode-icon"><i class="fas fa-video"></i></div>
+            <div class="mode-category">IMMERSION CLINIQUE</div>
+            <h3>Consultation vidéo</h3>
+            <p>
+              Interaction directe en tête-à-tête depuis votre navigateur.
+              Réplique fidèle du cabinet classique.
+            </p>
+            <div class="mode-features">
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Consultation vidéo</span>
+              </div>
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>45 à 50 minutes</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mode-card">
+            <div class="mode-icon"><i class="fas fa-microphone"></i></div>
+            <div class="mode-category">INTIMITÉ ACOUSTIQUE</div>
+            <h3>Consultation audio</h3>
+            <p>
+              Idéal pour ceux qui préfèrent s'exprimer sans caméra. L'écoute
+              active se concentre sur l'intonation.
+            </p>
+            <div class="mode-features">
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Sans jugement visuel</span>
+              </div>
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>En déplacement</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mode-card">
+            <div class="mode-icon"><i class="fas fa-comment-alt"></i></div>
+            <div class="mode-category">ÉCRITURE RÉFLEXIVE</div>
+            <h3>Consultation textuelle</h3>
+            <p>
+              Messagerie asynchrone pour verbaliser par écrit vos ressentis au
+              fur et à mesure.
+            </p>
+            <div class="mode-features">
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Sans contrainte d'horaire</span>
+              </div>
+              <div class="mode-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Prise de recul apaisée</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" style="color: rgba(255, 255, 255, 0.6)">
+            UN PREMIER PAS EN TOUTE QUIÉTUDE
+          </span>
+          <h2 class="section-title" style="color: white">
+            Votre bien-être mérite toute votre attention.
+          </h2>
+          <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.7)">
+            Prenez le temps de découvrir les professionnels référencés.
+          </p>
+        </div>
+
+        <div class="cta-center">
+          <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-light btn-lg">
+            Commencer mon parcours <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="cta-note">
+          <p>
+            <strong>Besoin d'une écoute ou d'un soutien psychologique ?</strong>
+          </p>
+          <p>
+            MindWell facilite la mise en relation avec des professionnels de la psychologie.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="emergency-bar">
+          <div class="emergency-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>Besoin d'une écoute ?</span>
+          </div>
+          <div class="emergency-item">
+            <span>Protection Civile : <strong>14</strong></span>
+          </div>
+          <div class="emergency-item">
+            <span>Police : <strong>1548</strong></span>
+          </div>
+        </div>
+
+        <div class="footer-content">
+          <div class="footer-brand">
+            <div class="logo">
+              <div class="logo-icon"><i class="fas fa-brain"></i></div>
+              <div class="logo-text">
+                <span class="logo-name">MindWell</span>
+                <span class="logo-sub" style="color: rgba(255, 255, 255, 0.7)">
+                  Téléconsultation & Santé Mentale
+                </span>
+              </div>
+            </div>
+            <p>
+              Votre espace de téléconsultation psychologique et d'accompagnement bienveillant.
+            </p>
+            <div class="footer-cert">
+              <i class="fas fa-shield-alt"></i>
+              <span>Informations sur les données et la confidentialité</span>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Plateforme</h4>
+            <div class="footer-links">
+              <a href="{% url 'home' %}">Accueil</a>
+              <a href="{% url 'specialties' %}">Spécialités</a>
+              <a href="{% url 'psychologists' %}">Nos spécialistes</a>
+              <a href="{% url 'comment_ca_marche' %}">Comment ça marche ?</a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Informations</h4>
+            <div class="footer-links">
+              <a href="{% url 'about' %}">À propos</a>
+              <a href="{% url 'faq' %}">FAQ</a>
+              <a href="{% url 'ethics' %}">Éthique & Déontologie</a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h4>Légal & Sécurité</h4>
+            <div class="footer-links">
+              <a href="{% url 'confidentialite' %}">Politique de confidentialité</a>
+              <a href="{% url 'cgv' %}">Conditions d'utilisation</a>
+              <a href="{% url 'confidentialite' %}">Protection des données</a>
+              <a href="{% url 'mentions_legales' %}">Mentions légales</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>
+            Projet universitaire de fin d'études - MindWell 2025. Tous droits
+            réservés.
+          </p>
+          <p>Confidentialité et secret professionnel</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("mobile-open");
+            const icon = mobileMenuBtn.querySelector("i");
+            if (navLinks.classList.contains("mobile-open")) {
+              icon.classList.remove("fa-bars");
+              icon.classList.add("fa-times");
+            } else {
+              icon.classList.remove("fa-times");
+              icon.classList.add("fa-bars");
+            }
+          });
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+            const target = document.querySelector(href);
+            if (target) {
+              e.preventDefault();
+              const navbarHeight =
+                document.querySelector(".navbar").offsetHeight;
+              const targetPosition =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                navbarHeight -
+                20;
+              window.scrollTo({ top: targetPosition, behavior: "smooth" });
+
+              if (navLinks.classList.contains("mobile-open")) {
+                navLinks.classList.remove("mobile-open");
+                const icon = mobileMenuBtn.querySelector("i");
+                icon.classList.remove("fa-times");
+                icon.classList.add("fa-bars");
+              }
+            }
+          });
+        });
+
+        // Navbar Shadow on Scroll
+        const navbar = document.querySelector(".navbar");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 10) {
+            navbar.style.boxShadow = "0 2px 20px rgba(11, 29, 58, 0.08)";
+          } else {
+            navbar.style.boxShadow = "none";
+          }
+        });
+
+        // Animation on Scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        document
+          .querySelectorAll(
+            ".why-card, .journey-step, .mode-card, .testimonial-card",
+          )
+          .forEach((el, index) => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = `opacity 0.6s ease ${index * 0.05}s, transform 0.6s ease ${index * 0.05}s`;
+            observer.observe(el);
+          });
+
+        // Add animation class
+        const style = document.createElement("style");
+        style.textContent = `.animate-in { opacity: 1 !important; transform: translateY(0) !important; }`;
+        document.head.appendChild(style);
+
+        console.log("MindWell loaded successfully");
+      });
+    </script>
+  </body>
+</html>

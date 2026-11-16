@@ -1,0 +1,1597 @@
+[
+  {
+    "conversation_id": "test_high_01",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2017,
+    "output": {
+      "summary": "The patient expressed a desire to kill themselves, saying they are fed up with everything and see no way out. The psychologist responded by listening and acknowledging the seriousness. No other topics were discussed.",
+      "themes": [
+        "suicidal ideation",
+        "hopelessness",
+        "despair"
+      ],
+      "emotions": [
+        "despair",
+        "hopelessness",
+        "suicidal thoughts"
+      ],
+      "keywords": [
+        "tuer",
+        "marre",
+        "mourir",
+        "issue",
+        "je veux",
+        "je ne vois plus d'issue"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "The patient consistently expressed suicidal thoughts and hopelessness throughout, with no observable shift in tone."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": [
+          "لغة التحليل قد لا تتطابق مع لغة المحادثة (fr)"
+        ]
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_high_02",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1885,
+    "output": {
+      "summary": "Le patient a déclaré son intention de se faire du mal ce soir, mentionnant qu'il possède un couteau et qu'il ne peut pas s'en empêcher. Il a exprimé le désir de se blesser. Le psychologue a réagi en insistant sur l'urgence et en conseillant d'appeler le numéro d'assistance. Aucun autre sujet n'a été abordé durant cet échange.",
+      "themes": [
+        "idéation de suicide/automutilation",
+        "crise immédiate",
+        "sécurité"
+      ],
+      "emotions": [],
+      "keywords": [
+        "couteau",
+        "blesser",
+        "se faire du mal",
+        "ne peux pas m'en empêcher"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "Le ton du patient reste constant, exprimant une intention claire de se blesser sans signe de désescalade ou de changement d'émotion au cours des deux messages."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_high_03_negated",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2635,
+    "output": {
+      "summary": "Le patient a indiqué qu'il a parfois des pensées sombres et qu'il pense à se tuer, mais il a clairement affirmé ne pas vouloir mourir et que ces pensées sont passagères. Le psychologue a cherché à confirmer l'absence d'intention d'agir. Le patient a réitéré qu'il ne souhaite pas mourir.",
+      "themes": [
+        "pensées suicidaires",
+        "gestion des pensées sombres"
+      ],
+      "emotions": [],
+      "keywords": [
+        "pensées sombres",
+        "me tuer",
+        "mourir",
+        "pensées qui passent"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "Le patient commence par admettre des pensées sombres liées à la mort, puis précise qu'il ne veut pas mourir, montrant un passage d'une reconnaissance de la détresse à une affirmation de sécurité."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient a indiqué qu'il a parfois des pensées sombres et qu'il pense à se tuer, mais il a clairement affirmé ne pas v...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_high_04_negated",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1652,
+    "output": {
+      "summary": "Le patient a déclaré avoir pensé à se faire du mal mais affirme ne jamais le faire. Le psychologue a noté la distinction. Le patient a réaffirmé qu’il n’a jamais eu l’intention de passer à l’acte.",
+      "themes": [
+        "pensées de mal‑être/autodestruction",
+        "déni d’intention d’agir"
+      ],
+      "emotions": [],
+      "keywords": [
+        "pensé à me faire du mal",
+        "je ne le ferais jamais",
+        "pas d'intention de passer à l'acte"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "Le patient commence par exprimer une pensée de fait autodestructeur, puis passe à une affirmation catégorique de ne pas avoir l’intention d’agir, montrant une évolution du discours de la pensée à la négation de l’action."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient a déclaré avoir pensé à se faire du mal mais affirme ne jamais le faire. Le psychologue a noté la distinction...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_medium_01",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2309,
+    "output": {
+      "summary": "Le patient a déclaré que rien n’a de sens et qu’il abandonne complètement. Le psychologue a reformulé en demandant s’il n’y a plus d’espoir. Le patient a ensuite affirmé que rien ne s’améliorera jamais et que c’est fini pour lui.",
+      "themes": [
+        "hopelessness",
+        "meaninglessness",
+        "perceived lack of improvement"
+      ],
+      "emotions": [
+        "hopelessness",
+        "despair"
+      ],
+      "keywords": [
+        "sens",
+        "abandonner",
+        "jamais",
+        "fini",
+        "rien"
+      ],
+      "risk_level": "medium",
+      "emotional_evolution": "Le patient commence par exprimer un sentiment de perte de sens et d’abandon, puis intensifie son discours en affirmant une impossibilité totale d’amélioration, montrant une progression vers un désespoir plus absolu."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_medium_02",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2204,
+    "output": {
+      "summary": "Le patient décrit une consommation d'alcool quotidienne jusqu'à s'évanouir pour ne plus ressentir quoi que ce soit, et indique prendre des pilules pour dormir. Il affirme que ces comportements sont les seuls qui fonctionnent pour lui. Aucun autre sujet n’est abordé. Le psychologue interroge brièvement sur la fonction de ces comportements.",
+      "themes": [
+        "consommation d'alcool excessive",
+        "usage de somnifères",
+        "stratégies d'évitement de la douleur"
+      ],
+      "emotions": [],
+      "keywords": [
+        "boire",
+        "évanouir",
+        "soir",
+        "sentir",
+        "pilules",
+        "dormir"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "Le patient reste dans un ton de détresse constante, d'abord en décrivant l'alcoolisation extrême, puis en confirmant que c'est son unique recours et en mentionnant les somnifères, sans changement notable d'expression."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient décrit une consommation d'alcool quotidienne jusqu'à s'évanouir pour ne plus ressentir quoi que ce soit, et i...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_medium_03",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2706,
+    "output": {
+      "summary": "Le patient a déclaré ne plus se faire confiance et avoir été proche de passer à l'acte. Il a exprimé un sentiment de perte de contrôle et une peur de ce qu'il pourrait faire. Le psychologue a demandé s’il pensait pouvoir agir sur ces pensées, et le patient a confirmé son manque de contrôle et sa peur.",
+      "themes": [
+        "perte de confiance en soi",
+        "perte de contrôle",
+        "idéation suicidaire ou violente",
+        "peur des conséquences"
+      ],
+      "emotions": [
+        "peur"
+      ],
+      "keywords": [
+        "confiance",
+        "acte",
+        "contrôle",
+        "peur"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "Le patient commence par évoquer une perte de confiance et une proximité avec un acte dangereux, puis renforce son discours en exprimant une peur aiguë et un sentiment d'absence totale de contrôle, indiquant une intensification de la détresse."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'Le patient a déclaré ne plus se faire confiance et avoir été proche de passer à l'acte. Il a exprimé un sentiment de per...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_low_01",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 755,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7070, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7070, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_low_02",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 408,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7015, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7015, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_low_03",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 444,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6954, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6954, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_insufficient_01",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 456,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6895, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6895, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_insufficient_02",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 404,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6838, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6838, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_ar_high_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 545,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6764, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 6764, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_en_high_01",
+    "language": "en",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1760,
+    "output": {
+      "summary": "The patient expressed a desire to end their life, stating \"I want to kill myself\" and \"I want to die\". They reported feeling done with everything and seeing no way out. The psychologist responded with a listening stance. No additional information was provided.",
+      "themes": [
+        "suicidal ideation",
+        "hopelessness"
+      ],
+      "emotions": [
+        "hopelessness",
+        "despair"
+      ],
+      "keywords": [
+        "kill myself",
+        "die",
+        "no way out",
+        "done with everything"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "The patient’s tone remained consistently intense and hopeless, repeatedly expressing a desire for death without any observable shift."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_anxiety_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 545,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7608, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7608, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_ar_hopelessness_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 602,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7525, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7525, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_ar_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 357,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7479, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7479, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_ar_negated_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 466,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7413, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7413, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_ar_insufficient_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 428,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7356, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7356, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_dz_anxiety_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 324,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7311, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7311, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_dz_hopelessness_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 350,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7265, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7265, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_dz_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 348,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7218, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7218, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_dz_negated_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 410,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7160, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7160, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_dz_insufficient_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": false,
+    "latency_ms": 545,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7091, Req",
+    "quality_checks": {
+      "errors": [
+        "HTTP 429: {\"error\":{\"message\":\"Rate limit reached for model `openai/gpt-oss-120b` in organization `org_01m62dmm3ce9ttz494bhya73px` service tier `on_demand` on tokens per minute (TPM): Limit 8000, Used 7091, Req"
+      ],
+      "warnings": []
+    }
+  },
+  {
+    "conversation_id": "test_low_01",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1986,
+    "output": {
+      "summary": "Le patient décrit une anxiété persistante depuis plusieurs mois, accompagnée de troubles du sommeil, de difficultés au travail et de symptômes physiques tels que palpitations et essoufflement. Il exprime un doute quant à l’efficacité des techniques de relaxation proposées. Aucun signe de danger immédiat n’est mentionné.",
+      "themes": [
+        "anxiété",
+        "troubles du sommeil",
+        "difficultés professionnelles",
+        "symptômes physiques (palpitations, respiration)",
+        "tentative de stratégies d’adaptation"
+      ],
+      "emotions": [
+        "anxiété",
+        "incertitude"
+      ],
+      "keywords": [
+        "anxieux",
+        "dors mal",
+        "travail impossible",
+        "plusieurs mois",
+        "cœur s'accélère",
+        "mal à respirer",
+        "essayer",
+        "pas sûr"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par exprimer une anxiété forte et un sentiment d’impuissance, puis ajoute des symptômes physiques tout en maintenant le même niveau d’inquiétude, pour finir par montrer une légère ouverture à essayer une solution, mais avec doute persistant."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_low_02",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2226,
+    "output": {
+      "summary": "Le patient indique que sa mère est décédée il y a trois mois et qu’il pleure chaque jour. Il décrit la situation comme très difficile, se sent vide, mais précise ne pas avoir envie de se faire du mal. Il mentionne qu’il essaie d’avancer un jour à la fois. Le psychologue a reconnu la perte et l’importance du temps dans le deuil.",
+      "themes": [
+        "deuil et perte d’un proche",
+        "sentiment de vide et tristesse",
+        "absence de désir d’automutilation",
+        "stratégies d’adaptation quotidiennes"
+      ],
+      "emotions": [
+        "tristesse",
+        "vide",
+        "douleur"
+      ],
+      "keywords": [
+        "mère décédée",
+        "deuil",
+        "pleurs quotidiens",
+        "sentiment de vide",
+        "pas d’envie d’automutilation",
+        "avancer un jour à la fois"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par exprimer une profonde tristesse et un sentiment de vide, puis affirme ne pas avoir de pensées suicidaires, et termine en montrant une légère orientation vers l’espoir en évoquant le fait d’avancer jour après jour."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_low_03",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1770,
+    "output": {
+      "summary": "Le patient indique être épuisé par son travail et ne plus réussir à déconnecter. Il nie toute pensée de se faire du mal et se décrit simplement fatigué. Il prévoit d’en parler à son responsable et de préparer une liste de ses tâches pour mieux s’organiser.",
+      "themes": [
+        "stress professionnel",
+        "fatigue",
+        "gestion du temps",
+        "communication avec le responsable"
+      ],
+      "emotions": [
+        "épuisement",
+        "fatigue"
+      ],
+      "keywords": [
+        "travail",
+        "déconnexion",
+        "responsable",
+        "liste de tâches"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par exprimer une forte fatigue, puis confirme l'absence de pensées suicidaires tout en restant fatigué, et enfin adopte une attitude proactive en planifiant des actions concrètes."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_insufficient_01",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2039,
+    "output": {
+      "summary": "Le patient indique qu'il ne se sent pas bien et qu'il ressent du mal-être, précisant que c'est difficile à expliquer. Le psychologue demande des précisions. Le patient répète son sentiment de malaise sans fournir davantage de détails.",
+      "themes": [
+        "well-being",
+        "emotional distress"
+      ],
+      "emotions": [
+        "sadness",
+        "distress"
+      ],
+      "keywords": [
+        "pas bien",
+        "mal",
+        "difficile à expliquer"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient maintient un ton de détresse constant, exprimant un malaise similaire dans les deux interventions sans changement notable."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_insufficient_02",
+    "language": "fr",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1632,
+    "output": {
+      "summary": "Le patient indique qu'il ne se sent pas bien et ne sait pas pourquoi. Le psychologue demande des précisions. Le patient reste vague sur la cause de son malaise.",
+      "themes": [
+        "mal-être",
+        "incertitude"
+      ],
+      "emotions": [],
+      "keywords": [
+        "pas",
+        "sais"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "Le patient commence par exprimer un malaise (« Ça va pas ») puis passe à l'incertitude (« Je sais pas »), sans changement notable d'émotion explicite."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_high_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2609,
+    "output": {
+      "summary": "المريض عبّر عن رغبة واضحة في الانتحار وشعور بالتعب واليأس من كل شيء. قال إنه لا يرى مخرجاً من وضعه. تكرّر التعبير عن الأفكار الانتحارية في رسالتين متتاليتين.",
+      "themes": [
+        "أفكار انتحارية",
+        "اليأس",
+        "الإجهاد العاطفي"
+      ],
+      "emotions": [
+        "يأس",
+        "قنوط",
+        "إرهاق"
+      ],
+      "keywords": [
+        "أقتل نفسي",
+        "تعبت من كل شيء",
+        "أريد أن أموت",
+        "لا أرى مخرجاً"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "المريض بدأ بتعبير عن الإرهاق والرغبة في الانتحار، ثم عاود التأكيد على رغبته في الموت وعدم رؤية مخرج، مما يدل على استمرارية وشدة المشاعر السلبية دون تخفيف."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_anxiety_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1621,
+    "output": {
+      "summary": "المريض يعاني من قلق مستمر منذ عدة أشهر، يرافقه أرق وصعوبة في النوم. يذكر أن القلق يزداد في مواقف العمل والعلاقات الاجتماعية بسبب الخوف من الحكم عليه أو ارتكاب الأخطاء. يصف أعراضاً جسدية مثل تسارع القلب وصعوبة التنفس عند تفاقم القلق. في النهاية أبدى رغبة في تجربة تمرين تهدئة لكنه غير متأكد من فعاليته.",
+      "themes": [
+        "القلق المستمر",
+        "الأعراض الجسدية للقلق",
+        "العوامل المسببة للقلق (العمل والعلاقات الاجتماعية)",
+        "الخوف من الحكم والارتكاب الأخطاء",
+        "صعوبة النوم"
+      ],
+      "emotions": [
+        "القلق",
+        "الخوف",
+        "عدم اليقين"
+      ],
+      "keywords": [
+        "قلق",
+        "أرق",
+        "تسارع القلب",
+        "صعوبة التنفس",
+        "العمل",
+        "العلاقات الاجتماعية",
+        "الحكم",
+        "الأخطاء"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "يبدأ المريض بالتعبير عن قلق عام ومستمر، ثم يضيف تفاصيل عن أعراض جسدية وزيادة الخوف من المواقف الاجتماعية، وفي النهاية يظهر حذرًا وترددًا مع إشارة إلى محاولة تجربة تمرين تهدئة."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_hopelessness_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1703,
+    "output": {
+      "summary": "المريض عبر عن شعور عميق بعدم وجود معنى لأي شيء، وأظهر استسلاماً كاملًا. أشار إلى أنه لا يعتقد أن أي شيء سيتحسن مستقبلاً وأن الأمور انتهت بالنسبة له. لا توجد إشارة صريحة إلى أفكار انتحارية أو إيذاء ذاتي، لكن هناك تعبير واضح عن يأس شديد. تم توثيق هذه العبارات دون إضافة تقييم سريري.",
+      "themes": [
+        "فقدان المعنى",
+        "الاستسلام",
+        "اليأس",
+        "عدم الأمل"
+      ],
+      "emotions": [
+        "يأس",
+        "استسلام",
+        "حزن"
+      ],
+      "keywords": [
+        "معنى",
+        "استسلمت",
+        "تحسن",
+        "انتهى الأمر"
+      ],
+      "risk_level": "medium",
+      "emotional_evolution": "المريض بدأ بالتعبير عن فقدان المعنى والاستسلام، ثم شدد على عدم تحسن أي شيء وانتهاء الأمور، مما يدل على استمرارية وشدة الشعور باليأس دون تحسن واضح في النبرة."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1332,
+    "output": {
+      "summary": "المريض عبّر عن رغبة واضحة في الانتحار وقال إنه تعب من كل شيء ولا يرى مخرجاً. بعد استجابة الطبيب، كرّر المريض رغبته في الموت. لا توجد إشارات إلى خطة محددة أو وسيلة، لكن الكلام يدل على خطر فوري. تم توثيق المشاعر والموضوعات المتعلقة باليأس والرغبة في الانتحار. يحتاج المريض إلى تقييم فوري وإجراءات أمان.",
+      "themes": [
+        "أفكار انتحارية",
+        "اليأس",
+        "الإجهاد النفسي"
+      ],
+      "emotions": [
+        "يأس",
+        "حزن",
+        "إحباط"
+      ],
+      "keywords": [
+        "أريد أن أقتل نفسي",
+        "تعبت من كل شيء",
+        "أريد أن أموت",
+        "لا أرى مخرجاً"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "المريض يبدأ بتعبير صريح عن الرغبة في الانتحار ثم يكرر نفس الفكرة بعد استجابة الطبيب، دون أي تخفيف أو تغيير في النبرة، مما يدل على استمرارية الشعور باليأس والرغبة في الموت."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_negated_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2325,
+    "output": {
+      "summary": "المريض أشار إلى ظهور أفكار سوداء تتعلق بالانتحار لكنه أكد عدم رغبته في القتل أو الموت، ووصف هذه الأفكار بأنها عابرة. أكد المريض عدم وجود نية للتصرف بناءً على هذه الأفكار. لا توجد دلائل على نية فعلية أو خطة. تم توضيح أن الأفكار مجرد مرور.",
+      "themes": [
+        "Suicidal thoughts",
+        "Intrusive thoughts"
+      ],
+      "emotions": [],
+      "keywords": [
+        "أفكار سوداء",
+        "أقتل نفسي",
+        "أموت",
+        "أفكار"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "المريض يبدأ بذكر أفكار سوداء ثم يكرر رفضه القاطع للانتحار، مع الحفاظ على نبرة ثابتة من الإنكار والطمأنينة عبر الرسالتين."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'المريض أشار إلى ظهور أفكار سوداء تتعلق بالانتحار لكنه أكد عدم رغبته في القتل أو الموت، ووصف هذه الأفكار بأنها عابرة. أكد...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_ar_insufficient_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1945,
+    "output": {
+      "summary": "المريض قال إنه ليس بخير ويشعر بالسوء، ثم أشار إلى صعوبة شرح ما يشعر به وأنه فقط يشعر بالسيء. لا توجد إشارة إلى أفكار انتحارية أو سلوكيات خطرية. يبدو أن الحالة عاطفية سلبية لكن بدون مؤشرات خطر واضحة.",
+      "themes": [
+        "مشاعر سلبية",
+        "صعوبة التعبير عن المشاعر"
+      ],
+      "emotions": [
+        "ضيق"
+      ],
+      "keywords": [
+        "ليس بخير",
+        "أشعر بالسوء",
+        "صعب أن أشرح",
+        "سيء"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "المريض بدأ بتعبير واضح عن عدم الراحة ثم استمر في نفس النبرة السلبية مع زيادة الغموض في الوصف، دون أي تحسن ملحوظ في المشاعر."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_anxiety_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1865,
+    "output": {
+      "summary": "المريض يصف قلقًا مستمرًا منذ عدة أشهر، يزداد في مواقف العمل والعلاقات الاجتماعية بسبب الخوف من الحكم والخطأ. يذكر أعراضًا جسدية مثل تسارع القلب وصعوبة التنفس عندما يشتد القلق. يعبر عن عدم الثقة في فعالية أي تمرين أو طريقة لتخفيف التوتر.",
+      "themes": [
+        "قلق مستمر",
+        "مثيرات القلق (العمل والعلاقات)",
+        "أعراض جسدية للقلق",
+        "عدم الثقة في أساليب التهدئة"
+      ],
+      "emotions": [
+        "قلق",
+        "خوف"
+      ],
+      "keywords": [
+        "قلق متواصل",
+        "عدة أشهر",
+        "الشغل",
+        "العلاقات",
+        "الخوف من الحكم",
+        "تسارع القلب",
+        "صعوبة التنفس",
+        "عدم الثقة في الفعالية"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "المريض يبدأ بالتعبير عن قلق عام ثم يضيف خوفًا من الحكم، يصف تدهورًا جسديًا (تسارع القلب وصعوبة التنفس)، وينتهي بشكوك حول فعالية أي تمرين، مما يدل على استمرارية القلق مع زيادة الشكوك حول العلاج."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_hopelessness_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2183,
+    "output": {
+      "summary": "المريض عبّر عن شعور بعدم وجود معنى في حياته وقال إنه لم يعد يملك القدرة على الاستمرار. أشار إلى أنه يعتقد أن لا شيء سيتحسن وأنه وصل إلى حد الانتهاء. لا توجد إشارة إلى أفكار انتحارية أو سلوك خطر.",
+      "themes": [
+        "عدم وجود معنى",
+        "اليأس",
+        "الشعور بالعجز"
+      ],
+      "emotions": [
+        "اليأس",
+        "الإحباط",
+        "الحزن"
+      ],
+      "keywords": [
+        "معنى",
+        "مشيت فيها",
+        "ما باقيش نقدر",
+        "حتى حاجة ما غادي تتصلح",
+        "خلص عندي"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "المريض حافظ على نبرة يأس وإحباط طوال الجلسة دون ملاحظة تحسن أو تفاقم واضح."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with explicit hopelessness/substance/loss-of-control indicators present. Summary should explain why medium was not assigned. Output: 'المريض عبّر عن شعور بعدم وجود معنى في حياته وقال إنه لم يعد يملك القدرة على الاستمرار. أشار إلى أنه يعتقد أن لا شيء سيتح...'"
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2193,
+    "output": {
+      "summary": "المريض عبر عن رغبته في الانتحار وقال إنه تعب من كل شيء ولا يجد مخرجاً. أظهر حالة من اليأس والضيق الشديد. استجاب المعالج بإنه سمع المريض وأشار إلى خطورة ما قيل. لا توجد معلومات إضافية عن خطة أو وسيلة محددة.",
+      "themes": [
+        "فكر انتحاري",
+        "اليأس",
+        "عدم وجود مخرج"
+      ],
+      "emotions": [
+        "يأس",
+        "إحباط",
+        "تعب"
+      ],
+      "keywords": [
+        "بغيت نقتل روحي",
+        "تعبت من كل شي",
+        "بغيت نموت",
+        "ما لقيتش مخرج"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "المريض بدأ بالتعبير عن الرغبة في الانتحار والشعور بالإرهاق، ثم عاود التأكيد على رغبته في الموت وعدم وجود حل، مما يدل على استمرارية وشدة المشاعر السلبية طوال الجلسة."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": []
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_negated_suicidal_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 2228,
+    "output": {
+      "summary": "المريض يذكر أنه أحيانًا يمرّ بأفكار سودانية (أفكار انتحارية) لكنه يؤكد أنه لا يرغب في الموت ولا يخطط للقتل. يوضح أن هذه الأفكار مجرد مرور ولا تستمر. لا يوجد نية فعلية للانتحار. تم توضيح المخاوف المتعلقة بهذه الأفكار خلال الجلسة.",
+      "themes": [
+        "أفكار انتحارية",
+        "أفكار عابرة",
+        "عدم الرغبة في الموت"
+      ],
+      "emotions": [
+        "قلق",
+        "ضيق"
+      ],
+      "keywords": [
+        "أفكار سودانية",
+        "قتل",
+        "نموت",
+        "أفكار تمر"
+      ],
+      "risk_level": "high",
+      "emotional_evolution": "في البداية يذكر المريض وجود أفكار سودانية، ثم ينتقل إلى نفي الرغبة في الموت وتأكيد أن الأفكار عابرة، ما يدل على تقليل طفيف في التوتر لكنه لا يزال يشعر بالقلق."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=high but no explicit self-harm/suicidal ideation found in patient statements (negation-aware check). Model output summary: 'المريض يذكر أنه أحيانًا يمرّ بأفكار سودانية (أفكار انتحارية) لكنه يؤكد أنه لا يرغب في الموت ولا يخطط للقتل. يوضح أن هذه ...' — Psychologist must verify."
+        ]
+      }
+    }
+  },
+  {
+    "conversation_id": "test_dz_insufficient_01",
+    "language": "ar",
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "success": true,
+    "latency_ms": 1908,
+    "output": {
+      "summary": "المريض أعرب عن شعوره بالضياع وعدم القدرة على تحديد ما يشعر به، ووصف حالته بأنها سيئة وصعبة الشرح. لا توجد إشارة إلى خطر واضح أو أفكار انتحارية. الجلسة ركّزت على التعبير عن المشاعر السلبية العامة.",
+      "themes": [
+        "الضياع الذاتي",
+        "الشعور بالضيق السلبي"
+      ],
+      "emotions": [
+        "ضيق",
+        "سلبية"
+      ],
+      "keywords": [
+        "ما لقيتش حالي",
+        "نحس بالحاجة السيئة",
+        "صعيب نوضحه",
+        "سيء"
+      ],
+      "risk_level": "low",
+      "emotional_evolution": "المريض بدأ بالتعبير عن شعور عام بالضياع والسلبيّة، ثم استمر في نفس النبرة السلبية مع صعوبة في شرح المشاعر، دون إظهار تحسن أو تدهور واضح خلال الحوار."
+    },
+    "quality_checks": {
+      "json_structure": {
+        "errors": [],
+        "warnings": []
+      },
+      "language_match": {
+        "errors": [],
+        "warnings": []
+      },
+      "no_diagnoses": {
+        "errors": [],
+        "warnings": []
+      },
+      "speaker_separation": {
+        "errors": [],
+        "warnings": []
+      },
+      "risk_assessment": {
+        "errors": [],
+        "warnings": [
+          "تنبيه: risk_level منخفض بدون وجود كلمات خطر صريحة — يتطلب مراجعة بشرية للتأكد من أن غياب المعلومات ليس دليلاً على السلامة"
+        ]
+      },
+      "risk_consistency": {
+        "errors": [],
+        "warnings": [
+          "risk_level=low with no explicit indicators — summary should include mandatory note: 'Risk level set to low due to insufficient evidence...' per protocol."
+        ]
+      }
+    }
+  }
+]
