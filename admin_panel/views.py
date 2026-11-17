@@ -2,7 +2,6 @@ import json
 import logging
 import mimetypes
 from pathlib import Path
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.conf import settings
@@ -17,7 +16,6 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_POST
-
 from accounts.models import CustomUser, Notification, PsychologueProfile
 from consultations.models import Consultation, Document
 from mindwell.models import ContactMessage
@@ -717,4 +715,140 @@ def resolve_report_api(request, id):
             "status": "success",
             "message": "Le signalement a été marqué comme résolu.",
         }
+    )
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# DIAGNOSTIC TEMPORAIRE — Migrations et schéma core (Render)
+# Lecture seule, réservé aux superusers. À supprimer après le diagnostic.
+# ══════════════════════════════════════════════════════════════════════════════
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
+def core_migration_diagnostic(request):
+    """Diagnostic temporaire: état des migrations core et schéma de core_onlinevisitor.
+
+    Uniquement des requêtes SELECT. Aucune donnée personnelle n'est lue.
+    Aucun secret n'est affiché.
+    """
+    from django.db import connection
+
+    db_vendor = connection.vendor  # 'postgresql', 'sqlite', etc.
+
+    diagnostic = {
+        "db_vendor": db_vendor,
+        "is_postgresql": db_vendor == "postgresql",
+        "migrations": [],
+        "table_exists": False,
+        "columns": [],
+        "has_session_key": False,
+        "has_user": False,
+        "has_last_seen": False,
+        "errors": [],
+    }
+
+    # 1. État des migrations de l'application core
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                SELECT app, name, applied
+                FROM django_migrations
+                WHERE app = %s
+                ORDER BY id
+                """,
+                ["core"],
+            )
+            for row in cursor.fetchall():
+                diagnostic["migrations"].append(
+                    {
+                        "app": row[0],
+                        "name": row[1],
+                        "applied": bool(row[2]),
+                    }
+                )
+    except Exception as exc:  # table django_migrations absente ou autre
+        diagnostic["errors"].append(
+            f"django_migrations inaccessible : {type(exc).__name__}"
+        )
+
+    # 2. Existence et colonnes de core_onlinevisitor (PostgreSQL et SQLite)
+    try:
+        with connection.cursor() as cursor:
+            if diagnostic["is_postgresql"]:
+                cursor.execute(
+                    """
+                    SELECT table_name
+                    FROM information_schema.tables
+                    WHERE table_schema = %s
+                      AND table_name = %s
+                    """,
+                    ["public", "core_onlinevisitor"],
+                )
+                diagnostic["table_exists"] = cursor.fetchone() is not None
+
+                if diagnostic["table_exists"]:
+                    cursor.execute(
+                        """
+                        SELECT column_name, data_type, is_nullable
+                        FROM information_schema.columns
+                        WHERE table_schema = %s
+                          AND table_name = %s
+                        ORDER BY ordinal_position
+                        """,
+                        ["public", "core_onlinevisitor"],
+                    )
+                    for row in cursor.fetchall():
+                        column = {
+                            "name": row[0],
+                            "type": row[1],
+                            "nullable": row[2] == "YES",
+                        }
+                        diagnostic["columns"].append(column)
+                        name_lower = row[0].lower()
+                        if name_lower == "session_key":
+                            diagnostic["has_session_key"] = True
+                        if name_lower in ("user", "user_id"):
+                            diagnostic["has_user"] = True
+                        if name_lower == "last_seen":
+                            diagnostic["has_last_seen"] = True
+            else:
+                # SQLite et autres backends : introspection Django (read-only)
+                table_names = [
+                    ti.name
+                    for ti in connection.introspection.get_table_list(cursor)
+                ]
+                diagnostic["table_exists"] = "core_onlinevisitor" in table_names
+
+                if diagnostic["table_exists"]:
+                    desc = connection.introspection.get_table_description(
+                        cursor, "core_onlinevisitor"
+                    )
+                    for col in desc:
+                        column = {
+                            "name": col[0],
+                            "type": str(col[1]),
+                            "nullable": col[6],
+                        }
+                        diagnostic["columns"].append(column)
+                        name_lower = col[0].lower()
+                        if name_lower == "session_key":
+                            diagnostic["has_session_key"] = True
+                        if name_lower in ("user", "user_id"):
+                            diagnostic["has_user"] = True
+                        if name_lower == "last_seen":
+                            diagnostic["has_last_seen"] = True
+    except Exception as exc:  # table absente ou autre
+        diagnostic["errors"].append(
+            f"core_onlinevisitor inaccessible : {type(exc).__name__}"
+        )
+
+    context = {
+        "diagnostic": diagnostic,
+        "admin_section": "core_migration_diagnostic",
+        **_notification_context(request.user),
+    }
+    return render(
+        request,
+        "admin_panel/core_migration_diagnostic.html",
+        context,
     )
