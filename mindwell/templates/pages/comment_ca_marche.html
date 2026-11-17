@@ -339,12 +339,14 @@
       }
 
       .steps-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 24px;
       }
 
       .step-card {
+        flex: 0 0 calc((100% - 72px) / 4);
         background: var(--white);
         padding: 32px 28px;
         border-radius: var(--radius-lg);
@@ -728,7 +730,11 @@
         }
 
         .steps-grid {
-          grid-template-columns: repeat(2, 1fr);
+          /* flex-wrap handles wrapping */
+        }
+
+        .step-card {
+          flex: 0 0 calc((100% - 24px) / 2);
         }
 
         .formats-grid {
@@ -753,8 +759,8 @@
           font-size: 36px;
         }
 
-        .steps-grid {
-          grid-template-columns: 1fr;
+        .step-card {
+          flex: 0 0 100%;
         }
 
         .footer-content {
@@ -893,18 +899,10 @@
           </div>
           <div class="step-card">
             <div class="step-number">07</div>
-            <h3 data-i18n="step7_title">Consulter le résumé</h3>
-            <p data-i18n="step7_desc">Retrouvez la synthèse des axes de travail abordés, mise en forme avec l'accord de votre clinicien et disponible dans votre espace personnel.</p>
+            <h3 data-i18n="step7_title">Suivre son évolution</h3>
+            <p data-i18n="step7_desc">Consultez votre historique de progression grâce à notre espace personnel sécurisé : notes cliniques, objectifs thérapeutiques et rendez-vous récurrents simplifiés.</p>
             <div class="step-features">
-              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step7_feat">Synthèse clinique validée</span></div>
-            </div>
-          </div>
-          <div class="step-card">
-            <div class="step-number">08</div>
-            <h3 data-i18n="step8_title">Suivre son évolution</h3>
-            <p data-i18n="step8_desc">Consultez votre historique de progression grâce à notre espace personnel sécurisé : notes cliniques, objectifs thérapeutiques et rendez-vous récurrents simplifiés.</p>
-            <div class="step-features">
-              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step8_feat">Continuité thérapeutique</span></div>
+              <div class="step-feature"><i class="fas fa-check"></i> <span data-i18n="step7_feat">Continuité thérapeutique</span></div>
             </div>
           </div>
         </div>
@@ -1135,7 +1133,7 @@
           step5_title: "Prendre rendez-vous", step5_desc: "Validation immédiate sans frais cachés. Recevez une confirmation SMS/email ainsi qu'un rappel 24h avant l'entretien pour un maximum de sérénité.", step5_feat: "Rappels discrets par SMS",
           step6_title: "Participer à la séance", step6_desc: "Connectez-vous directement à l'URL sans téléchargement ni configuration. Le serveur est certifié par des tiers de confiance et accessible via mot de passe unique.", step6_feat: "Flux vidéo/WebRTC chiffré",
           step7_title: "Consulter le résumé", step7_desc: "Retrouvez la synthèse des axes de travail abordés, mise en forme avec l'accord de votre clinicien et disponible dans votre espace personnel.", step7_feat: "Synthèse clinique validée",
-          step8_title: "Suivre son évolution", step8_desc: "Consultez votre historique de progression grâce à notre espace personnel sécurisé : notes cliniques, objectifs thérapeutiques et rendez-vous récurrents simplifiés.", step8_feat: "Continuité thérapeutique",
+          step7_title: "Suivre son évolution", step7_desc: "Consultez votre historique de progression grâce à notre espace personnel sécurisé : notes cliniques, objectifs thérapeutiques et rendez-vous récurrents simplifiés.", step7_feat: "Continuité thérapeutique",
           formats_tag: "Modalités de séance", formats_title: "Trois formats adaptés à votre sensibilité", formats_subtitle: "Chaque patient chemine différemment. MindWell propose trois manières distinctes de dialoguer avec votre thérapeute, garantissant toujours le même niveau d'engagement clinique.",
           format1_badge: "Plus demandé", format1_title: "Consultation Vidéo HD", format1_desc: "Le cadre le plus proche de la consultation en cabinet physique. Permet la perception du langage non-verbal, facial et de l'expression affective dans un cadre chaleureux.", format1_f1: "Fluidité de la relation par le canal visuel HD", format1_f2: "Compatible avec les espaces guidés en direct (ECC, méditation)", format1_btn: "Réserver en vidéo",
           format2_badge: "Intimité", format2_title: "Consultation Audio", format2_desc: "Parfaitement adaptée aux personnes qui ressentent un grand malaise face-à-face ou qui souhaitent libérer leur parole sans le regard de l'autre. Une écoute bienveillante sans jugement.", format2_f1: "Absence de fatigue visuelle, concentration vocalisée", format2_f2: "Accessible même en cas de mauvaise liaison débit", format2_btn: "Réserver en audio",
@@ -1169,7 +1167,7 @@
           step5_title: "Book an appointment", step5_desc: "Immediate validation with no hidden fees. Receive an SMS/email confirmation and a reminder 24h before the interview for maximum serenity.", step5_feat: "Discreet SMS reminders",
           step6_title: "Participate in the session", step6_desc: "Connect directly to the URL without download or configuration. The server is certified by trusted third parties and accessible via a unique password.", step6_feat: "Encrypted video/WebRTC stream",
           step7_title: "Consult the summary", step7_desc: "Find the synthesis of the work axes addressed, formatted with your clinician's agreement and available in your personal space.", step7_feat: "Validated clinical synthesis",
-          step8_title: "Track your progress", step8_desc: "Consult your progress history through our secure personal space: clinical notes, therapeutic objectives, and simplified recurring appointments.", step8_feat: "Therapeutic continuity",
+          step7_title: "Track your progress", step7_desc: "Consult your progress history through our secure personal space: clinical notes, therapeutic objectives, and simplified recurring appointments.", step7_feat: "Therapeutic continuity",
           formats_tag: "Session modalities", formats_title: "Three formats adapted to your sensitivity", formats_subtitle: "Every patient journeys differently. MindWell offers three distinct ways to dialogue with your therapist, always guaranteeing the same level of clinical engagement.",
           format1_badge: "Most requested", format1_title: "HD Video Consultation", format1_desc: "The setting closest to a physical office consultation. Allows perception of non-verbal, facial language, and affective expression in a warm setting.", format1_f1: "Fluidity of the relationship via HD visual channel", format1_f2: "Compatible with live guided spaces (ECC, meditation)", format1_btn: "Book via video",
           format2_badge: "Intimacy", format2_title: "Audio Consultation", format2_desc: "Perfectly suited for those who feel great discomfort face-to-face or wish to free their speech without the other's gaze. A benevolent listening without judgment.", format2_f1: "No visual fatigue, vocalized concentration", format2_f2: "Accessible even with poor bandwidth connection", format2_btn: "Book via audio",
@@ -1203,7 +1201,7 @@
           step5_title: "تأكيد الحجز", step5_desc: "تأكيد فوري بدون رسوم خفية. استلم تأكيداً عبر الرسائل القصيرة/البريد الإلكتروني وتذكيراً قبل 24 ساعة من الجلسة.", step5_feat: "تذكيرات عبر الرسائل القصيرة",
           step6_title: "حضور الجلسة", step6_desc: "اتصل مباشرة بالرابط دون تحميل أو إعداد. الخادم معتمد من جهات موثوقة ويمكن الوصول إليه عبر كلمة مرور فريدة.", step6_feat: "بث فيديو/WebRTC مشفر",
           step7_title: "مراجعة الملخص", step7_desc: "اعثر على ملخص لمحاور العمل التي تمت مناقشتها، والذي تم إعداده بموافقة طبيبك السريري والمتاح في مساحتك الشخصية.", step7_feat: "ملخص سريري معتمد",
-          step8_title: "متابعة تطورك", step8_desc: "راجع سجل تقدمك من خلال مساحتك الشخصية الآمنة: الملاحظات السريرية، الأهداف العلاجية، وتبسيط المواعيد المتكررة.", step8_feat: "استمرارية علاجية",
+          step7_title: "متابعة تطورك", step7_desc: "راجع سجل تقدمك من خلال مساحتك الشخصية الآمنة: الملاحظات السريرية، الأهداف العلاجية، وتبسيط المواعيد المتكررة.", step7_feat: "استمرارية علاجية",
           formats_tag: "طرق الجلسة", formats_title: "ثلاثة تنسيقات تتكيف مع حساسيتك", formats_subtitle: "كل مريض يسير بطريقة مختلفة. يقدم MindWell ثلاث طرق مميزة للحوار مع معالجك، مع ضمان نفس مستوى الالتزام السريري دائماً.",
           format1_badge: "الأكثر طلباً", format1_title: "استشارة فيديو عالية الدقة", format1_desc: "الإطار الأقرب للاستشارة في العيادة الفعلية. يسمح بإدراك لغة الجسد وتعبيرات الوجه في جو دافئ.", format1_f1: "سلاسة العلاقة عبر القناة البصرية", format1_f2: "متوافق مع الجلسات التوجيهية المباشرة", format1_btn: "حجز عبر الفيديو",
           format2_badge: "خصوصية", format2_title: "استشارة صوتية", format2_desc: "مناسبة تماماً للأشخاص الذين يشعرون بعدم الارتياح وجهاً لوجه أو يرغبون في التحرر من نظرة الآخر. استماع داعم بدون أحكام.", format2_f1: "عدم وجود إجهاد بصري، تركيز على الصوت", format2_f2: "يمكن الوصول إليه حتى مع ضعف سرعة الإنترنت", format2_btn: "حجز عبر الصوت",
