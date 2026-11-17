@@ -41,3 +41,4 @@ templates_backup/
 .idea/
 .DS_Store
 Thumbs.db
+/staticfiles/

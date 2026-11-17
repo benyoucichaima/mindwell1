@@ -192,6 +192,8 @@ LOCALE_PATHS = [
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -203,9 +205,9 @@ STORAGES = {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
 }
-STATICFILES_DIRS = [
-    BASE_DIR / "mindwell" / "static",
-]
+
+#STATICFILES_DIRS = [
+    #BASE_DIR / "mindwell" / "static",]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
