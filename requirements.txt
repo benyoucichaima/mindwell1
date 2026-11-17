@@ -150,3 +150,5 @@ virtualenv==21.6.1
 watchdog==6.0.0
 websockets==16.0
 zope.interface==8.6
+django-cloudinary-storage==0.3.0
+cloudinary==1.47.0

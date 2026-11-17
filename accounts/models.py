@@ -1,22 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.files.storage import storages
+
+
+def get_psychologist_photo_storage():
+    return storages["psychologist_photos"]
 
 
 class CustomUser(AbstractUser):
     USER_TYPE_CHOICES = (
-        ('patient', 'Patient'),
-        ('psychologue', 'Psychologue'),
-        ('admin', 'Administrateur'),
+        ("patient", "Patient"),
+        ("psychologue", "Psychologue"),
+        ("admin", "Administrateur"),
     )
-    user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='patient')
+    user_type = models.CharField(
+        max_length=20, choices=USER_TYPE_CHOICES, default="patient"
+    )
     phone = models.CharField(max_length=20, blank=True, null=True)
-    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
     preferred_language = models.CharField(
         max_length=10,
-        default='fr',
-        choices=[('fr', 'Français'), ('ar', 'العربية'), ('en', 'English')]
+        default="fr",
+        choices=[("fr", "Français"), ("ar", "العربية"), ("en", "English")],
     )
 
     class Meta:
@@ -31,19 +38,17 @@ class Conversation(models.Model):
     psychologue = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='conversations_as_psychologue'
+        related_name="conversations_as_psychologue",
     )
     patient = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='conversations_as_patient'
+        CustomUser, on_delete=models.CASCADE, related_name="conversations_as_patient"
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('psychologue', 'patient')
-        ordering = ['-updated_at']
+        unique_together = ("psychologue", "patient")
+        ordering = ["-updated_at"]
 
     def __str__(self):
         return f"Conversation: {self.psychologue} - {self.patient}"
@@ -51,21 +56,17 @@ class Conversation(models.Model):
 
 class Message(models.Model):
     conversation = models.ForeignKey(
-        Conversation,
-        on_delete=models.CASCADE,
-        related_name='messages'
+        Conversation, on_delete=models.CASCADE, related_name="messages"
     )
     sender = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='sent_messages'
+        CustomUser, on_delete=models.CASCADE, related_name="sent_messages"
     )
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['timestamp']
+        ordering = ["timestamp"]
 
     def __str__(self):
         return f"Message from {self.sender} at {self.timestamp}"
@@ -73,28 +74,26 @@ class Message(models.Model):
 
 class Call(models.Model):
     TYPE_CHOICES = [
-        ('video', 'Vidéo'),
-        ('audio', 'Audio'),
+        ("video", "Vidéo"),
+        ("audio", "Audio"),
     ]
     STATUS_CHOICES = [
-        ('scheduled', 'Planifiée'),
-        ('ongoing', 'En cours'),
-        ('completed', 'Terminée'),
-        ('cancelled', 'Annulée'),
+        ("scheduled", "Planifiée"),
+        ("ongoing", "En cours"),
+        ("completed", "Terminée"),
+        ("cancelled", "Annulée"),
     ]
 
     psychologue = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='calls_as_psychologue'
+        CustomUser, on_delete=models.CASCADE, related_name="calls_as_psychologue"
     )
     patient = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='calls_as_patient'
+        CustomUser, on_delete=models.CASCADE, related_name="calls_as_patient"
     )
-    call_type = models.CharField(max_length=10, choices=TYPE_CHOICES, default='video')
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='scheduled')
+    call_type = models.CharField(max_length=10, choices=TYPE_CHOICES, default="video")
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="scheduled"
+    )
     room_name = models.CharField(max_length=255, unique=True)
     started_at = models.DateTimeField(null=True, blank=True)
     ended_at = models.DateTimeField(null=True, blank=True)
@@ -105,7 +104,9 @@ class Call(models.Model):
 
 
 class PatientProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='patient_profile')
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, related_name="patient_profile"
+    )
     medical_history = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -115,44 +116,50 @@ class PatientProfile(models.Model):
 
 class PsychologueProfile(models.Model):
     SESSION_DURATION_CHOICES = (
-        (45, '45 minutes'),
-        (50, '50 minutes'),
-        (60, '60 minutes'),
-        (75, '75 minutes'),
+        (45, "45 minutes"),
+        (50, "50 minutes"),
+        (60, "60 minutes"),
+        (75, "75 minutes"),
     )
     SPECIALTY_CHOICES = (
-        ('clinique', 'Psychologie clinique'),
-        ('tcc', 'TCC'),
-        ('psychanalyse', 'Psychanalyse'),
-        ('systemique', 'Systémique'),
-        ('humaniste', 'Humaniste'),
-        ('integrative', 'Intégrative'),
-        ('emdr', 'EMDR'),
-        ('enfant_ado', 'Enfant et Adolescent'),
-        ('travail', 'Psychologie du travail'),
-        ('addictologie', 'Addictologie'),
-        ('autre', 'Autre'),
+        ("clinique", "Psychologie clinique"),
+        ("tcc", "TCC"),
+        ("psychanalyse", "Psychanalyse"),
+        ("systemique", "Systémique"),
+        ("humaniste", "Humaniste"),
+        ("integrative", "Intégrative"),
+        ("emdr", "EMDR"),
+        ("enfant_ado", "Enfant et Adolescent"),
+        ("travail", "Psychologie du travail"),
+        ("addictologie", "Addictologie"),
+        ("autre", "Autre"),
     )
     CONSULTATION_MODE_CHOICES = (
-        ('online', 'En ligne uniquement'),
-        ('cabinet', 'En cabinet uniquement'),
-        ('both', 'Les deux'),
+        ("online", "En ligne uniquement"),
+        ("cabinet", "En cabinet uniquement"),
+        ("both", "Les deux"),
     )
 
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='psychologue_profile')
-    title = models.CharField(max_length=100, default='Psychologue clinicien')
-    specialty = models.CharField(max_length=50, choices=SPECIALTY_CHOICES, default='clinique')
+    user = models.OneToOneField(
+        CustomUser, on_delete=models.CASCADE, related_name="psychologue_profile"
+    )
+    title = models.CharField(max_length=100, default="Psychologue clinicien")
+    specialty = models.CharField(
+        max_length=50, choices=SPECIALTY_CHOICES, default="clinique"
+    )
     sub_specialties = models.CharField(max_length=255, blank=True, null=True)
     diploma = models.CharField(max_length=200, blank=True, null=True)
     university = models.CharField(max_length=200, blank=True, null=True)
     graduation_year = models.IntegerField(blank=True, null=True)
     experience_years = models.IntegerField(default=0)
     biography = models.TextField(blank=True, null=True)
-    languages = models.CharField(max_length=100, default='Français, Arabe')
+    languages = models.CharField(max_length=100, default="Français, Arabe")
     registration_number = models.CharField(max_length=50, blank=True, null=True)
     rpps = models.CharField(max_length=50, blank=True, null=True)
     adeli = models.CharField(max_length=50, blank=True, null=True)
-    consultation_mode = models.CharField(max_length=10, choices=CONSULTATION_MODE_CHOICES, default='both')
+    consultation_mode = models.CharField(
+        max_length=10, choices=CONSULTATION_MODE_CHOICES, default="both"
+    )
     city = models.CharField(max_length=100, blank=True, null=True)
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, default=3000.00)
     session_duration = models.IntegerField(
@@ -161,18 +168,24 @@ class PsychologueProfile(models.Model):
     )
     work_days = models.CharField(max_length=100, default="Lundi - Vendredi")
     work_hours = models.CharField(max_length=100, default="08h00 - 17h00")
-    diploma_file = models.FileField(upload_to='psychologues/docs/diplomas/', blank=True, null=True)
-    id_document_file = models.FileField(upload_to='psychologues/docs/ids/', blank=True, null=True)
-    registration_file = models.FileField(upload_to='psychologues/docs/registrations/', blank=True, null=True)
+    diploma_file = models.FileField(
+        upload_to="psychologues/docs/diplomas/", blank=True, null=True
+    )
+    id_document_file = models.FileField(
+        upload_to="psychologues/docs/ids/", blank=True, null=True
+    )
+    registration_file = models.FileField(
+        upload_to="psychologues/docs/registrations/", blank=True, null=True
+    )
     is_verified = models.BooleanField(default=False)
     verification_status = models.CharField(
         max_length=10,
         choices=[
-            ('pending', 'Pending'),
-            ('approved', 'Approved'),
-            ('rejected', 'Rejected'),
+            ("pending", "Pending"),
+            ("approved", "Approved"),
+            ("rejected", "Rejected"),
         ],
-        default='pending',
+        default="pending",
         db_index=True,
     )
     verification_date = models.DateTimeField(blank=True, null=True)
@@ -188,12 +201,13 @@ class PsychologueProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     photo = models.ImageField(
-        upload_to='psychologues/photos/', 
-        null=True, 
-        blank=True, 
-        verbose_name="Photo de profil"
+        storage=get_psychologist_photo_storage,
+        upload_to="psychologues/photos/",
+        null=True,
+        blank=True,
+        verbose_name="Photo de profil",
     )
-    
+
     class Meta:
         verbose_name = "Profil Psychologue"
         verbose_name_plural = "Profils Psychologues"
@@ -204,9 +218,7 @@ class PsychologueProfile(models.Model):
 
 class Notification(models.Model):
     user = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='notifications'
+        CustomUser, on_delete=models.CASCADE, related_name="notifications"
     )
     title = models.CharField(max_length=200, blank=True)
     message = models.TextField()
@@ -215,7 +227,7 @@ class Notification(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"Notification for {self.user} - {self.message[:50]}"
@@ -226,14 +238,18 @@ class Notification(models.Model):
 
 class ClinicalRecord(models.Model):
     # ✅ استخدام String Reference لتجنب Circular Import مع Consultation
-    patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='clinical_records')
-    psychologue = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='clinical_records_created')
+    patient = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="clinical_records"
+    )
+    psychologue = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="clinical_records_created"
+    )
     consultation = models.ForeignKey(
-        'consultations.Consultation',  # ✅ مرجع نصي بدلاً من استيراد مباشر
-        on_delete=models.CASCADE, 
-        related_name='clinical_records', 
-        null=True, 
-        blank=True
+        "consultations.Consultation",  # ✅ مرجع نصي بدلاً من استيراد مباشر
+        on_delete=models.CASCADE,
+        related_name="clinical_records",
+        null=True,
+        blank=True,
     )
     title = models.CharField(max_length=200)
     notes = models.TextField()
@@ -241,10 +257,10 @@ class ClinicalRecord(models.Model):
     treatment_plan = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
-        ordering = ['-created_at']
-    
+        ordering = ["-created_at"]
+
     def __str__(self):
         return f"{self.title} - {self.patient.get_full_name()}"
 
@@ -264,25 +280,25 @@ class ConsultationNote(models.Model):
     """
 
     class NoteType(models.TextChoices):
-        PATIENT = 'patient', 'Note destinée au patient'
-        PROFESSIONAL = 'professional', 'Note professionnelle privée'
+        PATIENT = "patient", "Note destinée au patient"
+        PROFESSIONAL = "professional", "Note professionnelle privée"
 
     patient = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='consultation_notes_as_patient',
-        limit_choices_to={'user_type': 'patient'},
+        related_name="consultation_notes_as_patient",
+        limit_choices_to={"user_type": "patient"},
     )
     psychologue = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
-        related_name='consultation_notes_as_psychologue',
-        limit_choices_to={'user_type': 'psychologue'},
+        related_name="consultation_notes_as_psychologue",
+        limit_choices_to={"user_type": "psychologue"},
     )
     consultation = models.ForeignKey(
-        'consultations.Consultation',
+        "consultations.Consultation",
         on_delete=models.SET_NULL,
-        related_name='consultation_notes',
+        related_name="consultation_notes",
         null=True,
         blank=True,
     )
@@ -301,15 +317,15 @@ class ConsultationNote(models.Model):
     # author. The row and clinical history are kept; the content is hidden from
     # the patient and the notification is updated (never deleted).
     retracted_at = models.DateTimeField(null=True, blank=True)
-    retraction_reason = models.TextField(blank=True, default='')
+    retraction_reason = models.TextField(blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
         indexes = [
-            models.Index(fields=['patient', 'note_type']),
-            models.Index(fields=['psychologue', 'note_type']),
+            models.Index(fields=["patient", "note_type"]),
+            models.Index(fields=["psychologue", "note_type"]),
         ]
 
     def __str__(self):
@@ -329,11 +345,19 @@ class ConsultationNote(models.Model):
 
 
 class TreatmentPlan(models.Model):
-    STATUS = [("active", "En cours"), ("improving", "En amélioration"),
-              ("stable", "Stabilisé"), ("done", "Terminé")]
-              
-    patient = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="plans_as_patient")
-    psychologue = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="plans_as_psy")
+    STATUS = [
+        ("active", "En cours"),
+        ("improving", "En amélioration"),
+        ("stable", "Stabilisé"),
+        ("done", "Terminé"),
+    ]
+
+    patient = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="plans_as_patient"
+    )
+    psychologue = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="plans_as_psy"
+    )
     title = models.CharField(max_length=150)
     status = models.CharField(max_length=12, choices=STATUS, default="active")
     sessions_planned = models.PositiveIntegerField(default=8)
@@ -349,7 +373,9 @@ class TreatmentPlan(models.Model):
 
 
 class TreatmentGoal(models.Model):
-    plan = models.ForeignKey(TreatmentPlan, on_delete=models.CASCADE, related_name="goals")
+    plan = models.ForeignKey(
+        TreatmentPlan, on_delete=models.CASCADE, related_name="goals"
+    )
     label = models.CharField(max_length=200)
     is_done = models.BooleanField(default=False)
 
