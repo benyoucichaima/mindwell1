@@ -6,58 +6,85 @@
         inset-block-start: 12px;
         inset-inline-end: 12px;
         z-index: 3000;
-        display: flex;
-        overflow: hidden;
-        padding: 0;
+    }
+    .mw-language-toggle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
         border: 1.5px solid #e5e4e8;
-        border-radius: 100px;
         background: #fff;
+        color: #111844;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         box-shadow: 0 3px 12px rgba(17, 24, 68, 0.12);
     }
-    .mw-language-switcher form { margin: 0; }
-    .mw-language-button {
-        min-width: 42px;
-        min-height: 36px;
-        padding: 7px 12px;
+    .mw-language-menu {
+        display: none;
+        position: absolute;
+        top: 46px;
+        inset-inline-end: 0;
+        background: #fff;
+        border: 1.5px solid #e5e4e8;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(17,24,68,.12);
+        overflow: hidden;
+        min-width: 120px;
+    }
+    .mw-language-switcher.is-open .mw-language-menu { display: block; }
+    .mw-language-menu button {
+        width: 100%;
+        padding: 10px 14px;
         border: 0;
-        border-radius: 0;
         background: transparent;
-        color: #4a4a5a;
+        text-align: start;
         cursor: pointer;
-        font-family: inherit;
-        font-size: 13px;
         font-weight: 600;
-        line-height: 1.2;
+        color: #4a4a5a;
     }
-    .mw-language-switcher form:not(:last-child) .mw-language-button {
-        border-inline-end: 1px solid #e5e4e8;
-    }
-    .mw-language-button.active {
-        background: #111844;
-        color: #fff;
-    }
-    .mw-language-button:hover:not(.active) {
-        background: #f7f5f0;
-        color: #111844;
-    }
+    .mw-language-menu button:hover { background: #f7f5f0; color: #111844; }
+    .mw-language-menu button.active { background: #111844; color: #fff; }
 </style>
 <div class="mw-language-switcher" role="group" aria-label="{% trans 'Choisir la langue' %}">
-    <form action="{% url 'set_language' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ language_switch_urls.fr }}">
-        <input type="hidden" name="language" value="fr">
-        <button type="submit" class="mw-language-button{% if LANGUAGE_CODE == 'fr' %} active{% endif %}" lang="fr">FR</button>
-    </form>
-    <form action="{% url 'set_language' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ language_switch_urls.ar }}">
-        <input type="hidden" name="language" value="ar">
-        <button type="submit" class="mw-language-button{% if LANGUAGE_CODE == 'ar' %} active{% endif %}" lang="ar">AR</button>
-    </form>
-    <form action="{% url 'set_language' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ language_switch_urls.en }}">
-        <input type="hidden" name="language" value="en">
-        <button type="submit" class="mw-language-button{% if LANGUAGE_CODE == 'en' %} active{% endif %}" lang="en">EN</button>
-    </form>
+    <button type="button" class="mw-language-toggle" aria-haspopup="true" aria-expanded="false" data-mw-lang-toggle>
+        <i class="fa-solid fa-globe"></i>
+    </button>
+    <div class="mw-language-menu">
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ language_switch_urls.fr }}">
+            <input type="hidden" name="language" value="fr">
+            <button type="submit" class="{% if LANGUAGE_CODE == 'fr' %}active{% endif %}">FR</button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ language_switch_urls.ar }}">
+            <input type="hidden" name="language" value="ar">
+            <button type="submit" class="{% if LANGUAGE_CODE == 'ar' %}active{% endif %}">AR</button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ language_switch_urls.en }}">
+            <input type="hidden" name="language" value="en">
+            <button type="submit" class="{% if LANGUAGE_CODE == 'en' %}active{% endif %}">EN</button>
+        </form>
+    </div>
 </div>
+<script>
+(function(){
+    const root = document.querySelector('.mw-language-switcher');
+    if (!root) return;
+    const btn = root.querySelector('[data-mw-lang-toggle]');
+    btn.addEventListener('click', () => {
+        const open = root.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+        if (!root.contains(e.target)) {
+            root.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+</script>

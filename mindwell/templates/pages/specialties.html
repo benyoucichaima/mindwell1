@@ -138,10 +138,25 @@
         color: var(--navy);
       }
 
+      .mobile-nav-toggle {
+        display: none;
+        min-width: 44px;
+        min-height: 44px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        color: var(--navy);
+        background: transparent;
+        cursor: pointer;
+      }
+
       .nav-actions {
         display: flex;
         gap: 12px;
         align-items: center;
+      }
+
+      .nav-menu {
+        display: contents;
       }
 
       .btn {
@@ -180,51 +195,6 @@
       .btn-outline:hover {
         background: var(--navy);
         color: var(--white);
-      }
-
-      /* Language switcher */
-      .lang-switcher {
-        position: absolute;
-        top: 20px;
-        right: 24px;
-        background: var(--white);
-        border: 1px solid var(--border);
-        border-radius: 50px;
-        padding: 4px;
-        display: flex;
-        gap: 2px;
-        box-shadow: var(--shadow);
-        font-size: 0.8rem;
-        font-weight: 500;
-        z-index: 1001;
-      }
-
-      html[dir="rtl"] .lang-switcher {
-        right: auto;
-        left: 24px;
-      }
-
-      .lang-switcher button {
-        padding: 6px 14px;
-        border-radius: 50px;
-        border: none;
-        background: transparent;
-        color: var(--text-medium);
-        cursor: pointer;
-        font-family: inherit;
-        font-size: inherit;
-        font-weight: 500;
-        transition: all 0.2s;
-      }
-
-      .lang-switcher button.active {
-        background: var(--navy);
-        color: var(--white);
-        font-weight: 700;
-      }
-
-      .lang-switcher button:hover:not(.active) {
-        background: var(--cream);
       }
 
       /* Hero Section */
@@ -664,8 +634,39 @@
       }
 
       @media (max-width: 768px) {
-        .nav-links {
+        .navbar-inner {
+          flex-wrap: wrap;
+        }
+
+        .mobile-nav-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .nav-menu {
           display: none;
+          flex: 0 0 100%;
+          width: 100%;
+        }
+
+        .navbar-inner.is-open .nav-menu {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .nav-links,
+        .nav-actions {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          align-items: stretch;
+        }
+
+        .nav-links a,
+        .nav-actions .btn {
+          width: 100%;
+          text-align: start;
         }
 
         .hero h1 {
@@ -689,33 +690,11 @@
           flex-direction: column;
         }
 
-        .lang-switcher {
-          top: 12px;
-          right: 12px;
-          font-size: 0.75rem;
-        }
-
-        html[dir="rtl"] .lang-switcher {
-          right: auto;
-          left: 12px;
-        }
       }
     </style>
   </head>
   <body>
     {% include "includes/language_switcher.html" %}
-    <!-- Language switcher -->
-    <div class="lang-switcher">
-      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">
-        EN
-      </button>
-      <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">
-        AR
-      </button>
-      <button class="lang-btn" data-lang="fr" onclick="setLanguage('fr')">
-        FR
-      </button>
-    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
@@ -724,7 +703,12 @@
           <div class="logo-icon"><i class="fas fa-brain"></i></div>
           <span class="logo-text">MindWell</span>
         </a>
-        <div class="nav-links">
+        <button class="mobile-nav-toggle" type="button" aria-label="Ouvrir le menu"
+                aria-controls="siteNavigation" aria-expanded="false" data-nav-toggle>
+          <span aria-hidden="true">&#9776;</span>
+        </button>
+        <div class="nav-menu" id="siteNavigation">
+          <div class="nav-links">
           <a href="{% url 'home' %}" data-i18n="nav_home">Accueil</a>
           <a href="{% url 'specialties' %}" data-i18n="nav_specialties"
             >Spécialités</a
@@ -754,6 +738,7 @@
             data-i18n="nav_signup"
             >Créer un compte</a
           >
+        </div>
         </div>
       </div>
     </nav>
@@ -2261,6 +2246,23 @@
           } else {
             navbar.style.boxShadow = "none";
           }
+        });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.querySelector("[data-nav-toggle]");
+        const inner = document.querySelector(".navbar-inner");
+        if (!toggle || !inner) return;
+        toggle.addEventListener("click", () => {
+          const open = inner.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        inner.querySelectorAll(".nav-links a").forEach((a) => {
+          a.addEventListener("click", () => {
+            inner.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+          });
         });
       });
     </script>

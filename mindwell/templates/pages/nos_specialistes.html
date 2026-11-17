@@ -118,7 +118,7 @@
       }
       
       .nav-actions { display: flex; align-items: center; gap: 1rem; }
-      .mobile-menu-toggle { display: none; font-size: 1.5rem; color: var(--text-primary); }
+      .mobile-menu-toggle { display: none; font-size: 1.5rem; color: var(--text-primary); background: transparent; border: none; cursor: pointer; position: relative; z-index: 3001; }
 
       .lang-switcher {
         display: flex;
@@ -446,7 +446,8 @@
       }
       @media (max-width: 768px) {
         .nav-menu, .nav-actions { display: none; }
-        .mobile-menu-toggle { display: block; }
+        .mobile-menu-toggle { display: flex; align-items: center; justify-content: center; }
+        .mw-language-switcher { inset-block-start: 70px; }
         .page-header h1 { font-size: 1.875rem; }
         .filters-container { flex-direction: column; align-items: stretch; }
         .filter-group { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
@@ -513,16 +514,11 @@
           </div>
 
           <div class="nav-actions">
-            <div class="lang-switcher">
-              <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
-              <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')">AR</button>
-              <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')">FR</button>
-            </div>
             <a href="{% url 'accounts:login' %}" class="btn btn-outline" data-i18n="btn_login">Connexion</a>
             <a href="{% url 'accounts:choose_account_type' %}" class="btn btn-primary" data-i18n="btn_signup">S'inscrire</a>
           </div>
 
-          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-controls="navMenu" aria-expanded="false">
             <i class="fas fa-bars"></i>
           </button>
         </div>
@@ -833,7 +829,9 @@
             navMenu.classList.toggle("active");
             navActions.classList.toggle("active");
             const icon = mobileMenuToggle.querySelector("i");
-            if (navMenu.classList.contains("active")) {
+            const open = navMenu.classList.contains("active");
+            mobileMenuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+            if (open) {
               icon.classList.remove("fa-bars");
               icon.classList.add("fa-times");
             } else {
