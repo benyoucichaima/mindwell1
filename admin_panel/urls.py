@@ -36,9 +36,4 @@ urlpatterns = [
    
    
     path("settings/", views.admin_section, {"section": "settings"}, name="admin_settings"),
-    path(
-        "diagnostic/core-migrations/",
-        views.core_migration_diagnostic,
-        name="admin_core_migration_diagnostic",
-    ),
 ]

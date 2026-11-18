@@ -1551,6 +1551,24 @@
             </div>
 
             <div>
+              <div class="card" style="margin-bottom: 24px">
+                <div class="infra-header">
+                  <div class="infra-title">{% trans "Temps réel • Utilisateurs en ligne" %}</div>
+                  <div class="infra-dot"></div>
+                </div>
+                <div class="infra-item">
+                  <div class="infra-item-left">
+                    <div class="infra-item-icon green">
+                      <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                      <div class="infra-item-value">{{ online_count }} {% trans "utilisateurs en ligne" %}</div>
+                      <div class="infra-item-label">{% trans "Actifs ces 2 dernières minutes" %}</div>
+                    </div>
+                  </div>
+                  <span class="infra-item-status active">{% trans "Live" %}</span>
+                </div>
+              </div>
               <div class="card">
                 <div class="card-header" style="margin-bottom: 12px">
                   <div>
